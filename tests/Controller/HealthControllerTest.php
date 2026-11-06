@@ -13,14 +13,24 @@ class HealthControllerTest extends TestCase
 {
     public function testHealthCheckReturnsOkWhenDatabaseIsAvailable(): void
     {
+        // Simuler la connexion à la base de données
         $connection = $this->createMock(Connection::class);
+
+        // Simuler le résultat de la requête SQL
+        $result = $this->createStub(Result::class);
+
         $connection->expects(self::once())
             ->method('executeQuery')
             ->with('SELECT 1')
-            ->willReturn($this->createMock(Result::class));
+            ->willReturn($result);
 
-        $response = (new HealthController())($connection, $this->createMock(LoggerInterface::class));
+        // Créer un logger simulé sans attentes particulières
+        $logger = $this->createStub(LoggerInterface::class);
 
+        // Exécuter le contrôleur
+        $response = (new HealthController())($connection, $logger);
+
+        // Vérifier la réponse HTTP
         self::assertSame(Response::HTTP_OK, $response->getStatusCode());
         self::assertSame('{"status":"ok"}', $response->getContent());
     }
