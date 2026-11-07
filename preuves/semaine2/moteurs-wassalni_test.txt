@@ -1,0 +1,13 @@
+ ----------------------------- -------- 
+  table_name                    engine  
+ ----------------------------- -------- 
+  avis                          InnoDB  
+  doctrine_migration_versions   InnoDB  
+  messenger_messages            InnoDB  
+  reclamation                   InnoDB  
+  reservation                   InnoDB  
+  trajet                        InnoDB  
+  user                          InnoDB  
+  vehicule                      InnoDB  
+ ----------------------------- -------- 
+

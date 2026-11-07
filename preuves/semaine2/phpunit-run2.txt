@@ -1,0 +1,22 @@
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: C:\Users\Dogui\wassalni-tests\phpunit.dist.xml
+
+........                                                            8 / 8 (100%)
+
+Time: 00:00.024, Memory: 16.00 MB
+
+[4mHealth Controller (App\Tests\Controller\HealthController)[0m
+[32m ✔ [0mHealth check returns ok when database is available
+
+[4mReservation Service (App\Tests\Service\ReservationService)[0m
+[32m ✔ [0mReserver placesSuffisantes creeReservationConfirmee
+[32m ✔ [0mReserver placesSuffisantes diminueLesPlacesDuTrajet
+[32m ✔ [0mReserver pasAssezDePlaces leveException
+[32m ✔ [0mReserver dejaReserveSurCeTrajet leveException
+[32m ✔ [0mAnnuler reservationConfirmee passeAAnnulee
+[32m ✔ [0mAnnuler reservationConfirmee rendLesPlacesAuTrajet
+[32m ✔ [0mAnnuler reservationDejaAnnulee leveException
+
+[30;42mOK (8 tests, 15 assertions)[0m
