@@ -20,11 +20,10 @@ class Reservation
     #[ORM\Column]
     #[Assert\NotBlank(message: "Le nombre de places est obligatoire")]
     #[Assert\Positive(message: "Le nombre de places doit être positif")]
-    #[Assert\LessThanOrEqual(propertyPath: "trajet.placesDisponibles", message: "Pas assez de places disponibles")]
     private ?int $nbPlaces = null;
 
     #[ORM\Column(length: 20)]
-    private ?string $statut = 'CONFIRMEE';
+    private ?string $statut = 'EN_ATTENTE';
 
     #[ORM\Column(type: 'float', nullable: true)]
     private ?float $prixTotal = null;
@@ -147,11 +146,8 @@ class Reservation
             return false;
         }
         
-        $now = new \DateTime();
         $dateDepart = $this->trajet->getDateDepart();
-        $interval = $now->diff($dateDepart);
-        
-        // Peut annuler jusqu'à 2h avant le départ
-        return $interval->h >= 2 || $interval->invert === 1;
+
+        return $dateDepart > (new \DateTime())->modify('+2 hours');
     }
 }

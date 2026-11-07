@@ -54,14 +54,18 @@
                             <td>
                                 {% if reservation.statut == 'CONFIRMEE' %}
                                     <span class="badge bg-success">Confirmée</span>
+                                {% elseif reservation.statut == 'EN_ATTENTE' %}
+                                    <span class="badge bg-warning">En attente</span>
+                                {% elseif reservation.statut == 'REFUSEE' %}
+                                    <span class="badge bg-danger">Refusée</span>
                                 {% else %}
                                     <span class="badge bg-danger">Annulée</span>
                                 {% endif %}
                             </td>
                             <td>
-                                {% if reservation.statut == 'CONFIRMEE' and reservation.peutEtreAnnulee() %}
-                                    <a href="{{ path('reservation_cancel', {'id': reservation.id}) }}" class="btn btn-sm btn-danger" onclick="return confirm('Annuler cette réservation ?')">Annuler</a>
-                                {% endif %}
+                                <a href="{{ path('trajet_show', {'id': reservation.trajet.id}) }}" class="btn btn-sm btn-outline-primary">
+                                    Voir le trajet
+                                </a>
                             </td>
                         </tr>
                     {% else %}

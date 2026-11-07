@@ -346,6 +346,30 @@
         background: #e2e8f0;
         transform: translateY(-2px);
     }
+
+    .reservation-actions {
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .reservation-actions form {
+        margin: 0;
+    }
+
+    .btn-reservation-action {
+        border: 0;
+        cursor: pointer;
+        font: inherit;
+    }
+
+    .reservation-status {
+        display: inline-block;
+        margin-bottom: 8px;
+        padding: 5px 10px;
+        border-radius: 14px;
+        background: #f0f2f5;
+        font-weight: 600;
+    }
     
     /* Empty state */
     .empty-state {
@@ -434,6 +458,16 @@
 {% endblock %}
 
 {% block body %}
+{% for message in app.flashes('success') %}
+    <div role="status" style="max-width: 1200px; margin: 16px auto; padding: 14px 18px; border-radius: 10px; background: #dcfce7; color: #166534;">
+        {{ message }}
+    </div>
+{% endfor %}
+{% for message in app.flashes('error') %}
+    <div role="alert" style="max-width: 1200px; margin: 16px auto; padding: 14px 18px; border-radius: 10px; background: #fee2e2; color: #991b1b;">
+        {{ message }}
+    </div>
+{% endfor %}
 <div class="page-header">
     <div class="container">
         <h1><i class="fas fa-bell"></i> Demandes de réservation</h1>
@@ -472,7 +506,9 @@
                 <h3>
                     {% set totalPlaces = 0 %}
                     {% for d in demandes %}
-                        {% set totalPlaces = totalPlaces + d.nbPlaces %}
+                        {% if d.statut == 'CONFIRMEE' %}
+                            {% set totalPlaces = totalPlaces + d.nbPlaces %}
+                        {% endif %}
                     {% endfor %}
                     {{ totalPlaces }}
                 </h3>
@@ -485,7 +521,9 @@
                 <h3>
                     {% set totalCA = 0 %}
                     {% for d in demandes %}
-                        {% set totalCA = totalCA + d.prixTotal %}
+                        {% if d.statut == 'CONFIRMEE' %}
+                            {% set totalCA = totalCA + d.prixTotal %}
+                        {% endif %}
                     {% endfor %}
                     {{ totalCA }} DT
                 </h3>
@@ -544,6 +582,17 @@
                         </div>
                         
                         <div class="booking-summary">
+                            <span class="reservation-status">
+                                {% if demande.statut == 'EN_ATTENTE' %}
+                                    En attente
+                                {% elseif demande.statut == 'CONFIRMEE' %}
+                                    Confirmée
+                                {% elseif demande.statut == 'REFUSEE' %}
+                                    Refusée
+                                {% else %}
+                                    Annulée
+                                {% endif %}
+                            </span>
                             <div class="places-count">
                                 <i class="fas fa-chair"></i> {{ demande.nbPlaces }} place(s)
                             </div>
@@ -552,7 +601,22 @@
                             </div>
                         </div>
                         
-                        <div class="actions">
+                        <div class="actions reservation-actions">
+                            {% if demande.statut == 'EN_ATTENTE' %}
+                                <form action="{{ path('reservation_accept', {'id': demande.id}) }}" method="post">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('reservation_accept_' ~ demande.id) }}">
+                                    <button type="submit" class="btn-phone btn-reservation-action">Accepter</button>
+                                </form>
+                                <form action="{{ path('reservation_refuse', {'id': demande.id}) }}" method="post">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('reservation_refuse_' ~ demande.id) }}">
+                                    <button type="submit" class="btn-message btn-reservation-action">Refuser</button>
+                                </form>
+                            {% elseif demande.statut == 'CONFIRMEE' and demande.peutEtreAnnulee() %}
+                                <form action="{{ path('reservation_cancel', {'id': demande.id}) }}" method="post">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('reservation_cancel_' ~ demande.id) }}">
+                                    <button type="submit" class="btn-message btn-reservation-action">Annuler</button>
+                                </form>
+                            {% endif %}
                             <a href="tel:{{ demande.passager.telephone }}" class="btn-phone">
                                 <i class="fas fa-phone"></i> Appeler
                             </a>

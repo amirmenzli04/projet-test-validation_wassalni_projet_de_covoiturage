@@ -674,6 +674,16 @@
 {% endblock %}
 
 {% block body %}
+{% for message in app.flashes('success') %}
+    <div role="status" style="max-width: 1100px; margin: 16px auto; padding: 14px 18px; border-radius: 10px; background: #dcfce7; color: #166534;">
+        {{ message }}
+    </div>
+{% endfor %}
+{% for message in app.flashes('error') %}
+    <div role="alert" style="max-width: 1100px; margin: 16px auto; padding: 14px 18px; border-radius: 10px; background: #fee2e2; color: #991b1b;">
+        {{ message }}
+    </div>
+{% endfor %}
 <div class="hero-section">
     <canvas id="particleCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
     <div class="container" style="position: relative; z-index: 2;">
@@ -835,7 +845,7 @@
         </button>
         
         <div class="modal-header">
-            <h2><i class="fas fa-check-circle"></i> Confirmer la réservation</h2>
+            <h2><i class="fas fa-check-circle"></i> Envoyer une demande de réservation</h2>
             <p>Veuillez sélectionner le nombre de places souhaitées</p>
         </div>
         
@@ -870,7 +880,7 @@
                 <i class="fas fa-times"></i> Annuler
             </button>
             <button class="btn-confirm-modal" id="confirmReservationBtn" onclick="confirmReservation()">
-                <i class="fas fa-check-circle"></i> Confirmer
+                <i class="fas fa-check-circle"></i> Envoyer la demande
             </button>
         </div>
     </div>
@@ -1000,14 +1010,15 @@
             },
             body: JSON.stringify({
                 trajetId: currentTrajetId,
-                nbPlaces: currentSelectedPlaces
+                nbPlaces: currentSelectedPlaces,
+                _token: '{{ csrf_token('reservation_new') }}'
             })
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
                 closeReservationModal();
-                showToast('Réservation confirmée avec succès !', 'success');
+                showToast(data.message || 'Votre demande a été envoyée au conducteur.', 'success');
                 setTimeout(() => location.reload(), 1500);
             } else {
                 closeReservationModal();
@@ -1019,7 +1030,7 @@
             showToast('Erreur réseau. Veuillez réessayer.', 'error');
         })
         .finally(() => {
-            confirmBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirmer';
+            confirmBtn.innerHTML = '<i class="fas fa-check-circle"></i> Envoyer la demande';
             confirmBtn.disabled = false;
         });
     }

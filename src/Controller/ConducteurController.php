@@ -57,7 +57,7 @@ class ConducteurController extends AbstractController
                 ->where('t.conducteur = :user')
                 ->andWhere('r.statut = :statut')
                 ->setParameter('user', $user)
-                ->setParameter('statut', 'CONFIRMEE')
+                ->setParameter('statut', 'EN_ATTENTE')
                 ->orderBy('r.dateReservation', 'DESC')
                 ->setMaxResults(5)
                 ->getQuery()
@@ -109,9 +109,7 @@ class ConducteurController extends AbstractController
         $demandes = $reservationRepo->createQueryBuilder('r')
             ->join('r.trajet', 't')
             ->where('t.conducteur = :user')
-            ->andWhere('r.statut = :statut')
             ->setParameter('user', $user)
-            ->setParameter('statut', 'CONFIRMEE')
             ->orderBy('r.dateReservation', 'DESC')
             ->getQuery()
             ->getResult();

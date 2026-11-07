@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Reservation;
+use App\Entity\Trajet;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,6 +16,20 @@ class ReservationRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Reservation::class);
+    }
+
+    public function findActiveForPassengerAndTrajet(User $passager, Trajet $trajet): ?Reservation
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.passager = :passager')
+            ->andWhere('r.trajet = :trajet')
+            ->andWhere('r.statut IN (:statuts)')
+            ->setParameter('passager', $passager)
+            ->setParameter('trajet', $trajet)
+            ->setParameter('statuts', ['EN_ATTENTE', 'CONFIRMEE'])
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
 //    /**
