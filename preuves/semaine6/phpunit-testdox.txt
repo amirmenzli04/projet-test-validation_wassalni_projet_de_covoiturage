@@ -1,0 +1,56 @@
+﻿Preuve d execution PHPUnit - Semaine 6
+Date locale : 2026-11-11 19:24:33 +01:00
+Revision Git : b6dc42aff178b2e6703408f2bfd2d12dc1b68f1f
+PHP : 8.4.27
+Commande : php bin/phpunit --testdox --colors=never --log-junit preuves\semaine6\phpunit-junit.xml
+
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: C:\Users\Dogui\wassalni-tests\phpunit.dist.xml
+
+...........................                                       27 / 27 (100%)
+
+Time: 00:00.981, Memory: 52.00 MB
+
+Anonymous Access (App\Tests\Functional\AnonymousAccess)
+ ✔ Anonymous visitors are redirected from protected routes
+
+Health Controller (App\Tests\Controller\HealthController)
+ ✔ Health check returns ok when database is available
+
+Reclamation Validation (App\Tests\Entity\ReclamationValidation)
+ ✔ Message de neuf caracteres est refuse
+ ✔ Message de dix caracteres est accepte
+ ✔ Sujet de quatre caracteres est refuse et cinq caracteres est accepte
+ ✔ Reservation refuse une quantite nulle et accepte la quantite disponible
+ ✔ Reservation refuse une quantite superieure au stock
+
+Reclamation Workflow (App\Tests\Functional\ReclamationWorkflow)
+ ✔ Authenticated user can create a complaint
+ ✔ Complaint form rejects nine character message
+ ✔ Only the complaint owner can read its details
+ ✔ Administrator can process and persist a complaint
+ ✔ Empty administrator response leaves complaint pending
+ ✔ Non administrator cannot open administration
+ ✔ Complaint list only contains the current users complaints
+
+Reservation (App\Tests\Entity\Reservation)
+ ✔ PeutEtreAnnulee refuseUnDepartPasse
+ ✔ PeutEtreAnnulee refuseUnDepartDansMoinsDeDeuxHeures
+ ✔ PeutEtreAnnulee autoriseUnDepartDansPlusDeDeuxHeures
+ ✔ PeutEtreAnnulee refuseUnTrajetAbsent
+ ✔ SetStatut enregistreEtEffaceLaDateAnnulationSelonLeStatut
+ ✔ Le prix total est recalcule quand le trajet est retire
+
+Reservation Service (App\Tests\Service\ReservationService)
+ ✔ Reserver placesSuffisantes creeReservationConfirmee
+ ✔ Reserver placesSuffisantes diminueLesPlacesDuTrajet
+ ✔ Reserver pasAssezDePlaces leveException
+ ✔ Reserver dejaReserveSurCeTrajet leveException
+ ✔ Annuler reservationConfirmee passeAAnnulee
+ ✔ Annuler reservationConfirmee rendLesPlacesAuTrajet
+ ✔ Annuler reservationDejaAnnulee leveException
+
+OK (27 tests, 74 assertions)
+

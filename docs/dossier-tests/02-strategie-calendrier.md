@@ -24,9 +24,9 @@ La campagne porte sur la révision identifiée par un SHA Git. Elle ne modifie p
 
 | Niveau | Objet | Technique / outil | Statut de l'outil dans le dépôt | Preuve attendue |
 |---|---|---|---|---|
-| Unitaire | Règles isolées de réservation/annulation et validations | PHPUnit; Arrange–Act–Assert; assertions; stub/mock selon l'interaction testée | PHPUnit est déclaré; 7 tests existent, exécution à confirmer | Sortie PHPUnit, tests isolés reproductibles |
-| Intégration | Services/repositories, Doctrine et base de test | PHPUnit + kernel Symfony + base dédiée; fixtures déterministes | À mettre en place; aucune preuve d'intégration exécutée | Résultat CRUD, assertions en base et nettoyage |
-| Système | Parcours HTTP et règles de rôles | Symfony WebTestCase/BrowserKit; client HTTP | BrowserKit est déclaré en dépendance; scénarios à réaliser | Requête, statut, contenu utile, utilisateur de test |
+| Unitaire | Règles isolées de réservation/annulation et validations | PHPUnit; Arrange–Act–Assert; assertions; stub/mock selon l'interaction testée | Tests de service, d'entité et de validation exécutés | Sortie PHPUnit complète : 27 tests, 74 assertions; aucun rapport de couverture |
+| Intégration | Services/repositories, Doctrine et base de test | PHPUnit + kernel Symfony + base dédiée; fixtures déterministes | Sept tests du flux de réclamation exécutés contre la base de test; fixtures supprimées après le test | Persistance, assertions en base et vérification du nettoyage |
+| Système | Parcours HTTP et règles de rôles | Symfony WebTestCase/BrowserKit; client HTTP | Redirections anonymes et droits/propriété sur le flux de réclamation testés; navigateur réel non couvert | Requête, statut, contenu utile, utilisateur de test |
 | API | Échange JSON actuellement identifié | Collection Bruno/Postman ou PHPUnit HTTP client; session authentifiée | Aucun outil de collection confirmé; choisir un format versionnable avant semaine 8 | Méthode, en-têtes, corps, statut et JSON |
 | Acceptation | Scénarios métier de passager, conducteur et administrateur | Recette manuelle guidée par les cas du catalogue | À exécuter avec le responsable métier | Visa métier par scénario |
 | Interface | Parcours critique du navigateur | Playwright (option proposée, à approuver et configurer) | Non confirmé dans les dépendances actuelles | Trace/capture anonymisée et résultat d'assertions |
@@ -114,7 +114,7 @@ Les commandes `git add`, `git commit` et `git tag` ne sont pas exécutées ici :
 | 3 | Examiner les règles, lever les ambiguïtés et définir des critères vérifiables | [Exigences et traçabilité](03-exigences-tracabilite.md), visa des règles ouvertes |
 | 4 | Partitions d'équivalence, limites, scénarios positifs/négatifs et jeux de données | [Catalogue de plus de 15 cas](04-cas-de-test-donnees.md), données fictives |
 | 5 | Modéliser les transitions; vérifier droits et conduire l'exploration | [Cycle de vie et explorations](05-etats-exploration-anomalies.md), anomalies reproductibles |
-| 6 | Automatiser les règles métier en AAA; analyser assertions et couverture | Au moins 5 tests unitaires exécutés avec rapport; tests actuels à confirmer |
+| 6 | Automatiser les règles métier en AAA; analyser assertions et couverture | 27 tests automatisés exécutés; couverture non mesurée, tests à compléter selon les risques |
 | 7 | Tester CRUD, intégrité et échecs de persistance | Au moins 3 tests d'intégration exécutés et preuves; base isolée |
 | 8 | Tester méthodes, en-têtes, JSON, statuts et autorisations | Collection/API report pour l'endpoint AJAX identifié; couverture REST complète uniquement si contrat fourni |
 | 9 | Parcours navigateur puis évaluation non fonctionnelle et régression | Scénario automatisé, rapport non fonctionnel et liste de régression exécutée |
