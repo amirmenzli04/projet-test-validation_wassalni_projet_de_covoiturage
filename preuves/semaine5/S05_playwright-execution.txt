@@ -1,0 +1,16 @@
+# 2026-11-11 21:58:00 +0100 | branche test/campagne-finale @ 30fca42 + copie de travail | Chrome local | Playwright 1.59.1 | serveur php -S (APP_ENV=test forcé) | base wassalni_test
+
+Running 10 tests using 1 worker
+
+  ok  1 tests\Playwright\semaine5-etats-droits.spec.js:30:1 › ST-01 — passager A crée une réclamation valide : EN_ATTENTE, rattachée à A, visible dans sa liste (6.6s)
+  ok  2 tests\Playwright\semaine5-etats-droits.spec.js:46:1 › ST-02 — message vide puis de 9 caractères : formulaire refusé, aucun enregistrement (6.1s)
+  ok  3 tests\Playwright\semaine5-etats-droits.spec.js:63:1 › ST-03 — message d'exactement 10 caractères avec un sujet de la liste : accepté (4.3s)
+  ok  4 tests\Playwright\semaine5-etats-droits.spec.js:77:1 › ST-04 — passager B ouvre la réclamation de A par URL directe : 403, aucune donnée de A révélée (2.4s)
+  ok  5 tests\Playwright\semaine5-etats-droits.spec.js:87:1 › ST-05 — l'administrateur consulte le détail de la réclamation de A puis la liste d'administration (2.9s)
+  ok  6 tests\Playwright\semaine5-etats-droits.spec.js:101:1 › ST-06 — l'administrateur répond : TRAITEE, réponse et date de traitement persistées ; A voit la réponse (5.9s)
+  ok  7 tests\Playwright\semaine5-etats-droits.spec.js:125:1 › ST-07 — réponse administrateur vide : statut et date inchangés (3.8s)
+  ok  8 tests\Playwright\semaine5-etats-droits.spec.js:143:1 › ST-08 — passager A appelle directement la route de traitement administrateur : 403, aucune mutation (2.9s)
+  ok  9 tests\Playwright\semaine5-etats-droits.spec.js:154:1 › ST-09 — transition vers EN_COURS : aucune action proposée à l'administrateur (constat, règle à arbitrer) (2.7s)
+  ok 10 tests\Playwright\semaine5-etats-droits.spec.js:165:1 › ST-10 — deux sessions : réservation, rafraîchissement, annulation puis annulation répétée ; stock cohérent (13.8s)
+
+  10 passed (1.0m)

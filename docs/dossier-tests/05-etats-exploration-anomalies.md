@@ -203,3 +203,103 @@ La suite complète `php bin/phpunit` a réussi : **27 tests, 74 assertions, 0 é
 | Tests exploratoires dans un navigateur réel, accessibilité et performance | Parcours manuel et mesures non effectués | Non exécutés |
 
 Les contrôles HTTP ont été exécutés par BrowserKit avec le kernel Symfony; ils ne constituent pas une exploration manuelle dans un navigateur. Les chartes EXPL-01 à EXPL-04 restent à effectuer; aucune des observations OBS-05-01 à OBS-05-04 n'est déclarée confirmée par exécution.
+
+## 5.9 Campagne finale du 11/11/2026 — résultats exécutés
+
+Référentiel : EX-25 (réclamations), EX-19 et EX-32 (réservations), CA-10, CA-12 et CA-13 (PDF de la semaine 3). Toutes les preuves sont dans `preuves/semaine5/` ([README](../../preuves/semaine5/README.md)).
+
+### 5.9.1 Diagrammes d'états vérifiés sur le code et par exécution
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> EN_ATTENTE : formulaire valide (T-01, ST-01)
+    EN_ATTENTE --> TRAITEE : réponse non vide, ROLE_ADMIN (T-02, ST-06)
+    EN_ATTENTE --> EN_ATTENTE : réponse vide, refusée (ST-07)
+    TRAITEE --> TRAITEE : nouvelle réponse par requête directe, écrase la première (T-03, non gardée)
+    EN_ATTENTE --> EN_COURS : aucune action dans l'application (ST-09, bloqué)
+    EN_COURS --> TRAITEE : réponse (règle à arbitrer)
+```
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> CONFIRMEE : réservation (TC-22 ; voies HTML et JSON)
+    CONFIRMEE --> ANNULEE : annulation par le propriétaire, trajet futur (TC-29, ST-10)
+    ANNULEE --> ANNULEE : annulation répétée, stock inchangé (CA-10, ST-10)
+    CONFIRMEE --> ANNULEE : trajet passé, accepté à tort (ANO-09)
+```
+
+Ces diagrammes sont cohérents avec le code : les seuls statuts écrits par l'application sont `EN_ATTENTE`/`TRAITEE` pour les réclamations et `CONFIRMEE`/`ANNULEE` pour les réservations. `EN_COURS` existe dans les données préexistantes de `wassalni_test` (une réclamation observée dans la liste d'administration), mais aucune action ne le produit.
+
+### 5.9.2 Matrice des transitions — résultats
+
+| Transition | Acteur | Attendu | Observé | Statut | Preuve |
+|---|---|---|---|---|---|
+| ∅ → EN_ATTENTE | Passager | Création, propriétaire = session | Conforme | Réussi | T-01, ST-01 |
+| EN_ATTENTE → TRAITEE | Admin, réponse non vide | Réponse et date persistées | Conforme ; date cohérente (OBS-05-03 rejetée) | Réussi | T-02, ST-06 |
+| EN_ATTENTE → (refus) | Admin, réponse vide | Aucun changement, message affiché | Aucun changement, **mais aucun message** | Réussi (données) / Échoué (retour) | ST-07, ANO-31 |
+| EN_ATTENTE → TRAITEE | Passager (URL directe) | 403 | 403, aucune mutation | Réussi | ST-08, T-06 |
+| EN_ATTENTE → EN_COURS | Admin | Règle non définie | Aucune action proposée | **Bloqué** (produit) | ST-09, OBS-05-01 |
+| TRAITEE → TRAITEE | Admin (requête directe) | Règle non définie | Réponse écrasée | Constat (caractérisation) | T-03 |
+| Statut hors liste | Entité | Règle non définie | Accepté par `setStatut()` | Constat (OBS-05-02) | T-04 |
+| CONFIRMEE → ANNULEE | Propriétaire, trajet futur | ANNULEE, places rendues | Conforme | Réussi | TC-29, ST-10 |
+| ANNULEE → ANNULEE | Propriétaire | Aucun second remboursement | Stock inchangé (4) | Réussi | CA-10, ST-10 |
+| CONFIRMEE → ANNULEE | Autre passager | 403 | 403 | Réussi | CA-13 |
+| CONFIRMEE → ANNULEE | Propriétaire, trajet passé | Refus | Accepté | **Échoué** | TC-30, ANO-09 |
+
+### 5.9.3 Matrice des rôles observée (EXPL-02, accès direct par URL)
+
+| URL | Anonyme | Passager | Conducteur | Admin |
+|---|---|---|---|---|
+| `/admin/reclamations` | → `/connexion` | 403 | 403 | 200 |
+| `/admin/utilisateurs` | → `/connexion` | 403 | 403 | 200 |
+| `/conducteur/demandes` | → `/connexion` | 403 | 200 | 403 |
+| `/vehicule/mes-vehicules` | → `/connexion` | 403 | 200 | 403 |
+| `/reservation/mes-reservations` | → `/connexion` | 200 | 403 | 403 |
+| `/reclamation/nouvelle` | → `/connexion` | 200 | 200 | 200 |
+| `/passager/dashboard` | → `/connexion` | **500** (ANO-34) | 403 | 403 |
+
+Les rôles ne sont pas hiérarchisés : l'administrateur n'hérite pas des droits passager ou conducteur. C'est cohérent avec EX-31, puisque chaque rôle n'accède qu'à ses pages.
+
+### 5.9.4 Scénarios ST-01 à ST-10 (Playwright, Chrome)
+
+**10 scénarios exécutés : 9 réussis, 1 bloqué (ST-09).** Rapport JSON : 10 attendus, 0 inattendu.
+
+| ID | Résultat observé | Statut | Figure |
+|---|---|---|---|
+| ST-01 | Réclamation `EN_ATTENTE`, propriétaire = passager A (relecture SQL) | Réussi | `S05_ST01_creation_reclamation.png` |
+| ST-02 | Message vide bloqué ; 9 caractères refusés avec « au moins 10 caractères » ; aucune ligne créée | Réussi | `S05_ST02_message_9_caracteres_refuse.png` |
+| ST-03 | 10 caractères acceptés | Réussi | `S05_ST03_message_10_caracteres_accepte.png` |
+| ST-04 | Passager B → HTTP 403, message de A absent de la page | Réussi | `S05_ST04_acces_interdit.png` |
+| ST-05 | Admin : détail 200 et carte de la liste visibles | Réussi | `S05_ST05_admin_*.png` |
+| ST-06 | `TRAITEE`, réponse et date persistées ; le passager voit la réponse | Réussi | `S05_ST06_*.png` |
+| ST-07 | Statut et date inchangés ; message d'erreur non affiché (ANO-31) | Réussi (données) | `S05_ST07_reponse_vide_refusee.png` |
+| ST-08 | Passager sur la route de traitement → 403, aucune mutation | Réussi | `S05_ST08_traitement_par_non_admin_403.png` |
+| ST-09 | Seule action proposée : « Répondre et traiter » | **Bloqué** (règle produit) | `S05_ST09_absence_action_en_cours.png` |
+| ST-10 | Stock 4 → 3 (A réserve) ; B voit 3 ; annulation → 4 ; annulation répétée → 4 | Réussi | `S05_ST10_1` à `S05_ST10_4` |
+
+### 5.9.5 Sessions exploratoires (EXPL-01 à EXPL-04)
+
+**Nature des sessions.** Elles ont été **conduites par l'assistant de test à l'aide de Playwright** : les sondes ont été choisies au fil des observations, puis rejouées pour produire les preuves. Ce ne sont **pas** des explorations manuelles réalisées par un humain. Une session manuelle de 30 minutes par charte reste recommandée ; la fiche de journal du §5.5 est prête à cet usage.
+
+| Charte | Sonde | Observation | Conclusion |
+|---|---|---|---|
+| EXPL-01 | Rafraîchir puis revenir en arrière après l'envoi d'une réclamation | 1 seule réclamation enregistrée | Conforme (modèle POST-redirection-GET) |
+| EXPL-02 | Accès direct à 7 URL pour 4 profils | Matrice §5.9.3 ; **HTTP 500 sur `/passager/dashboard`** | Nouvelle anomalie ANO-34 |
+| EXPL-03 | 6 clics sur « + » dans la fenêtre de réservation (3 places disponibles) | Quantité plafonnée à 3 ; total 75 DT | Conforme côté interface (le serveur reste à corriger : ANO-07) |
+| EXPL-04 | Double clic sur « Confirmer la réservation » | 1 seule requête et 1 réservation confirmée | Conforme |
+| EXPL-04 | Envoi d'un formulaire après effacement des cookies | Redirection vers `/connexion`, aucune donnée créée | Conforme |
+
+### 5.9.6 Devenir des observations OBS-05
+
+| Observation | Conclusion après exécution |
+|---|---|
+| OBS-05-01 | Confirmée : passage direct à `TRAITEE`. **Bloquée** en attente de la décision produit sur `EN_COURS` (non comptée comme défaut). |
+| OBS-05-02 | Confirmée par caractérisation (T-04) : aucune garde dans l'entité. Sans effet visible tant que seul le contrôleur écrit le statut. |
+| OBS-05-03 | **Rejetée** : la date de traitement persistée est cohérente avec l'instant de la requête (T-02). |
+| OBS-05-04 | **Confirmée** : avec une réclamation `EN_COURS`, la liste affiche total 1, en attente 0, traitées 0 (ANO-33). |
+
+### 5.9.7 Vérification du rapport historique
+
+Le rapport du 10/11/2026 (« 27 tests, 74 assertions, 0 échec, 0 dépréciation ») a été réexécuté sur le même périmètre le 11/11/2026 : **résultat identique**. Il est conservé tel quel dans le §5.8 pour son contexte historique.

@@ -231,6 +231,32 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
         self::assertSame(['/avis/conducteur/{id}' => false, '/inscription' => false], array_map(fn ($c) => $c >= 500, $codes), json_encode($codes));
     }
 
+    #[Group('anomalie-ouverte')]
+    #[Group('ANO-34')]
+    #[TestDox("EX-29 — U-PASS1 ouvre son tableau de bord /passager/dashboard : page affichée (pas d'erreur serveur)")]
+    public function testTableauDeBordPassager(): void
+    {
+        $this->client->loginUser($this->user('U-PASS1'));
+        $this->client->request('GET', '/passager/dashboard');
+        $this->assertNotServerError('/passager/dashboard');
+        self::assertResponseIsSuccessful();
+    }
+
+    #[Group('anomalie-ouverte')]
+    #[Group('ANO-31')]
+    #[TestDox('Retour utilisateur — réponse administrateur vide : le message « Veuillez saisir une réponse » est affiché après redirection')]
+    public function testMessageFlashAffiche(): void
+    {
+        $reclamation = (new Reclamation())->setSujet('Retard important')->setMessage('Réclamation pour message flash')->setUser($this->user('U-PASS1'));
+        $this->em()->persist($reclamation);
+        $this->em()->flush();
+        $this->client->loginUser($this->user('U-ADMIN'));
+        $this->client->request('POST', '/admin/reclamation/traiter/' . $reclamation->getId(), ['reponse' => '']);
+        $this->client->followRedirect();
+        self::assertResponseIsSuccessful();
+        self::assertStringContainsString('Veuillez saisir une réponse', $this->body());
+    }
+
     #[TestDox('CA-13 (EX-32) — U-COND2 ouvre la modification du véhicule V1 de U-COND1 : 403')]
     public function testCA13VehiculeDUnAutre(): void
     {

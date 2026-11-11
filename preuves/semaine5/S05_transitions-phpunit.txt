@@ -1,0 +1,26 @@
+# 2026-11-11 22:02:36 +0100 | 30fca42 + copie de travail | vendor/bin/phpunit --testdox tests/Functional/Catalogue/ReclamationTransitionsTest.php --exclude-group aucun (inclut le test d'anomalie ANO-33)
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: C:\Users\Dogui\wassalni-tests\phpunit.dist.xml
+
+....F.                                                              6 / 6 (100%)
+
+Time: 00:01.358, Memory: 46.00 MB
+
+Reclamation Transitions (App\Tests\Functional\Catalogue\ReclamationTransitions)
+ ✔ T-01 (EX-25) — création par le formulaire : état initial EN_ATTENTE, date de traitement vide
+ ✔ T-02 / OBS-05-01 — EN_ATTENTE → TRAITEE directement par la réponse administrateur (aucun passage par EN_COURS)
+ ✔ T-03 — TRAITEE → TRAITEE : une seconde réponse par requête directe écrase la première (transition non gardée)
+ ✔ T-04 / OBS-05-02 — Reclamation::setStatut() accepte un statut hors liste (aucune garde dans l'entité)
+ ✘ T-05 / OBS-05-04 (EX-29) — liste « mes réclamations » avec une réclamation EN_COURS : total = en attente + traitées
+   │
+   │ Total 1, en attente 0, traitées 0
+   │ Failed asserting that 0 is identical to 1.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReclamationTransitionsTest.php:97
+   │
+ ✔ T-06 (CA-12) — un passager ne peut pas traiter une réclamation : 403, statut inchangé
+
+FAILURES!
+Tests: 6, Assertions: 18, Failures: 1.

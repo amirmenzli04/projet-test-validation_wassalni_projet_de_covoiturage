@@ -1,6 +1,6 @@
 # 7. Registre des anomalies
 
-- **Version :** 1.1, 11 novembre 2026 (phases P0 et P1)
+- **Version :** 1.2, 11 novembre 2026 (phases P0, P1 et semaine 5)
 - **Branche de campagne :** `test/campagne-finale`
 - **Environnement commun :** Windows 11, PHP 8.4.27, Symfony 7.4.23, PHPUnit 12.5.23, MariaDB 10.4.32, base `wassalni_test`
 
@@ -128,7 +128,7 @@ Chaque observation a été soumise à un test HTTP/BDD (preuve : `preuves/semain
 | OBS-J | Non exécutée en P1 : il faut des requêtes concurrentes sur un serveur démarré. | Prévue en P4 |
 | OBS-05-01 à 04 | Cycle de vie des réclamations | Traité en P2 |
 
-## 7.5 Anomalies confirmées en P1
+## 7.5 Anomalies confirmées en P1 et en semaine 5
 
 Champs communs à toutes les fiches de cette section :
 
@@ -168,6 +168,10 @@ Champs communs à toutes les fiches de cette section :
 | ANO-28 | La page de recherche affiche des statistiques codées en dur | U-PASS1 ouvre `/trajet/recherche` | Valeurs calculées à partir des données (EX-29) | « 50k+ » affiché alors que la base compte 24 utilisateurs ; « 10k+ » et « 4.9 » sont aussi écrits en dur dans `search.html.twig` (lignes 755 à 765) | S4 / P4 | A-05 | `testA05StatistiquesDeLaRecherche` |
 | ANO-29 | Aucune fonction de modification du profil | Liste des routes (`debug:router`) | Une route permet de modifier ses informations personnelles (EX-05, CA-22) | Aucune route de profil ; seule `vehicule_edit` modifie une ressource | S3 / P3 | A-11 | Preuve statique exécutée : `preuves/semaine3/routes-application.txt` (pas de test automatisable sans la fonction) |
 | ANO-30 | Le message d'échec de connexion est en anglais | U-PASS1 se connecte avec un mauvais mot de passe | Message en français, comme le reste de l'interface | « Invalid credentials. » | S4 / P4 | A-09 | `testA09MessageDeConnexionEnFrancais` |
+| ANO-31 | Les messages de retour (flash) ne sont pas affichés sur la plupart des pages | U-ADMIN envoie une réponse vide à une réclamation (même constat pour réservation, annulation, actions d'administration) | Le message « Veuillez saisir une réponse » est affiché | Redirection vers la liste sans aucun message : seuls `reclamation/new` et `trajet/new` affichent les messages flash (recherche dans `templates/`) | S3 / P3 | — | `ConnexionAccesTest::testMessageFlashAffiche` ; ST-07 (`message_flash_affiche: false`) |
+| ANO-32 | Les horodatages sont enregistrés et affichés en UTC | Créer puis traiter une réclamation à 21 h 58 (heure locale, UTC+1) | Heure locale de l'utilisateur (Tunisie, UTC+1), ou règle de fuseau documentée | « Date traitement 11/11/2026 20:58 » ; `php.ini` `date.timezone = UTC` ; aucun réglage dans l'application. Le contrôle « départ dans le futur » est décalé d'une heure | S4 / P3 | — | Preuve `preuves/semaine5/S05_fuseau-horaire.txt` et capture `S05_ST06_traitement_admin.png` ; règle de fuseau à confirmer par le produit |
+| ANO-33 | Les statistiques de « Mes réclamations » ignorent le statut EN_COURS | U-PASS1 possède une réclamation `EN_COURS` ; ouvre `/reclamation/mes-reclamations` | Total = en attente + traitées (+ en cours) (EX-29) | Total 1, en attente 0, traitées 0 | S4 / P4 | OBS-05-04 | `ReclamationTransitionsTest::testStatistiquesAvecEnCours` |
+| ANO-34 | Le tableau de bord passager renvoie une erreur 500 | U-PASS1 connecté ; `GET /passager/dashboard` | Page affichée (EX-29) | HTTP 500 : `Variable "stats" does not exist in "dashboard/passager.html.twig" at line 14` (le contrôleur ne transmet que `reservations`) | S3 / P2 | — | `ConnexionAccesTest::testTableauDeBordPassager` ; découverte en exploration EXPL-02 |
 
 ### Cas conformes vérifiés en P1
 

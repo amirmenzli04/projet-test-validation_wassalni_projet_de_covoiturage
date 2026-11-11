@@ -1,0 +1,7 @@
+# 2026-11-11 22:02:06 +0100 - fuseau horaire de PHP (CLI et serveur php -S utilisent le même php.ini)
+date.timezone (php.ini) = UTC
+date_default_timezone_get() = UTC
+heure PHP = 2026-11-11 21:02:06 UTC
+heure locale du poste (Windows) = 2026-11-11 22:02:06 +0100
+# Recherche d'un réglage de fuseau dans l'application :
+(aucun réglage dans config/, src/ ou public/)

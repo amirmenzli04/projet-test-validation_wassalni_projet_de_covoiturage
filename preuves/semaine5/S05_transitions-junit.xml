@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="App\Tests\Functional\Catalogue\ReclamationTransitionsTest" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReclamationTransitionsTest.php" tests="6" assertions="18" errors="0" failures="1" skipped="0" time="1.354983">
+    <testcase name="testCreationEnAttente" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReclamationTransitionsTest.php" line="38" class="App\Tests\Functional\Catalogue\ReclamationTransitionsTest" classname="App.Tests.Functional.Catalogue.ReclamationTransitionsTest" assertions="2" time="0.965384"/>
+    <testcase name="testTraitementDirect" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReclamationTransitionsTest.php" line="51" class="App\Tests\Functional\Catalogue\ReclamationTransitionsTest" classname="App.Tests.Functional.Catalogue.ReclamationTransitionsTest" assertions="4" time="0.065167"/>
+    <testcase name="testRetraitementNonGarde" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReclamationTransitionsTest.php" line="68" class="App\Tests\Functional\Catalogue\ReclamationTransitionsTest" classname="App.Tests.Functional.Catalogue.ReclamationTransitionsTest" assertions="3" time="0.110495"/>
+    <testcase name="testStatutHorsListeAccepteParLEntite" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReclamationTransitionsTest.php" line="80" class="App\Tests\Functional\Catalogue\ReclamationTransitionsTest" classname="App.Tests.Functional.Catalogue.ReclamationTransitionsTest" assertions="1" time="0.025544"/>
+    <testcase name="testStatistiquesAvecEnCours" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReclamationTransitionsTest.php" line="89" class="App\Tests\Functional\Catalogue\ReclamationTransitionsTest" classname="App.Tests.Functional.Catalogue.ReclamationTransitionsTest" assertions="4" time="0.079759">
+      <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReclamationTransitionsTest::testStatistiquesAvecEnCours&#13;
+Total 1, en attente 0, traitées 0
+Failed asserting that 0 is identical to 1.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReclamationTransitionsTest.php:97</failure>
+    </testcase>
+    <testcase name="testTraitementRefuseAuPassager" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReclamationTransitionsTest.php" line="101" class="App\Tests\Functional\Catalogue\ReclamationTransitionsTest" classname="App.Tests.Functional.Catalogue.ReclamationTransitionsTest" assertions="4" time="0.108634"/>
+  </testsuite>
+</testsuites>

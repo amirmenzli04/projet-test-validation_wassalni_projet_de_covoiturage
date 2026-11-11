@@ -16,12 +16,19 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 #[AsCommand(
     name: 'app:tests:prepare-week7-9',
-    description: 'Prepare isolated, repeatable fixtures for weeks 7–9 acceptance tests'
+    description: 'Prépare des données fictives reproductibles (semaines 5 à 9) dans une base *_test uniquement'
 )]
 class PrepareWeekSevenToNineTestDataCommand extends Command
 {
     private const PASSENGER_EMAIL = 'semaine7-9.passager@example.test';
     private const DRIVER_EMAIL = 'semaine7-9.conducteur@example.test';
+    /** Comptes fictifs : e-mail => [prénom, rôle, téléphone]. Le nom commun « Tests W7-9 » protège les comptes préexistants. */
+    private const ACCOUNTS = [
+        self::PASSENGER_EMAIL => ['Passager W7-9', 'ROLE_PASSAGER', '90000001'],
+        self::DRIVER_EMAIL => ['Conducteur W7-9', 'ROLE_CONDUCTEUR', '90000002'],
+        'semaine7-9.passager2@example.test' => ['Passager B W7-9', 'ROLE_PASSAGER', '90000003'],
+        'semaine7-9.admin@example.test' => ['Admin W7-9', 'ROLE_ADMIN', '90000004'],
+    ];
     /** Le mot de passe des comptes fictifs est lu dans .env.test.local (non versionné). */
     private const PASSWORD_ENV = 'WASSALNI_TEST_PASSWORD';
     private const TRIP_MARKER = 'Fixture automatisée W7-W9';
@@ -48,8 +55,18 @@ class PrepareWeekSevenToNineTestDataCommand extends Command
         }
 
         $userRepository = $this->entityManager->getRepository(User::class);
-        $passenger = $this->getOrCreateUser($userRepository->findOneBy(['email' => self::PASSENGER_EMAIL]), 'Passager W7-9', 'ROLE_PASSAGER', $password);
-        $driver = $this->getOrCreateUser($userRepository->findOneBy(['email' => self::DRIVER_EMAIL]), 'Conducteur W7-9', 'ROLE_CONDUCTEUR', $password);
+        $users = [];
+        foreach (self::ACCOUNTS as $email => [$name, $role, $phone]) {
+            $users[$email] = $this->getOrCreateUser($userRepository->findOneBy(['email' => $email]), $email, $name, $role, $phone, $password);
+        }
+        $passenger = $users[self::PASSENGER_EMAIL];
+        $driver = $users[self::DRIVER_EMAIL];
+        $this->entityManager->flush();
+
+        // Rejouabilité : on efface uniquement les réclamations et avis de ces comptes fictifs.
+        $ids = implode(',', array_map(fn (User $u) => (int) $u->getId(), $users));
+        $connection->executeStatement("DELETE FROM reclamation WHERE user_id IN ($ids)");
+        $connection->executeStatement("DELETE FROM avis WHERE passager_id IN ($ids)");
 
         $vehicle = $this->entityManager->getRepository(Vehicule::class)->findOneBy([
             'proprietaire' => $driver,
@@ -96,20 +113,20 @@ class PrepareWeekSevenToNineTestDataCommand extends Command
             'database' => $connection->getDatabase(),
             'tripId' => $trip->getId(),
             'dateDepart' => $departure->format('Y-m-d H:i:s'),
-            'passengerEmail' => $passenger->getEmail(),
+            'accounts' => array_keys(self::ACCOUNTS),
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR));
 
         return Command::SUCCESS;
     }
 
-    private function getOrCreateUser(?User $user, string $name, string $role, string $password): User
+    private function getOrCreateUser(?User $user, string $email, string $name, string $role, string $phone, string $password): User
     {
         if ($user === null) {
             $user = (new User())
-                ->setEmail($role === 'ROLE_PASSAGER' ? self::PASSENGER_EMAIL : self::DRIVER_EMAIL)
+                ->setEmail($email)
                 ->setNom('Tests W7-9')
                 ->setPrenom($name)
-                ->setTelephone($role === 'ROLE_PASSAGER' ? '90000001' : '90000002')
+                ->setTelephone($phone)
                 ->setRoles([$role]);
             $this->entityManager->persist($user);
         } elseif ($user->getNom() !== 'Tests W7-9' || $user->getPrenom() !== $name) {
@@ -118,6 +135,7 @@ class PrepareWeekSevenToNineTestDataCommand extends Command
 
         $user
             ->setRoles([$role])
+            ->setStatut('ACTIF')
             ->setIsVerified(true)
             ->setPassword($this->passwordHasher->hashPassword($user, $password));
 
