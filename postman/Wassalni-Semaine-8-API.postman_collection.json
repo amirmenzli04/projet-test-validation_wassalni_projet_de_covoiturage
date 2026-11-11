@@ -1,8 +1,8 @@
 {
   "info": {
     "_postman_id": "c1b4ce4b-f694-4d4a-9fd8-50a2b3c5988d",
-    "name": "Wassalni — Semaine 8 — API REST",
-    "description": "Scénarios authentifiés et négatifs pour la réservation AJAX. La première requête trouve le trajet de test à partir de la date unique fournie par l'environnement.",
+    "name": "Wassalni — Semaine 8 — Tests de l'API JSON",
+    "description": "Surface JSON réellement exposée par WASSALNI (aucune API REST versionnée) : POST /reservation/new-ajax, GET /health, GET /get-last-user-email, GET /check-verification-status. Chaque requête porte des assertions sur le code HTTP, les en-têtes et le corps JSON. Les identifiants EX/CA/ANO renvoient au dossier de test.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -13,12 +13,26 @@
         "header": [],
         "url": {
           "raw": "{{baseUrl}}/trajet/recherche?villeDepart={{fromCity}}&destination={{toCity}}&dateDepart={{fixtureDate}}",
-          "host": ["{{baseUrl}}"],
-          "path": ["trajet", "recherche"],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "trajet",
+            "recherche"
+          ],
           "query": [
-            { "key": "villeDepart", "value": "{{fromCity}}" },
-            { "key": "destination", "value": "{{toCity}}" },
-            { "key": "dateDepart", "value": "{{fixtureDate}}" }
+            {
+              "key": "villeDepart",
+              "value": "{{fromCity}}"
+            },
+            {
+              "key": "destination",
+              "value": "{{toCity}}"
+            },
+            {
+              "key": "dateDepart",
+              "value": "{{fixtureDate}}"
+            }
           ]
         }
       },
@@ -41,11 +55,20 @@
       "name": "02 — Refuser un visiteur anonyme",
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
         "body": {
           "mode": "raw",
           "raw": "{\"trajetId\": {{tripId}}, \"nbPlaces\": 1}",
-          "options": { "raw": { "language": "json" } }
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
         },
         "url": "{{baseUrl}}/reservation/new-ajax"
       },
@@ -61,7 +84,101 @@
           }
         }
       ],
-      "protocolProfileBehavior": { "followRedirects": false }
+      "protocolProfileBehavior": {
+        "followRedirects": false
+      }
+    },
+    {
+      "name": "02b — CA-14 : /get-last-user-email sans connexion ne divulgue aucune adresse (ANO-22)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/get-last-user-email"
+      },
+      "protocolProfileBehavior": {
+        "followRedirects": false
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Accès refusé sans connexion (302, 401 ou 403)', function () { pm.expect([302, 401, 403]).to.include(pm.response.code); });",
+              "pm.test('Aucune adresse e-mail dans la réponse', function () { pm.expect(pm.response.text()).to.not.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[a-z]{2,}/); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "02c — CA-14 : /check-verification-status sans connexion est refusé (ANO-22)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/check-verification-status"
+      },
+      "protocolProfileBehavior": {
+        "followRedirects": false
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Accès refusé sans connexion (302, 401 ou 403)', function () { pm.expect([302, 401, 403]).to.include(pm.response.code); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "02d — /health : 200, JSON {status: ok}, en-têtes et temps de réponse",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/health"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Code 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('En-tête Content-Type JSON', function () { pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'); });",
+              "pm.test('Corps {\"status\":\"ok\"}', function () { pm.expect(pm.response.json()).to.eql({ status: 'ok' }); });",
+              "pm.test('Pas de cache public sur l\\'état de santé', function () { pm.expect(pm.response.headers.get('Cache-Control')).to.not.include('public'); });",
+              "pm.test('Réponse en moins de 1000 ms', function () { pm.expect(pm.response.responseTime).to.be.below(1000); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "02e — /health en POST : méthode non autorisée (405)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": "{{baseUrl}}/health"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('POST refusé en 405', function () { pm.response.to.have.status(405); });"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "03 — Charger le formulaire et le jeton CSRF",
@@ -89,13 +206,31 @@
       "name": "04 — Authentifier le passager",
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          },
+          {
+            "key": "Origin",
+            "value": "{{baseUrl}}"
+          }
+        ],
         "body": {
           "mode": "urlencoded",
           "urlencoded": [
-            { "key": "_username", "value": "{{passengerEmail}}" },
-            { "key": "_password", "value": "{{passengerPassword}}" },
-            { "key": "_csrf_token", "value": "{{csrfToken}}" }
+            {
+              "key": "_username",
+              "value": "{{passengerEmail}}"
+            },
+            {
+              "key": "_password",
+              "value": "{{passengerPassword}}"
+            },
+            {
+              "key": "_csrf_token",
+              "value": "{{csrfToken}}"
+            }
           ]
         },
         "url": "{{baseUrl}}/connexion"
@@ -116,11 +251,20 @@
       "name": "05 — Réserver une place (succès JSON)",
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
         "body": {
           "mode": "raw",
           "raw": "{\"trajetId\": {{tripId}}, \"nbPlaces\": 1}",
-          "options": { "raw": { "language": "json" } }
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
         },
         "url": "{{baseUrl}}/reservation/new-ajax"
       },
@@ -132,7 +276,182 @@
             "exec": [
               "pm.test('La réservation retourne 200 JSON', function () { pm.response.to.have.status(200); pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'); });",
               "const json = pm.response.json();",
-              "pm.test('La réponse confirme la réservation et son prix', function () { pm.expect(json.success).to.eql(true); pm.expect(json.prixTotal).to.eql(25); pm.expect(json.reservationId).to.be.a('number'); });"
+              "pm.test('La réponse confirme la réservation et son prix', function () { pm.expect(json.success).to.eql(true); pm.expect(json.prixTotal).to.eql(25); pm.expect(json.reservationId).to.be.a('number'); });",
+              "pm.test('En-tête Content-Type JSON', function () { pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05b — État après réservation : la recherche affiche 3 places pour le trajet (relecture HTTP)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/trajet/recherche?villeDepart={{fromCity}}&destination={{toCity}}&dateDepart={{fixtureDate}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const card = pm.response.text().match(new RegExp('data-trajet-id=\"' + pm.environment.get('tripId') + '\" data-places-max=\"(\\\\d+)\"'));",
+              "pm.test('Le trajet est toujours affiché', function () { pm.expect(card).to.not.be.null; });",
+              "pm.test('Stock décrémenté de 4 à 3 (CA-08)', function () { pm.expect(Number(card[1])).to.eql(3); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05c — Corps JSON malformé : 400 et JSON d'erreur",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{trajetId: ",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/reservation/new-ajax"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Code 400', function () { pm.response.to.have.status(400); });",
+              "pm.test('Réponse JSON success=false', function () { pm.expect(pm.response.json()).to.include({ success: false }); });",
+              "pm.test('Message explicite', function () { pm.expect(pm.response.json().message).to.eql('Corps JSON invalide'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05d — Quantité négative (-1) : 400, aucune réservation (régression ANO-01)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"trajetId\": {{tripId}}, \"nbPlaces\": -1}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/reservation/new-ajax"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Code 400', function () { pm.response.to.have.status(400); });",
+              "pm.test('Message sur l\\'entier positif', function () { pm.expect(pm.response.json().message).to.include('entier positif'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05e — Identifiant de trajet non numérique : 400",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"trajetId\": \"abc\", \"nbPlaces\": 1}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/reservation/new-ajax"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Code 400', function () { pm.response.to.have.status(400); });",
+              "pm.test('Message « Identifiant de trajet invalide »', function () { pm.expect(pm.response.json().message).to.eql('Identifiant de trajet invalide'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05f — Identifiant de trajet absent : 400",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"nbPlaces\": 1}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/reservation/new-ajax"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Code 400', function () { pm.response.to.have.status(400); });",
+              "pm.test('Message « Trajet non spécifié »', function () { pm.expect(pm.response.json().message).to.eql('Trajet non spécifié'); });"
             ]
           }
         }
@@ -142,8 +461,16 @@
       "name": "06 — Rejeter une quantité nulle",
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": { "mode": "raw", "raw": "{\"trajetId\": {{tripId}}, \"nbPlaces\": 0}" },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"trajetId\": {{tripId}}, \"nbPlaces\": 0}"
+        },
         "url": "{{baseUrl}}/reservation/new-ajax"
       },
       "event": [
@@ -162,8 +489,16 @@
       "name": "07 — Rejeter un trajet inexistant",
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": { "mode": "raw", "raw": "{\"trajetId\": 2147483000, \"nbPlaces\": 1}" },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"trajetId\": 2147483000, \"nbPlaces\": 1}"
+        },
         "url": "{{baseUrl}}/reservation/new-ajax"
       },
       "event": [
@@ -182,8 +517,16 @@
       "name": "08 — Rejeter une quantité supérieure à la capacité",
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": { "mode": "raw", "raw": "{\"trajetId\": {{tripId}}, \"nbPlaces\": 99}" },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"trajetId\": {{tripId}}, \"nbPlaces\": 99}"
+        },
         "url": "{{baseUrl}}/reservation/new-ajax"
       },
       "event": [
@@ -202,8 +545,16 @@
       "name": "09 — Rejeter une réservation en doublon",
       "request": {
         "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": { "mode": "raw", "raw": "{\"trajetId\": {{tripId}}, \"nbPlaces\": 1}" },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"trajetId\": {{tripId}}, \"nbPlaces\": 1}"
+        },
         "url": "{{baseUrl}}/reservation/new-ajax"
       },
       "event": [

@@ -2,8 +2,10 @@
   "name": "wassalni-acceptance-tests",
   "private": true,
   "scripts": {
-    "test:api": "newman run postman/Wassalni-Semaine-8-API.postman_collection.json --environment postman/Wassalni-Test.postman_environment.json --reporters cli,json --reporter-json-export preuves/semaine8/newman-report.json",
-    "test:ui": "php bin/console app:tests:prepare-week7-9 --env=test && playwright test",
+    "test:php": "vendor/bin/phpunit --testdox",
+    "test:anomalies": "vendor/bin/phpunit --testdox --group anomalie-ouverte",
+    "test:api": "node scripts/run-newman.js",
+    "test:ui": "playwright test",
     "test:regression": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-regression.ps1"
   },
   "devDependencies": {
