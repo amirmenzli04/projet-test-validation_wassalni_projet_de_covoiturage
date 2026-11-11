@@ -136,7 +136,7 @@ Champs communs à toutes les fiches de cette section :
 - **Version Git :** `11fe404` (code applicatif identique à `e2fe62b`).
 - **Données :** jeu de données officiel du PDF de la semaine 4, recréé par `tests/Support/CatalogueFixture.php`.
 - **Statut :** **Confirmée, ouverte**. Toute correction attend votre accord.
-- **Reproduction :** `vendor/bin/phpunit --group ANO-xx`.
+- **Reproduction :** `vendor/bin/phpunit --group ANO-xx --exclude-group aucun`. L'option `--exclude-group aucun` remplace l'exclusion définie dans `phpunit.dist.xml`.
 - **Preuves :**
   - `preuves/semaine7/p1-catalogue/02-anomalies-ouvertes.txt` (TestDox) ;
   - `02-anomalies-junit.xml` (JUnit) ;
@@ -161,10 +161,13 @@ Champs communs à toutes les fiches de cette section :
 | ANO-21 | Un compte bloqué peut se connecter | U-ADMIN bloque U-PASS2 (statut `BLOQUE` vérifié en base) ; U-PASS2 se connecte | Connexion refusée à l'étape 3 (TC-04, CA-11, EX-04) | Session obtenue ; étapes 1, 2 et 5 conformes | **S2 / P1** | — | `testTC04BlocagePuisReactivation` |
 | ANO-22 | Une route publique divulgue l'e-mail du dernier inscrit | Visiteur anonyme ; `GET /get-last-user-email` et `/check-verification-status` | Accès refusé ; aucune donnée personnelle (TC-45, CA-14, EX-33) | HTTP 200 `{"email":"cat-…-pass-nv@example.test"}` (compte fictif du test) ; HTTP 200 `{"verified":false}` | **S2 / P1** | A-02 | `testTC45FuiteEmailDernierInscrit`, `testCA14StatutVerificationAnonyme` |
 | ANO-23 | Supprimer un utilisateur qui a des réservations provoque une erreur 500 | U-ADMIN ; `GET /admin/utilisateur/supprimer/{U-PASS1}` | Refus explicite ou propagation propre (CA-20) | HTTP 500 : `ForeignKeyConstraintViolationException` (`reservation.passager_id`). La suppression d'un trajet avec réservations est, elle, propre (CA-20 trajet réussi) | S3 / P2 | — | `testCA20SuppressionUtilisateurAvecReservations` |
-| ANO-24 | Le compteur « Réclamations » du tableau de bord administrateur est faux | 6 réclamations `EN_ATTENTE` en base ; U-ADMIN ouvre `/admin/dashboard` | 6 (CA-16, EX-26) | 0 : la route `admin_dashboard` est déclarée deux fois et la version retenue code ce compteur en dur | S4 / P3 | A-05 | `testCA16CompteurReclamationsAdmin` |
+| ANO-24 | Le compteur « Réclamations » du tableau de bord administrateur est faux | 6 réclamations `EN_ATTENTE` en base ; U-ADMIN ouvre `/admin/dashboard` | 6 (CA-16, EX-26) | 0 : la route `admin_dashboard` est déclarée deux fois et la version retenue code ce compteur en dur | S4 / P3 | — (R12) | `testCA16CompteurReclamationsAdmin` |
 | ANO-25 | Deux pages renvoient une erreur 500 | `GET /avis/conducteur/{U-COND1}` ; `GET /inscription` | Page affichée | HTTP 500 : argument `$conducteur` non résolu (`use App\Entity\User` manquant) ; `Could not load type "App\Controller\RegistrationType"` | S3 / P2 | — | `testPagesSansErreurServeur` |
 | ANO-26 | Un avis peut être déposé avant la fin du trajet | U-PASS1 a RES-F1 sur T-NOMINAL (départ J+7) ; ouvre `/avis/nouveau/{T-NOMINAL}` | Refus (CA-18, EX-21) | Formulaire proposé ; avis enregistré | S3 / P3 | — | `testCA18AvisAvantLaFinDuTrajet` |
 | ANO-27 | `AvisType` utilise des options de contraintes dépréciées | Soumettre le formulaire d'avis | Aucune dépréciation | `Since symfony/validator 7.3: Passing an array of options ... NotBlank / Length` ; le contrôle des bornes de la note est conforme (TC-33) | S4 / P3 | — | `testTC33BornesDeLaNote`, `testCA18SecondAvis` |
+| ANO-28 | La page de recherche affiche des statistiques codées en dur | U-PASS1 ouvre `/trajet/recherche` | Valeurs calculées à partir des données (EX-29) | « 50k+ » affiché alors que la base compte 24 utilisateurs ; « 10k+ » et « 4.9 » sont aussi écrits en dur dans `search.html.twig` (lignes 755 à 765) | S4 / P4 | A-05 | `testA05StatistiquesDeLaRecherche` |
+| ANO-29 | Aucune fonction de modification du profil | Liste des routes (`debug:router`) | Une route permet de modifier ses informations personnelles (EX-05, CA-22) | Aucune route de profil ; seule `vehicule_edit` modifie une ressource | S3 / P3 | A-11 | Preuve statique exécutée : `preuves/semaine3/routes-application.txt` (pas de test automatisable sans la fonction) |
+| ANO-30 | Le message d'échec de connexion est en anglais | U-PASS1 se connecte avec un mauvais mot de passe | Message en français, comme le reste de l'interface | « Invalid credentials. » | S4 / P4 | A-09 | `testA09MessageDeConnexionEnFrancais` |
 
 ### Cas conformes vérifiés en P1
 
@@ -174,3 +177,24 @@ Ces cas ont été exécutés avec succès et font partie de la régression par d
 - **Groupes A et B (publication et recherche) :** TC-09, TC-10, TC-13, TC-14 (0, −1, 0,01 et 15), TC-19, TC-20 b (minuscules), CA-04 (filtre de date), CA-05 (tri), CA-21.
 - **Groupe D (accès) :** TC-41, TC-51, CA-12 (rôles et anonyme), CA-13 (véhicule), CA-20 (suppression d'un trajet avec réservations).
 - **Groupe E (avis et réclamations) :** TC-36, CA-18 (avis sans réservation).
+
+
+## 7.6 Correspondance avec les écarts A-xx des PDF des semaines 2 et 3
+
+| Écart PDF | Intitulé (PDF) | État au 11/11/2026 | Anomalie |
+|---|---|---|---|
+| A-01 | Trajets validés dès leur création | Confirmé par test | ANO-16 |
+| A-02 | `/get-last-user-email` sans connexion | Confirmé par test | ANO-22 |
+| A-03 | Trajets passés proposés et réservables | Confirmé par test | ANO-10 |
+| A-04 | Pas de champ d'heure ; arrivée le même jour | Confirmé par test | ANO-14 |
+| A-05 | Statistiques fixes sur la page de recherche | Confirmé par test | ANO-28 |
+| A-06 | Actions de modification par GET, sans CSRF | Confirmé par test | ANO-12, ANO-13 |
+| A-07 | Doublon par `/reservation/new/{id}` | Confirmé par test | ANO-08 |
+| A-08 | Annulation d'une réservation passée | Confirmé par test | ANO-09 |
+| A-09 | Message « Invalid credentials » en anglais | Confirmé par test | ANO-30 |
+| A-10 | Tables MyISAM sans clé étrangère (recette WAMP) | Hors base de test : `wassalni_test` est en InnoDB avec clés étrangères (`preuves/semaine2/moteurs-wassalni_test.txt`) ; la valeur −1 observée en recette est reproduite par ANO-07 | ANO-07 (conséquence) |
+| A-11 | Aucune route de modification du profil | Confirmé (liste des routes) | ANO-29 |
+| A-12 | Migrations en échec sur une base vide | Corrigé dans `fcbb7e4` (semaine 2) ; 4 migrations sur 4 appliquées | — |
+| A-13 | `ReservationService` n'est appelé nulle part | Toujours vrai : les 7 tests de service ne couvrent pas le chemin réel ; la couverture réelle est assurée par les tests HTTP | Observation de conception |
+
+Les captures `essai7` et `essai9` citées dans les PDF ne figurent pas dans `preuves/semaine1/`. La capture `essai13` montre un e-mail mal saisi (`test@tes.com`) refusé avec « Invalid credentials », et non un compte bloqué : la mention « compte bloqué refusé (essai 13) » du PDF de la semaine 3 n'est pas étayée par cette capture, et le test TC-04 démontre l'inverse (ANO-21).

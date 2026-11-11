@@ -221,6 +221,16 @@ final class PublicationRechercheTest extends CatalogueWebTestCase
         self::assertSame(['T-P4' => true, 'T-FUT-EARLY' => false], ['T-P4' => $this->shows($html, 'T-P4'), 'T-FUT-EARLY' => $this->shows($html, 'T-FUT-EARLY')]);
     }
 
+    #[Group('anomalie-ouverte')]
+    #[Group('ANO-28')]
+    #[TestDox('A-05 (EX-29) — les statistiques de la page de recherche reflètent la base (pas de valeurs codées en dur)')]
+    public function testA05StatistiquesDeLaRecherche(): void
+    {
+        $html = $this->search(['villeDepart' => 'Tunis']);
+        $users = (int) $this->em()->getConnection()->fetchOne('SELECT COUNT(*) FROM `user`');
+        self::assertStringNotContainsString('50k+', $html, "La page affiche « 50k+ » alors que la base compte $users utilisateurs");
+    }
+
     #[TestDox('Robustesse (OBS-G) — date de recherche invalide « abc » : pas d\'erreur serveur')]
     #[Group('anomalie-ouverte')]
     #[Group('ANO-19')]

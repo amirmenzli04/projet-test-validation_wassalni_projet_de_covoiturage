@@ -41,7 +41,7 @@ Le code examiné expose une route JSON de réservation AJAX, mais pas de surface
 ## 2.2 Environnements et données
 
 - Environnement de test isolé, `APP_ENV=test`; aucune donnée réelle.
-- Base PostgreSQL dédiée (Compose déclare PostgreSQL 16); ne jamais exécuter les scénarios destructifs sur la base de développement/production.
+- Base dédiée **`wassalni_test` sur MariaDB 10.4.32** (le suffixe `_test` est imposé par `doctrine.yaml` en environnement `test`). Le Compose déclare PostgreSQL 16, mais cette pile n'est pas utilisée. Ne jamais exécuter de scénario destructif sur la base `wassalni`.
 - L'URL `DATABASE_URL` doit pointer vers la base de test confirmée par l'équipe. Vérifier la connexion et les migrations avant la campagne; ne jamais supposer que le service Compose est démarré.
 - Mailpit ou transport de mail factice si les flux d'inscription/notification sont inclus.
 - Fixtures stables: utilisateur passager A et B, conducteur, administrateur, véhicule, trajets valide/à venir/complet et réservations aux différents statuts.
@@ -55,7 +55,7 @@ Le code examiné expose une route JSON de réservation AJAX, mais pas de surface
 | Application | Symfony, `APP_ENV=test` |
 | Runtime | PHP `>= 8.2`, conforme à `composer.json` |
 | Dépendances | Installer depuis `composer.lock`; ne pas modifier le verrouillage pour une simple exécution |
-| Base | PostgreSQL isolé, version correspondant au Compose (16 par défaut); schéma créé par migrations |
+| Base | MariaDB 10.4.32, base `wassalni_test` (InnoDB) ; schéma créé par les 4 migrations Doctrine |
 | Comptes | Fixtures fictives propres à l'environnement de test |
 | Sorties | Résultats PHPUnit, cas manuels et captures anonymisées; ne pas versionner secrets, `.env.local`, données personnelles ou résultats volumineux |
 
@@ -95,7 +95,7 @@ Les répertoires `Integration/` et `e2e/` sont des emplacements proposés, pas d
 
 ### Flux Git proposé
 
-1. Partir de la branche de référence validée par l'équipe; le dépôt a été observé sur `master`, mais la politique de branche doit être confirmée.
+1. Partir de la branche de référence validée par l'équipe; la branche de référence est `main` ; la campagne finale est conduite sur `test/campagne-finale`, publiée séparément sans fusion. (Mention initiale : la politique de branche devait être confirmée.
 2. Créer une branche de travail courte, par exemple `test/semaine-02-plan` ou `test/semaine-06-reservation`.
 3. Garder les modifications de plan, tests et configuration limitées au sujet; ne pas mélanger secrets ou données locales.
 4. Relire le diff (`git diff --check`, puis `git diff`) et vérifier les nouveaux fichiers avant de committer.

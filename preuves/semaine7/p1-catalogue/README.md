@@ -24,7 +24,7 @@ Les cas `TC-xx` du PDF de la semaine 4 (version officielle) et les critères `CA
 ```powershell
 vendor\bin\phpunit --testdox                                # régression (doit être verte)
 vendor\bin\phpunit --testdox --group anomalie-ouverte       # anomalies confirmées (doivent échouer tant qu'elles ne sont pas corrigées)
-vendor\bin\phpunit --group ANO-07                           # une anomalie précise
+vendor\bin\phpunit --group ANO-07 --exclude-group aucun     # une anomalie précise (lève l'exclusion de la configuration)
 ```
 
 ## Limites

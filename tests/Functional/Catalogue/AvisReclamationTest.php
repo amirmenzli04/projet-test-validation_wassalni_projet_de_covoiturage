@@ -79,13 +79,13 @@ final class AvisReclamationTest extends CatalogueWebTestCase
         self::assertSame(0, $this->countAvis('T-P4'));
     }
 
-    #[TestDox('TC-36 (CA-17, EX-24) — réclamation : message de 9 caractères refusé, 10 accepté ; sujet hors liste (101 car.) refusé')]
+    #[TestDox('TC-36 (CA-17, EX-24) — réclamation : message vide et de 9 caractères refusés, 10 accepté ; sujet hors liste (101 car.) refusé')]
     public function testTC36BornesDeLaReclamation(): void
     {
         $this->client->loginUser($this->user('U-PASS1'));
         $count = fn () => (int) $this->em()->getConnection()->fetchOne('SELECT COUNT(*) FROM reclamation WHERE user_id = ?', [$this->ids['U-PASS1']]);
         $result = [];
-        foreach (['message 9' => ['Retard important', str_repeat('a', 9)], 'message 10' => ['Retard important', str_repeat('b', 10)], 'sujet 101' => [str_repeat('s', 101), str_repeat('c', 12)]] as $case => [$subject, $message]) {
+        foreach (['message vide' => ['Retard important', ''], 'message 9' => ['Retard important', str_repeat('a', 9)], 'message 10' => ['Retard important', str_repeat('b', 10)], 'sujet 101' => [str_repeat('s', 101), str_repeat('c', 12)]] as $case => [$subject, $message]) {
             $before = $count();
             $form = $this->client->request('GET', '/reclamation/nouvelle')->filter('#reclamationForm')->form();
             $form->disableValidation();
@@ -94,6 +94,6 @@ final class AvisReclamationTest extends CatalogueWebTestCase
             $this->client->submit($form);
             $result[$case] = $count() > $before;
         }
-        self::assertSame(['message 9' => false, 'message 10' => true, 'sujet 101' => false], $result);
+        self::assertSame(['message vide' => false, 'message 9' => false, 'message 10' => true, 'sujet 101' => false], $result);
     }
 }

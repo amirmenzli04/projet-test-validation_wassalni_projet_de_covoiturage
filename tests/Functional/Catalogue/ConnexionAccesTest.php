@@ -45,6 +45,17 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
         self::assertFalse($sessionAfterWrongPassword || $this->hasPassengerSession($this->client));
     }
 
+    #[Group('anomalie-ouverte')]
+    #[Group('ANO-30')]
+    #[TestDox("A-09 — le message d'échec de connexion est rédigé en français")]
+    public function testA09MessageDeConnexionEnFrancais(): void
+    {
+        $this->loginByForm($this->client, $this->emails['U-PASS1'], 'mauvais-mot-de-passe');
+        $message = $this->loginErrorMessage();
+        self::assertNotNull($message);
+        self::assertStringNotContainsString('Invalid credentials', $message, "Message affiché : « $message »");
+    }
+
     #[TestDox('TC-04 (CA-11, EX-04) — U-PASS2 bloqué par l\'admin ne peut plus se connecter ; réactivé, il le peut')]
     #[Group('anomalie-ouverte')]
     #[Group('ANO-21')]

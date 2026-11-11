@@ -1,5 +1,7 @@
 # 1. Cadrage, fiche projet et risques
 
+> Dossier de travail. Le registre officiel des risques est celui du PDF de la semaine 1 (R1 à R21) ; correspondance en [00 §0.2](00-referentiel-correspondances.md).
+
 ## 1.1 Fiche projet
 
 | Champ | Définition |
@@ -7,7 +9,7 @@
 | Application | WASSALNI |
 | Nature | Application web de mise en relation pour le covoiturage |
 | Stack observée | PHP 8.2+, Symfony 7.4, Doctrine ORM 3.6, Twig; PHPUnit 12.5 déclaré en dépendance de développement |
-| Stockage/environnement | Compose déclare PostgreSQL 16 et Mailpit; la disponibilité effective de l'environnement n'a pas été vérifiée |
+| Stockage/environnement | **Environnement réellement utilisé (vérifié le 07/11/2026) :** MariaDB 10.4.32, base dédiée `wassalni_test` (InnoDB, clés étrangères), transport de mail `null://null`. Le fichier Compose déclare PostgreSQL 16 et Mailpit, mais cette pile n'est pas utilisée par la campagne. |
 | Profils visibles dans le code | `ROLE_PASSAGER`, `ROLE_CONDUCTEUR`, `ROLE_ADMIN` |
 | Parcours prioritaires | Recherche/publication d'un trajet, réservation/annulation, dépôt/suivi/traitement d'une réclamation |
 | Responsable de test | Étudiant/testeur; validation métier par le responsable produit ou l'enseignant |
