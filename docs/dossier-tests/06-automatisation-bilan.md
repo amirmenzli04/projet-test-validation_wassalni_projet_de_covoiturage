@@ -102,3 +102,52 @@ Cette décision n'affirme pas que les tests échoueraient. Elle signifie que les
 |---|---|---|---|---|
 | Responsable produit / enseignant | En attente | À renseigner | À renseigner | À renseigner |
 | Responsable campagne | NO-GO probatoire | À renseigner | 10 novembre 2026 | Suite automatisée et workflow réclamation réussis; recette navigateur/non fonctionnelle à compléter |
+
+## 6.7 Semaine 6 — campagne finale du 11/11/2026 (tests unitaires et couverture)
+
+### Inventaire de la suite `unitaire`
+
+La suite `unitaire` compte **33 tests exécutés, 52 assertions, OK**. Les 6 tests du groupe `anomalie-ouverte` sont rejoués à part. Aucun de ces tests ne sollicite HTTP ni la base, sauf le test de santé.
+
+| Fichier | Tests | Règles vérifiées | Doublure |
+|---|---|---|---|
+| `tests/Service/ReservationServiceTest.php` (existant) | 7 | Création, décrément, stock insuffisant, doublon, annulation, restitution, double annulation | **Stub** du dépôt : on fixe sa réponse, sans vérifier l'appel |
+| `tests/Service/ReservationServiceInteractionTest.php` (UT-10, UT-11) | 2 | Critère d'unicité transmis au dépôt (CA-09) ; court-circuit si stock insuffisant (CA-06) | **Mock** : `expects(once())->with(...)` puis `expects(never())`. Le mock est justifié ici parce que le résultat attendu est une interaction |
+| `tests/Entity/ReservationTest.php` (existant) | 6 | `peutEtreAnnulee()`, date d'annulation, recalcul du prix | Aucune |
+| `tests/Entity/ReclamationValidationTest.php` (existant) | 5 | Bornes du message (9/10) et du sujet (4/5), bornes des places | Aucune (validateur réel) |
+| `tests/Entity/RegleMetierEntitesTest.php` (UT-01 à UT-09) | 14 exécutés + 6 en anomalie | Arrivée strictement après le départ (VL), prix > 0 (VL : 0 / 0,01), départ futur, bornes de la note 1–5 (VL), rôles, note moyenne arrondie | Aucune (validateur réel) |
+| `tests/Controller/HealthControllerTest.php` (existant) | 1 | `/health` répond `ok` | — |
+
+Tous les nouveaux tests suivent la structure **Arrange – Act – Assert**, signalée par des commentaires. Les valeurs limites sont exercées de part et d'autre de chaque borne : 0 / 0,01 pour le prix, 0 / 1 / 9 / 10 pour les places, 0 / 1 / 5 / 6 pour la note, égalité puis +1 minute pour les dates.
+
+### Ce que vérifient les assertions
+
+- **`assertSame`** (identité de valeur et de type) est utilisé pour les nombres de violations, les statuts et les montants. Une égalité lâche masquerait par exemple `"0"` ≠ `0`.
+- **Comparaison de tableaux** (`assertSame([1, 0], …)`) : les deux côtés d'une limite sont vérifiés dans une seule assertion, ce qui rend le message d'échec lisible.
+- **Attentes des mocks** : `once()`, `never()` et `with()` sont des assertions d'interaction, vérifiées automatiquement en fin de test.
+- **Exceptions** : dans UT-11, le message de la `DomainException` **et** l'absence d'effet de bord (stock inchangé) sont vérifiés.
+
+### Défauts révélés par les tests unitaires
+
+| Test | Résultat | Anomalie |
+|---|---|---|
+| UT-04 — départ aujourd'hui à 00:00:01 (déjà passé) | **Échec** : accepté, car `GreaterThan("today")` compare à minuit | ANO-14 (complément) |
+| UT-05 / UT-06 — validation d'un véhicule | **Erreur** `Unknown named parameter $message` (`Vehicule.php:34`) | **ANO-35** : confirmée ensuite au niveau système (HTTP 500 à l'ajout d'un véhicule) |
+
+Cet exemple illustre bien l'intérêt du test unitaire : un défaut de configuration de contrainte, invisible tant que le formulaire de véhicule n'est pas soumis, est détecté en isolation puis confirmé de bout en bout.
+
+### Couverture de code (PCOV 1.0.12, chargé localement)
+
+| Périmètre | Tests | Lignes | Méthodes | Classes |
+|---|---|---|---|---|
+| Suite `unitaire` seule | 33 | **7,00 %** (106/1515) | 16,67 % | 2,70 % |
+| Régression complète (unitaire + intégration + fonctionnel) | 81 | **34,65 %** (525/1515) | 49,56 % | 18,92 % |
+
+Détail par classe (régression complète) : `ReservationService` 100 %, `Reservation` 94,9 %, `Reclamation` 87,1 %, `ReclamationController` 100 %, `ReservationController` 84,5 %, `TrajetController` 85,7 %, `LoginFormAuthenticator` 53,6 %, `AdminController` 15,1 %, `VehiculeController` 5,3 %. Plusieurs classes sont à 0 % : `RegistrationWizardController`, `ConducteurController`, `DashboardController`, `HomeController`, `MailerService`, les formulaires d'inscription et la commande de données de test. Rapport navigable : `preuves/semaine6/campagne-finale/couverture-html/index.html`.
+
+### Analyse et limites
+
+1. **La couverture unitaire est faible (7 %), et c'est attendu.** La logique de WASSALNI est presque entièrement écrite dans les contrôleurs, que seuls les tests HTTP exécutent. Le seul service métier, `ReservationService`, est couvert à 100 %, mais il **n'est appelé par aucun contrôleur** (écart A-13). Sa couverture ne garantit donc rien sur le comportement réel. C'est une limite de conception, pas un manque de tests.
+2. **Une ligne couverte n'est pas une ligne vérifiée.** `ReservationController` est couvert à 84,5 % alors que la voie HTML contient 5 anomalies (ANO-07, 08, 10, 11, 12). La couverture mesure l'exécution, pas la pertinence des assertions.
+3. Les tests du groupe `anomalie-ouverte` sont exclus de la mesure. Les inclure augmenterait la couverture sans améliorer la confiance.
+4. **Zones non couvertes, à risque :** l'inscription en plusieurs étapes et l'e-mail de confirmation (EX-01, EX-02, EX-30 ; R11) ne sont testés à aucun niveau. C'est un risque résiduel à signaler.

@@ -164,6 +164,24 @@ final class PublicationRechercheTest extends CatalogueWebTestCase
         self::assertNull($id, 'Trajet publié avec le véhicule d\'un autre conducteur');
     }
 
+    #[Group('anomalie-ouverte')]
+    #[Group('ANO-35')]
+    #[TestDox("CA-21 (EX-06) — U-COND2 ajoute un véhicule par le formulaire (5 champs) : véhicule enregistré")]
+    public function testCA21AjoutVehicule(): void
+    {
+        $this->client->loginUser($this->user('U-COND2'));
+        $form = $this->client->request('GET', '/vehicule/nouveau')->filter('form[name="vehicule"]')->form([
+            'vehicule[marque]' => 'Renault',
+            'vehicule[modele]' => 'Clio',
+            'vehicule[immatriculation]' => 'CA21TEST',
+            'vehicule[nbPlaces]' => '4',
+            'vehicule[couleur]' => 'Bleu',
+        ]);
+        $this->client->submit($form);
+        $this->assertNotServerError('Ajout de véhicule');
+        self::assertSame(1, (int) $this->em()->getConnection()->fetchOne("SELECT COUNT(*) FROM vehicule WHERE immatriculation = 'CA21TEST'"));
+    }
+
     // ---------- Groupe B : visibilité et recherche ----------
 
     #[TestDox('TC-18 (CA-04) — Tunis→Sfax sans date : T-FUT-EARLY et T-P4 affichés, T-PAST (passé) absent')]

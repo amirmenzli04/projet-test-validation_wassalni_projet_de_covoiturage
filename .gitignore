@@ -31,3 +31,6 @@
 /playwright-report/
 /playwright/.cache/
 ###< outillage de test ###
+
+# Outils binaires téléchargés localement (PCOV, k6) : non versionnés
+/tools/

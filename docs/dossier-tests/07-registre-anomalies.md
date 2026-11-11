@@ -1,6 +1,6 @@
 # 7. Registre des anomalies
 
-- **Version :** 1.2, 11 novembre 2026 (phases P0, P1 et semaine 5)
+- **Version :** 1.3, 11 novembre 2026 (phases P0, P1, semaines 5 et 6)
 - **Branche de campagne :** `test/campagne-finale`
 - **Environnement commun :** Windows 11, PHP 8.4.27, Symfony 7.4.23, PHPUnit 12.5.23, MariaDB 10.4.32, base `wassalni_test`
 
@@ -128,7 +128,7 @@ Chaque observation a été soumise à un test HTTP/BDD (preuve : `preuves/semain
 | OBS-J | Non exécutée en P1 : il faut des requêtes concurrentes sur un serveur démarré. | Prévue en P4 |
 | OBS-05-01 à 04 | Cycle de vie des réclamations | Traité en P2 |
 
-## 7.5 Anomalies confirmées en P1 et en semaine 5
+## 7.5 Anomalies confirmées en P1 et en semaines 5 et 6
 
 Champs communs à toutes les fiches de cette section :
 
@@ -151,7 +151,7 @@ Champs communs à toutes les fiches de cette section :
 | ANO-11 | La voie HTML permet de réserver un trajet non validé | T-PEND `EN_ATTENTE` ; `POST /reservation/new/{T-PEND}` | Refus (CA-01) | 1 réservation créée (la voie JSON refuse : TC-50 bis réussi) | S3 / P2 | — | `testTC50TrajetNonValideVoieHtml` |
 | ANO-12 | Réserver et annuler ne sont pas protégés contre le CSRF ; l'annulation se fait par GET | U-PASS1 connecté ; `GET /reservation/annuler/{RES-F1}` ; `POST /reservation/new/{T-P4}` sans jeton | Requête GET ou sans jeton refusée (CA-15, EX-34) | Annulation exécutée (HTTP 302) ; réservation créée sans jeton | **S2 / P1** | A-06 | `testCA15AnnulationParGetSansJeton`, `testCA15ReservationHtmlSansJeton` |
 | ANO-13 | Les actions d'administration modifient les données par GET ou sans jeton CSRF | U-ADMIN connecté ; GET `/admin/trajet/valider/{T-PEND}`, `/admin/utilisateur/bloquer/{U-PASS2}`, `/admin/trajet/supprimer/{T-P1}` ; POST `/admin/reclamation/traiter/{id}` sans jeton | Refus ; données inchangées (TC-38, CA-15) | T-PEND → `VALIDE` (HTTP 302) ; U-PASS2 → `BLOQUE` ; T-P1 supprimé ; réclamation → `TRAITEE` | **S2 / P1** | A-06 | `testTC38ValidationParGet`, `testCA15BlocageParGet`, `testCA15SuppressionTrajetParGet`, `testCA15TraitementReclamationSansJeton` |
-| ANO-14 | Les règles de date de publication sont incomplètes | U-COND1 publie : (a) départ le jour même ; (b) arrivée = départ (J+1) | Refus (TC-11, TC-12, CA-02) | Les deux trajets sont créés | S3 / P3 | A-04 | `testTC11DepartLeJourMeme`, `testTC12ArriveeEgaleAuDepart` |
+| ANO-14 | Les règles de date de publication sont incomplètes | U-COND1 publie : (a) départ le jour même ; (b) arrivée = départ (J+1) | Refus (TC-11, TC-12, CA-02) | Les deux trajets sont créés. Au niveau de l'entité, `GreaterThan("today")` compare à minuit : un départ déjà passé de la journée est accepté (UT-04). Le contrôleur n'appelle de toute façon pas le validateur | S3 / P3 | A-04 | `testTC11DepartLeJourMeme`, `testTC12ArriveeEgaleAuDepart`, `RegleMetierEntitesTest::testDepartPasseDuJourMeme` |
 | ANO-15 | Un prix non numérique est accepté et enregistré à 0 | U-COND1 publie avec `prix=abc` | Refus (TC-14, CA-03) | Trajet créé, **prix enregistré 0** | S3 / P2 | — | `testTC14PrixNonNumerique` |
 | ANO-16 | Un trajet est validé dès sa publication et visible avant modération | U-COND1 publie un trajet valide ; U-PASS1 recherche Tunis→Sousse | Statut `EN_ATTENTE` ; absent de la recherche (TC-15, TC-16, CA-01) | Statut `VALIDE` ; trajet visible. Le message affiché annonce pourtant « En attente de validation » | S3 / P2 | A-01 | `testTC15StatutInitialEnAttente`, `testTC16TrajetNonValideInvisible` |
 | ANO-17 | Un conducteur peut publier avec le véhicule d'un autre conducteur | U-COND2 possède un véhicule ; publie avec `vehicule` = V1 (de U-COND1) | Refus (EX-32, CA-13) | Trajet créé avec V1 | S3 / P2 | — | `testCA13VehiculeDUnAutreConducteur` |
@@ -172,6 +172,7 @@ Champs communs à toutes les fiches de cette section :
 | ANO-32 | Les horodatages sont enregistrés et affichés en UTC | Créer puis traiter une réclamation à 21 h 58 (heure locale, UTC+1) | Heure locale de l'utilisateur (Tunisie, UTC+1), ou règle de fuseau documentée | « Date traitement 11/11/2026 20:58 » ; `php.ini` `date.timezone = UTC` ; aucun réglage dans l'application. Le contrôle « départ dans le futur » est décalé d'une heure | S4 / P3 | — | Preuve `preuves/semaine5/S05_fuseau-horaire.txt` et capture `S05_ST06_traitement_admin.png` ; règle de fuseau à confirmer par le produit |
 | ANO-33 | Les statistiques de « Mes réclamations » ignorent le statut EN_COURS | U-PASS1 possède une réclamation `EN_COURS` ; ouvre `/reclamation/mes-reclamations` | Total = en attente + traitées (+ en cours) (EX-29) | Total 1, en attente 0, traitées 0 | S4 / P4 | OBS-05-04 | `ReclamationTransitionsTest::testStatistiquesAvecEnCours` |
 | ANO-34 | Le tableau de bord passager renvoie une erreur 500 | U-PASS1 connecté ; `GET /passager/dashboard` | Page affichée (EX-29) | HTTP 500 : `Variable "stats" does not exist in "dashboard/passager.html.twig" at line 14` (le contrôleur ne transmet que `reservations`) | S3 / P2 | — | `ConnexionAccesTest::testTableauDeBordPassager` ; découverte en exploration EXPL-02 |
+| ANO-35 | Le formulaire de véhicule plante : contrainte `Range` mal paramétrée | U-COND2 (sans véhicule) ouvre `/vehicule/nouveau` et soumet les 5 champs valides | Véhicule enregistré (EX-06, CA-21) ; ensuite, publication possible (EX-07) | **HTTP 500** : `Error: Unknown named parameter $message` (`Vehicule.php` ligne 34 : `#[Assert\Range(..., message: ...)]`, paramètre inexistant pour `Range`). Toute validation d'un véhicule échoue : ajout et modification impossibles | **S2 / P1** | — | `PublicationRechercheTest::testCA21AjoutVehicule` ; découverte par les tests unitaires UT-05 et UT-06 |
 
 ### Cas conformes vérifiés en P1
 
