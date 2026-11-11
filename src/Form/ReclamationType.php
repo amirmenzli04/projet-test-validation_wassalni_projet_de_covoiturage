@@ -32,7 +32,7 @@ class ReclamationType extends AbstractType
                     'Autre problème' => 'Autre problème',
                 ],
                 'attr' => ['class' => 'form-control'],
-                'constraints' => [new NotBlank(['message' => 'Veuillez sélectionner un sujet'])],
+                'constraints' => [new NotBlank(message: 'Veuillez sélectionner un sujet')],
             ])
             ->add('message', TextareaType::class, [
                 'label' => 'Description détaillée',
@@ -42,8 +42,8 @@ class ReclamationType extends AbstractType
                     'placeholder' => 'Décrivez votre problème en détail...'
                 ],
                 'constraints' => [
-                    new NotBlank(['message' => 'Le message est obligatoire']),
-                    new Length(['min' => 10, 'minMessage' => 'Le message doit contenir au moins 10 caractères'])
+                    new NotBlank(message: 'Le message est obligatoire'),
+                    new Length(min: 10, minMessage: 'Le message doit contenir au moins 10 caractères')
                 ],
             ])
             ->add('trajetConcerne', EntityType::class, [

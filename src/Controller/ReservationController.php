@@ -97,16 +97,38 @@ class ReservationController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
         
+        if (!is_array($data)) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => 'Corps JSON invalide'
+            ], 400);
+        }
+
         $trajetId = $data['trajetId'] ?? null;
-        $nbPlaces = (int) ($data['nbPlaces'] ?? 1);
         
-        if (!$trajetId) {
+        if ($trajetId === null || $trajetId === '') {
             return new JsonResponse([
                 'success' => false,
                 'message' => 'Trajet non spécifié'
             ], 400);
         }
         
+        $trajetId = filter_var($trajetId, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+        if ($trajetId === false) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => 'Identifiant de trajet invalide'
+            ], 400);
+        }
+
+        $nbPlaces = filter_var($data['nbPlaces'] ?? 1, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+        if ($nbPlaces === false) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => 'Le nombre de places doit être un entier positif'
+            ], 400);
+        }
+
         // Récupérer le trajet
         $trajet = $trajetRepo->find($trajetId);
         
