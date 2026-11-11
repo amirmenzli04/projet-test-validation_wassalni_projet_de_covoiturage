@@ -24,3 +24,10 @@
 
 /.env
 /.env.dev
+
+###> outillage de test (Playwright / Newman) ###
+/node_modules/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+###< outillage de test ###
