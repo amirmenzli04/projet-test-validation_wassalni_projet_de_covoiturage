@@ -1,0 +1,241 @@
+{
+  "info": {
+    "_postman_id": "c1b4ce4b-f694-4d4a-9fd8-50a2b3c5988d",
+    "name": "Wassalni — Semaine 8 — API REST",
+    "description": "Scénarios authentifiés et négatifs pour la réservation AJAX. La première requête trouve le trajet de test à partir de la date unique fournie par l'environnement.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 — Trouver le trajet reproductible",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/trajet/recherche?villeDepart={{fromCity}}&destination={{toCity}}&dateDepart={{fixtureDate}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["trajet", "recherche"],
+          "query": [
+            { "key": "villeDepart", "value": "{{fromCity}}" },
+            { "key": "destination", "value": "{{toCity}}" },
+            { "key": "dateDepart", "value": "{{fixtureDate}}" }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('La recherche de fixture renvoie 200', function () { pm.response.to.have.status(200); });",
+              "const matches = [...pm.response.text().matchAll(/class=\"result-card\" data-trajet-id=\"(\\d+)\"/g)];",
+              "pm.test('Un seul trajet reproductible est trouvé', function () { pm.expect(matches).to.have.lengthOf(1); });",
+              "if (matches.length === 1) pm.environment.set('tripId', matches[0][1]);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 — Refuser un visiteur anonyme",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"trajetId\": {{tripId}}, \"nbPlaces\": 1}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{baseUrl}}/reservation/new-ajax"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Une réservation anonyme est redirigée vers la connexion', function () { pm.response.to.have.status(302); });",
+              "pm.test('La redirection mène au formulaire de connexion', function () { pm.expect(pm.response.headers.get('Location')).to.include('/connexion'); });"
+            ]
+          }
+        }
+      ],
+      "protocolProfileBehavior": { "followRedirects": false }
+    },
+    {
+      "name": "03 — Charger le formulaire et le jeton CSRF",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/connexion"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Le formulaire de connexion est disponible', function () { pm.response.to.have.status(200); });",
+              "const token = pm.response.text().match(/name=\"_csrf_token\"\\s+value=\"([^\"]+)\"/);",
+              "pm.test('Le formulaire contient un jeton CSRF', function () { pm.expect(token).not.to.be.null; });",
+              "if (token) pm.environment.set('csrfToken', token[1]);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 — Authentifier le passager",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "_username", "value": "{{passengerEmail}}" },
+            { "key": "_password", "value": "{{passengerPassword}}" },
+            { "key": "_csrf_token", "value": "{{csrfToken}}" }
+          ]
+        },
+        "url": "{{baseUrl}}/connexion"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('La connexion aboutit et la session est conservée', function () { pm.response.to.have.status(200); pm.expect(pm.response.text()).to.include('Rechercher un trajet'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 — Réserver une place (succès JSON)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"trajetId\": {{tripId}}, \"nbPlaces\": 1}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": "{{baseUrl}}/reservation/new-ajax"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('La réservation retourne 200 JSON', function () { pm.response.to.have.status(200); pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'); });",
+              "const json = pm.response.json();",
+              "pm.test('La réponse confirme la réservation et son prix', function () { pm.expect(json.success).to.eql(true); pm.expect(json.prixTotal).to.eql(25); pm.expect(json.reservationId).to.be.a('number'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 — Rejeter une quantité nulle",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"trajetId\": {{tripId}}, \"nbPlaces\": 0}" },
+        "url": "{{baseUrl}}/reservation/new-ajax"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Une quantité nulle est rejetée en 400', function () { pm.response.to.have.status(400); pm.expect(pm.response.json().success).to.eql(false); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 — Rejeter un trajet inexistant",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"trajetId\": 2147483000, \"nbPlaces\": 1}" },
+        "url": "{{baseUrl}}/reservation/new-ajax"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Un trajet inconnu retourne 404', function () { pm.response.to.have.status(404); pm.expect(pm.response.json().success).to.eql(false); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "08 — Rejeter une quantité supérieure à la capacité",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"trajetId\": {{tripId}}, \"nbPlaces\": 99}" },
+        "url": "{{baseUrl}}/reservation/new-ajax"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Une quantité indisponible retourne 400', function () { pm.response.to.have.status(400); pm.expect(pm.response.json().success).to.eql(false); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "09 — Rejeter une réservation en doublon",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"trajetId\": {{tripId}}, \"nbPlaces\": 1}" },
+        "url": "{{baseUrl}}/reservation/new-ajax"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Le doublon retourne 400 avec un message JSON', function () { pm.response.to.have.status(400); pm.expect(pm.response.json().message).to.include('déjà réservé'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "10 — Rejeter une méthode HTTP non autorisée",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/reservation/new-ajax"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('GET est refusé pour la création de réservation', function () { pm.response.to.have.status(405); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

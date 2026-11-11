@@ -1,0 +1,13 @@
+{
+  "name": "wassalni-acceptance-tests",
+  "private": true,
+  "scripts": {
+    "test:api": "newman run postman/Wassalni-Semaine-8-API.postman_collection.json --environment postman/Wassalni-Test.postman_environment.json --reporters cli,json --reporter-json-export preuves/semaine8/newman-report.json",
+    "test:ui": "php bin/console app:tests:prepare-week7-9 --env=test && playwright test",
+    "test:regression": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-regression.ps1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "newman": "^6.2.1"
+  }
+}
