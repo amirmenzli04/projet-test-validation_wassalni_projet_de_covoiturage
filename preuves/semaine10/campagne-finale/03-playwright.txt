@@ -1,0 +1,527 @@
+﻿# Playwright (navigateur) | 2026-11-11 22:40:34 +01:00 | revision cc50095 | base wassalni_test
+[WebServer] [Wed Nov 11 22:40:38 2026] PHP 8.4.27 Development Server (http://127.0.0.1:8000) started
+[WebServer] [Wed Nov 11 22:40:38 2026] 127.0.0.1:58168 Accepted
+[WebServer] [Wed Nov 11 22:40:39 2026] 127.0.0.1:58168 Closing
+[WebServer] [Wed Nov 11 22:40:46 2026] 127.0.0.1:50894 Accepted
+[WebServer] [Wed Nov 11 22:40:47 2026] 127.0.0.1:50894 Closing
+
+Running 23 tests using 1 worker
+
+(node:21844) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21844) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [Wed Nov 11 22:40:56 2026] 127.0.0.1:50771 Accepted
+[WebServer] [Wed Nov 11 22:40:56 2026] 127.0.0.1:50771 Closing
+[WebServer] [Wed Nov 11 22:40:57 2026] 127.0.0.1:58236 Accepted
+[WebServer] [Wed Nov 11 22:40:57 2026] 127.0.0.1:58236 Closing
+[WebServer] [Wed Nov 11 22:40:57 2026] 127.0.0.1:58827 Accepted
+[WebServer] [Wed Nov 11 22:40:58 2026] 127.0.0.1:58827 Closing
+[WebServer] [Wed Nov 11 22:40:58 2026] 127.0.0.1:52772 Accepted
+[WebServer] [Wed Nov 11 22:40:58 2026] 127.0.0.1:52772 Closing
+[WebServer] [Wed Nov 11 22:40:58 2026] 127.0.0.1:57291 Accepted
+[WebServer] [Wed Nov 11 22:40:58 2026] 127.0.0.1:57291 Closing
+[WebServer] [Wed Nov 11 22:41:00 2026] 127.0.0.1:63172 Accepted
+[WebServer] [Wed Nov 11 22:41:00 2026] 127.0.0.1:63172 Closing
+[WebServer] [Wed Nov 11 22:41:01 2026] 127.0.0.1:51438 Accepted
+[WebServer] [Wed Nov 11 22:41:01 2026] 127.0.0.1:51438 Closing
+  ok  1 tests\Playwright\reservation-flow.spec.js:17:1 › CT-29 — un passager se connecte, recherche, réserve 2 places et retrouve sa réservation (6.1s)
+[WebServer] [Wed Nov 11 22:41:05 2026] 127.0.0.1:51120 Accepted
+[WebServer] [Wed Nov 11 22:41:05 2026] 127.0.0.1:51120 Closing
+[WebServer] [Wed Nov 11 22:41:05 2026] 127.0.0.1:54728 Accepted
+[WebServer] [Wed Nov 11 22:41:06 2026] 127.0.0.1:54728 Closing
+[WebServer] [Wed Nov 11 22:41:06 2026] 127.0.0.1:50261 Accepted
+[WebServer] [Wed Nov 11 22:41:06 2026] 127.0.0.1:50261 Closing
+[WebServer] [Wed Nov 11 22:41:06 2026] 127.0.0.1:64798 Accepted
+[WebServer] [Wed Nov 11 22:41:07 2026] 127.0.0.1:64798 Closing
+[WebServer] [Wed Nov 11 22:41:07 2026] 127.0.0.1:49780 Accepted
+[WebServer] [Wed Nov 11 22:41:07 2026] 127.0.0.1:49780 Closing
+[WebServer] [Wed Nov 11 22:41:07 2026] 127.0.0.1:53180 Accepted
+[WebServer] [Wed Nov 11 22:41:07 2026] 127.0.0.1:53180 Closing
+  ok  2 tests\Playwright\semaine5-etats-droits.spec.js:32:1 › ST-01 — passager A crée une réclamation valide : EN_ATTENTE, rattachée à A, visible dans sa liste (4.2s)
+[WebServer] [Wed Nov 11 22:41:09 2026] 127.0.0.1:63550 Accepted
+[WebServer] [Wed Nov 11 22:41:09 2026] 127.0.0.1:63550 Closing
+[WebServer] [Wed Nov 11 22:41:09 2026] 127.0.0.1:56675 Accepted
+[WebServer] [Wed Nov 11 22:41:10 2026] 127.0.0.1:56675 Closing
+[WebServer] [Wed Nov 11 22:41:10 2026] 127.0.0.1:64447 Accepted
+[WebServer] [Wed Nov 11 22:41:11 2026] 127.0.0.1:64447 Closing
+[WebServer] [Wed Nov 11 22:41:11 2026] 127.0.0.1:60912 Accepted
+[WebServer] [Wed Nov 11 22:41:12 2026] 127.0.0.1:60912 Closing
+[WebServer] [Wed Nov 11 22:41:12 2026] 127.0.0.1:57627 Accepted
+[WebServer] [Wed Nov 11 22:41:13 2026] 127.0.0.1:57627 Closing
+[WebServer] [Wed Nov 11 22:41:13 2026] 127.0.0.1:52378 Accepted
+[WebServer] [Wed Nov 11 22:41:13 2026] 127.0.0.1:52378 Closing
+  ok  3 tests\Playwright\semaine5-etats-droits.spec.js:48:1 › ST-02 — message vide puis de 9 caractères : formulaire refusé, aucun enregistrement (5.8s)
+[WebServer] [Wed Nov 11 22:41:15 2026] 127.0.0.1:56047 Accepted
+[WebServer] [Wed Nov 11 22:41:15 2026] 127.0.0.1:56047 Closing
+[WebServer] [Wed Nov 11 22:41:15 2026] 127.0.0.1:63856 Accepted
+[WebServer] [Wed Nov 11 22:41:16 2026] 127.0.0.1:63856 Closing
+[WebServer] [Wed Nov 11 22:41:16 2026] 127.0.0.1:58080 Accepted
+[WebServer] [Wed Nov 11 22:41:16 2026] 127.0.0.1:58080 Closing
+[WebServer] [Wed Nov 11 22:41:16 2026] 127.0.0.1:58854 Accepted
+[WebServer] [Wed Nov 11 22:41:17 2026] 127.0.0.1:58854 Closing
+[WebServer] [Wed Nov 11 22:41:17 2026] 127.0.0.1:64054 Accepted
+[WebServer] [Wed Nov 11 22:41:17 2026] 127.0.0.1:64054 Closing
+[WebServer] [Wed Nov 11 22:41:17 2026] 127.0.0.1:54504 Accepted
+[WebServer] [Wed Nov 11 22:41:17 2026] 127.0.0.1:54504 Closing
+  ok  4 tests\Playwright\semaine5-etats-droits.spec.js:65:1 › ST-03 — message d'exactement 10 caractères avec un sujet de la liste : accepté (3.8s)
+[WebServer] [Wed Nov 11 22:41:18 2026] 127.0.0.1:49869 Accepted
+[WebServer] [Wed Nov 11 22:41:19 2026] 127.0.0.1:49869 Closing
+[WebServer] [Wed Nov 11 22:41:19 2026] 127.0.0.1:58876 Accepted
+[WebServer] [Wed Nov 11 22:41:20 2026] 127.0.0.1:58876 Closing
+[WebServer] [Wed Nov 11 22:41:20 2026] 127.0.0.1:54978 Accepted
+[WebServer] [Wed Nov 11 22:41:20 2026] 127.0.0.1:54978 Closing
+[WebServer] [Wed Nov 11 22:41:20 2026] 127.0.0.1:61913 Accepted
+[WebServer] [Wed Nov 11 22:41:20 2026] 127.0.0.1:61913 Closing
+  ok  5 tests\Playwright\semaine5-etats-droits.spec.js:79:1 › ST-04 — passager B ouvre la réclamation de A par URL directe : 403, aucune donnée de A révélée (2.5s)
+[WebServer] [Wed Nov 11 22:41:21 2026] 127.0.0.1:50819 Accepted
+[WebServer] [Wed Nov 11 22:41:21 2026] 127.0.0.1:50819 Closing
+[WebServer] [Wed Nov 11 22:41:21 2026] 127.0.0.1:57414 Accepted
+[WebServer] [Wed Nov 11 22:41:23 2026] 127.0.0.1:57414 Closing
+[WebServer] [Wed Nov 11 22:41:23 2026] 127.0.0.1:62712 Accepted
+[WebServer] [Wed Nov 11 22:41:23 2026] 127.0.0.1:62712 Closing
+[WebServer] [Wed Nov 11 22:41:23 2026] 127.0.0.1:52024 Accepted
+[WebServer] [Wed Nov 11 22:41:23 2026] 127.0.0.1:52024 Closing
+[WebServer] [Wed Nov 11 22:41:23 2026] 127.0.0.1:65344 Accepted
+[WebServer] [Wed Nov 11 22:41:23 2026] 127.0.0.1:65344 Closing
+  ok  6 tests\Playwright\semaine5-etats-droits.spec.js:89:1 › ST-05 — l'administrateur consulte le détail de la réclamation de A puis la liste d'administration (3.0s)
+[WebServer] [Wed Nov 11 22:41:24 2026] 127.0.0.1:59159 Accepted
+[WebServer] [Wed Nov 11 22:41:24 2026] 127.0.0.1:59159 Closing
+[WebServer] [Wed Nov 11 22:41:24 2026] 127.0.0.1:54271 Accepted
+[WebServer] [Wed Nov 11 22:41:25 2026] 127.0.0.1:54271 Closing
+[WebServer] [Wed Nov 11 22:41:25 2026] 127.0.0.1:57590 Accepted
+[WebServer] [Wed Nov 11 22:41:26 2026] 127.0.0.1:57590 Closing
+[WebServer] [Wed Nov 11 22:41:26 2026] 127.0.0.1:59443 Accepted
+[WebServer] [Wed Nov 11 22:41:26 2026] 127.0.0.1:59443 Closing
+[WebServer] [Wed Nov 11 22:41:26 2026] 127.0.0.1:55787 Accepted
+[WebServer] [Wed Nov 11 22:41:26 2026] 127.0.0.1:55787 Closing
+[WebServer] [Wed Nov 11 22:41:26 2026] 127.0.0.1:60154 Accepted
+[WebServer] [Wed Nov 11 22:41:26 2026] 127.0.0.1:60154 Closing
+[WebServer] [Wed Nov 11 22:41:28 2026] 127.0.0.1:60547 Accepted
+[WebServer] [Wed Nov 11 22:41:28 2026] 127.0.0.1:60547 Closing
+[WebServer] [Wed Nov 11 22:41:28 2026] 127.0.0.1:62658 Accepted
+[WebServer] [Wed Nov 11 22:41:29 2026] 127.0.0.1:62658 Closing
+[WebServer] [Wed Nov 11 22:41:29 2026] 127.0.0.1:57346 Accepted
+[WebServer] [Wed Nov 11 22:41:29 2026] 127.0.0.1:57346 Closing
+[WebServer] [Wed Nov 11 22:41:30 2026] 127.0.0.1:65147 Accepted
+[WebServer] [Wed Nov 11 22:41:30 2026] 127.0.0.1:65147 Closing
+  ok  7 tests\Playwright\semaine5-etats-droits.spec.js:103:1 › ST-06 — l'administrateur répond : TRAITEE, réponse et date de traitement persistées ; A voit la réponse (6.2s)
+[WebServer] [Wed Nov 11 22:41:30 2026] 127.0.0.1:61458 Accepted
+[WebServer] [Wed Nov 11 22:41:30 2026] 127.0.0.1:61458 Closing
+[WebServer] [Wed Nov 11 22:41:30 2026] 127.0.0.1:52090 Accepted
+[WebServer] [Wed Nov 11 22:41:31 2026] 127.0.0.1:52090 Closing
+[WebServer] [Wed Nov 11 22:41:31 2026] 127.0.0.1:63598 Accepted
+[WebServer] [Wed Nov 11 22:41:31 2026] 127.0.0.1:63598 Closing
+[WebServer] [Wed Nov 11 22:41:31 2026] 127.0.0.1:52553 Accepted
+[WebServer] [Wed Nov 11 22:41:31 2026] 127.0.0.1:52553 Closing
+[WebServer] [Wed Nov 11 22:41:31 2026] 127.0.0.1:64562 Accepted
+[WebServer] [Wed Nov 11 22:41:31 2026] 127.0.0.1:64562 Closing
+[WebServer] [Wed Nov 11 22:41:31 2026] 127.0.0.1:54542 Accepted
+[WebServer] [Wed Nov 11 22:41:32 2026] 127.0.0.1:54542 Closing
+  ok  8 tests\Playwright\semaine5-etats-droits.spec.js:127:1 › ST-07 — réponse administrateur vide : statut et date inchangés (2.8s)
+[WebServer] [Wed Nov 11 22:41:33 2026] 127.0.0.1:62327 Accepted
+[WebServer] [Wed Nov 11 22:41:33 2026] 127.0.0.1:62327 Closing
+[WebServer] [Wed Nov 11 22:41:34 2026] 127.0.0.1:59810 Accepted
+[WebServer] [Wed Nov 11 22:41:34 2026] 127.0.0.1:59810 Closing
+[WebServer] [Wed Nov 11 22:41:34 2026] 127.0.0.1:64478 Accepted
+[WebServer] [Wed Nov 11 22:41:34 2026] 127.0.0.1:64478 Closing
+[WebServer] [Wed Nov 11 22:41:34 2026] 127.0.0.1:61481 Accepted
+[WebServer] [Wed Nov 11 22:41:35 2026] 127.0.0.1:61481 Closing
+  ok  9 tests\Playwright\semaine5-etats-droits.spec.js:145:1 › ST-08 — passager A appelle directement la route de traitement administrateur : 403, aucune mutation (2.3s)
+[WebServer] [Wed Nov 11 22:41:35 2026] 127.0.0.1:57702 Accepted
+[WebServer] [Wed Nov 11 22:41:35 2026] 127.0.0.1:57702 Closing
+[WebServer] [Wed Nov 11 22:41:36 2026] 127.0.0.1:63435 Accepted
+[WebServer] [Wed Nov 11 22:41:36 2026] 127.0.0.1:63435 Closing
+[WebServer] [Wed Nov 11 22:41:36 2026] 127.0.0.1:56360 Accepted
+[WebServer] [Wed Nov 11 22:41:36 2026] 127.0.0.1:56360 Closing
+[WebServer] [Wed Nov 11 22:41:36 2026] 127.0.0.1:63899 Accepted
+[WebServer] [Wed Nov 11 22:41:37 2026] 127.0.0.1:63899 Closing
+  ok 10 tests\Playwright\semaine5-etats-droits.spec.js:156:1 › ST-09 — transition vers EN_COURS : aucune action proposée à l'administrateur (constat, règle à arbitrer) (1.7s)
+[WebServer] [Wed Nov 11 22:41:37 2026] 127.0.0.1:59124 Accepted
+[WebServer] [Wed Nov 11 22:41:37 2026] 127.0.0.1:59124 Closing
+[WebServer] [Wed Nov 11 22:41:38 2026] 127.0.0.1:49277 Accepted
+[WebServer] [Wed Nov 11 22:41:38 2026] 127.0.0.1:49277 Closing
+[WebServer] [Wed Nov 11 22:41:38 2026] 127.0.0.1:49854 Accepted
+[WebServer] [Wed Nov 11 22:41:38 2026] 127.0.0.1:49854 Closing
+[WebServer] [Wed Nov 11 22:41:38 2026] 127.0.0.1:56127 Accepted
+[WebServer] [Wed Nov 11 22:41:39 2026] 127.0.0.1:56127 Closing
+[WebServer] [Wed Nov 11 22:41:39 2026] 127.0.0.1:58859 Accepted
+[WebServer] [Wed Nov 11 22:41:40 2026] 127.0.0.1:58859 Closing
+[WebServer] [Wed Nov 11 22:41:40 2026] 127.0.0.1:64277 Accepted
+[WebServer] [Wed Nov 11 22:41:40 2026] 127.0.0.1:64277 Closing
+[WebServer] [Wed Nov 11 22:41:41 2026] 127.0.0.1:60223 Accepted
+[WebServer] [Wed Nov 11 22:41:41 2026] 127.0.0.1:60223 Closing
+[WebServer] [Wed Nov 11 22:41:42 2026] 127.0.0.1:59263 Accepted
+[WebServer] [Wed Nov 11 22:41:42 2026] 127.0.0.1:59263 Closing
+[WebServer] [Wed Nov 11 22:41:43 2026] 127.0.0.1:50763 Accepted
+[WebServer] [Wed Nov 11 22:41:43 2026] 127.0.0.1:50763 Closing
+[WebServer] [Wed Nov 11 22:41:44 2026] 127.0.0.1:52321 Accepted
+[WebServer] [Wed Nov 11 22:41:44 2026] 127.0.0.1:52321 Closing
+[WebServer] [Wed Nov 11 22:41:45 2026] 127.0.0.1:57973 Accepted
+[WebServer] [Wed Nov 11 22:41:45 2026] 127.0.0.1:57973 Closing
+[WebServer] [Wed Nov 11 22:41:45 2026] 127.0.0.1:51905 Accepted
+[WebServer] [Wed Nov 11 22:41:45 2026] 127.0.0.1:51905 Closing
+[WebServer] [Wed Nov 11 22:41:45 2026] 127.0.0.1:58612 Accepted
+[WebServer] [Wed Nov 11 22:41:45 2026] 127.0.0.1:58612 Closing
+[WebServer] [Wed Nov 11 22:41:46 2026] 127.0.0.1:50723 Accepted
+[WebServer] [Wed Nov 11 22:41:46 2026] 127.0.0.1:50723 Closing
+[WebServer] [Wed Nov 11 22:41:46 2026] 127.0.0.1:51934 Accepted
+[WebServer] [Wed Nov 11 22:41:46 2026] 127.0.0.1:51934 Closing
+[WebServer] [Wed Nov 11 22:41:47 2026] 127.0.0.1:56403 Accepted
+[WebServer] [Wed Nov 11 22:41:47 2026] 127.0.0.1:56403 Closing
+  ok 11 tests\Playwright\semaine5-etats-droits.spec.js:167:1 › ST-10 — deux sessions : réservation, rafraîchissement, annulation puis annulation répétée ; stock cohérent (10.0s)
+[WebServer] [Wed Nov 11 22:41:50 2026] 127.0.0.1:50090 Accepted
+[WebServer] [Wed Nov 11 22:41:51 2026] 127.0.0.1:50090 Closing
+[WebServer] [Wed Nov 11 22:41:51 2026] 127.0.0.1:50972 Accepted
+[WebServer] [Wed Nov 11 22:41:51 2026] 127.0.0.1:50972 Closing
+[WebServer] [Wed Nov 11 22:41:51 2026] 127.0.0.1:53629 Accepted
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:53629 Closing
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:50995 Accepted
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:50995 Closing
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:55962 Accepted
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:55962 Closing
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:53117 Accepted
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:53117 Closing
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:58732 Accepted
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:58732 Closing
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:57824 Accepted
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:57824 Closing
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:60022 Accepted
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:60022 Closing
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:61641 Accepted
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:61641 Closing
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:53689 Accepted
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:53689 Closing
+[WebServer] [Wed Nov 11 22:41:52 2026] 127.0.0.1:54438 Accepted
+[WebServer] [Wed Nov 11 22:41:53 2026] 127.0.0.1:54438 Closing
+[WebServer] [Wed Nov 11 22:41:53 2026] 127.0.0.1:65330 Accepted
+[WebServer] [Wed Nov 11 22:41:53 2026] 127.0.0.1:65330 Closing
+[WebServer] [Wed Nov 11 22:41:53 2026] 127.0.0.1:56304 Accepted
+[WebServer] [Wed Nov 11 22:41:53 2026] 127.0.0.1:56304 Closing
+[WebServer] [Wed Nov 11 22:41:53 2026] 127.0.0.1:63185 Accepted
+[WebServer] [Wed Nov 11 22:41:53 2026] 127.0.0.1:63185 Closing
+[WebServer] [Wed Nov 11 22:41:54 2026] 127.0.0.1:50113 Accepted
+[WebServer] [Wed Nov 11 22:41:55 2026] 127.0.0.1:50113 Closing
+[WebServer] [Wed Nov 11 22:41:55 2026] 127.0.0.1:57166 Accepted
+[WebServer] [Wed Nov 11 22:41:55 2026] 127.0.0.1:57166 Closing
+[WebServer] [Wed Nov 11 22:41:55 2026] 127.0.0.1:62861 Accepted
+[WebServer] [Wed Nov 11 22:41:55 2026] 127.0.0.1:62861 Closing
+[WebServer] [Wed Nov 11 22:41:55 2026] 127.0.0.1:54149 Accepted
+[WebServer] [Wed Nov 11 22:41:56 2026] 127.0.0.1:54149 Closing
+[WebServer] [Wed Nov 11 22:41:56 2026] 127.0.0.1:61062 Accepted
+[WebServer] [Wed Nov 11 22:41:56 2026] 127.0.0.1:61062 Closing
+[WebServer] [Wed Nov 11 22:41:56 2026] 127.0.0.1:61425 Accepted
+[WebServer] [Wed Nov 11 22:41:56 2026] 127.0.0.1:61425 Closing
+[WebServer] [Wed Nov 11 22:41:56 2026] 127.0.0.1:56515 Accepted
+[WebServer] [Wed Nov 11 22:41:56 2026] 127.0.0.1:56515 Closing
+[WebServer] [Wed Nov 11 22:41:56 2026] 127.0.0.1:65452 Accepted
+[WebServer] [Wed Nov 11 22:41:56 2026] 127.0.0.1:65452 Closing
+[WebServer] [Wed Nov 11 22:41:57 2026] 127.0.0.1:50673 Accepted
+[WebServer] [Wed Nov 11 22:41:57 2026] 127.0.0.1:50673 Closing
+[WebServer] [Wed Nov 11 22:41:57 2026] 127.0.0.1:55225 Accepted
+[WebServer] [Wed Nov 11 22:41:57 2026] 127.0.0.1:55225 Closing
+[WebServer] [Wed Nov 11 22:41:58 2026] 127.0.0.1:63444 Accepted
+[WebServer] [Wed Nov 11 22:41:59 2026] 127.0.0.1:63444 Closing
+[WebServer] [Wed Nov 11 22:41:59 2026] 127.0.0.1:62394 Accepted
+[WebServer] [Wed Nov 11 22:41:59 2026] 127.0.0.1:62394 Closing
+[WebServer] [Wed Nov 11 22:42:00 2026] 127.0.0.1:61561 Accepted
+[WebServer] [Wed Nov 11 22:42:00 2026] 127.0.0.1:61561 Closing
+[WebServer] [Wed Nov 11 22:42:00 2026] 127.0.0.1:49875 Accepted
+[WebServer] [Wed Nov 11 22:42:00 2026] 127.0.0.1:49875 Closing
+[WebServer] [Wed Nov 11 22:42:00 2026] 127.0.0.1:49357 Accepted
+[WebServer] [Wed Nov 11 22:42:00 2026] 127.0.0.1:49357 Closing
+[WebServer] [Wed Nov 11 22:42:00 2026] 127.0.0.1:51241 Accepted
+[WebServer] [Wed Nov 11 22:42:00 2026] 127.0.0.1:51241 Closing
+[WebServer] [Wed Nov 11 22:42:00 2026] 127.0.0.1:63024 Accepted
+[WebServer] [Wed Nov 11 22:42:01 2026] 127.0.0.1:63024 Closing
+[WebServer] [Wed Nov 11 22:42:01 2026] 127.0.0.1:53449 Accepted
+[WebServer] [Wed Nov 11 22:42:01 2026] 127.0.0.1:53449 Closing
+[WebServer] [Wed Nov 11 22:42:01 2026] 127.0.0.1:64312 Accepted
+[WebServer] [Wed Nov 11 22:42:01 2026] 127.0.0.1:64312 Closing
+[WebServer] [Wed Nov 11 22:42:02 2026] 127.0.0.1:61100 Accepted
+[WebServer] [Wed Nov 11 22:42:02 2026] 127.0.0.1:61100 Closing
+[WebServer] [Wed Nov 11 22:42:02 2026] 127.0.0.1:49338 Accepted
+[WebServer] [Wed Nov 11 22:42:04 2026] 127.0.0.1:49338 Closing
+[WebServer] [Wed Nov 11 22:42:04 2026] 127.0.0.1:54414 Accepted
+[WebServer] [Wed Nov 11 22:42:04 2026] 127.0.0.1:54414 Closing
+[WebServer] [Wed Nov 11 22:42:04 2026] 127.0.0.1:55123 Accepted
+[WebServer] [Wed Nov 11 22:42:04 2026] 127.0.0.1:55123 Closing
+[WebServer] [Wed Nov 11 22:42:04 2026] 127.0.0.1:51267 Accepted
+[WebServer] [Wed Nov 11 22:42:05 2026] 127.0.0.1:51267 Closing
+[WebServer] [Wed Nov 11 22:42:05 2026] 127.0.0.1:59821 Accepted
+[WebServer] [Wed Nov 11 22:42:05 2026] 127.0.0.1:59821 Closing
+[WebServer] [Wed Nov 11 22:42:05 2026] 127.0.0.1:61065 Accepted
+[WebServer] [Wed Nov 11 22:42:05 2026] 127.0.0.1:61065 Closing
+[WebServer] [Wed Nov 11 22:42:05 2026] 127.0.0.1:55768 Accepted
+[WebServer] [Wed Nov 11 22:42:05 2026] 127.0.0.1:55768 Closing
+[WebServer] [Wed Nov 11 22:42:06 2026] 127.0.0.1:65111 Accepted
+[WebServer] [Wed Nov 11 22:42:06 2026] 127.0.0.1:65111 Closing
+[WebServer] [Wed Nov 11 22:42:06 2026] 127.0.0.1:60042 Accepted
+[WebServer] [Wed Nov 11 22:42:06 2026] 127.0.0.1:60042 Closing
+  ok 12 tests\Playwright\semaine5-exploration.spec.js:19:1 › EXPL-02 — accès directs par URL pour chaque rôle (statut HTTP observé) (15.9s)
+[WebServer] [Wed Nov 11 22:42:06 2026] 127.0.0.1:49777 Accepted
+[WebServer] [Wed Nov 11 22:42:07 2026] 127.0.0.1:49777 Closing
+[WebServer] [Wed Nov 11 22:42:07 2026] 127.0.0.1:53191 Accepted
+[WebServer] [Wed Nov 11 22:42:09 2026] 127.0.0.1:53191 Closing
+[WebServer] [Wed Nov 11 22:42:09 2026] 127.0.0.1:64665 Accepted
+[WebServer] [Wed Nov 11 22:42:09 2026] 127.0.0.1:64665 Closing
+[WebServer] [Wed Nov 11 22:42:09 2026] 127.0.0.1:53771 Accepted
+[WebServer] [Wed Nov 11 22:42:09 2026] 127.0.0.1:53771 Closing
+[WebServer] [Wed Nov 11 22:42:11 2026] 127.0.0.1:58362 Accepted
+[WebServer] [Wed Nov 11 22:42:11 2026] 127.0.0.1:58362 Closing
+[WebServer] [Wed Nov 11 22:42:13 2026] 127.0.0.1:54299 Accepted
+[WebServer] [Wed Nov 11 22:42:13 2026] 127.0.0.1:54299 Closing
+  ok 13 tests\Playwright\semaine5-exploration.spec.js:45:1 › EXPL-04 — double clic sur « Confirmer la réservation » (voie JSON) (8.7s)
+[WebServer] [Wed Nov 11 22:42:15 2026] 127.0.0.1:57845 Accepted
+[WebServer] [Wed Nov 11 22:42:15 2026] 127.0.0.1:57845 Closing
+[WebServer] [Wed Nov 11 22:42:16 2026] 127.0.0.1:50935 Accepted
+[WebServer] [Wed Nov 11 22:42:17 2026] 127.0.0.1:50935 Closing
+[WebServer] [Wed Nov 11 22:42:17 2026] 127.0.0.1:49777 Accepted
+[WebServer] [Wed Nov 11 22:42:17 2026] 127.0.0.1:49777 Closing
+[WebServer] [Wed Nov 11 22:42:18 2026] 127.0.0.1:61992 Accepted
+[WebServer] [Wed Nov 11 22:42:18 2026] 127.0.0.1:61992 Closing
+[WebServer] [Wed Nov 11 22:42:18 2026] 127.0.0.1:55932 Accepted
+[WebServer] [Wed Nov 11 22:42:18 2026] 127.0.0.1:55932 Closing
+[WebServer] [Wed Nov 11 22:42:18 2026] 127.0.0.1:54727 Accepted
+[WebServer] [Wed Nov 11 22:42:18 2026] 127.0.0.1:54727 Closing
+  ok 14 tests\Playwright\semaine5-exploration.spec.js:64:1 › EXPL-04 — session expirée (cookies effacés) puis envoi du formulaire de réclamation (5.5s)
+[WebServer] [Wed Nov 11 22:42:21 2026] 127.0.0.1:64532 Accepted
+[WebServer] [Wed Nov 11 22:42:21 2026] 127.0.0.1:64532 Closing
+[WebServer] [Wed Nov 11 22:42:22 2026] 127.0.0.1:61425 Accepted
+[WebServer] [Wed Nov 11 22:42:23 2026] 127.0.0.1:61425 Closing
+[WebServer] [Wed Nov 11 22:42:23 2026] 127.0.0.1:51186 Accepted
+[WebServer] [Wed Nov 11 22:42:23 2026] 127.0.0.1:51186 Closing
+[WebServer] [Wed Nov 11 22:42:23 2026] 127.0.0.1:54786 Accepted
+[WebServer] [Wed Nov 11 22:42:23 2026] 127.0.0.1:54786 Closing
+[WebServer] [Wed Nov 11 22:42:24 2026] 127.0.0.1:56120 Accepted
+[WebServer] [Wed Nov 11 22:42:24 2026] 127.0.0.1:56120 Closing
+[WebServer] [Wed Nov 11 22:42:24 2026] 127.0.0.1:50745 Accepted
+[WebServer] [Wed Nov 11 22:42:24 2026] 127.0.0.1:50745 Closing
+[WebServer] [Wed Nov 11 22:42:24 2026] 127.0.0.1:59532 Accepted
+[WebServer] [Wed Nov 11 22:42:25 2026] 127.0.0.1:59532 Closing
+[WebServer] [Wed Nov 11 22:42:25 2026] 127.0.0.1:60966 Accepted
+[WebServer] [Wed Nov 11 22:42:25 2026] 127.0.0.1:60966 Closing
+  ok 15 tests\Playwright\semaine5-exploration.spec.js:79:1 › EXPL-01 — rafraîchissement après création d'une réclamation (doublon ?) (5.7s)
+[WebServer] [Wed Nov 11 22:42:27 2026] 127.0.0.1:56917 Accepted
+[WebServer] [Wed Nov 11 22:42:27 2026] 127.0.0.1:56917 Closing
+[WebServer] [Wed Nov 11 22:42:28 2026] 127.0.0.1:52874 Accepted
+[WebServer] [Wed Nov 11 22:42:29 2026] 127.0.0.1:52874 Closing
+[WebServer] [Wed Nov 11 22:42:29 2026] 127.0.0.1:49206 Accepted
+[WebServer] [Wed Nov 11 22:42:29 2026] 127.0.0.1:49206 Closing
+[WebServer] [Wed Nov 11 22:42:29 2026] 127.0.0.1:49777 Accepted
+[WebServer] [Wed Nov 11 22:42:29 2026] 127.0.0.1:49777 Closing
+  ok 16 tests\Playwright\semaine5-exploration.spec.js:95:1 › EXPL-03 — fenêtre de réservation : la quantité ne dépasse pas les places disponibles (5.1s)
+[WebServer] [Wed Nov 11 22:42:32 2026] 127.0.0.1:53722 Accepted
+[WebServer] [Wed Nov 11 22:42:32 2026] 127.0.0.1:53722 Closing
+  ok 17 tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page connexion (2.4s)
+[WebServer] [Wed Nov 11 22:42:35 2026] 127.0.0.1:62705 Accepted
+[WebServer] [Wed Nov 11 22:42:35 2026] 127.0.0.1:62705 Closing
+[WebServer] [Wed Nov 11 22:42:35 2026] 127.0.0.1:57802 Accepted
+[WebServer] [Wed Nov 11 22:42:36 2026] 127.0.0.1:57802 Closing
+[WebServer] [Wed Nov 11 22:42:36 2026] 127.0.0.1:52917 Accepted
+[WebServer] [Wed Nov 11 22:42:36 2026] 127.0.0.1:52917 Closing
+[WebServer] [Wed Nov 11 22:42:37 2026] 127.0.0.1:57973 Accepted
+[WebServer] [Wed Nov 11 22:42:37 2026] 127.0.0.1:57973 Closing
+  x  18 tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page recherche (6.3s)
+(node:9456) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:9456) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [Wed Nov 11 22:42:45 2026] 127.0.0.1:62700 Accepted
+[WebServer] [Wed Nov 11 22:42:45 2026] 127.0.0.1:62700 Closing
+[WebServer] [Wed Nov 11 22:42:45 2026] 127.0.0.1:55085 Accepted
+[WebServer] [Wed Nov 11 22:42:45 2026] 127.0.0.1:55085 Closing
+[WebServer] [Wed Nov 11 22:42:45 2026] 127.0.0.1:59308 Accepted
+[WebServer] [Wed Nov 11 22:42:46 2026] 127.0.0.1:59308 Closing
+[WebServer] [Wed Nov 11 22:42:46 2026] 127.0.0.1:55160 Accepted
+[WebServer] [Wed Nov 11 22:42:46 2026] 127.0.0.1:55160 Closing
+[WebServer] [Wed Nov 11 22:42:46 2026] 127.0.0.1:60027 Accepted
+[WebServer] [Wed Nov 11 22:42:46 2026] 127.0.0.1:60027 Closing
+  x  19 tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page nouvelle-reclamation (3.2s)
+(node:26884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:26884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [Wed Nov 11 22:42:50 2026] 127.0.0.1:64775 Accepted
+[WebServer] [Wed Nov 11 22:42:50 2026] 127.0.0.1:64775 Closing
+[WebServer] [Wed Nov 11 22:42:51 2026] 127.0.0.1:55537 Accepted
+[WebServer] [Wed Nov 11 22:42:51 2026] 127.0.0.1:55537 Closing
+[WebServer] [Wed Nov 11 22:42:51 2026] 127.0.0.1:58451 Accepted
+[WebServer] [Wed Nov 11 22:42:51 2026] 127.0.0.1:58451 Closing
+[WebServer] [Wed Nov 11 22:42:51 2026] 127.0.0.1:59675 Accepted
+[WebServer] [Wed Nov 11 22:42:51 2026] 127.0.0.1:59675 Closing
+[WebServer] [Wed Nov 11 22:42:52 2026] 127.0.0.1:64981 Accepted
+[WebServer] [Wed Nov 11 22:42:52 2026] 127.0.0.1:64981 Closing
+  x  20 tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page mes-reservations (3.0s)
+(node:25408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:25408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [Wed Nov 11 22:42:55 2026] 127.0.0.1:61620 Accepted
+[WebServer] [Wed Nov 11 22:42:55 2026] 127.0.0.1:61620 Closing
+[WebServer] [Wed Nov 11 22:42:56 2026] 127.0.0.1:55476 Accepted
+[WebServer] [Wed Nov 11 22:42:56 2026] 127.0.0.1:55476 Closing
+[WebServer] [Wed Nov 11 22:42:56 2026] 127.0.0.1:53017 Accepted
+[WebServer] [Wed Nov 11 22:42:57 2026] 127.0.0.1:53017 Closing
+[WebServer] [Wed Nov 11 22:42:57 2026] 127.0.0.1:55646 Accepted
+[WebServer] [Wed Nov 11 22:42:57 2026] 127.0.0.1:55646 Closing
+  ok 21 tests\Playwright\semaine9-accessibilite-securite.spec.js:48:1 › Accessibilité — connexion entièrement au clavier (Tab, saisie, Entrée) (2.2s)
+[WebServer] [Wed Nov 11 22:42:57 2026] 127.0.0.1:50562 Accepted
+[WebServer] [Wed Nov 11 22:42:57 2026] 127.0.0.1:50562 Closing
+[WebServer] [Wed Nov 11 22:42:57 2026] 127.0.0.1:50564 Accepted
+[WebServer] [Wed Nov 11 22:42:57 2026] 127.0.0.1:50564 Closing
+[WebServer] [Wed Nov 11 22:42:57 2026] 127.0.0.1:50566 Accepted
+[WebServer] [Wed Nov 11 22:42:57 2026] 127.0.0.1:50566 Closing
+[WebServer] [Wed Nov 11 22:42:57 2026] 127.0.0.1:49791 Accepted
+[WebServer] [Wed Nov 11 22:42:57 2026] 127.0.0.1:49791 Closing
+[WebServer] [Wed Nov 11 22:42:58 2026] 127.0.0.1:64802 Accepted
+[WebServer] [Wed Nov 11 22:42:59 2026] 127.0.0.1:64802 Closing
+[WebServer] [Wed Nov 11 22:42:59 2026] 127.0.0.1:57871 Accepted
+[WebServer] [Wed Nov 11 22:42:59 2026] 127.0.0.1:57871 Closing
+  ok 22 tests\Playwright\semaine9-accessibilite-securite.spec.js:71:1 › Sécurité élémentaire — en-têtes de protection et cookie de session (1.9s)
+[WebServer] [Wed Nov 11 22:42:59 2026] 127.0.0.1:64214 Accepted
+[WebServer] [Wed Nov 11 22:42:59 2026] 127.0.0.1:64214 Closing
+[WebServer] [Wed Nov 11 22:43:00 2026] 127.0.0.1:58776 Accepted
+[WebServer] [Wed Nov 11 22:43:00 2026] 127.0.0.1:58776 Closing
+[WebServer] [Wed Nov 11 22:43:00 2026] 127.0.0.1:51684 Accepted
+[WebServer] [Wed Nov 11 22:43:00 2026] 127.0.0.1:51684 Closing
+[WebServer] [Wed Nov 11 22:43:00 2026] 127.0.0.1:63059 Accepted
+[WebServer] [Wed Nov 11 22:43:00 2026] 127.0.0.1:63059 Closing
+  ok 23 tests\Playwright\semaine9-accessibilite-securite.spec.js:93:1 › Sécurité élémentaire — une erreur serveur ne divulgue ni trace ni chemin de fichier (1.6s)
+
+
+  1) tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page recherche 
+
+    Error: Violations critiques sur recherche
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 2
+
+      42 |         a11y.add({ page: target.name, url: target.url.split('?')[0], regles_verifiees: results.passes.length + results.violations.length, conformes: results.passes.length, violations_par_impact: byImpact, violations, capture: file });
+      43 |         // Constat consigné ; les violations critiques sont signalées comme échec (soft) sans arrêter la campagne.
+    > 44 |         expect.soft(byImpact.critical, `Violations critiques sur ${target.name}`).toBe(0);
+         |                                                                                   ^
+      45 |     });
+      46 | }
+      47 |
+        at C:\Users\Dogui\wassalni-tests\tests\Playwright\semaine9-accessibilite-securite.spec.js:44:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\test-failed-5.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\test-failed-7.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\test-failed-6.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #6: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\test-failed-4.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #7: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\test-failed-8.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #8: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\error-context.md
+
+    Error Context: test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\error-context.md
+
+    attachment #11: trace (application/zip) ────────────────────────────────────────────────────────
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page nouvelle-reclamation 
+
+    Error: Violations critiques sur nouvelle-reclamation
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      42 |         a11y.add({ page: target.name, url: target.url.split('?')[0], regles_verifiees: results.passes.length + results.violations.length, conformes: results.passes.length, violations_par_impact: byImpact, violations, capture: file });
+      43 |         // Constat consigné ; les violations critiques sont signalées comme échec (soft) sans arrêter la campagne.
+    > 44 |         expect.soft(byImpact.critical, `Violations critiques sur ${target.name}`).toBe(0);
+         |                                                                                   ^
+      45 |     });
+      46 | }
+      47 |
+        at C:\Users\Dogui\wassalni-tests\tests\Playwright\semaine9-accessibilite-securite.spec.js:44:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\semaine9-accessibilite-sec-9f84d-—-page-nouvelle-reclamation\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\semaine9-accessibilite-sec-9f84d-—-page-nouvelle-reclamation\error-context.md
+
+    Error Context: test-results\semaine9-accessibilite-sec-9f84d-—-page-nouvelle-reclamation\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\semaine9-accessibilite-sec-9f84d-—-page-nouvelle-reclamation\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\semaine9-accessibilite-sec-9f84d-—-page-nouvelle-reclamation\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page mes-reservations 
+
+    Error: Violations critiques sur mes-reservations
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      42 |         a11y.add({ page: target.name, url: target.url.split('?')[0], regles_verifiees: results.passes.length + results.violations.length, conformes: results.passes.length, violations_par_impact: byImpact, violations, capture: file });
+      43 |         // Constat consigné ; les violations critiques sont signalées comme échec (soft) sans arrêter la campagne.
+    > 44 |         expect.soft(byImpact.critical, `Violations critiques sur ${target.name}`).toBe(0);
+         |                                                                                   ^
+      45 |     });
+      46 | }
+      47 |
+        at C:\Users\Dogui\wassalni-tests\tests\Playwright\semaine9-accessibilite-securite.spec.js:44:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\semaine9-accessibilite-sec-8f58e--AA-—-page-mes-reservations\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\semaine9-accessibilite-sec-8f58e--AA-—-page-mes-reservations\error-context.md
+
+    Error Context: test-results\semaine9-accessibilite-sec-8f58e--AA-—-page-mes-reservations\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\semaine9-accessibilite-sec-8f58e--AA-—-page-mes-reservations\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\semaine9-accessibilite-sec-8f58e--AA-—-page-mes-reservations\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page recherche 
+    tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page nouvelle-reclamation 
+    tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page mes-reservations 
+  20 passed (2.4m)

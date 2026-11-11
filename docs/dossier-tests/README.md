@@ -1,14 +1,38 @@
 # Dossier de test — WASSALNI
 
-- **Version :** 1.4 (P0 : version de référence et registre des anomalies)
-- **Date du dossier :** 11 novembre 2026
-- **Branche de campagne :** `test/campagne-finale`
-- **Périmètre :** application web de covoiturage Symfony
-- **Statut :** version de référence stabilisée ; suite complète **34 tests, 105 assertions, 0 échec** ; 6 anomalies applicatives confirmées et corrigées ([registre](07-registre-anomalies.md)) ; exploration navigateur, API Newman et non fonctionnel à exécuter.
+- **Version :** 2.0 (finale) — 11 novembre 2026 — tag `v1.0.0`
+- **Branche :** `test/campagne-finale` · **Révision testée :** `cc50095` (code applicatif identique à `e2fe62b`)
+- **Statut :** campagne des semaines 1 à 10 terminée. **Décision : REFUS DE LIVRAISON (NO-GO)**, voir [14](14-semaine10-bilan-decision.md).
+- **Rapport final illustré :** [Markdown](../rapport-final/rapport-final.md) · [PDF](../rapport-final/rapport-final.pdf)
 
-> **Mise à jour du 11/11/2026 (P0).** Les chiffres « 27 tests / 74 assertions » cités plus bas restent exacts pour le périmètre historique du 10/11/2026, revérifié à l'identique. La suite courante en compte 34. Voir le [journal de campagne](08-journal-campagne.md).
+## Livrables par semaine
 
-## Contenu
+| Semaine | Livrable officiel | Documents de campagne | Preuves |
+|---|---|---|---|
+| 1 | `docs/semaine1-fiche-risques.pdf` | [01 cadrage](01-cadrage-risques.md), [00 référentiel](00-referentiel-correspondances.md) | `preuves/semaine1/` |
+| 2 | `docs/semaine2-plan-de-test.pdf` | [02 stratégie](02-strategie-calendrier.md), `docs/semaine2-environnement.md` | `preuves/semaine2/` |
+| 3 | PDF semaine 3 (exigences, CA, traçabilité) | [09 matrice finale](09-matrice-tracabilite.md) ([PDF](Matrice-tracabilite-finale.pdf)) | `preuves/semaine3/` |
+| 4 | PDF semaine 4 dans `docs/` (**officiel**) ; `Semaine-4-...pdf` ici = synthèse annexe | [04 catalogue](04-cas-de-test-donnees.md), [00 correspondance CT→TC](00-referentiel-correspondances.md) | `preuves/semaine7/p1-catalogue/` |
+| 5 | [Semaine-5 PDF](Semaine-5-Transitions-droits-exploration.pdf) | [05 §5.9 résultats](05-etats-exploration-anomalies.md) | `preuves/semaine5/` |
+| 6 | [Semaine-6 PDF](Semaine-6-Tests-unitaires-automatises.pdf) | [06 §6.7](06-automatisation-bilan.md) | `preuves/semaine6/` |
+| 7 | — | [10 intégration](10-semaine7-integration.md) | `preuves/semaine7/` |
+| 8 | — | [11 API](11-semaine8-api.md) | `preuves/semaine8/` |
+| 9 | — | [12 interface et non fonctionnel](12-semaine9-interface-non-fonctionnel.md) | `preuves/semaine9/` |
+| 10 | [Semaine-10 PDF](Semaine-10-Bilan-decision.pdf) | [14 bilan et décision](14-semaine10-bilan-decision.md), [07 anomalies](07-registre-anomalies.md), [13 recommandations](13-plan-corrections.md), [08 journal](08-journal-campagne.md) | `preuves/semaine10/` |
+
+Les fichiers 01 à 06 sont conservés comme **dossier de travail** (historique des semaines 1 à 6) ; les identifiants officiels sont ceux des PDF (voir [00](00-referentiel-correspondances.md)).
+
+## Reproduire toute la campagne
+
+```powershell
+composer install ; npm ci
+# .env.test.local : WASSALNI_TEST_PASSWORD=<12 caractères min.> (jamais versionné) ; MariaDB avec la base wassalni_test migrée
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-regression.ps1
+```
+
+## Historique (version 1.4 et antérieures)
+
+### Contenu initial
 
 1. [Cadrage, fiche projet et risques](01-cadrage-risques.md)
 2. [Stratégie, calendrier et critères de campagne](02-strategie-calendrier.md)

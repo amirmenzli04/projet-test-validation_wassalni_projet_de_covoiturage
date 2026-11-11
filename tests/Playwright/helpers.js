@@ -25,6 +25,20 @@ function fixture() {
     return JSON.parse(fs.readFileSync(path.join(ROOT, 'test-results', 'fixture.json'), 'utf8'));
 }
 
+/**
+ * Réinitialise les données fictives (réservations et réclamations des comptes semaine7-9, stock du trajet = 4).
+ * Appelée au début de chaque fichier qui réserve : les fichiers restent indépendants de leur ordre d'exécution.
+ */
+function resetFixture() {
+    const output = execFileSync('php', ['bin/console', 'app:tests:prepare-week7-9', '--env=test', '--no-ansi'], { cwd: ROOT, encoding: 'utf8' });
+    const data = JSON.parse(output.slice(output.indexOf('{')));
+    if (data.database !== 'wassalni_test') {
+        throw new Error(`Base inattendue : ${data.database}`);
+    }
+    fs.writeFileSync(path.join(ROOT, 'test-results', 'fixture.json'), JSON.stringify(data, null, 2));
+    return data;
+}
+
 /** Connexion par le vrai formulaire ; le mot de passe n'apparaît jamais dans une capture (champ masqué). */
 async function login(page, email) {
     await page.goto('/connexion');
@@ -90,4 +104,4 @@ function evidenceLog(week, file) {
     };
 }
 
-module.exports = { ACCOUNTS, ROOT, expect, fixture, login, password, shot, sqlRow, evidenceLog };
+module.exports = { ACCOUNTS, ROOT, expect, fixture, login, password, resetFixture, shot, sqlRow, evidenceLog };

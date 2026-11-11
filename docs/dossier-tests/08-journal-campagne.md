@@ -99,3 +99,23 @@ Les preuves sont dans `preuves/semaine7/p1-catalogue/` (voir son README) ; le d�
 ### Points en attente
 
 Aucune correction du code métier n'a été faite. Les corrections proposées vous seront présentées anomalie par anomalie avant P6.
+
+
+## Semaines 1 à 10 — Clôture de la campagne (11/11/2026)
+
+| Phase | Réalisé | Document |
+|---|---|---|
+| Semaines 1 à 4 | Référentiel PDF adopté et correspondances ; captures S1 anonymisées ; A-05, A-09, A-11 confirmés | 00, 07 |
+| Semaine 5 | ST-01 à ST-10 dans Chrome, transitions, explorations outillées ; ANO-31 à 34 | 05 §5.9 |
+| Semaine 6 | UT-01 à UT-11, couverture PCOV (7,00 % / 34,65 %) ; ANO-35 | 06 §6.7 |
+| Semaine 7 | IT-01 à IT-06 (rollback, atomicité, cascade) ; isolation vérifiée | 10 |
+| Semaine 8 | Newman : 19 requêtes, 32/35 assertions (ANO-22) | 11 |
+| Semaine 9 | Parcours critique, axe, k6, sécurité, concurrence (ANO-36 à 38) | 12 |
+| Semaine 10 | Campagne finale `scripts/run-regression.ps1` ; matrice ; décision NO-GO | 09, 14, rapport final |
+
+**Décision du responsable (11/11/2026) :** aucune modification du code de l'application. Des corrections avaient été commencées après une première autorisation ; elles ont été **annulées avant tout commit** (`git checkout`), et le code est resté identique à la révision testée. Les 32 anomalies restent ouvertes et documentées.
+
+**Incidents d'outillage traités :**
+
+- **ANO-T05 :** dépendance d'ordre entre fichiers Playwright.
+- **Encodage de la synthèse PowerShell :** script réenregistré en UTF-8 avec BOM ; l'en-tête de `00-synthese.txt` a été redécodé de cp1252 vers UTF-8, sans changement des valeurs.

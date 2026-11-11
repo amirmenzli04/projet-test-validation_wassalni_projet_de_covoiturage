@@ -34,3 +34,6 @@
 
 # Outils binaires téléchargés localement (PCOV, k6) : non versionnés
 /tools/
+
+# Archive ZIP du dossier final (générée localement)
+/dist/

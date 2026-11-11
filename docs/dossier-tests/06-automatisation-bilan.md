@@ -90,7 +90,9 @@ Après chaque correction concernant réservation, réexécuter CT-10 à CT-17 et
 | Observations à reproduire | OBS-01 à OBS-05 |
 | Exigences ambiguës bloquantes | Délai d'annulation, statuts de réclamation, contrat API, bornes de données |
 
-### Décision argumentée
+### Décision argumentée (historique du 10/11/2026)
+
+> **Remplacée** par la décision finale du 11/11/2026 : **refus de livraison (NO-GO)**, voir [14](14-semaine10-bilan-decision.md).
 
 **NO-GO probatoire / décision de livraison différée.** Les 27 tests automatisés passent et le workflow de réclamation est partiellement vérifié en HTTP/DB, mais l'ensemble des 31 cas n'est pas couvert : les parcours complets de réservation/publication, l'API AJAX, le navigateur réel et les tests non fonctionnels restent à exécuter; des exigences demeurent à arbitrer et des observations statiques restent à reproduire.
 

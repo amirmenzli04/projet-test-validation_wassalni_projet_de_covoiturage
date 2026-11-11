@@ -5,7 +5,9 @@
  * déjà établies (CA-xx) sont vérifiées par expect(). Ce n'est pas une exploration manuelle humaine.
  */
 const { test } = require('@playwright/test');
-const { ACCOUNTS, expect, fixture, login, shot, sqlRow, evidenceLog } = require('./helpers');
+const { ACCOUNTS, expect, fixture, login, resetFixture, shot, sqlRow, evidenceLog } = require('./helpers');
+
+test.beforeAll(() => resetFixture()); // isolation entre fichiers (ANO-T05)
 
 test.describe.configure({ mode: 'serial' });
 const WEEK = 'semaine5';

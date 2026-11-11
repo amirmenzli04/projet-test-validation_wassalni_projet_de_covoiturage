@@ -1,0 +1,135 @@
+﻿# Newman (API) | 2026-11-11 22:43:01 +01:00 | revision cc50095 | base wassalni_test
+# Base wassalni_test, trajet de fixture 56, date 2026-11-11T21:43:06.551Z
+newman
+
+Wassalni — Semaine 8 — Tests de l'API JSON
+
+→ 01 — Trouver le trajet reproductible
+  GET http://127.0.0.1:8000/trajet/recherche?villeDepart=Tunis&destination=Sfax&dateDepart=2099-12-01 [200 OK, 47.48kB, 71ms]
+  √  La recherche de fixture renvoie 200
+  √  Un seul trajet reproductible est trouvé
+
+→ 02 — Refuser un visiteur anonyme
+  POST http://127.0.0.1:8000/reservation/new-ajax [302 Found, 566B, 32ms]
+  √  Une réservation anonyme est redirigée vers la connexion
+  √  La redirection mène au formulaire de connexion
+
+→ 02b — CA-14 : /get-last-user-email sans connexion ne divulgue aucune adresse (ANO-22)
+  GET http://127.0.0.1:8000/get-last-user-email [200 OK, 288B, 95ms]
+  1. Accès refusé sans connexion (302, 401 ou 403)
+  2. Aucune adresse e-mail dans la réponse
+
+→ 02c — CA-14 : /check-verification-status sans connexion est refusé (ANO-22)
+  GET http://127.0.0.1:8000/check-verification-status [200 OK, 264B, 45ms]
+  3. Accès refusé sans connexion (302, 401 ou 403)
+
+→ 02d — /health : 200, JSON {status: ok}, en-têtes et temps de réponse
+  GET http://127.0.0.1:8000/health [200 OK, 204B, 39ms]
+  √  Code 200
+  √  En-tête Content-Type JSON
+  √  Corps {"status":"ok"}
+  √  Pas de cache public sur l'état de santé
+  √  Réponse en moins de 1000 ms
+
+→ 02e — /health en POST : méthode non autorisée (405)
+  POST http://127.0.0.1:8000/health [405 Method Not Allowed, 1.25kB, 36ms]
+  √  POST refusé en 405
+
+→ 03 — Charger le formulaire et le jeton CSRF
+  GET http://127.0.0.1:8000/connexion [200 OK, 6.55kB, 37ms]
+  √  Le formulaire de connexion est disponible
+  √  Le formulaire contient un jeton CSRF
+
+→ 04 — Authentifier le passager
+  POST http://127.0.0.1:8000/connexion [200 OK, 96.8kB, 579ms]
+  √  La connexion aboutit et la session est conservée
+
+→ 05 — Réserver une place (succès JSON)
+  POST http://127.0.0.1:8000/reservation/new-ajax [200 OK, 361B, 81ms]
+  √  La réservation retourne 200 JSON
+  √  La réponse confirme la réservation et son prix
+  √  En-tête Content-Type JSON
+
+→ 05b — État après réservation : la recherche affiche 3 places pour le trajet (relecture HTTP)
+  GET http://127.0.0.1:8000/trajet/recherche?villeDepart=Tunis&destination=Sfax&dateDepart=2099-12-01 [200 OK, 49.88kB, 73ms]
+  √  Le trajet est toujours affiché
+  √  Stock décrémenté de 4 à 3 (CA-08)
+
+→ 05c — Corps JSON malformé : 400 et JSON d'erreur
+  POST http://127.0.0.1:8000/reservation/new-ajax [400 Bad Request, 305B, 46ms]
+  √  Code 400
+  √  Réponse JSON success=false
+  √  Message explicite
+
+→ 05d — Quantité négative (-1) : 400, aucune réservation (régression ANO-01)
+  POST http://127.0.0.1:8000/reservation/new-ajax [400 Bad Request, 338B, 58ms]
+  √  Code 400
+  √  Message sur l'entier positif
+
+→ 05e — Identifiant de trajet non numérique : 400
+  POST http://127.0.0.1:8000/reservation/new-ajax [400 Bad Request, 316B, 55ms]
+  √  Code 400
+  √  Message « Identifiant de trajet invalide »
+
+→ 05f — Identifiant de trajet absent : 400
+  POST http://127.0.0.1:8000/reservation/new-ajax [400 Bad Request, 315B, 41ms]
+  √  Code 400
+  √  Message « Trajet non spécifié »
+
+→ 06 — Rejeter une quantité nulle
+  POST http://127.0.0.1:8000/reservation/new-ajax [400 Bad Request, 338B, 44ms]
+  √  Une quantité nulle est rejetée en 400
+
+→ 07 — Rejeter un trajet inexistant
+  POST http://127.0.0.1:8000/reservation/new-ajax [404 Not Found, 306B, 41ms]
+  √  Un trajet inconnu retourne 404
+
+→ 08 — Rejeter une quantité supérieure à la capacité
+  POST http://127.0.0.1:8000/reservation/new-ajax [400 Bad Request, 339B, 95ms]
+  √  Une quantité indisponible retourne 400
+
+→ 09 — Rejeter une réservation en doublon
+  POST http://127.0.0.1:8000/reservation/new-ajax [400 Bad Request, 338B, 53ms]
+  √  Le doublon retourne 400 avec un message JSON
+
+→ 10 — Rejeter une méthode HTTP non autorisée
+  GET http://127.0.0.1:8000/reservation/new-ajax [405 Method Not Allowed, 1.25kB, 31ms]
+  √  GET est refusé pour la création de réservation
+
+┌─────────────────────────┬────────────────────┬───────────────────┐
+│                         │           executed │            failed │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│              iterations │                  1 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│                requests │                 19 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│            test-scripts │                 19 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│      prerequest-scripts │                  0 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│              assertions │                 35 │                 3 │
+├─────────────────────────┴────────────────────┴───────────────────┤
+│ total run duration: 2.6s                                         │
+├──────────────────────────────────────────────────────────────────┤
+│ total data received: 202.72kB (approx)                           │
+├──────────────────────────────────────────────────────────────────┤
+│ average response time: 81ms [min: 31ms, max: 579ms, s.d.: 118ms] │
+└──────────────────────────────────────────────────────────────────┘
+
+  #  failure         detail                                                                                                       
+                                                                                                                                  
+ 1.  AssertionError  Accès refusé sans connexion (302, 401 ou 403)                                                                
+                     expected [ 302, 401, 403 ] to include 200                                                                    
+                     at assertion:0 in test-script                                                                                
+                     inside "02b — CA-14 : /get-last-user-email sans connexion ne divulgue aucune adresse (ANO-22)"               
+                                                                                                                                  
+ 2.  AssertionError  Aucune adresse e-mail dans la réponse                                                                        
+                     expected '{"email":"semaine7-9.admin@example.te…' not to match /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}/ 
+                     at assertion:1 in test-script                                                                                
+                     inside "02b — CA-14 : /get-last-user-email sans connexion ne divulgue aucune adresse (ANO-22)"               
+                                                                                                                                  
+ 3.  AssertionError  Accès refusé sans connexion (302, 401 ou 403)                                                                
+                     expected [ 302, 401, 403 ] to include 200                                                                    
+                     at assertion:0 in test-script                                                                                
+                     inside "02c — CA-14 : /check-verification-status sans connexion est refusé (ANO-22)"                         
+# Requêtes : 19 (échecs 0) ; assertions : 35 (échecs 3)

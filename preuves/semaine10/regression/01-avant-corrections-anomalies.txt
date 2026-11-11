@@ -1,0 +1,4422 @@
+# AVANT CORRECTIONS — 2026-11-11 22:26:45 +0100 — commit cc50095
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: C:\Users\Dogui\wassalni-tests\phpunit.dist.xml
+
+FEEEEEFDDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                  48 / 48 (100%)
+
+Time: 00:05.946, Memory: 54.00 MB
+
+Avis Reclamation (App\Tests\Functional\Catalogue\AvisReclamation)
+ ⚠ TC-33 (CA-18, EX-21) — notes 0, 1, 5, 6 sur un trajet terminé : 0 et 6 refusées, 1 et 5 acceptées
+ ⚠ CA-18 (EX-22) — second avis sur le même trajet : refusé, un seul avis
+ ✘ CA-18 (EX-21) — avis sur T-NOMINAL avant la fin du trajet (départ J+7) : refusé
+   │
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │ -    'formulaire_propose' => false,
+   │ -    'avis_enregistres' => 0,
+   │ +    'formulaire_propose' => true,
+   │ +    'avis_enregistres' => 1,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:70
+   │
+
+Concurrence Reservation (App\Tests\Integration\ConcurrenceReservation)
+ ✘ IT-07 (R1, EX-35, CA-06) — deux réservations entrelacées sur la dernière place : une seule doit être confirmée
+   │
+   │ Surréservation : {"controle_A_passe":true,"controle_B_passe":true,"reservations_confirmees":2,"places_restantes":0}
+   │ Failed asserting that 2 is equal to 1 or is less than 1.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Integration\ConcurrenceReservationTest.php:98
+   │
+
+Connexion Acces (App\Tests\Functional\Catalogue\ConnexionAcces)
+ ✘ TC-03 (CA-11, EX-03) — compte non vérifié avec le bon mot de passe : aucune session authentifiée
+   │
+   │ Le compte non vérifié accède à /reservation/mes-reservations
+   │ Failed asserting that true is false.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:30
+   │
+ ✘ A-09 — le message d'échec de connexion est rédigé en français
+   │
+   │ Message affiché : « Invalid credentials. »
+   │ Failed asserting that 'Invalid credentials.' [ASCII](length: 20) does not contain "Invalid credentials" [ASCII](length: 19).
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:56
+   │
+ ✘ TC-04 (CA-11, EX-04) — U-PASS2 bloqué par l'admin ne peut plus se connecter ; réactivé, il le peut
+   │
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │      '1_connexion_initiale' => true,
+   │      '2_statut_en_base' => 'BLOQUE',
+   │ -    '3_connexion_compte_bloque' => false,
+   │ +    '3_connexion_compte_bloque' => true,
+   │      '5_connexion_apres_reactivation' => true,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:84
+   │
+ ✘ TC-45 (CA-14, EX-33) — /get-last-user-email sans connexion : accès refusé, aucune adresse e-mail renvoyée
+   │
+   │ Réponse HTTP 200 : {"email":"cat-e2e10556-pass-nv@example.test"}
+   │ Failed asserting that '{"email":"cat-e2e10556-pass-nv@example.test"}' does not match PCRE pattern "/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}/".
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:128
+   │
+ ✘ CA-14 (EX-33) — /check-verification-status sans connexion : accès refusé
+   │
+   │ HTTP 200 : {"verified":false}
+   │ Failed asserting that an array contains 200.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:138
+   │
+ ✘ TC-38 (CA-15, EX-34) — admin ouvre par GET /admin/trajet/valider/{T-PEND} : refus, T-PEND reste EN_ATTENTE
+   │
+   │ HTTP 302
+   │ Failed asserting that two strings are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │ -'EN_ATTENTE'
+   │ +'VALIDE'
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:148
+   │
+ ✘ CA-15 (EX-34) — admin bloque U-PASS2 par simple GET sans jeton : refus, statut ACTIF conservé
+   │
+   │ Failed asserting that two strings are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │ -'ACTIF'
+   │ +'BLOQUE'
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:158
+   │
+ ✘ CA-15 (EX-34) — admin supprime T-P1 par simple GET sans jeton : refus, trajet conservé
+   │
+   │ HTTP 302
+   │ Failed asserting that 0 is identical to 1.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:168
+   │
+ ✘ CA-15 (EX-34) — traitement d'une réclamation par POST sans jeton CSRF : refus, statut EN_ATTENTE conservé
+   │
+   │ Failed asserting that two strings are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │ -'EN_ATTENTE'
+   │ +'TRAITEE'
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:182
+   │
+ ✘ CA-20 (EX-27, EX-35) — admin supprime U-PASS1 qui a des réservations : refus propre ou propagation, sans erreur 500
+   │
+   │ Suppression d'un utilisateur ayant des réservations : erreur serveur HTTP 500
+   │ Failed asserting that 500 is less than 500.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:45
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:201
+   │
+ ✘ CA-20 (EX-28) — admin supprime T-P4 visé par une réclamation : refus explicite ou propagation, sans erreur 500
+   │
+   │ Suppression d'un trajet visé par une réclamation : erreur serveur HTTP 500
+   │ Failed asserting that 500 is less than 500.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:45
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:217
+   │
+ ✘ CA-16 (EX-26) — tableau de bord admin : le compteur « Réclamations » égale le nombre en attente en base
+   │
+   │ Failed asserting that 0 is identical to 6.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:234
+   │
+ ✘ Disponibilité (OBS-H) — /avis/conducteur/{id} et /inscription répondent sans erreur serveur
+   │
+   │ {"\/avis\/conducteur\/{id}":500,"\/inscription":500}
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │ -    '/avis/conducteur/{id}' => false,
+   │ -    '/inscription' => false,
+   │ +    '/avis/conducteur/{id}' => true,
+   │ +    '/inscription' => true,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:247
+   │
+ ✘ EX-29 — U-PASS1 ouvre son tableau de bord /passager/dashboard : page affichée (pas d'erreur serveur)
+   │
+   │ /passager/dashboard : erreur serveur HTTP 500
+   │ Failed asserting that 500 is less than 500.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:45
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:257
+   │
+ ✘ Retour utilisateur — réponse administrateur vide : le message « Veuillez saisir une réponse » est affiché après redirection
+   │
+   │ Failed asserting that '<!DOCTYPE html>\n
+   │ <html lang="fr">\n
+   │ <head>\n
+   │     <meta charset="UTF-8">\n
+   │     <meta name="viewport" content="width=device-width, initial-scale=1.0">\n
+   │ \n
+   │     <title>\n
+   │         Gestion des réclamations - Admin    </title>\n
+   │ \n
+   │     <!-- Fonts -->\n
+   │     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">\n
+   │ \n
+   │     <!-- Icons -->\n
+   │     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">\n
+   │ \n
+   │     <style>\n
+   │ \n
+   │         *{\n
+   │             margin:0;\n
+   │             padding:0;\n
+   │             box-sizing:border-box;\n
+   │         }\n
+   │ \n
+   │         :root{\n
+   │             --primary:#6d28d9;\n
+   │             --primary-dark:#4c1d95;\n
+   │             --secondary:#8b5cf6;\n
+   │             --dark:#0f172a;\n
+   │             --dark-2:#1e293b;\n
+   │             --light:#f8fafc;\n
+   │             --border:#e2e8f0;\n
+   │             --text:#334155;\n
+   │             --white:#ffffff;\n
+   │             --gold:#facc15;\n
+   │         }\n
+   │ \n
+   │         body{\n
+   │             font-family:'Inter',sans-serif;\n
+   │             background:var(--light);\n
+   │             color:var(--text);\n
+   │             overflow-x:hidden;\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                            NAVBAR\n
+   │         =================================================== */\n
+   │ \n
+   │         .navbar{\n
+   │             position:sticky;\n
+   │             top:0;\n
+   │             z-index:9999;\n
+   │ \n
+   │             background:\n
+   │                 linear-gradient(\n
+   │                     135deg,\n
+   │                     #0f172a 0%,\n
+   │                     #1e1b4b 45%,\n
+   │                     #4c1d95 100%\n
+   │                 );\n
+   │ \n
+   │             backdrop-filter:blur(20px);\n
+   │ \n
+   │             border-bottom:1px solid rgba(255,255,255,0.08);\n
+   │ \n
+   │             box-shadow:\n
+   │                 0 10px 30px rgba(0,0,0,0.08);\n
+   │         }\n
+   │ \n
+   │         .nav-container{\n
+   │             max-width:1600px;\n
+   │             margin:auto;\n
+   │ \n
+   │             min-height:82px;\n
+   │ \n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             justify-content:space-between;\n
+   │ \n
+   │             gap:25px;\n
+   │ \n
+   │             padding:0 25px;\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                            LOGO\n
+   │         =================================================== */\n
+   │ \n
+   │         .logo{\n
+   │             flex-shrink:0;\n
+   │         }\n
+   │ \n
+   │         .logo a{\n
+   │             text-decoration:none;\n
+   │ \n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             gap:12px;\n
+   │ \n
+   │             font-size:30px;\n
+   │             font-weight:900;\n
+   │             letter-spacing:-1px;\n
+   │ \n
+   │             color:white;\n
+   │         }\n
+   │ \n
+   │         .logo-icon{\n
+   │             width:50px;\n
+   │             height:50px;\n
+   │ \n
+   │             border-radius:16px;\n
+   │ \n
+   │             background:\n
+   │                 linear-gradient(\n
+   │                     135deg,\n
+   │                     #facc15,\n
+   │                     #fde047\n
+   │                 );\n
+   │ \n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             justify-content:center;\n
+   │ \n
+   │             box-shadow:\n
+   │                 0 10px 20px rgba(250,204,21,0.3);\n
+   │         }\n
+   │ \n
+   │         .logo-icon i{\n
+   │             color:#4c1d95;\n
+   │             font-size:24px;\n
+   │         }\n
+   │ \n
+   │         .logo-text{\n
+   │             display:flex;\n
+   │             flex-direction:column;\n
+   │             line-height:1;\n
+   │         }\n
+   │ \n
+   │         .logo-text strong{\n
+   │             color:white;\n
+   │             font-size:28px;\n
+   │         }\n
+   │ \n
+   │         .logo-text span{\n
+   │             font-size:11px;\n
+   │             color:#c4b5fd;\n
+   │             letter-spacing:2px;\n
+   │             margin-top:4px;\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                         NAVIGATION LINKS\n
+   │         =================================================== */\n
+   │ \n
+   │         .nav-links{\n
+   │             flex:1;\n
+   │ \n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             justify-content:center;\n
+   │ \n
+   │             gap:10px;\n
+   │ \n
+   │             min-width:0;\n
+   │ \n
+   │             overflow-x:auto;\n
+   │             overflow-y:hidden;\n
+   │ \n
+   │             scrollbar-width:none;\n
+   │ \n
+   │             padding:8px 5px;\n
+   │         }\n
+   │ \n
+   │         .nav-links::-webkit-scrollbar{\n
+   │             display:none;\n
+   │         }\n
+   │ \n
+   │         /* IMPORTANT :\n
+   │            TOUS LES TABS SERONT VISIBLES */\n
+   │         .nav-links a{\n
+   │             flex-shrink:0;\n
+   │ \n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             gap:10px;\n
+   │ \n
+   │             padding:12px 18px;\n
+   │ \n
+   │             border-radius:18px;\n
+   │ \n
+   │             text-decoration:none;\n
+   │ \n
+   │             color:#e2e8f0;\n
+   │ \n
+   │             font-size:14px;\n
+   │             font-weight:600;\n
+   │ \n
+   │             transition:0.3s ease;\n
+   │ \n
+   │             white-space:nowrap;\n
+   │ \n
+   │             position:relative;\n
+   │         }\n
+   │ \n
+   │         .nav-links a i{\n
+   │             font-size:15px;\n
+   │         }\n
+   │ \n
+   │         .nav-links a:hover{\n
+   │             background:rgba(255,255,255,0.12);\n
+   │ \n
+   │             color:white;\n
+   │ \n
+   │             transform:translateY(-2px);\n
+   │         }\n
+   │ \n
+   │         .nav-links a.active{\n
+   │             background:\n
+   │                 linear-gradient(\n
+   │                     135deg,\n
+   │                     rgba(255,255,255,0.18),\n
+   │                     rgba(255,255,255,0.08)\n
+   │                 );\n
+   │ \n
+   │             color:#fff;\n
+   │ \n
+   │             box-shadow:\n
+   │                 0 10px 20px rgba(0,0,0,0.15);\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                          USER MENU\n
+   │         =================================================== */\n
+   │ \n
+   │         .user-menu{\n
+   │             flex-shrink:0;\n
+   │ \n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             gap:15px;\n
+   │         }\n
+   │ \n
+   │         .btn-login{\n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             gap:10px;\n
+   │ \n
+   │             text-decoration:none;\n
+   │ \n
+   │             padding:12px 24px;\n
+   │ \n
+   │             border-radius:50px;\n
+   │ \n
+   │             color:white;\n
+   │             font-weight:700;\n
+   │ \n
+   │             background:\n
+   │                 linear-gradient(\n
+   │                     135deg,\n
+   │                     #8b5cf6,\n
+   │                     #6d28d9\n
+   │                 );\n
+   │ \n
+   │             transition:0.3s ease;\n
+   │         }\n
+   │ \n
+   │         .btn-login:hover{\n
+   │             transform:translateY(-3px);\n
+   │ \n
+   │             box-shadow:\n
+   │                 0 15px 25px rgba(109,40,217,0.35);\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                       USER PROFILE\n
+   │         =================================================== */\n
+   │ \n
+   │         .dropdown{\n
+   │             position:relative;\n
+   │         }\n
+   │ \n
+   │         .user-info{\n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             gap:14px;\n
+   │ \n
+   │             padding:10px 18px;\n
+   │ \n
+   │             border-radius:60px;\n
+   │ \n
+   │             background:rgba(255,255,255,0.1);\n
+   │ \n
+   │             border:1px solid rgba(255,255,255,0.12);\n
+   │ \n
+   │             cursor:pointer;\n
+   │ \n
+   │             transition:0.3s ease;\n
+   │         }\n
+   │ \n
+   │         .user-info:hover{\n
+   │             background:rgba(255,255,255,0.18);\n
+   │         }\n
+   │ \n
+   │         .user-avatar{\n
+   │             width:42px;\n
+   │             height:42px;\n
+   │ \n
+   │             border-radius:50%;\n
+   │ \n
+   │             background:\n
+   │                 linear-gradient(\n
+   │                     135deg,\n
+   │                     #facc15,\n
+   │                     #fde047\n
+   │                 );\n
+   │ \n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             justify-content:center;\n
+   │ \n
+   │             flex-shrink:0;\n
+   │         }\n
+   │ \n
+   │         .user-avatar i{\n
+   │             color:#4c1d95;\n
+   │             font-size:18px;\n
+   │         }\n
+   │ \n
+   │         .user-details{\n
+   │             display:flex;\n
+   │             flex-direction:column;\n
+   │             line-height:1.2;\n
+   │         }\n
+   │ \n
+   │         .user-details strong{\n
+   │             color:white;\n
+   │             font-size:14px;\n
+   │             font-weight:700;\n
+   │         }\n
+   │ \n
+   │         .user-details span{\n
+   │             color:#cbd5e1;\n
+   │             font-size:12px;\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                         DROPDOWN MENU\n
+   │         =================================================== */\n
+   │ \n
+   │         .dropdown-menu{\n
+   │             position:absolute;\n
+   │ \n
+   │             top:72px;\n
+   │             right:0;\n
+   │ \n
+   │             width:280px;\n
+   │ \n
+   │             background:white;\n
+   │ \n
+   │             border-radius:24px;\n
+   │ \n
+   │             overflow:hidden;\n
+   │ \n
+   │             opacity:0;\n
+   │             visibility:hidden;\n
+   │             transform:translateY(15px);\n
+   │ \n
+   │             transition:0.3s ease;\n
+   │ \n
+   │             box-shadow:\n
+   │                 0 20px 40px rgba(0,0,0,0.12);\n
+   │ \n
+   │             z-index:9999;\n
+   │         }\n
+   │ \n
+   │         .dropdown:hover .dropdown-menu{\n
+   │             opacity:1;\n
+   │             visibility:visible;\n
+   │             transform:translateY(0);\n
+   │         }\n
+   │ \n
+   │         .dropdown-header{\n
+   │             padding:22px;\n
+   │ \n
+   │             background:\n
+   │                 linear-gradient(\n
+   │                     135deg,\n
+   │                     #6d28d9,\n
+   │                     #4c1d95\n
+   │                 );\n
+   │ \n
+   │             color:white;\n
+   │         }\n
+   │ \n
+   │         .dropdown-header h4{\n
+   │             font-size:16px;\n
+   │             margin-bottom:5px;\n
+   │         }\n
+   │ \n
+   │         .dropdown-header p{\n
+   │             font-size:13px;\n
+   │             opacity:0.9;\n
+   │         }\n
+   │ \n
+   │         .dropdown-menu a{\n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             gap:14px;\n
+   │ \n
+   │             padding:15px 22px;\n
+   │ \n
+   │             text-decoration:none;\n
+   │ \n
+   │             color:#1e293b;\n
+   │ \n
+   │             font-weight:600;\n
+   │             font-size:14px;\n
+   │ \n
+   │             border-bottom:1px solid #f1f5f9;\n
+   │ \n
+   │             transition:0.25s ease;\n
+   │         }\n
+   │ \n
+   │         .dropdown-menu a:last-child{\n
+   │             border-bottom:none;\n
+   │         }\n
+   │ \n
+   │         .dropdown-menu a i{\n
+   │             width:18px;\n
+   │             color:#6d28d9;\n
+   │         }\n
+   │ \n
+   │         .dropdown-menu a:hover{\n
+   │             background:#f8fafc;\n
+   │             padding-left:30px;\n
+   │         }\n
+   │ \n
+   │         .dropdown-menu .logout{\n
+   │             color:#dc2626;\n
+   │         }\n
+   │ \n
+   │         .dropdown-menu .logout i{\n
+   │             color:#dc2626;\n
+   │         }\n
+   │ \n
+   │         .dropdown-menu .logout:hover{\n
+   │             background:#fef2f2;\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                          MOBILE BUTTON\n
+   │         =================================================== */\n
+   │ \n
+   │         .mobile-menu-btn{\n
+   │             display:none;\n
+   │ \n
+   │             width:46px;\n
+   │             height:46px;\n
+   │ \n
+   │             border:none;\n
+   │ \n
+   │             border-radius:14px;\n
+   │ \n
+   │             background:rgba(255,255,255,0.12);\n
+   │ \n
+   │             color:white;\n
+   │ \n
+   │             cursor:pointer;\n
+   │ \n
+   │             font-size:20px;\n
+   │ \n
+   │             transition:0.3s ease;\n
+   │         }\n
+   │ \n
+   │         .mobile-menu-btn:hover{\n
+   │             background:rgba(255,255,255,0.2);\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                         MAIN CONTENT\n
+   │         =================================================== */\n
+   │ \n
+   │         .main-content{\n
+   │             min-height:calc(100vh - 170px);\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                            FOOTER\n
+   │         =================================================== */\n
+   │ \n
+   │         .footer{\n
+   │             margin-top:80px;\n
+   │ \n
+   │             background:\n
+   │                 linear-gradient(\n
+   │                     135deg,\n
+   │                     #0f172a,\n
+   │                     #1e1b4b\n
+   │                 );\n
+   │ \n
+   │             color:white;\n
+   │ \n
+   │             text-align:center;\n
+   │ \n
+   │             padding:45px 20px;\n
+   │         }\n
+   │ \n
+   │         .footer p{\n
+   │             opacity:0.75;\n
+   │             font-size:14px;\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                         RESPONSIVE TABLET\n
+   │         =================================================== */\n
+   │ \n
+   │         @media(max-width:1200px){\n
+   │ \n
+   │             .nav-links{\n
+   │                 justify-content:flex-start;\n
+   │             }\n
+   │ \n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                         RESPONSIVE MOBILE\n
+   │         =================================================== */\n
+   │ \n
+   │         @media(max-width:900px){\n
+   │ \n
+   │             .nav-container{\n
+   │                 min-height:75px;\n
+   │             }\n
+   │ \n
+   │             .mobile-menu-btn{\n
+   │                 display:flex;\n
+   │                 align-items:center;\n
+   │                 justify-content:center;\n
+   │             }\n
+   │ \n
+   │             .nav-links{\n
+   │                 position:absolute;\n
+   │ \n
+   │                 top:75px;\n
+   │                 left:0;\n
+   │                 right:0;\n
+   │ \n
+   │                 display:flex;\n
+   │                 flex-direction:column;\n
+   │                 align-items:stretch;\n
+   │                 justify-content:flex-start;\n
+   │ \n
+   │                 gap:10px;\n
+   │ \n
+   │                 padding:20px;\n
+   │ \n
+   │                 background:\n
+   │                     linear-gradient(\n
+   │                         135deg,\n
+   │                         #0f172a,\n
+   │                         #1e1b4b\n
+   │                     );\n
+   │ \n
+   │                 max-height:0;\n
+   │                 overflow:hidden;\n
+   │ \n
+   │                 opacity:0;\n
+   │ \n
+   │                 transition:0.4s ease;\n
+   │             }\n
+   │ \n
+   │             .nav-links.mobile-open{\n
+   │                 max-height:1000px;\n
+   │                 opacity:1;\n
+   │                 overflow-y:auto;\n
+   │             }\n
+   │ \n
+   │             .nav-links a{\n
+   │                 width:100%;\n
+   │                 justify-content:flex-start;\n
+   │ \n
+   │                 padding:14px 18px;\n
+   │ \n
+   │                 border-radius:16px;\n
+   │             }\n
+   │ \n
+   │             .user-details{\n
+   │                 display:none;\n
+   │             }\n
+   │ \n
+   │             .dropdown-menu{\n
+   │                 right:-20px;\n
+   │                 width:260px;\n
+   │             }\n
+   │ \n
+   │         }\n
+   │ \n
+   │         @media(max-width:600px){\n
+   │ \n
+   │             .logo-text strong{\n
+   │                 font-size:22px;\n
+   │             }\n
+   │ \n
+   │             .logo-icon{\n
+   │                 width:42px;\n
+   │                 height:42px;\n
+   │             }\n
+   │ \n
+   │             .logo-icon i{\n
+   │                 font-size:20px;\n
+   │             }\n
+   │ \n
+   │             .btn-login span{\n
+   │                 display:none;\n
+   │             }\n
+   │ \n
+   │             .btn-login{\n
+   │                 width:46px;\n
+   │                 height:46px;\n
+   │                 padding:0;\n
+   │ \n
+   │                 justify-content:center;\n
+   │             }\n
+   │ \n
+   │         }\n
+   │ \n
+   │     </style>\n
+   │ \n
+   │     \n
+   │ <style>\n
+   │     .page-header {\n
+   │         background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #4c1d95 100%);\n
+   │         padding: 50px 0 70px 0;\n
+   │         text-align: center;\n
+   │         color: white;\n
+   │     }\n
+   │     \n
+   │     .page-header h1 {\n
+   │         font-size: 36px;\n
+   │         font-weight: 800;\n
+   │         margin-bottom: 10px;\n
+   │     }\n
+   │     \n
+   │     .container-custom {\n
+   │         max-width: 1200px;\n
+   │         margin: -40px auto 0;\n
+   │         padding: 0 20px;\n
+   │     }\n
+   │     \n
+   │     .card {\n
+   │         background: white;\n
+   │         border-radius: 24px;\n
+   │         overflow: hidden;\n
+   │         box-shadow: 0 10px 30px rgba(0,0,0,0.08);\n
+   │         margin-bottom: 30px;\n
+   │     }\n
+   │     \n
+   │     .card-header {\n
+   │         background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%);\n
+   │         padding: 20px 25px;\n
+   │         color: white;\n
+   │     }\n
+   │     \n
+   │     .card-header h3 {\n
+   │         font-size: 18px;\n
+   │         font-weight: 700;\n
+   │         margin: 0;\n
+   │         display: flex;\n
+   │         align-items: center;\n
+   │         gap: 10px;\n
+   │     }\n
+   │     \n
+   │     .reclamation-card {\n
+   │         padding: 25px;\n
+   │         border-bottom: 1px solid #f1f5f9;\n
+   │     }\n
+   │     \n
+   │     .reclamation-card:last-child {\n
+   │         border-bottom: none;\n
+   │     }\n
+   │     \n
+   │     .reclamation-header {\n
+   │         display: flex;\n
+   │         justify-content: space-between;\n
+   │         align-items: center;\n
+   │         margin-bottom: 15px;\n
+   │         flex-wrap: wrap;\n
+   │         gap: 10px;\n
+   │     }\n
+   │     \n
+   │     .reclamation-title {\n
+   │         font-size: 18px;\n
+   │         font-weight: 700;\n
+   │         color: #1e293b;\n
+   │     }\n
+   │     \n
+   │     .badge {\n
+   │         padding: 4px 12px;\n
+   │         border-radius: 20px;\n
+   │         font-size: 11px;\n
+   │         font-weight: 600;\n
+   │     }\n
+   │     \n
+   │     .badge-warning {\n
+   │         background: #fef3c7;\n
+   │         color: #b45309;\n
+   │     }\n
+   │     \n
+   │     .badge-info {\n
+   │         background: #e0f2fe;\n
+   │         color: #0369a1;\n
+   │     }\n
+   │     \n
+   │     .badge-success {\n
+   │         background: #dcfce7;\n
+   │         color: #15803d;\n
+   │     }\n
+   │     \n
+   │     .reclamation-meta {\n
+   │         color: #64748b;\n
+   │         font-size: 13px;\n
+   │         margin-bottom: 15px;\n
+   │         display: flex;\n
+   │         gap: 20px;\n
+   │         flex-wrap: wrap;\n
+   │     }\n
+   │     \n
+   │     .reclamation-message {\n
+   │         background: #f8fafc;\n
+   │         padding: 15px;\n
+   │         border-radius: 16px;\n
+   │         margin-bottom: 20px;\n
+   │         line-height: 1.6;\n
+   │     }\n
+   │     \n
+   │     .response-form {\n
+   │         margin-top: 20px;\n
+   │     }\n
+   │     \n
+   │     .response-form textarea {\n
+   │         width: 100%;\n
+   │         padding: 12px;\n
+   │         border: 2px solid #e2e8f0;\n
+   │         border-radius: 16px;\n
+   │         font-family: inherit;\n
+   │         margin-bottom: 10px;\n
+   │         resize: vertical;\n
+   │     }\n
+   │     \n
+   │     .response-form textarea:focus {\n
+   │         outline: none;\n
+   │         border-color: #4c1d95;\n
+   │     }\n
+   │     \n
+   │     .btn-submit {\n
+   │         background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%);\n
+   │         color: white;\n
+   │         padding: 10px 20px;\n
+   │         border-radius: 30px;\n
+   │         border: none;\n
+   │         cursor: pointer;\n
+   │         font-weight: 600;\n
+   │         transition: all 0.3s;\n
+   │     }\n
+   │     \n
+   │     .btn-submit:hover {\n
+   │         transform: translateY(-2px);\n
+   │         box-shadow: 0 5px 15px rgba(76, 29, 149, 0.3);\n
+   │     }\n
+   │     \n
+   │     .response-display {\n
+   │         background: #f1f5f9;\n
+   │         padding: 15px;\n
+   │         border-radius: 16px;\n
+   │         margin-top: 15px;\n
+   │     }\n
+   │     \n
+   │     .response-display strong {\n
+   │         color: #4c1d95;\n
+   │     }\n
+   │     \n
+   │     @media (max-width: 768px) {\n
+   │         .reclamation-header {\n
+   │             flex-direction: column;\n
+   │             align-items: flex-start;\n
+   │         }\n
+   │     }\n
+   │ </style>\n
+   │ </head>\n
+   │ \n
+   │ <body>\n
+   │ \n
+   │ <!-- ===================================================\n
+   │                         NAVBAR\n
+   │ =================================================== -->\n
+   │ \n
+   │ <nav class="navbar">\n
+   │ \n
+   │     <div class="nav-container">\n
+   │ \n
+   │         <!-- LOGO -->\n
+   │         <div class="logo">\n
+   │ \n
+   │             <a href="/">\n
+   │ \n
+   │                 <div class="logo-icon">\n
+   │                     <i class="fas fa-car-side"></i>\n
+   │                 </div>\n
+   │ \n
+   │                 <div class="logo-text">\n
+   │                     <strong>Wassalni</strong>\n
+   │                     <span>TUNISIA</span>\n
+   │                 </div>\n
+   │ \n
+   │             </a>\n
+   │ \n
+   │         </div>\n
+   │ \n
+   │         <!-- NAVIGATION -->\n
+   │         <div class="nav-links" id="navLinks">\n
+   │ \n
+   │             \n
+   │                 \n
+   │                     <a href="/admin/dashboard">\n
+   │                         <i class="fas fa-gauge-high"></i>\n
+   │                         Dashboard\n
+   │                     </a>\n
+   │ \n
+   │                     <a href="/admin/utilisateurs">\n
+   │                         <i class="fas fa-users"></i>\n
+   │                         Utilisateurs\n
+   │                     </a>\n
+   │ \n
+   │                     <a href="/admin/trajets">\n
+   │                         <i class="fas fa-route"></i>\n
+   │                         Trajets\n
+   │                     </a>\n
+   │ \n
+   │                     <a href="/admin/reclamations">\n
+   │                         <i class="fas fa-file-alt"></i>\n
+   │                         Réclamations\n
+   │                     </a>\n
+   │ \n
+   │                 \n
+   │             \n
+   │         </div>\n
+   │ \n
+   │         <!-- USER MENU -->\n
+   │         <div class="user-menu">\n
+   │ \n
+   │             \n
+   │                 <div class="dropdown">\n
+   │ \n
+   │                     <div class="user-info">\n
+   │ \n
+   │                         <div class="user-avatar">\n
+   │                             <i class="fas fa-user"></i>\n
+   │                         </div>\n
+   │ \n
+   │                         <div class="user-details">\n
+   │ \n
+   │                             <strong>\n
+   │                                 U-ADMIN\n
+   │                                 C.\n
+   │                             </strong>\n
+   │ \n
+   │                             <span>\n
+   │                                                                     Administrateur\n
+   │                                                             </span>\n
+   │ \n
+   │                         </div>\n
+   │ \n
+   │                         <i class="fas fa-chevron-down" style="color:white;font-size:12px;"></i>\n
+   │ \n
+   │                     </div>\n
+   │ \n
+   │                     <!-- DROPDOWN -->\n
+   │                     <div class="dropdown-menu">\n
+   │ \n
+   │                         <div class="dropdown-header">\n
+   │ \n
+   │                             <h4>\n
+   │                                 U-ADMIN\n
+   │                                 Catalogue\n
+   │                             </h4>\n
+   │ \n
+   │                             <p>\n
+   │                                                                     Administrateur\n
+   │                                                             </p>\n
+   │ \n
+   │                         </div>\n
+   │ \n
+   │                         <a href="/reclamation/mes-reclamations">\n
+   │                             <i class="fas fa-file-alt"></i>\n
+   │                             Mes réclamations\n
+   │                         </a>\n
+   │ \n
+   │                         <a href="/reclamation/nouvelle">\n
+   │                             <i class="fas fa-plus-circle"></i>\n
+   │                             Nouvelle réclamation\n
+   │                         </a>\n
+   │ \n
+   │                         <a href="/deconnexion"\n
+   │                            class="logout"\n
+   │                            onclick="return confirm('Déconnexion ?')">\n
+   │ \n
+   │                             <i class="fas fa-right-from-bracket"></i>\n
+   │                             Déconnexion\n
+   │ \n
+   │                         </a>\n
+   │ \n
+   │                     </div>\n
+   │ \n
+   │                 </div>\n
+   │ \n
+   │             \n
+   │         </div>\n
+   │ \n
+   │         <!-- MOBILE BUTTON -->\n
+   │         <button class="mobile-menu-btn" id="mobileMenuBtn">\n
+   │ \n
+   │             <i class="fas fa-bars"></i>\n
+   │ \n
+   │         </button>\n
+   │ \n
+   │     </div>\n
+   │ \n
+   │ </nav>\n
+   │ \n
+   │ <!-- ===================================================\n
+   │                       MAIN CONTENT\n
+   │ =================================================== -->\n
+   │ \n
+   │ <main class="main-content">\n
+   │ \n
+   │     <div class="page-header">\n
+   │     <div class="container">\n
+   │         <h1><i class="fas fa-file-alt"></i> Gestion des réclamations</h1>\n
+   │         <p>Consultez et traitez les réclamations des utilisateurs</p>\n
+   │     </div>\n
+   │ </div>\n
+   │ \n
+   │ <div class="container-custom">\n
+   │     <div class="card">\n
+   │         <div class="card-header">\n
+   │             <h3><i class="fas fa-list"></i> Liste des réclamations</h3>\n
+   │         </div>\n
+   │         \n
+   │                                     <div class="reclamation-card">\n
+   │                     <div class="reclamation-header">\n
+   │                         <div class="reclamation-title">\n
+   │                             Retard important du conducteur\n
+   │                         </div>\n
+   │                         <div>\n
+   │                                                             <span class="badge badge-success">Traitée</span>\n
+   │                                                     </div>\n
+   │                     </div>\n
+   │                     \n
+   │                     <div class="reclamation-meta">\n
+   │                         <span><i class="fas fa-user"></i> Mohamed Lajili</span>\n
+   │                         <span><i class="fas fa-envelope"></i> mohamed.lajili@wassalni.tn</span>\n
+   │                         <span><i class="fas fa-calendar"></i> 27/04/2026 20:08</span>\n
+   │                                                     <span><i class="fas fa-route"></i> Trajet #1</span>\n
+   │                                             </div>\n
+   │                     \n
+   │                     <div class="reclamation-message">\n
+   │                         <strong>Message :</strong><br>\n
+   │                         Le conducteur avait plus de 45 minutes de retard sans aucun appel ni message. J&#039;ai dû prendre un taxi et j&#039;ai payé 60 DT supplémentaire.\n
+   │                     </div>\n
+   │                     \n
+   │                                             <div class="response-display">\n
+   │                             <strong><i class="fas fa-reply"></i> Réponse :</strong><br>\n
+   │                             Nous avons contacté le conducteur et lui avons fait un rappel des règles. Veuillez nous fournir la facture du taxi pour un éventuel remboursement.\n
+   │                             <br><br>\n
+   │                             <small>Date traitement: 29/04/2026 20:08</small>\n
+   │                         </div>\n
+   │                                     </div>\n
+   │                             <div class="reclamation-card">\n
+   │                     <div class="reclamation-header">\n
+   │                         <div class="reclamation-title">\n
+   │                             Annulation 1 heure avant le départ\n
+   │                         </div>\n
+   │                         <div>\n
+   │                                                             <span class="badge badge-info">En cours</span>\n
+   │                                                     </div>\n
+   │                     </div>\n
+   │                     \n
+   │                     <div class="reclamation-meta">\n
+   │                         <span><i class="fas fa-user"></i> Nour Chedli</span>\n
+   │                         <span><i class="fas fa-envelope"></i> nour.chedli@wassalni.tn</span>\n
+   │                         <span><i class="fas fa-calendar"></i> 02/05/2026 20:08</span>\n
+   │                                                     <span><i class="fas fa-route"></i> Trajet #3</span>\n
+   │                                             </div>\n
+   │                     \n
+   │                     <div class="reclamation-message">\n
+   │                         <strong>Message :</strong><br>\n
+   │                         Le conducteur a annulé le trajet 1 heure avant le départ alors que j&#039;avais déjà pris mes dispositions. Je me suis retrouvé bloqué sans solution de transport.\n
+   │                     </div>\n
+   │                     \n
+   │                                             <form action="/admin/reclamation/traiter/7" method="post" class="response-form">\n
+   │                             <textarea name="reponse" rows="3" placeholder="Votre réponse..."></textarea>\n
+   │                             <button type="submit" class="btn-submit">\n
+   │                                 <i class="fas fa-paper-plane"></i> Répondre et traiter\n
+   │                             </button>\n
+   │                         </form>\n
+   │                                     </div>\n
+   │                             <div class="reclamation-card">\n
+   │                     <div class="reclamation-header">\n
+   │                         <div class="reclamation-title">\n
+   │                             Véhicule différent de l&#039;annonce\n
+   │                         </div>\n
+   │                         <div>\n
+   │                                                             <span class="badge badge-warning">En attente</span>\n
+   │                                                     </div>\n
+   │                     </div>\n
+   │                     \n
+   │                     <div class="reclamation-meta">\n
+   │                         <span><i class="fas fa-user"></i> Mohamed Lajili</span>\n
+   │                         <span><i class="fas fa-envelope"></i> mohamed.lajili@wassalni.tn</span>\n
+   │                         <span><i class="fas fa-calendar"></i> 04/05/2026 20:08</span>\n
+   │                                                     <span><i class="fas fa-route"></i> Trajet #5</span>\n
+   │                                             </div>\n
+   │                     \n
+   │                     <div class="reclamation-message">\n
+   │                         <strong>Message :</strong><br>\n
+   │                         Le véhicule annoncé était une BMW Série 3 récente, mais le conducteur est venu avec une vieille Clio en mauvais état, sans climatisation et avec une odeur de tabac.\n
+   │                     </div>\n
+   │                     \n
+   │                                             <form action="/admin/reclamation/traiter/8" method="post" class="response-form">\n
+   │                             <textarea name="reponse" rows="3" placeholder="Votre réponse..."></textarea>\n
+   │                             <button type="submit" class="btn-submit">\n
+   │                                 <i class="fas fa-paper-plane"></i> Répondre et traiter\n
+   │                             </button>\n
+   │                         </form>\n
+   │                                     </div>\n
+   │                             <div class="reclamation-card">\n
+   │                     <div class="reclamation-header">\n
+   │                         <div class="reclamation-title">\n
+   │                             Conducteur impoli et dangereux\n
+   │                         </div>\n
+   │                         <div>\n
+   │                                                             <span class="badge badge-warning">En attente</span>\n
+   │                                                     </div>\n
+   │                     </div>\n
+   │                     \n
+   │                     <div class="reclamation-meta">\n
+   │                         <span><i class="fas fa-user"></i> Nour Chedli</span>\n
+   │                         <span><i class="fas fa-envelope"></i> nour.chedli@wassalni.tn</span>\n
+   │                         <span><i class="fas fa-calendar"></i> 05/05/2026 20:08</span>\n
+   │                                                     <span><i class="fas fa-route"></i> Trajet #11</span>\n
+   │                                             </div>\n
+   │                     \n
+   │                     <div class="reclamation-message">\n
+   │                         <strong>Message :</strong><br>\n
+   │                         Le conducteur a conduit de manière dangereuse (excès de vitesse, téléphone au volant). De plus, il était impoli avec tous les passagers.\n
+   │                     </div>\n
+   │                     \n
+   │                                             <form action="/admin/reclamation/traiter/9" method="post" class="response-form">\n
+   │                             <textarea name="reponse" rows="3" placeholder="Votre réponse..."></textarea>\n
+   │                             <button type="submit" class="btn-submit">\n
+   │                                 <i class="fas fa-paper-plane"></i> Répondre et traiter\n
+   │                             </button>\n
+   │                         </form>\n
+   │                                     </div>\n
+   │                             <div class="reclamation-card">\n
+   │                     <div class="reclamation-header">\n
+   │                         <div class="reclamation-title">\n
+   │                             Passager très bruyant\n
+   │                         </div>\n
+   │                         <div>\n
+   │                                                             <span class="badge badge-warning">En attente</span>\n
+   │                                                     </div>\n
+   │                     </div>\n
+   │                     \n
+   │                     <div class="reclamation-meta">\n
+   │                         <span><i class="fas fa-user"></i> Mohamed Lajili</span>\n
+   │                         <span><i class="fas fa-envelope"></i> mohamed.lajili@wassalni.tn</span>\n
+   │                         <span><i class="fas fa-calendar"></i> 30/04/2026 20:08</span>\n
+   │                                                     <span><i class="fas fa-route"></i> Trajet #9</span>\n
+   │                                             </div>\n
+   │                     \n
+   │                     <div class="reclamation-message">\n
+   │                         <strong>Message :</strong><br>\n
+   │                         Un autre passager a été très bruyant pendant tout le trajet (musique forte, appels téléphoniques). Le conducteur n&#039;a rien fait pour calmer la situation.\n
+   │                     </div>\n
+   │                     \n
+   │                                             <form action="/admin/reclamation/traiter/10" method="post" class="response-form">\n
+   │                             <textarea name="reponse" rows="3" placeholder="Votre réponse..."></textarea>\n
+   │                             <button type="submit" class="btn-submit">\n
+   │                                 <i class="fas fa-paper-plane"></i> Répondre et traiter\n
+   │                             </button>\n
+   │                         </form>\n
+   │                                     </div>\n
+   │                             <div class="reclamation-card">\n
+   │                     <div class="reclamation-header">\n
+   │                         <div class="reclamation-title">\n
+   │                             Passager non respectueux\n
+   │                         </div>\n
+   │                         <div>\n
+   │                                                             <span class="badge badge-success">Traitée</span>\n
+   │                                                     </div>\n
+   │                     </div>\n
+   │                     \n
+   │                     <div class="reclamation-meta">\n
+   │                         <span><i class="fas fa-user"></i> Ahmed Ben Ali</span>\n
+   │                         <span><i class="fas fa-envelope"></i> ahmed.benali@wassalni.tn</span>\n
+   │                         <span><i class="fas fa-calendar"></i> 25/04/2026 20:08</span>\n
+   │                                                     <span><i class="fas fa-route"></i> Trajet #1</span>\n
+   │                                             </div>\n
+   │                     \n
+   │                     <div class="reclamation-message">\n
+   │                         <strong>Message :</strong><br>\n
+   │                         Le passager a annulé sa réservation à la dernière minute sans raison valable. Cela m&#039;a fait perdre du temps et de l&#039;argent car j&#039;aurais pu prendre d&#039;autres passagers.\n
+   │                     </div>\n
+   │                     \n
+   │                                             <div class="response-display">\n
+   │                             <strong><i class="fas fa-reply"></i> Réponse :</strong><br>\n
+   │                             Nous avons noté ce comportement. Le passager a été averti que des annulations répétées pourraient entraîner la suspension de son compte.\n
+   │                             <br><br>\n
+   │                             <small>Date traitement: 27/04/2026 20:08</small>\n
+   │                         </div>\n
+   │                                     </div>\n
+   │                             <div class="reclamation-card">\n
+   │                     <div class="reclamation-header">\n
+   │                         <div class="reclamation-title">\n
+   │                             Problème de paiement double débit\n
+   │                         </div>\n
+   │                         <div>\n
+   │                                                             <span class="badge badge-info">En cours</span>\n
+   │                                                     </div>\n
+   │                     </div>\n
+   │                     \n
+   │                     <div class="reclamation-meta">\n
+   │                         <span><i class="fas fa-user"></i> Mohamed Lajili</span>\n
+   │                         <span><i class="fas fa-envelope"></i> mohamed.lajili@wassalni.tn</span>\n
+   │                         <span><i class="fas fa-calendar"></i> 03/05/2026 20:08</span>\n
+   │                                                     <span><i class="fas fa-route"></i> Trajet #3</span>\n
+   │                                             </div>\n
+   │                     \n
+   │                     <div class="reclamation-message">\n
+   │                         <strong>Message :</strong><br>\n
+   │                         J&#039;ai été débité deux fois pour la même réservation. Une première fois de 25 DT, puis une seconde fois de 25 DT. Je demande un remboursement de la somme en trop.\n
+   │                     </div>\n
+   │                     \n
+   │                                             <form action="/admin/reclamation/traiter/12" method="post" class="response-form">\n
+   │                             <textarea name="reponse" rows="3" placeholder="Votre réponse..."></textarea>\n
+   │                             <button type="submit" class="btn-submit">\n
+   │                                 <i class="fas fa-paper-plane"></i> Répondre et traiter\n
+   │                             </button>\n
+   │                         </form>\n
+   │                                     </div>\n
+   │                             <div class="reclamation-card">\n
+   │                     <div class="reclamation-header">\n
+   │                         <div class="reclamation-title">\n
+   │                             Erreur lors de la réservation\n
+   │                         </div>\n
+   │                         <div>\n
+   │                                                             <span class="badge badge-warning">En attente</span>\n
+   │                                                     </div>\n
+   │                     </div>\n
+   │                     \n
+   │                     <div class="reclamation-meta">\n
+   │                         <span><i class="fas fa-user"></i> Nour Chedli</span>\n
+   │                         <span><i class="fas fa-envelope"></i> nour.chedli@wassalni.tn</span>\n
+   │                         <span><i class="fas fa-calendar"></i> 06/05/2026 20:08</span>\n
+   │                                             </div>\n
+   │                     \n
+   │                     <div class="reclamation-message">\n
+   │                         <strong>Message :</strong><br>\n
+   │                         L&#039;application affiche une erreur quand j&#039;essaie de réserver un trajet. Le message d&#039;erreur: &quot;Erreur interne du serveur&quot;. Impossible de finaliser ma réservation.\n
+   │                     </div>\n
+   │                     \n
+   │                                             <form action="/admin/reclamation/traiter/13" method="post" class="response-form">\n
+   │                             <textarea name="reponse" rows="3" placeholder="Votre réponse..."></textarea>\n
+   │                             <button type="submit" class="btn-submit">\n
+   │                                 <i class="fas fa-paper-plane"></i> Répondre et traiter\n
+   │                             </button>\n
+   │                         </form>\n
+   │                                     </div>\n
+   │                             <div class="reclamation-card">\n
+   │                     <div class="reclamation-header">\n
+   │                         <div class="reclamation-title">\n
+   │                             Conducteur très agréable (compliment)\n
+   │                         </div>\n
+   │                         <div>\n
+   │                                                             <span class="badge badge-success">Traitée</span>\n
+   │                                                     </div>\n
+   │                     </div>\n
+   │                     \n
+   │                     <div class="reclamation-meta">\n
+   │                         <span><i class="fas fa-user"></i> Mohamed Lajili</span>\n
+   │                         <span><i class="fas fa-envelope"></i> mohamed.lajili@wassalni.tn</span>\n
+   │                         <span><i class="fas fa-calendar"></i> 22/04/2026 20:08</span>\n
+   │                                                     <span><i class="fas fa-route"></i> Trajet #5</span>\n
+   │                                             </div>\n
+   │                     \n
+   │                     <div class="reclamation-message">\n
+   │                         <strong>Message :</strong><br>\n
+   │                         Je voulais signaler un conducteur exceptionnel. Le trajet était très agréable, le conducteur ponctuel, courtois et la voiture impeccable. Félicitations !\n
+   │                     </div>\n
+   │                     \n
+   │                                             <div class="response-display">\n
+   │                             <strong><i class="fas fa-reply"></i> Réponse :</strong><br>\n
+   │                             Merci pour ce retour positif ! Nous avons transmis votre message au conducteur.\n
+   │                             <br><br>\n
+   │                             <small>Date traitement: 23/04/2026 20:08</small>\n
+   │                         </div>\n
+   │                                     </div>\n
+   │                             <div class="reclamation-card">\n
+   │                     <div class="reclamation-header">\n
+   │                         <div class="reclamation-title">\n
+   │                             Passager annulation sans prévenir\n
+   │                         </div>\n
+   │                         <div>\n
+   │                                                             <span class="badge badge-warning">En attente</span>\n
+   │                                                     </div>\n
+   │                     </div>\n
+   │                     \n
+   │                     <div class="reclamation-meta">\n
+   │                         <span><i class="fas fa-user"></i> yassine Ben Ammar</span>\n
+   │                         <span><i class="fas fa-envelope"></i> yassine@gmail.com</span>\n
+   │                         <span><i class="fas fa-calendar"></i> 07/05/2026 20:08</span>\n
+   │                                                     <span><i class="fas fa-route"></i> Trajet #11</span>\n
+   │                                             </div>\n
+   │                     \n
+   │                     <div class="reclamation-message">\n
+   │                         <strong>Message :</strong><br>\n
+   │                         Un passager a réservé et n&#039;est jamais venu, sans aucun message. Il a bloqué une place que j&#039;aurais pu proposer à quelqu&#039;un d&#039;autre.\n
+   │                     </div>\n
+   │                     \n
+   │                                             <form action="/admin/reclamation/traiter/15" method="post" class="response-form">\n
+   │                             <textarea name="reponse" rows="3" placeholder="Votre réponse..."></textarea>\n
+   │                             <button type="submit" class="btn-submit">\n
+   │                                 <i class="fas fa-paper-plane"></i> Répondre et traiter\n
+   │                             </button>\n
+   │                         </form>\n
+   │                                     </div>\n
+   │                             <div class="reclamation-card">\n
+   │                     <div class="reclamation-header">\n
+   │                         <div class="reclamation-title">\n
+   │                             Annulation de dernière minute\n
+   │                         </div>\n
+   │                         <div>\n
+   │                                                             <span class="badge badge-success">Traitée</span>\n
+   │                                                     </div>\n
+   │                     </div>\n
+   │                     \n
+   │                     <div class="reclamation-meta">\n
+   │                         <span><i class="fas fa-user"></i> Mohamed Lajili</span>\n
+   │                         <span><i class="fas fa-envelope"></i> mohamed.lajili@wassalni.tn</span>\n
+   │                         <span><i class="fas fa-calendar"></i> 07/05/2026 19:13</span>\n
+   │                                                     <span><i class="fas fa-route"></i> Trajet #20</span>\n
+   │                                             </div>\n
+   │                     \n
+   │                     <div class="reclamation-message">\n
+   │                         <strong>Message :</strong><br>\n
+   │                         mouche mregelll rahou djddhhdhd\n
+   │                     </div>\n
+   │                     \n
+   │                                             <div class="response-display">\n
+   │                             <strong><i class="fas fa-reply"></i> Réponse :</strong><br>\n
+   │                             okkk tawa ywalli mregelll\n
+   │                             <br><br>\n
+   │                             <small>Date traitement: 07/05/2026 19:14</small>\n
+   │                         </div>\n
+   │                                     </div>\n
+   │                             <div class="reclamation-card">\n
+   │                     <div class="reclamation-header">\n
+   │                         <div class="reclamation-title">\n
+   │                             Retard important\n
+   │                         </div>\n
+   │                         <div>\n
+   │                                                             <span class="badge badge-warning">En attente</span>\n
+   │                                                     </div>\n
+   │                     </div>\n
+   │                     \n
+   │                     <div class="reclamation-meta">\n
+   │                         <span><i class="fas fa-user"></i> U-PASS1 Catalogue</span>\n
+   │                         <span><i class="fas fa-envelope"></i> cat-2df428bb-pass1@example.test</span>\n
+   │                         <span><i class="fas fa-calendar"></i> 11/11/2026 21:26</span>\n
+   │                                             </div>\n
+   │                     \n
+   │                     <div class="reclamation-message">\n
+   │                         <strong>Message :</strong><br>\n
+   │                         Réclamation pour message flash\n
+   │                     </div>\n
+   │                     \n
+   │                                             <form action="/admin/reclamation/traiter/231" method="post" class="response-form">\n
+   │                             <textarea name="reponse" rows="3" placeholder="Votre réponse..."></textarea>\n
+   │                             <button type="submit" class="btn-submit">\n
+   │                                 <i class="fas fa-paper-plane"></i> Répondre et traiter\n
+   │                             </button>\n
+   │                         </form>\n
+   │                                     </div>\n
+   │                         </div>\n
+   │ </div>\n
+   │ \n
+   │ </main>\n
+   │ \n
+   │ <!-- ===================================================\n
+   │                          FOOTER\n
+   │ =================================================== -->\n
+   │ \n
+   │ <footer class="footer">\n
+   │ \n
+   │     <p>\n
+   │         © 2025 Wassalni.TN — Plateforme moderne de covoiturage en Tunisie\n
+   │     </p>\n
+   │ \n
+   │ </footer>\n
+   │ \n
+   │ <!-- ===================================================\n
+   │                        JAVASCRIPT\n
+   │ =================================================== -->\n
+   │ \n
+   │ <script>\n
+   │ \n
+   │     const mobileBtn = document.getElementById('mobileMenuBtn');\n
+   │     const navLinks  = document.getElementById('navLinks');\n
+   │ \n
+   │     mobileBtn.addEventListener('click', () => {\n
+   │ \n
+   │         navLinks.classList.toggle('mobile-open');\n
+   │ \n
+   │         if(navLinks.classList.contains('mobile-open')){\n
+   │             mobileBtn.innerHTML =\n
+   │                 '<i class="fas fa-times"></i>';\n
+   │         }else{\n
+   │             mobileBtn.innerHTML =\n
+   │                 '<i class="fas fa-bars"></i>';\n
+   │         }\n
+   │ \n
+   │     });\n
+   │ \n
+   │     // Fermer menu mobile au clic\n
+   │     document.querySelectorAll('.nav-links a')\n
+   │         .forEach(link => {\n
+   │ \n
+   │             link.addEventListener('click', () => {\n
+   │ \n
+   │                 navLinks.classList.remove('mobile-open');\n
+   │ \n
+   │                 mobileBtn.innerHTML =\n
+   │                     '<i class="fas fa-bars"></i>';\n
+   │ \n
+   │             });\n
+   │ \n
+   │         });\n
+   │ \n
+   │ </script>\n
+   │ \n
+   │ \n
+   │ </body>\n
+   │ </html>' [UTF-8](length: 43814) contains "Veuillez saisir une réponse" [UTF-8](length: 28).
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:273
+   │
+
+Publication Recherche (App\Tests\Functional\Catalogue\PublicationRecherche)
+ ✘ TC-11 (CA-02, A-04) — départ le jour même sans heure (début de journée passé) : refus attendu
+   │
+   │ Trajet du jour accepté à 00:00
+   │ Failed asserting that 4700 is null.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:80
+   │
+ ✘ TC-12 (CA-02) — arrivée égale au départ (J+1) : refus attendu
+   │
+   │ Arrivée = départ acceptée
+   │ Failed asserting that 4709 is null.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:88
+   │
+ ✘ TC-14 (CA-03) — prix « abc » (non numérique) : refus attendu, aucun trajet
+   │
+   │ prix=abc : trajet créé, prix enregistré 0
+   │ Failed asserting that 4718 is null.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:121
+   │
+ ✘ TC-15 (EX-11, CA-01) — trajet publié : statut EN_ATTENTE en base
+   │
+   │ Failed asserting that two strings are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │ -'EN_ATTENTE'
+   │ +'VALIDE'
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:131
+   │
+ ✘ TC-16 (EX-12, CA-01) — trajet tout juste publié : absent de la recherche passager avant validation
+   │
+   │ Failed asserting that true is false.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:142
+   │
+ ✘ CA-13 (EX-32) — U-COND2 publie avec le véhicule V1 d'un autre conducteur : refus attendu
+   │
+   │ Trajet publié avec le véhicule d'un autre conducteur
+   │ Failed asserting that 4745 is null.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:164
+   │
+ ✘ CA-21 (EX-06) — U-COND2 ajoute un véhicule par le formulaire (5 champs) : véhicule enregistré
+   │
+   │ Ajout de véhicule : erreur serveur HTTP 500
+   │ Failed asserting that 500 is less than 500.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:45
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:181
+   │
+ ✘ TC-18 (CA-04) — Tunis→Sfax sans date : T-FUT-EARLY et T-P4 affichés, T-PAST (passé) absent
+   │
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │      'T-FUT-EARLY' => true,
+   │      'T-P4' => true,
+   │ -    'T-PAST' => false,
+   │ +    'T-PAST' => true,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:193
+   │
+ ✘ TC-20 a (EX-13) — filtre prix maximum 20 DT sur Tunis→Sfax : T-FUT-EARLY (18) seul, T-P4 (22) exclu
+   │
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │      'T-FUT-EARLY' => true,
+   │ -    'T-P4' => false,
+   │ +    'T-P4' => true,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:214
+   │
+ ✘ A-05 (EX-29) — les statistiques de la page de recherche reflètent la base (pas de valeurs codées en dur)
+   │
+   │ La page affiche « 50k+ » alors que la base compte 26 utilisateurs
+   │ Failed asserting that '<!DOCTYPE html>\n
+   │ <html lang="fr">\n
+   │ <head>\n
+   │     <meta charset="UTF-8">\n
+   │     <meta name="viewport" content="width=device-width, initial-scale=1.0">\n
+   │ \n
+   │     <title>\n
+   │         Rechercher un trajet - Wassalni    </title>\n
+   │ \n
+   │     <!-- Fonts -->\n
+   │     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">\n
+   │ \n
+   │     <!-- Icons -->\n
+   │     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">\n
+   │ \n
+   │     <style>\n
+   │ \n
+   │         *{\n
+   │             margin:0;\n
+   │             padding:0;\n
+   │             box-sizing:border-box;\n
+   │         }\n
+   │ \n
+   │         :root{\n
+   │             --primary:#6d28d9;\n
+   │             --primary-dark:#4c1d95;\n
+   │             --secondary:#8b5cf6;\n
+   │             --dark:#0f172a;\n
+   │             --dark-2:#1e293b;\n
+   │             --light:#f8fafc;\n
+   │             --border:#e2e8f0;\n
+   │             --text:#334155;\n
+   │             --white:#ffffff;\n
+   │             --gold:#facc15;\n
+   │         }\n
+   │ \n
+   │         body{\n
+   │             font-family:'Inter',sans-serif;\n
+   │             background:var(--light);\n
+   │             color:var(--text);\n
+   │             overflow-x:hidden;\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                            NAVBAR\n
+   │         =================================================== */\n
+   │ \n
+   │         .navbar{\n
+   │             position:sticky;\n
+   │             top:0;\n
+   │             z-index:9999;\n
+   │ \n
+   │             background:\n
+   │                 linear-gradient(\n
+   │                     135deg,\n
+   │                     #0f172a 0%,\n
+   │                     #1e1b4b 45%,\n
+   │                     #4c1d95 100%\n
+   │                 );\n
+   │ \n
+   │             backdrop-filter:blur(20px);\n
+   │ \n
+   │             border-bottom:1px solid rgba(255,255,255,0.08);\n
+   │ \n
+   │             box-shadow:\n
+   │                 0 10px 30px rgba(0,0,0,0.08);\n
+   │         }\n
+   │ \n
+   │         .nav-container{\n
+   │             max-width:1600px;\n
+   │             margin:auto;\n
+   │ \n
+   │             min-height:82px;\n
+   │ \n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             justify-content:space-between;\n
+   │ \n
+   │             gap:25px;\n
+   │ \n
+   │             padding:0 25px;\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                            LOGO\n
+   │         =================================================== */\n
+   │ \n
+   │         .logo{\n
+   │             flex-shrink:0;\n
+   │         }\n
+   │ \n
+   │         .logo a{\n
+   │             text-decoration:none;\n
+   │ \n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             gap:12px;\n
+   │ \n
+   │             font-size:30px;\n
+   │             font-weight:900;\n
+   │             letter-spacing:-1px;\n
+   │ \n
+   │             color:white;\n
+   │         }\n
+   │ \n
+   │         .logo-icon{\n
+   │             width:50px;\n
+   │             height:50px;\n
+   │ \n
+   │             border-radius:16px;\n
+   │ \n
+   │             background:\n
+   │                 linear-gradient(\n
+   │                     135deg,\n
+   │                     #facc15,\n
+   │                     #fde047\n
+   │                 );\n
+   │ \n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             justify-content:center;\n
+   │ \n
+   │             box-shadow:\n
+   │                 0 10px 20px rgba(250,204,21,0.3);\n
+   │         }\n
+   │ \n
+   │         .logo-icon i{\n
+   │             color:#4c1d95;\n
+   │             font-size:24px;\n
+   │         }\n
+   │ \n
+   │         .logo-text{\n
+   │             display:flex;\n
+   │             flex-direction:column;\n
+   │             line-height:1;\n
+   │         }\n
+   │ \n
+   │         .logo-text strong{\n
+   │             color:white;\n
+   │             font-size:28px;\n
+   │         }\n
+   │ \n
+   │         .logo-text span{\n
+   │             font-size:11px;\n
+   │             color:#c4b5fd;\n
+   │             letter-spacing:2px;\n
+   │             margin-top:4px;\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                         NAVIGATION LINKS\n
+   │         =================================================== */\n
+   │ \n
+   │         .nav-links{\n
+   │             flex:1;\n
+   │ \n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             justify-content:center;\n
+   │ \n
+   │             gap:10px;\n
+   │ \n
+   │             min-width:0;\n
+   │ \n
+   │             overflow-x:auto;\n
+   │             overflow-y:hidden;\n
+   │ \n
+   │             scrollbar-width:none;\n
+   │ \n
+   │             padding:8px 5px;\n
+   │         }\n
+   │ \n
+   │         .nav-links::-webkit-scrollbar{\n
+   │             display:none;\n
+   │         }\n
+   │ \n
+   │         /* IMPORTANT :\n
+   │            TOUS LES TABS SERONT VISIBLES */\n
+   │         .nav-links a{\n
+   │             flex-shrink:0;\n
+   │ \n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             gap:10px;\n
+   │ \n
+   │             padding:12px 18px;\n
+   │ \n
+   │             border-radius:18px;\n
+   │ \n
+   │             text-decoration:none;\n
+   │ \n
+   │             color:#e2e8f0;\n
+   │ \n
+   │             font-size:14px;\n
+   │             font-weight:600;\n
+   │ \n
+   │             transition:0.3s ease;\n
+   │ \n
+   │             white-space:nowrap;\n
+   │ \n
+   │             position:relative;\n
+   │         }\n
+   │ \n
+   │         .nav-links a i{\n
+   │             font-size:15px;\n
+   │         }\n
+   │ \n
+   │         .nav-links a:hover{\n
+   │             background:rgba(255,255,255,0.12);\n
+   │ \n
+   │             color:white;\n
+   │ \n
+   │             transform:translateY(-2px);\n
+   │         }\n
+   │ \n
+   │         .nav-links a.active{\n
+   │             background:\n
+   │                 linear-gradient(\n
+   │                     135deg,\n
+   │                     rgba(255,255,255,0.18),\n
+   │                     rgba(255,255,255,0.08)\n
+   │                 );\n
+   │ \n
+   │             color:#fff;\n
+   │ \n
+   │             box-shadow:\n
+   │                 0 10px 20px rgba(0,0,0,0.15);\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                          USER MENU\n
+   │         =================================================== */\n
+   │ \n
+   │         .user-menu{\n
+   │             flex-shrink:0;\n
+   │ \n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             gap:15px;\n
+   │         }\n
+   │ \n
+   │         .btn-login{\n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             gap:10px;\n
+   │ \n
+   │             text-decoration:none;\n
+   │ \n
+   │             padding:12px 24px;\n
+   │ \n
+   │             border-radius:50px;\n
+   │ \n
+   │             color:white;\n
+   │             font-weight:700;\n
+   │ \n
+   │             background:\n
+   │                 linear-gradient(\n
+   │                     135deg,\n
+   │                     #8b5cf6,\n
+   │                     #6d28d9\n
+   │                 );\n
+   │ \n
+   │             transition:0.3s ease;\n
+   │         }\n
+   │ \n
+   │         .btn-login:hover{\n
+   │             transform:translateY(-3px);\n
+   │ \n
+   │             box-shadow:\n
+   │                 0 15px 25px rgba(109,40,217,0.35);\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                       USER PROFILE\n
+   │         =================================================== */\n
+   │ \n
+   │         .dropdown{\n
+   │             position:relative;\n
+   │         }\n
+   │ \n
+   │         .user-info{\n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             gap:14px;\n
+   │ \n
+   │             padding:10px 18px;\n
+   │ \n
+   │             border-radius:60px;\n
+   │ \n
+   │             background:rgba(255,255,255,0.1);\n
+   │ \n
+   │             border:1px solid rgba(255,255,255,0.12);\n
+   │ \n
+   │             cursor:pointer;\n
+   │ \n
+   │             transition:0.3s ease;\n
+   │         }\n
+   │ \n
+   │         .user-info:hover{\n
+   │             background:rgba(255,255,255,0.18);\n
+   │         }\n
+   │ \n
+   │         .user-avatar{\n
+   │             width:42px;\n
+   │             height:42px;\n
+   │ \n
+   │             border-radius:50%;\n
+   │ \n
+   │             background:\n
+   │                 linear-gradient(\n
+   │                     135deg,\n
+   │                     #facc15,\n
+   │                     #fde047\n
+   │                 );\n
+   │ \n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             justify-content:center;\n
+   │ \n
+   │             flex-shrink:0;\n
+   │         }\n
+   │ \n
+   │         .user-avatar i{\n
+   │             color:#4c1d95;\n
+   │             font-size:18px;\n
+   │         }\n
+   │ \n
+   │         .user-details{\n
+   │             display:flex;\n
+   │             flex-direction:column;\n
+   │             line-height:1.2;\n
+   │         }\n
+   │ \n
+   │         .user-details strong{\n
+   │             color:white;\n
+   │             font-size:14px;\n
+   │             font-weight:700;\n
+   │         }\n
+   │ \n
+   │         .user-details span{\n
+   │             color:#cbd5e1;\n
+   │             font-size:12px;\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                         DROPDOWN MENU\n
+   │         =================================================== */\n
+   │ \n
+   │         .dropdown-menu{\n
+   │             position:absolute;\n
+   │ \n
+   │             top:72px;\n
+   │             right:0;\n
+   │ \n
+   │             width:280px;\n
+   │ \n
+   │             background:white;\n
+   │ \n
+   │             border-radius:24px;\n
+   │ \n
+   │             overflow:hidden;\n
+   │ \n
+   │             opacity:0;\n
+   │             visibility:hidden;\n
+   │             transform:translateY(15px);\n
+   │ \n
+   │             transition:0.3s ease;\n
+   │ \n
+   │             box-shadow:\n
+   │                 0 20px 40px rgba(0,0,0,0.12);\n
+   │ \n
+   │             z-index:9999;\n
+   │         }\n
+   │ \n
+   │         .dropdown:hover .dropdown-menu{\n
+   │             opacity:1;\n
+   │             visibility:visible;\n
+   │             transform:translateY(0);\n
+   │         }\n
+   │ \n
+   │         .dropdown-header{\n
+   │             padding:22px;\n
+   │ \n
+   │             background:\n
+   │                 linear-gradient(\n
+   │                     135deg,\n
+   │                     #6d28d9,\n
+   │                     #4c1d95\n
+   │                 );\n
+   │ \n
+   │             color:white;\n
+   │         }\n
+   │ \n
+   │         .dropdown-header h4{\n
+   │             font-size:16px;\n
+   │             margin-bottom:5px;\n
+   │         }\n
+   │ \n
+   │         .dropdown-header p{\n
+   │             font-size:13px;\n
+   │             opacity:0.9;\n
+   │         }\n
+   │ \n
+   │         .dropdown-menu a{\n
+   │             display:flex;\n
+   │             align-items:center;\n
+   │             gap:14px;\n
+   │ \n
+   │             padding:15px 22px;\n
+   │ \n
+   │             text-decoration:none;\n
+   │ \n
+   │             color:#1e293b;\n
+   │ \n
+   │             font-weight:600;\n
+   │             font-size:14px;\n
+   │ \n
+   │             border-bottom:1px solid #f1f5f9;\n
+   │ \n
+   │             transition:0.25s ease;\n
+   │         }\n
+   │ \n
+   │         .dropdown-menu a:last-child{\n
+   │             border-bottom:none;\n
+   │         }\n
+   │ \n
+   │         .dropdown-menu a i{\n
+   │             width:18px;\n
+   │             color:#6d28d9;\n
+   │         }\n
+   │ \n
+   │         .dropdown-menu a:hover{\n
+   │             background:#f8fafc;\n
+   │             padding-left:30px;\n
+   │         }\n
+   │ \n
+   │         .dropdown-menu .logout{\n
+   │             color:#dc2626;\n
+   │         }\n
+   │ \n
+   │         .dropdown-menu .logout i{\n
+   │             color:#dc2626;\n
+   │         }\n
+   │ \n
+   │         .dropdown-menu .logout:hover{\n
+   │             background:#fef2f2;\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                          MOBILE BUTTON\n
+   │         =================================================== */\n
+   │ \n
+   │         .mobile-menu-btn{\n
+   │             display:none;\n
+   │ \n
+   │             width:46px;\n
+   │             height:46px;\n
+   │ \n
+   │             border:none;\n
+   │ \n
+   │             border-radius:14px;\n
+   │ \n
+   │             background:rgba(255,255,255,0.12);\n
+   │ \n
+   │             color:white;\n
+   │ \n
+   │             cursor:pointer;\n
+   │ \n
+   │             font-size:20px;\n
+   │ \n
+   │             transition:0.3s ease;\n
+   │         }\n
+   │ \n
+   │         .mobile-menu-btn:hover{\n
+   │             background:rgba(255,255,255,0.2);\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                         MAIN CONTENT\n
+   │         =================================================== */\n
+   │ \n
+   │         .main-content{\n
+   │             min-height:calc(100vh - 170px);\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                            FOOTER\n
+   │         =================================================== */\n
+   │ \n
+   │         .footer{\n
+   │             margin-top:80px;\n
+   │ \n
+   │             background:\n
+   │                 linear-gradient(\n
+   │                     135deg,\n
+   │                     #0f172a,\n
+   │                     #1e1b4b\n
+   │                 );\n
+   │ \n
+   │             color:white;\n
+   │ \n
+   │             text-align:center;\n
+   │ \n
+   │             padding:45px 20px;\n
+   │         }\n
+   │ \n
+   │         .footer p{\n
+   │             opacity:0.75;\n
+   │             font-size:14px;\n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                         RESPONSIVE TABLET\n
+   │         =================================================== */\n
+   │ \n
+   │         @media(max-width:1200px){\n
+   │ \n
+   │             .nav-links{\n
+   │                 justify-content:flex-start;\n
+   │             }\n
+   │ \n
+   │         }\n
+   │ \n
+   │         /* ===================================================\n
+   │                         RESPONSIVE MOBILE\n
+   │         =================================================== */\n
+   │ \n
+   │         @media(max-width:900px){\n
+   │ \n
+   │             .nav-container{\n
+   │                 min-height:75px;\n
+   │             }\n
+   │ \n
+   │             .mobile-menu-btn{\n
+   │                 display:flex;\n
+   │                 align-items:center;\n
+   │                 justify-content:center;\n
+   │             }\n
+   │ \n
+   │             .nav-links{\n
+   │                 position:absolute;\n
+   │ \n
+   │                 top:75px;\n
+   │                 left:0;\n
+   │                 right:0;\n
+   │ \n
+   │                 display:flex;\n
+   │                 flex-direction:column;\n
+   │                 align-items:stretch;\n
+   │                 justify-content:flex-start;\n
+   │ \n
+   │                 gap:10px;\n
+   │ \n
+   │                 padding:20px;\n
+   │ \n
+   │                 background:\n
+   │                     linear-gradient(\n
+   │                         135deg,\n
+   │                         #0f172a,\n
+   │                         #1e1b4b\n
+   │                     );\n
+   │ \n
+   │                 max-height:0;\n
+   │                 overflow:hidden;\n
+   │ \n
+   │                 opacity:0;\n
+   │ \n
+   │                 transition:0.4s ease;\n
+   │             }\n
+   │ \n
+   │             .nav-links.mobile-open{\n
+   │                 max-height:1000px;\n
+   │                 opacity:1;\n
+   │                 overflow-y:auto;\n
+   │             }\n
+   │ \n
+   │             .nav-links a{\n
+   │                 width:100%;\n
+   │                 justify-content:flex-start;\n
+   │ \n
+   │                 padding:14px 18px;\n
+   │ \n
+   │                 border-radius:16px;\n
+   │             }\n
+   │ \n
+   │             .user-details{\n
+   │                 display:none;\n
+   │             }\n
+   │ \n
+   │             .dropdown-menu{\n
+   │                 right:-20px;\n
+   │                 width:260px;\n
+   │             }\n
+   │ \n
+   │         }\n
+   │ \n
+   │         @media(max-width:600px){\n
+   │ \n
+   │             .logo-text strong{\n
+   │                 font-size:22px;\n
+   │             }\n
+   │ \n
+   │             .logo-icon{\n
+   │                 width:42px;\n
+   │                 height:42px;\n
+   │             }\n
+   │ \n
+   │             .logo-icon i{\n
+   │                 font-size:20px;\n
+   │             }\n
+   │ \n
+   │             .btn-login span{\n
+   │                 display:none;\n
+   │             }\n
+   │ \n
+   │             .btn-login{\n
+   │                 width:46px;\n
+   │                 height:46px;\n
+   │                 padding:0;\n
+   │ \n
+   │                 justify-content:center;\n
+   │             }\n
+   │ \n
+   │         }\n
+   │ \n
+   │     </style>\n
+   │ \n
+   │     \n
+   │ <style>\n
+   │     * {\n
+   │         margin: 0;\n
+   │         padding: 0;\n
+   │         box-sizing: border-box;\n
+   │     }\n
+   │     \n
+   │     body {\n
+   │         font-family: 'Inter', sans-serif;\n
+   │         background: #f8fafc;\n
+   │     }\n
+   │     \n
+   │     /* Hero Section avec effet de vague */\n
+   │     .hero-section {\n
+   │         position: relative;\n
+   │         background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #4c1d95 100%);\n
+   │         padding: 120px 0 140px 0;\n
+   │         text-align: center;\n
+   │         color: white;\n
+   │         overflow: hidden;\n
+   │         isolation: isolate;\n
+   │     }\n
+   │     \n
+   │     .hero-section::before {\n
+   │         content: '';\n
+   │         position: absolute;\n
+   │         top: 0;\n
+   │         left: 0;\n
+   │         right: 0;\n
+   │         bottom: 0;\n
+   │         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='rgba(255,255,255,0.05)' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E") repeat-x bottom;\n
+   │         background-size: cover;\n
+   │         opacity: 0.3;\n
+   │         pointer-events: none;\n
+   │     }\n
+   │     \n
+   │     .hero-section h1 {\n
+   │         font-size: 56px;\n
+   │         font-weight: 800;\n
+   │         margin-bottom: 20px;\n
+   │         background: linear-gradient(135deg, #fff, #c4b5fd);\n
+   │         -webkit-background-clip: text;\n
+   │         -webkit-text-fill-color: transparent;\n
+   │         background-clip: text;\n
+   │         letter-spacing: -1px;\n
+   │     }\n
+   │     \n
+   │     .hero-section p {\n
+   │         font-size: 18px;\n
+   │         opacity: 0.9;\n
+   │         max-width: 600px;\n
+   │         margin: 0 auto;\n
+   │         line-height: 1.6;\n
+   │     }\n
+   │     \n
+   │     /* Carte de recherche - Glassmorphisme */\n
+   │     .search-card {\n
+   │         background: rgba(255, 255, 255, 0.95);\n
+   │         backdrop-filter: blur(10px);\n
+   │         border-radius: 32px;\n
+   │         padding: 48px;\n
+   │         margin: -80px auto 0 auto;\n
+   │         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);\n
+   │         max-width: 1100px;\n
+   │         border: 1px solid rgba(255,255,255,0.2);\n
+   │         transition: transform 0.3s ease, box-shadow 0.3s ease;\n
+   │     }\n
+   │     \n
+   │     .search-card:hover {\n
+   │         transform: translateY(-5px);\n
+   │         box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);\n
+   │     }\n
+   │     \n
+   │     .search-title {\n
+   │         font-size: 28px;\n
+   │         font-weight: 800;\n
+   │         background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);\n
+   │         -webkit-background-clip: text;\n
+   │         -webkit-text-fill-color: transparent;\n
+   │         background-clip: text;\n
+   │         margin-bottom: 40px;\n
+   │         text-align: center;\n
+   │         letter-spacing: -0.5px;\n
+   │     }\n
+   │     \n
+   │     /* Grille des champs */\n
+   │     .search-grid {\n
+   │         display: grid;\n
+   │         grid-template-columns: repeat(4, 1fr);\n
+   │         gap: 24px;\n
+   │         margin-bottom: 40px;\n
+   │     }\n
+   │     \n
+   │     .form-group {\n
+   │         display: flex;\n
+   │         flex-direction: column;\n
+   │     }\n
+   │     \n
+   │     .form-group label {\n
+   │         font-size: 13px;\n
+   │         font-weight: 600;\n
+   │         text-transform: uppercase;\n
+   │         letter-spacing: 0.5px;\n
+   │         color: #64748b;\n
+   │         margin-bottom: 10px;\n
+   │     }\n
+   │     \n
+   │     .input-wrapper {\n
+   │         position: relative;\n
+   │         transition: all 0.3s ease;\n
+   │     }\n
+   │     \n
+   │     .input-wrapper i {\n
+   │         position: absolute;\n
+   │         left: 16px;\n
+   │         top: 50%;\n
+   │         transform: translateY(-50%);\n
+   │         color: #94a3b8;\n
+   │         font-size: 18px;\n
+   │         transition: all 0.3s ease;\n
+   │         z-index: 1;\n
+   │         pointer-events: none;\n
+   │     }\n
+   │     \n
+   │     .input-wrapper select {\n
+   │         width: 100%;\n
+   │         padding: 16px 16px 16px 48px;\n
+   │         border: 2px solid #e2e8f0;\n
+   │         border-radius: 20px;\n
+   │         font-size: 15px;\n
+   │         font-weight: 500;\n
+   │         font-family: 'Inter', sans-serif;\n
+   │         background: white;\n
+   │         transition: all 0.3s ease;\n
+   │         color: #1e293b;\n
+   │         appearance: none;\n
+   │         cursor: pointer;\n
+   │     }\n
+   │     \n
+   │     .input-wrapper input {\n
+   │         width: 100%;\n
+   │         padding: 16px 16px 16px 48px;\n
+   │         border: 2px solid #e2e8f0;\n
+   │         border-radius: 20px;\n
+   │         font-size: 15px;\n
+   │         font-weight: 500;\n
+   │         font-family: 'Inter', sans-serif;\n
+   │         background: white;\n
+   │         transition: all 0.3s ease;\n
+   │         color: #1e293b;\n
+   │     }\n
+   │     \n
+   │     .input-wrapper select:focus,\n
+   │     .input-wrapper input:focus {\n
+   │         outline: none;\n
+   │         border-color: #4c1d95;\n
+   │         box-shadow: 0 0 0 4px rgba(76, 29, 149, 0.1);\n
+   │     }\n
+   │     \n
+   │     .input-wrapper select:focus + i,\n
+   │     .input-wrapper input:focus + i {\n
+   │         color: #4c1d95;\n
+   │     }\n
+   │     \n
+   │     .input-wrapper select:hover,\n
+   │     .input-wrapper input:hover {\n
+   │         border-color: #c4b5fd;\n
+   │     }\n
+   │     \n
+   │     /* Flèche personnalisée pour le select */\n
+   │     .input-wrapper .arrow-down {\n
+   │         position: absolute;\n
+   │         right: 16px;\n
+   │         top: 50%;\n
+   │         transform: translateY(-50%);\n
+   │         color: #94a3b8;\n
+   │         pointer-events: none;\n
+   │         font-size: 14px;\n
+   │     }\n
+   │     \n
+   │     /* Bouton de recherche */\n
+   │     .btn-search {\n
+   │         width: 100%;\n
+   │         padding: 18px;\n
+   │         background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #7c3aed 100%);\n
+   │         color: white;\n
+   │         border: none;\n
+   │         border-radius: 28px;\n
+   │         font-size: 16px;\n
+   │         font-weight: 700;\n
+   │         cursor: pointer;\n
+   │         transition: all 0.3s ease;\n
+   │         display: flex;\n
+   │         align-items: center;\n
+   │         justify-content: center;\n
+   │         gap: 12px;\n
+   │         letter-spacing: 0.5px;\n
+   │         position: relative;\n
+   │         overflow: hidden;\n
+   │     }\n
+   │     \n
+   │     .btn-search::before {\n
+   │         content: '';\n
+   │         position: absolute;\n
+   │         top: 0;\n
+   │         left: -100%;\n
+   │         width: 100%;\n
+   │         height: 100%;\n
+   │         background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);\n
+   │         transition: left 0.5s ease;\n
+   │     }\n
+   │     \n
+   │     .btn-search:hover::before {\n
+   │         left: 100%;\n
+   │     }\n
+   │     \n
+   │     .btn-search:hover {\n
+   │         transform: translateY(-3px);\n
+   │         box-shadow: 0 20px 40px -8px rgba(76, 29, 149, 0.4);\n
+   │     }\n
+   │     \n
+   │     .btn-search:active {\n
+   │         transform: translateY(0);\n
+   │     }\n
+   │     \n
+   │     .btn-search i {\n
+   │         font-size: 18px;\n
+   │         transition: transform 0.3s ease;\n
+   │     }\n
+   │     \n
+   │     .btn-search:hover i {\n
+   │         transform: scale(1.1);\n
+   │     }\n
+   │     \n
+   │     /* Animation d'entrée */\n
+   │     @keyframes fadeInUp {\n
+   │         from {\n
+   │             opacity: 0;\n
+   │             transform: translateY(30px);\n
+   │         }\n
+   │         to {\n
+   │             opacity: 1;\n
+   │             transform: translateY(0);\n
+   │         }\n
+   │     }\n
+   │     \n
+   │     .search-card {\n
+   │         animation: fadeInUp 0.6s ease-out;\n
+   │     }\n
+   │     \n
+   │     /* Stats section */\n
+   │     .stats-section {\n
+   │         max-width: 1100px;\n
+   │         margin: 80px auto 0;\n
+   │         display: flex;\n
+   │         justify-content: space-between;\n
+   │         gap: 30px;\n
+   │         flex-wrap: wrap;\n
+   │     }\n
+   │     \n
+   │     .stat-card {\n
+   │         flex: 1;\n
+   │         background: white;\n
+   │         border-radius: 24px;\n
+   │         padding: 30px;\n
+   │         text-align: center;\n
+   │         box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);\n
+   │         transition: all 0.3s ease;\n
+   │         border: 1px solid #f1f5f9;\n
+   │     }\n
+   │     \n
+   │     .stat-card:hover {\n
+   │         transform: translateY(-5px);\n
+   │         box-shadow: 0 20px 40px -12px rgba(0,0,0,0.1);\n
+   │     }\n
+   │     \n
+   │     .stat-card i {\n
+   │         font-size: 40px;\n
+   │         background: linear-gradient(135deg, #1e1b4b 0%, #7c3aed 100%);\n
+   │         -webkit-background-clip: text;\n
+   │         -webkit-text-fill-color: transparent;\n
+   │         margin-bottom: 15px;\n
+   │     }\n
+   │     \n
+   │     .stat-card .number {\n
+   │         font-size: 32px;\n
+   │         font-weight: 800;\n
+   │         color: #1e293b;\n
+   │         margin-bottom: 5px;\n
+   │     }\n
+   │     \n
+   │     .stat-card .label {\n
+   │         color: #64748b;\n
+   │         font-size: 14px;\n
+   │         font-weight: 500;\n
+   │     }\n
+   │     \n
+   │     /* Result Card */\n
+   │     .results-section {\n
+   │         max-width: 1100px;\n
+   │         margin: 40px auto;\n
+   │         padding: 0 20px;\n
+   │     }\n
+   │     \n
+   │     .results-header {\n
+   │         display: flex;\n
+   │         justify-content: space-between;\n
+   │         align-items: center;\n
+   │         margin-bottom: 25px;\n
+   │     }\n
+   │     \n
+   │     .result-card {\n
+   │         background: white;\n
+   │         border-radius: 20px;\n
+   │         padding: 24px;\n
+   │         margin-bottom: 20px;\n
+   │         box-shadow: 0 5px 20px rgba(0,0,0,0.05);\n
+   │         transition: all 0.3s;\n
+   │         border: 1px solid #eef2ff;\n
+   │         animation: fadeInUp 0.5s ease-out;\n
+   │     }\n
+   │     \n
+   │     .result-card:hover {\n
+   │         transform: translateY(-4px);\n
+   │         box-shadow: 0 15px 35px -12px rgba(0,0,0,0.15);\n
+   │     }\n
+   │     \n
+   │     .journey-route {\n
+   │         display: flex;\n
+   │         align-items: center;\n
+   │         gap: 20px;\n
+   │         margin-bottom: 20px;\n
+   │     }\n
+   │     \n
+   │     .journey-point {\n
+   │         flex: 1;\n
+   │         text-align: center;\n
+   │     }\n
+   │     \n
+   │     .journey-point .city {\n
+   │         font-size: 20px;\n
+   │         font-weight: 800;\n
+   │         color: #1e293b;\n
+   │     }\n
+   │     \n
+   │     .journey-point .time {\n
+   │         font-size: 13px;\n
+   │         color: #64748b;\n
+   │         margin-top: 5px;\n
+   │     }\n
+   │     \n
+   │     .journey-line {\n
+   │         color: #4c1d95;\n
+   │         font-size: 24px;\n
+   │     }\n
+   │     \n
+   │     .driver-info {\n
+   │         display: flex;\n
+   │         align-items: center;\n
+   │         gap: 15px;\n
+   │         margin: 15px 0;\n
+   │         padding: 15px 0;\n
+   │         border-top: 1px solid #eef2ff;\n
+   │         border-bottom: 1px solid #eef2ff;\n
+   │     }\n
+   │     \n
+   │     .driver-avatar {\n
+   │         width: 50px;\n
+   │         height: 50px;\n
+   │         background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);\n
+   │         border-radius: 50%;\n
+   │         display: flex;\n
+   │         align-items: center;\n
+   │         justify-content: center;\n
+   │         color: white;\n
+   │         font-size: 20px;\n
+   │     }\n
+   │     \n
+   │     .driver-details h4 {\n
+   │         font-size: 16px;\n
+   │         font-weight: 700;\n
+   │         margin: 0;\n
+   │     }\n
+   │     \n
+   │     .driver-details p {\n
+   │         font-size: 13px;\n
+   │         color: #64748b;\n
+   │         margin-top: 5px;\n
+   │     }\n
+   │     \n
+   │     .journey-footer {\n
+   │         display: flex;\n
+   │         justify-content: space-between;\n
+   │         align-items: center;\n
+   │         margin-top: 15px;\n
+   │         flex-wrap: wrap;\n
+   │         gap: 15px;\n
+   │     }\n
+   │     \n
+   │     .price {\n
+   │         font-size: 28px;\n
+   │         font-weight: 800;\n
+   │         color: #28a745;\n
+   │     }\n
+   │     \n
+   │     .price small {\n
+   │         font-size: 12px;\n
+   │         font-weight: normal;\n
+   │         color: #64748b;\n
+   │     }\n
+   │     \n
+   │     .btn-reserve {\n
+   │         background: linear-gradient(135deg, #28a745 0%, #20c997 100%);\n
+   │         color: white;\n
+   │         border: none;\n
+   │         padding: 10px 24px;\n
+   │         border-radius: 30px;\n
+   │         font-weight: 700;\n
+   │         cursor: pointer;\n
+   │         transition: all 0.3s;\n
+   │     }\n
+   │     \n
+   │     .btn-reserve:hover {\n
+   │         transform: scale(1.05);\n
+   │         box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);\n
+   │     }\n
+   │     \n
+   │     .btn-reserve:disabled {\n
+   │         opacity: 0.5;\n
+   │         cursor: not-allowed;\n
+   │         transform: none;\n
+   │     }\n
+   │     \n
+   │     .no-results {\n
+   │         text-align: center;\n
+   │         padding: 60px;\n
+   │         background: white;\n
+   │         border-radius: 24px;\n
+   │     }\n
+   │     \n
+   │     /* Modal de Réservation */\n
+   │     .modal-reserve {\n
+   │         display: none;\n
+   │         position: fixed;\n
+   │         top: 0;\n
+   │         left: 0;\n
+   │         right: 0;\n
+   │         bottom: 0;\n
+   │         background: rgba(0, 0, 0, 0.7);\n
+   │         backdrop-filter: blur(8px);\n
+   │         z-index: 2000;\n
+   │         align-items: center;\n
+   │         justify-content: center;\n
+   │         animation: fadeIn 0.3s ease-out;\n
+   │     }\n
+   │     \n
+   │     .modal-reserve.active {\n
+   │         display: flex;\n
+   │     }\n
+   │     \n
+   │     @keyframes fadeIn {\n
+   │         from { opacity: 0; }\n
+   │         to { opacity: 1; }\n
+   │     }\n
+   │     \n
+   │     .modal-content {\n
+   │         background: white;\n
+   │         border-radius: 28px;\n
+   │         padding: 40px;\n
+   │         max-width: 500px;\n
+   │         width: 90%;\n
+   │         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);\n
+   │         animation: slideUp 0.4s ease-out;\n
+   │         position: relative;\n
+   │         border: 1px solid rgba(0,0,0,0.05);\n
+   │     }\n
+   │     \n
+   │     @keyframes slideUp {\n
+   │         from {\n
+   │             opacity: 0;\n
+   │             transform: translateY(40px);\n
+   │         }\n
+   │         to {\n
+   │             opacity: 1;\n
+   │             transform: translateY(0);\n
+   │         }\n
+   │     }\n
+   │     \n
+   │     .modal-header {\n
+   │         margin-bottom: 30px;\n
+   │     }\n
+   │     \n
+   │     .modal-header h2 {\n
+   │         font-size: 28px;\n
+   │         font-weight: 800;\n
+   │         color: #1e293b;\n
+   │         margin-bottom: 8px;\n
+   │     }\n
+   │     \n
+   │     .modal-header p {\n
+   │         color: #64748b;\n
+   │         font-size: 14px;\n
+   │     }\n
+   │     \n
+   │     .modal-close {\n
+   │         position: absolute;\n
+   │         top: 20px;\n
+   │         right: 20px;\n
+   │         background: none;\n
+   │         border: none;\n
+   │         font-size: 24px;\n
+   │         color: #94a3b8;\n
+   │         cursor: pointer;\n
+   │         transition: all 0.3s ease;\n
+   │         width: 40px;\n
+   │         height: 40px;\n
+   │         display: flex;\n
+   │         align-items: center;\n
+   │         justify-content: center;\n
+   │         border-radius: 12px;\n
+   │     }\n
+   │     \n
+   │     .modal-close:hover {\n
+   │         background: #f1f5f9;\n
+   │         color: #1e293b;\n
+   │     }\n
+   │     \n
+   │     .places-selector {\n
+   │         background: #f8fafc;\n
+   │         border-radius: 16px;\n
+   │         padding: 20px;\n
+   │         margin-bottom: 30px;\n
+   │     }\n
+   │     \n
+   │     .places-selector label {\n
+   │         display: block;\n
+   │         font-size: 14px;\n
+   │         font-weight: 600;\n
+   │         color: #475569;\n
+   │         margin-bottom: 12px;\n
+   │     }\n
+   │     \n
+   │     .places-input-group {\n
+   │         display: flex;\n
+   │         align-items: center;\n
+   │         gap: 16px;\n
+   │     }\n
+   │     \n
+   │     .places-btn {\n
+   │         width: 45px;\n
+   │         height: 45px;\n
+   │         border: 2px solid #e2e8f0;\n
+   │         background: white;\n
+   │         border-radius: 12px;\n
+   │         font-size: 18px;\n
+   │         cursor: pointer;\n
+   │         transition: all 0.3s ease;\n
+   │         display: flex;\n
+   │         align-items: center;\n
+   │         justify-content: center;\n
+   │         font-weight: 600;\n
+   │         color: #4c1d95;\n
+   │     }\n
+   │     \n
+   │     .places-btn:hover:not(:disabled) {\n
+   │         border-color: #4c1d95;\n
+   │         background: #f3e8ff;\n
+   │     }\n
+   │     \n
+   │     .places-btn:disabled {\n
+   │         opacity: 0.4;\n
+   │         cursor: not-allowed;\n
+   │     }\n
+   │     \n
+   │     .places-display {\n
+   │         flex: 1;\n
+   │         background: white;\n
+   │         border: 2px solid #e2e8f0;\n
+   │         border-radius: 12px;\n
+   │         padding: 12px;\n
+   │         text-align: center;\n
+   │         font-weight: 700;\n
+   │         font-size: 20px;\n
+   │         color: #4c1d95;\n
+   │     }\n
+   │     \n
+   │     .price-summary {\n
+   │         background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);\n
+   │         border-radius: 16px;\n
+   │         padding: 20px;\n
+   │         margin-bottom: 30px;\n
+   │         border: 1px solid #d8b4fe;\n
+   │     }\n
+   │     \n
+   │     .price-row {\n
+   │         display: flex;\n
+   │         justify-content: space-between;\n
+   │         align-items: center;\n
+   │         margin-bottom: 12px;\n
+   │         font-size: 14px;\n
+   │         color: #4c1d95;\n
+   │     }\n
+   │     \n
+   │     .price-row:last-child {\n
+   │         margin-bottom: 0;\n
+   │         border-top: 2px solid rgba(76, 29, 149, 0.2);\n
+   │         padding-top: 12px;\n
+   │         font-weight: 700;\n
+   │         font-size: 16px;\n
+   │     }\n
+   │     \n
+   │     .modal-actions {\n
+   │         display: flex;\n
+   │         gap: 12px;\n
+   │     }\n
+   │     \n
+   │     .btn-cancel-modal,\n
+   │     .btn-confirm-modal {\n
+   │         flex: 1;\n
+   │         padding: 14px;\n
+   │         border-radius: 14px;\n
+   │         font-weight: 600;\n
+   │         font-size: 15px;\n
+   │         cursor: pointer;\n
+   │         transition: all 0.3s ease;\n
+   │         border: none;\n
+   │         display: flex;\n
+   │         align-items: center;\n
+   │         justify-content: center;\n
+   │         gap: 8px;\n
+   │     }\n
+   │     \n
+   │     .btn-cancel-modal {\n
+   │         background: #f1f5f9;\n
+   │         color: #475569;\n
+   │     }\n
+   │     \n
+   │     .btn-cancel-modal:hover {\n
+   │         background: #e2e8f0;\n
+   │         transform: translateY(-2px);\n
+   │     }\n
+   │     \n
+   │     .btn-confirm-modal {\n
+   │         background: linear-gradient(135deg, #28a745 0%, #20c997 100%);\n
+   │         color: white;\n
+   │         box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);\n
+   │     }\n
+   │     \n
+   │     .btn-confirm-modal:hover:not(:disabled) {\n
+   │         transform: translateY(-2px);\n
+   │         box-shadow: 0 8px 24px rgba(40, 167, 69, 0.3);\n
+   │     }\n
+   │     \n
+   │     .btn-confirm-modal:disabled {\n
+   │         opacity: 0.6;\n
+   │         cursor: wait;\n
+   │     }\n
+   │     \n
+   │     @media (max-width: 768px) {\n
+   │         .hero-section h1 { font-size: 36px; }\n
+   │         .search-grid { grid-template-columns: 1fr; }\n
+   │         .journey-route { flex-direction: column; text-align: center; }\n
+   │         .journey-footer { flex-direction: column; }\n
+   │         .btn-reserve { width: 100%; }\n
+   │         .modal-content { padding: 30px 25px; }\n
+   │     }\n
+   │ </style>\n
+   │ </head>\n
+   │ \n
+   │ <body>\n
+   │ \n
+   │ <!-- ===================================================\n
+   │                         NAVBAR\n
+   │ =================================================== -->\n
+   │ \n
+   │ <nav class="navbar">\n
+   │ \n
+   │     <div class="nav-container">\n
+   │ \n
+   │         <!-- LOGO -->\n
+   │         <div class="logo">\n
+   │ \n
+   │             <a href="/">\n
+   │ \n
+   │                 <div class="logo-icon">\n
+   │                     <i class="fas fa-car-side"></i>\n
+   │                 </div>\n
+   │ \n
+   │                 <div class="logo-text">\n
+   │                     <strong>Wassalni</strong>\n
+   │                     <span>TUNISIA</span>\n
+   │                 </div>\n
+   │ \n
+   │             </a>\n
+   │ \n
+   │         </div>\n
+   │ \n
+   │         <!-- NAVIGATION -->\n
+   │         <div class="nav-links" id="navLinks">\n
+   │ \n
+   │             \n
+   │                 \n
+   │                     <a href="/trajet/recherche">\n
+   │                         <i class="fas fa-search"></i>\n
+   │                         Chercher un trajet\n
+   │                     </a>\n
+   │ \n
+   │                     <a href="/reservation/mes-reservations">\n
+   │                         <i class="fas fa-calendar-check"></i>\n
+   │                         Mes réservations\n
+   │                     </a>\n
+   │ \n
+   │                     <a href="/reclamation/nouvelle">\n
+   │                         <i class="fas fa-file-circle-plus"></i>\n
+   │                         Nouvelle réclamation\n
+   │                     </a>\n
+   │ \n
+   │                     <a href="/reclamation/mes-reclamations">\n
+   │                         <i class="fas fa-list"></i>\n
+   │                         Mes réclamations\n
+   │                     </a>\n
+   │ \n
+   │                 \n
+   │             \n
+   │         </div>\n
+   │ \n
+   │         <!-- USER MENU -->\n
+   │         <div class="user-menu">\n
+   │ \n
+   │             \n
+   │                 <div class="dropdown">\n
+   │ \n
+   │                     <div class="user-info">\n
+   │ \n
+   │                         <div class="user-avatar">\n
+   │                             <i class="fas fa-user"></i>\n
+   │                         </div>\n
+   │ \n
+   │                         <div class="user-details">\n
+   │ \n
+   │                             <strong>\n
+   │                                 U-PASS1\n
+   │                                 C.\n
+   │                             </strong>\n
+   │ \n
+   │                             <span>\n
+   │                                                                     Passager\n
+   │                                                             </span>\n
+   │ \n
+   │                         </div>\n
+   │ \n
+   │                         <i class="fas fa-chevron-down" style="color:white;font-size:12px;"></i>\n
+   │ \n
+   │                     </div>\n
+   │ \n
+   │                     <!-- DROPDOWN -->\n
+   │                     <div class="dropdown-menu">\n
+   │ \n
+   │                         <div class="dropdown-header">\n
+   │ \n
+   │                             <h4>\n
+   │                                 U-PASS1\n
+   │                                 Catalogue\n
+   │                             </h4>\n
+   │ \n
+   │                             <p>\n
+   │                                                                     Passager\n
+   │                                                             </p>\n
+   │ \n
+   │                         </div>\n
+   │ \n
+   │                         <a href="/reclamation/mes-reclamations">\n
+   │                             <i class="fas fa-file-alt"></i>\n
+   │                             Mes réclamations\n
+   │                         </a>\n
+   │ \n
+   │                         <a href="/reclamation/nouvelle">\n
+   │                             <i class="fas fa-plus-circle"></i>\n
+   │                             Nouvelle réclamation\n
+   │                         </a>\n
+   │ \n
+   │                         <a href="/deconnexion"\n
+   │                            class="logout"\n
+   │                            onclick="return confirm('Déconnexion ?')">\n
+   │ \n
+   │                             <i class="fas fa-right-from-bracket"></i>\n
+   │                             Déconnexion\n
+   │ \n
+   │                         </a>\n
+   │ \n
+   │                     </div>\n
+   │ \n
+   │                 </div>\n
+   │ \n
+   │             \n
+   │         </div>\n
+   │ \n
+   │         <!-- MOBILE BUTTON -->\n
+   │         <button class="mobile-menu-btn" id="mobileMenuBtn">\n
+   │ \n
+   │             <i class="fas fa-bars"></i>\n
+   │ \n
+   │         </button>\n
+   │ \n
+   │     </div>\n
+   │ \n
+   │ </nav>\n
+   │ \n
+   │ <!-- ===================================================\n
+   │                       MAIN CONTENT\n
+   │ =================================================== -->\n
+   │ \n
+   │ <main class="main-content">\n
+   │ \n
+   │     <div class="hero-section">\n
+   │     <canvas id="particleCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>\n
+   │     <div class="container" style="position: relative; z-index: 2;">\n
+   │         <h1>Voyagez malin, économisez ensemble</h1>\n
+   │         <p>Rejoignez notre communauté de covoiturage et découvrez une nouvelle façon de voyager.</p>\n
+   │     </div>\n
+   │ </div>\n
+   │ \n
+   │ <div class="container" style="max-width: 1100px; margin: 0 auto;">\n
+   │     <div class="search-card">\n
+   │         <div class="search-title">Rechercher un trajet</div>\n
+   │         \n
+   │         <form method="get" action="/trajet/recherche" id="searchForm">\n
+   │             <div class="search-grid">\n
+   │                 <div class="form-group">\n
+   │                     <label>Départ</label>\n
+   │                     <div class="input-wrapper">\n
+   │                         <i class="fas fa-map-marker-alt"></i>\n
+   │                         <select name="villeDepart" id="villeDepart">\n
+   │                             <option value="">Sélectionnez une ville</option>\n
+   │                             <option value="Tunis" selected>Tunis</option>\n
+   │                             <option value="Sfax" >Sfax</option>\n
+   │                             <option value="Sousse" >Sousse</option>\n
+   │                             <option value="Nabeul" >Nabeul</option>\n
+   │                             <option value="Bizerte" >Bizerte</option>\n
+   │                             <option value="Monastir" >Monastir</option>\n
+   │                         </select>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="form-group">\n
+   │                     <label>Arrivée</label>\n
+   │                     <div class="input-wrapper">\n
+   │                         <i class="fas fa-flag-checkered"></i>\n
+   │                         <select name="destination" id="destination">\n
+   │                             <option value="">Sélectionnez une ville</option>\n
+   │                             <option value="Tunis" >Tunis</option>\n
+   │                             <option value="Sfax" >Sfax</option>\n
+   │                             <option value="Sousse" >Sousse</option>\n
+   │                             <option value="Nabeul" >Nabeul</option>\n
+   │                             <option value="Bizerte" >Bizerte</option>\n
+   │                             <option value="Monastir" >Monastir</option>\n
+   │                         </select>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="form-group">\n
+   │                     <label>Date</label>\n
+   │                     <div class="input-wrapper">\n
+   │                         <i class="fas fa-calendar"></i>\n
+   │                         <input type="date" name="dateDepart" id="dateDepart" value="" min="2026-11-11">\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="form-group">\n
+   │                     <label>Passagers</label>\n
+   │                     <div class="input-wrapper">\n
+   │                         <i class="fas fa-users"></i>\n
+   │                         <select name="passagers" id="passagers">\n
+   │                             <option value="1" >1 passager</option>\n
+   │                             <option value="2" >2 passagers</option>\n
+   │                             <option value="3" >3 passagers</option>\n
+   │                             <option value="4" >4 passagers</option>\n
+   │                         </select>\n
+   │                     </div>\n
+   │                 </div>\n
+   │             </div>\n
+   │             \n
+   │             <button type="submit" class="btn-search" id="searchBtn">\n
+   │                 <i class="fas fa-search"></i>\n
+   │                 <span>Rechercher des trajets</span>\n
+   │             </button>\n
+   │         </form>\n
+   │     </div>\n
+   │     \n
+   │     <div class="stats-section">\n
+   │         <div class="stat-card">\n
+   │             <i class="fas fa-users"></i>\n
+   │             <div class="number">50k+</div>\n
+   │             <div class="label">Utilisateurs actifs</div>\n
+   │         </div>\n
+   │         <div class="stat-card">\n
+   │             <i class="fas fa-car"></i>\n
+   │             <div class="number">10k+</div>\n
+   │             <div class="label">Trajets partagés</div>\n
+   │         </div>\n
+   │         <div class="stat-card">\n
+   │             <i class="fas fa-star"></i>\n
+   │             <div class="number">4.9</div>\n
+   │             <div class="label">Note moyenne</div>\n
+   │         </div>\n
+   │     </div>\n
+   │ </div>\n
+   │ \n
+   │ <!-- SECTION RÉSULTATS DES TRAJETS -->\n
+   │ <div class="results-section">\n
+   │             <div class="results-header">\n
+   │             <h3><i class="fas fa-route"></i> 22 trajet(s) trouvé(s)</h3>\n
+   │             <span>Prix par personne</span>\n
+   │         </div>\n
+   │         \n
+   │                     <div class="result-card" data-trajet-id="32" data-places-max="2" data-prix="15">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">01/05/2025 08:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Sousse</div>\n
+   │                         <div class="time">01/05/2025 10:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>yassine Ben Ammar</h4>\n
+   │                         <p>Volkswagen Tiguan • 123 TUN 1</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">15 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 2 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(32, 2, 15)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="34" data-places-max="4" data-prix="10">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">01/05/2025 14:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Nabeul</div>\n
+   │                         <div class="time">01/05/2025 15:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>yassine Ben Ammar</h4>\n
+   │                         <p>Renault Clio • 456 TUN 2</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">10 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(34, 4, 10)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="33" data-places-max="1" data-prix="25">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">02/05/2025 07:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Sfax</div>\n
+   │                         <div class="time">02/05/2025 10:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>yassine Ben Ammar</h4>\n
+   │                         <p>Volkswagen Tiguan • 123 TUN 1</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">25 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 1 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(33, 1, 25)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="5" data-places-max="3" data-prix="10">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">01/05/2026 10:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Nabeul</div>\n
+   │                         <div class="time">01/05/2026 11:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>Ahmed Ben Ali</h4>\n
+   │                         <p>Volkswagen Tiguan • 123 TUN 1</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">10 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 3 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(5, 3, 10)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="22" data-places-max="3" data-prix="10">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">01/05/2026 10:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Nabeul</div>\n
+   │                         <div class="time">01/05/2026 11:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>Ahmed Ben Ali</h4>\n
+   │                         <p>Volkswagen Tiguan • 123 TUN 1</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">10 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 3 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(22, 3, 10)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="7" data-places-max="3" data-prix="12">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">01/05/2026 15:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Bizerte</div>\n
+   │                         <div class="time">01/05/2026 16:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>Karim Souissi</h4>\n
+   │                         <p>Hyundai i20 • 987 TUN 6</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">12 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 3 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(7, 3, 12)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="23" data-places-max="2" data-prix="12">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">01/05/2026 15:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Bizerte</div>\n
+   │                         <div class="time">01/05/2026 16:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>Sarah Mansouri</h4>\n
+   │                         <p>BMW Serie 3 • 321 TUN 4</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">12 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 2 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(23, 2, 12)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="6" data-places-max="4" data-prix="8">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">02/05/2026 08:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Nabeul</div>\n
+   │                         <div class="time">02/05/2026 09:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>Sarah Mansouri</h4>\n
+   │                         <p>BMW Serie 3 • 321 TUN 4</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">8 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(6, 4, 8)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="2" data-places-max="4" data-prix="12">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">02/05/2026 09:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Sousse</div>\n
+   │                         <div class="time">02/05/2026 11:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>Sarah Mansouri</h4>\n
+   │                         <p>Peugeot 208 • 789 TUN 3</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">12 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(2, 4, 12)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="20" data-places-max="4" data-prix="12">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">02/05/2026 09:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Sousse</div>\n
+   │                         <div class="time">02/05/2026 11:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>Sarah Mansouri</h4>\n
+   │                         <p>Peugeot 208 • 789 TUN 3</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">12 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(20, 4, 12)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="18" data-places-max="2" data-prix="18">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">02/05/2026 10:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Monastir</div>\n
+   │                         <div class="time">02/05/2026 12:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>Sarah Mansouri</h4>\n
+   │                         <p>BMW Serie 3 • 321 TUN 4</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">18 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 2 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(18, 2, 18)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="26" data-places-max="2" data-prix="18">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">02/05/2026 10:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Monastir</div>\n
+   │                         <div class="time">02/05/2026 12:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>Sarah Mansouri</h4>\n
+   │                         <p>BMW Serie 3 • 321 TUN 4</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">18 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 2 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(26, 2, 18)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="4" data-places-max="4" data-prix="22">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">03/05/2026 07:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Sfax</div>\n
+   │                         <div class="time">03/05/2026 10:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>Karim Souissi</h4>\n
+   │                         <p>Mercedes Classe C • 654 TUN 5</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">22 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(4, 4, 22)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="21" data-places-max="4" data-prix="22">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">03/05/2026 07:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Sfax</div>\n
+   │                         <div class="time">03/05/2026 10:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>Karim Souissi</h4>\n
+   │                         <p>Mercedes Classe C • 654 TUN 5</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">22 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(21, 4, 22)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="8" data-places-max="5" data-prix="10">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">03/05/2026 10:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Bizerte</div>\n
+   │                         <div class="time">03/05/2026 11:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>Ahmed Ben Ali</h4>\n
+   │                         <p>Volkswagen Tiguan • 123 TUN 1</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">10 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 5 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(8, 5, 10)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="4776" data-places-max="3" data-prix="22">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">01/11/2026 07:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Sfax</div>\n
+   │                         <div class="time">01/11/2026 10:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>U-COND1 Catalogue</h4>\n
+   │                         <p>Peugeot 308 • CAT67EE9A</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">22 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 3 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(4776, 3, 22)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="4772" data-places-max="3" data-prix="18">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">13/11/2026 09:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Sfax</div>\n
+   │                         <div class="time">13/11/2026 12:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>U-COND1 Catalogue</h4>\n
+   │                         <p>Peugeot 308 • CAT67EE9A</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">18 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 3 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(4772, 3, 18)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="4770" data-places-max="2" data-prix="15">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">18/11/2026 08:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Sousse</div>\n
+   │                         <div class="time">18/11/2026 10:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>U-COND1 Catalogue</h4>\n
+   │                         <p>Peugeot 308 • CAT67EE9A</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">15 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 2 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(4770, 2, 15)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="4771" data-places-max="4" data-prix="22">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">19/11/2026 07:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Sfax</div>\n
+   │                         <div class="time">19/11/2026 10:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>U-COND1 Catalogue</h4>\n
+   │                         <p>Peugeot 308 • CAT67EE9A</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">22 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(4771, 4, 22)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="4773" data-places-max="1" data-prix="10">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">20/11/2026 10:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Nabeul</div>\n
+   │                         <div class="time">20/11/2026 11:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>U-COND1 Catalogue</h4>\n
+   │                         <p>Peugeot 308 • CAT67EE9A</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">10 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 1 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(4773, 1, 10)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="39" data-places-max="4" data-prix="14">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">tunis</div>\n
+   │                         <div class="time">04/12/2026 00:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">kairouan</div>\n
+   │                         <div class="time">04/12/2026 00:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>Ahmed Ben Ali</h4>\n
+   │                         <p>Renault Clio • 456 TUN 2</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">14 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(39, 4, 14)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │                     <div class="result-card" data-trajet-id="56" data-places-max="2" data-prix="25">\n
+   │                 <div class="journey-route">\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Tunis</div>\n
+   │                         <div class="time">01/12/2099 10:00</div>\n
+   │                     </div>\n
+   │                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   │                     <div class="journey-point">\n
+   │                         <div class="city">Sfax</div>\n
+   │                         <div class="time">01/12/2099 12:00</div>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="driver-info">\n
+   │                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   │                     <div class="driver-details">\n
+   │                         <h4>Conducteur W7-9 Tests W7-9</h4>\n
+   │                         <p>Toyota Corolla • WASSALNI79</p>\n
+   │                     </div>\n
+   │                 </div>\n
+   │                 \n
+   │                 <div class="journey-footer">\n
+   │                     <div>\n
+   │                         <span class="price">25 DT</span>\n
+   │                         <small>/personne</small>\n
+   │                     </div>\n
+   │                     <div><i class="fas fa-chair"></i> 2 places</div>\n
+   │                                             <button class="btn-reserve" onclick="openReservationModal(56, 2, 25)">\n
+   │                             <i class="fas fa-check-circle"></i> Réserver\n
+   │                         </button>\n
+   │                                     </div>\n
+   │             </div>\n
+   │             </div>\n
+   │ \n
+   │ <!-- MODAL DE RÉSERVATION -->\n
+   │ <div id="reservationModal" class="modal-reserve">\n
+   │     <div class="modal-content">\n
+   │         <button class="modal-close" onclick="closeReservationModal()">\n
+   │             <i class="fas fa-times"></i>\n
+   │         </button>\n
+   │         \n
+   │         <div class="modal-header">\n
+   │             <h2><i class="fas fa-check-circle"></i> Confirmer la réservation</h2>\n
+   │             <p>Veuillez sélectionner le nombre de places souhaitées</p>\n
+   │         </div>\n
+   │         \n
+   │         <div class="places-selector">\n
+   │             <label>Nombre de places</label>\n
+   │             <div class="places-input-group">\n
+   │                 <button class="places-btn" id="decrementBtn" onclick="decrementPlaces()">−</button>\n
+   │                 <div class="places-display">\n
+   │                     <span id="selectedPlaces">1</span> place(s)\n
+   │                 </div>\n
+   │                 <button class="places-btn" id="incrementBtn" onclick="incrementPlaces()">+</button>\n
+   │             </div>\n
+   │         </div>\n
+   │         \n
+   │         <div class="price-summary">\n
+   │             <div class="price-row">\n
+   │                 <span>Prix par personne</span>\n
+   │                 <span><span id="pricePerPerson">0</span> DT</span>\n
+   │             </div>\n
+   │             <div class="price-row">\n
+   │                 <span>Nombre de places</span>\n
+   │                 <span id="placesCount">0</span>\n
+   │             </div>\n
+   │             <div class="price-row">\n
+   │                 <span>Total</span>\n
+   │                 <span><strong><span id="totalPrice">0</span> DT</strong></span>\n
+   │             </div>\n
+   │         </div>\n
+   │         \n
+   │         <div class="modal-actions">\n
+   │             <button class="btn-cancel-modal" onclick="closeReservationModal()">\n
+   │                 <i class="fas fa-times"></i> Annuler\n
+   │             </button>\n
+   │             <button class="btn-confirm-modal" id="confirmReservationBtn" onclick="confirmReservation()">\n
+   │                 <i class="fas fa-check-circle"></i> Confirmer\n
+   │             </button>\n
+   │         </div>\n
+   │     </div>\n
+   │ </div>\n
+   │ \n
+   │ <script>\n
+   │     // Animation des particules\n
+   │     const canvas = document.getElementById('particleCanvas');\n
+   │     if (canvas) {\n
+   │         canvas.width = canvas.offsetWidth;\n
+   │         canvas.height = canvas.offsetHeight;\n
+   │         const ctx = canvas.getContext('2d');\n
+   │         let particles = [];\n
+   │         for (let i = 0; i < 50; i++) {\n
+   │             particles.push({\n
+   │                 x: Math.random() * canvas.width,\n
+   │                 y: Math.random() * canvas.height,\n
+   │                 radius: Math.random() * 3 + 1,\n
+   │                 alpha: Math.random() * 0.5 + 0.2,\n
+   │                 speedX: (Math.random() - 0.5) * 0.5,\n
+   │                 speedY: (Math.random() - 0.5) * 0.5\n
+   │             });\n
+   │         }\n
+   │         function animate() {\n
+   │             ctx.clearRect(0, 0, canvas.width, canvas.height);\n
+   │             particles.forEach(p => {\n
+   │                 p.x += p.speedX;\n
+   │                 p.y += p.speedY;\n
+   │                 if (p.x < 0) p.x = canvas.width;\n
+   │                 if (p.x > canvas.width) p.x = 0;\n
+   │                 if (p.y < 0) p.y = canvas.height;\n
+   │                 if (p.y > canvas.height) p.y = 0;\n
+   │                 ctx.beginPath();\n
+   │                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);\n
+   │                 ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;\n
+   │                 ctx.fill();\n
+   │             });\n
+   │             requestAnimationFrame(animate);\n
+   │         }\n
+   │         animate();\n
+   │         window.addEventListener('resize', () => {\n
+   │             canvas.width = canvas.offsetWidth;\n
+   │             canvas.height = canvas.offsetHeight;\n
+   │         });\n
+   │     }\n
+   │     \n
+   │     // Recherche automatique\n
+   │     const villeDepart = document.getElementById('villeDepart');\n
+   │     const destination = document.getElementById('destination');\n
+   │     const searchForm = document.getElementById('searchForm');\n
+   │     \n
+   │     function performSearch() {\n
+   │         if (villeDepart.value && destination.value) {\n
+   │             searchForm.submit();\n
+   │         }\n
+   │     }\n
+   │     \n
+   │     villeDepart.addEventListener('change', performSearch);\n
+   │     destination.addEventListener('change', performSearch);\n
+   │     \n
+   │     // Variables du modal\n
+   │     let currentTrajetId = null;\n
+   │     let currentMaxPlaces = 1;\n
+   │     let currentPricePerPerson = 0;\n
+   │     let currentSelectedPlaces = 1;\n
+   │     \n
+   │     function openReservationModal(trajetId, maxPlaces, pricePerPerson) {\n
+   │         currentTrajetId = trajetId;\n
+   │         currentMaxPlaces = maxPlaces;\n
+   │         currentPricePerPerson = pricePerPerson;\n
+   │         currentSelectedPlaces = 1;\n
+   │         \n
+   │         document.getElementById('selectedPlaces').textContent = '1';\n
+   │         document.getElementById('placesCount').textContent = '1';\n
+   │         document.getElementById('pricePerPerson').textContent = pricePerPerson;\n
+   │         document.getElementById('totalPrice').textContent = pricePerPerson;\n
+   │         \n
+   │         updateButtonsState();\n
+   │         document.getElementById('reservationModal').classList.add('active');\n
+   │     }\n
+   │     \n
+   │     function closeReservationModal() {\n
+   │         document.getElementById('reservationModal').classList.remove('active');\n
+   │         currentTrajetId = null;\n
+   │     }\n
+   │     \n
+   │     function incrementPlaces() {\n
+   │         if (currentSelectedPlaces < currentMaxPlaces) {\n
+   │             currentSelectedPlaces++;\n
+   │             updateModalDisplay();\n
+   │         }\n
+   │     }\n
+   │     \n
+   │     function decrementPlaces() {\n
+   │         if (currentSelectedPlaces > 1) {\n
+   │             currentSelectedPlaces--;\n
+   │             updateModalDisplay();\n
+   │         }\n
+   │     }\n
+   │     \n
+   │     function updateModalDisplay() {\n
+   │         document.getElementById('selectedPlaces').textContent = currentSelectedPlaces;\n
+   │         document.getElementById('placesCount').textContent = currentSelectedPlaces;\n
+   │         const total = currentSelectedPlaces * currentPricePerPerson;\n
+   │         document.getElementById('totalPrice').textContent = total;\n
+   │         updateButtonsState();\n
+   │     }\n
+   │     \n
+   │     function updateButtonsState() {\n
+   │         const incrementBtn = document.getElementById('incrementBtn');\n
+   │         const decrementBtn = document.getElementById('decrementBtn');\n
+   │         \n
+   │         incrementBtn.disabled = currentSelectedPlaces >= currentMaxPlaces;\n
+   │         decrementBtn.disabled = currentSelectedPlaces <= 1;\n
+   │     }\n
+   │     \n
+   │     function confirmReservation() {\n
+   │         const confirmBtn = document.getElementById('confirmReservationBtn');\n
+   │         confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Chargement...';\n
+   │         confirmBtn.disabled = true;\n
+   │         \n
+   │         fetch('/reservation/new-ajax', {\n
+   │             method: 'POST',\n
+   │             headers: {\n
+   │                 'Content-Type': 'application/json',\n
+   │                 'X-Requested-With': 'XMLHttpRequest'\n
+   │             },\n
+   │             body: JSON.stringify({\n
+   │                 trajetId: currentTrajetId,\n
+   │                 nbPlaces: currentSelectedPlaces\n
+   │             })\n
+   │         })\n
+   │         .then(response => response.json())\n
+   │         .then(data => {\n
+   │             if (data.success) {\n
+   │                 closeReservationModal();\n
+   │                 showToast('Réservation confirmée avec succès !', 'success');\n
+   │                 setTimeout(() => location.reload(), 1500);\n
+   │             } else {\n
+   │                 closeReservationModal();\n
+   │                 showToast(data.message || 'Erreur lors de la réservation', 'error');\n
+   │             }\n
+   │         })\n
+   │         .catch(error => {\n
+   │             closeReservationModal();\n
+   │             showToast('Erreur réseau. Veuillez réessayer.', 'error');\n
+   │         })\n
+   │         .finally(() => {\n
+   │             confirmBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirmer';\n
+   │             confirmBtn.disabled = false;\n
+   │         });\n
+   │     }\n
+   │     \n
+   │     function showToast(message, type) {\n
+   │         let toastContainer = document.getElementById('toast-container');\n
+   │         if (!toastContainer) {\n
+   │             toastContainer = document.createElement('div');\n
+   │             toastContainer.id = 'toast-container';\n
+   │             toastContainer.style.cssText = 'position: fixed; bottom: 30px; right: 30px; z-index: 3000; display: flex; flex-direction: column; gap: 12px;';\n
+   │             document.body.appendChild(toastContainer);\n
+   │         }\n
+   │         \n
+   │         const toast = document.createElement('div');\n
+   │         toast.style.cssText = `\n
+   │             background: ${type === 'success' ? '#10b981' : '#ef4444'};\n
+   │             color: white;\n
+   │             padding: 14px 24px;\n
+   │             border-radius: 16px;\n
+   │             font-weight: 600;\n
+   │             font-size: 14px;\n
+   │             box-shadow: 0 10px 30px rgba(0,0,0,0.2);\n
+   │             animation: slideInRight 0.3s ease;\n
+   │             display: flex;\n
+   │             align-items: center;\n
+   │             gap: 12px;\n
+   │         `;\n
+   │         toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" style="font-size: 20px;"></i> ${message}`;\n
+   │         toastContainer.appendChild(toast);\n
+   │         \n
+   │         setTimeout(() => {\n
+   │             toast.style.animation = 'slideOutRight 0.3s ease';\n
+   │             setTimeout(() => toast.remove(), 300);\n
+   │         }, 3000);\n
+   │     }\n
+   │     \n
+   │     // Styles des animations de toast\n
+   │     const style = document.createElement('style');\n
+   │     style.textContent = `\n
+   │         @keyframes slideInRight {\n
+   │             from { transform: translateX(100%); opacity: 0; }\n
+   │             to { transform: translateX(0); opacity: 1; }\n
+   │         }\n
+   │         @keyframes slideOutRight {\n
+   │             from { transform: translateX(0); opacity: 1; }\n
+   │             to { transform: translateX(100%); opacity: 0; }\n
+   │         }\n
+   │     `;\n
+   │     document.head.appendChild(style);\n
+   │ </script>\n
+   │ \n
+   │ </main>\n
+   │ \n
+   │ <!-- ===================================================\n
+   │                          FOOTER\n
+   │ =================================================== -->\n
+   │ \n
+   │ <footer class="footer">\n
+   │ \n
+   │     <p>\n
+   │         © 2025 Wassalni.TN — Plateforme moderne de covoiturage en Tunisie\n
+   │     </p>\n
+   │ \n
+   │ </footer>\n
+   │ \n
+   │ <!-- ===================================================\n
+   │                        JAVASCRIPT\n
+   │ =================================================== -->\n
+   │ \n
+   │ <script>\n
+   │ \n
+   │     const mobileBtn = document.getElementById('mobileMenuBtn');\n
+   │     const navLinks  = document.getElementById('navLinks');\n
+   │ \n
+   │     mobileBtn.addEventListener('click', () => {\n
+   │ \n
+   │         navLinks.classList.toggle('mobile-open');\n
+   │ \n
+   │         if(navLinks.classList.contains('mobile-open')){\n
+   │             mobileBtn.innerHTML =\n
+   │                 '<i class="fas fa-times"></i>';\n
+   │         }else{\n
+   │             mobileBtn.innerHTML =\n
+   │                 '<i class="fas fa-bars"></i>';\n
+   │         }\n
+   │ \n
+   │     });\n
+   │ \n
+   │     // Fermer menu mobile au clic\n
+   │     document.querySelectorAll('.nav-links a')\n
+   │         .forEach(link => {\n
+   │ \n
+   │             link.addEventListener('click', () => {\n
+   │ \n
+   │                 navLinks.classList.remove('mobile-open');\n
+   │ \n
+   │                 mobileBtn.innerHTML =\n
+   │                     '<i class="fas fa-bars"></i>';\n
+   │ \n
+   │             });\n
+   │ \n
+   │         });\n
+   │ \n
+   │ </script>\n
+   │ \n
+   │ \n
+   │ </body>\n
+   │ </html>' [UTF-8](length: 82476) does not contain "50k+" [ASCII](length: 4).
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:249
+   │
+ ✘ Robustesse (OBS-G) — date de recherche invalide « abc » : pas d'erreur serveur
+   │
+   │ Recherche dateDepart=abc : erreur serveur HTTP 500
+   │ Failed asserting that 500 is less than 500.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:45
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:258
+   │
+
+Reclamation Transitions (App\Tests\Functional\Catalogue\ReclamationTransitions)
+ ✘ T-05 / OBS-05-04 (EX-29) — liste « mes réclamations » avec une réclamation EN_COURS : total = en attente + traitées
+   │
+   │ Total 1, en attente 0, traitées 0
+   │ Failed asserting that 0 is identical to 1.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReclamationTransitionsTest.php:97
+   │
+
+Regle Metier Entites (App\Tests\Entity\RegleMetierEntites)
+ ✘ UT-04 (CA-02, VL) — départ aujourd'hui à 00:00:01 (déjà passé) : refus attendu
+   │
+   │ Un départ déjà passé de la journée est accepté par la contrainte de l'entité
+   │ Failed asserting that 0 is identical to 1.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php:108
+   │
+ ✘ UT-05 (EX-06) — véhicule : 0 place (VL) → 1 violation(s)
+   │
+   │ Error: Unknown named parameter $message
+   │
+   │ C:\Users\Dogui\wassalni-tests\src\Entity\Vehicule.php:34
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:133
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:91
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:65
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Factory\LazyLoadingMetadataFactory.php:104
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Validator\RecursiveContextualValidator.php:163
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Validator\RecursiveValidator.php:88
+   │ C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php:35
+   │ C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php:126
+   │
+ ✘ UT-05 (EX-06) — véhicule : 1 place (VL) → 0 violation(s)
+   │
+   │ Error: Unknown named parameter $message
+   │
+   │ C:\Users\Dogui\wassalni-tests\src\Entity\Vehicule.php:34
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:133
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:91
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:65
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Factory\LazyLoadingMetadataFactory.php:104
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Validator\RecursiveContextualValidator.php:163
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Validator\RecursiveValidator.php:88
+   │ C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php:35
+   │ C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php:126
+   │
+ ✘ UT-05 (EX-06) — véhicule : 9 places (VL) → 0 violation(s)
+   │
+   │ Error: Unknown named parameter $message
+   │
+   │ C:\Users\Dogui\wassalni-tests\src\Entity\Vehicule.php:34
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:133
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:91
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:65
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Factory\LazyLoadingMetadataFactory.php:104
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Validator\RecursiveContextualValidator.php:163
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Validator\RecursiveValidator.php:88
+   │ C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php:35
+   │ C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php:126
+   │
+ ✘ UT-05 (EX-06) — véhicule : 10 places (VL) → 1 violation(s)
+   │
+   │ Error: Unknown named parameter $message
+   │
+   │ C:\Users\Dogui\wassalni-tests\src\Entity\Vehicule.php:34
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:133
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:91
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:65
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Factory\LazyLoadingMetadataFactory.php:104
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Validator\RecursiveContextualValidator.php:163
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Validator\RecursiveValidator.php:88
+   │ C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php:35
+   │ C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php:126
+   │
+ ✘ UT-06 (EX-06) — immatriculation : « TUN1234 » acceptée, « 123 TUN 4567 » (format avec espaces) refusée
+   │
+   │ Error: Unknown named parameter $message
+   │
+   │ C:\Users\Dogui\wassalni-tests\src\Entity\Vehicule.php:34
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:133
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:91
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Loader\AttributeLoader.php:65
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Mapping\Factory\LazyLoadingMetadataFactory.php:104
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Validator\RecursiveContextualValidator.php:163
+   │ C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Validator\RecursiveValidator.php:88
+   │ C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php:35
+   │ C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php:137
+   │
+
+Reservation Annulation (App\Tests\Functional\Catalogue\ReservationAnnulation)
+ ✘ TC-24 (CA-06, EX-35) — nombre de places invalide « 0 » par la voie HTML : refus, stock inchangé
+   │
+   │ nbPlaces=0
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │ -    'reservation_creee' => null,
+   │ +    'reservation_creee' => Array &1 [
+   │ +        'nb_places' => 0,
+   │ +        'prix_total' => 0.0,
+   │ +    ],
+   │      'places_restantes' => 4,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:75
+   │
+ ✘ TC-24 (CA-06, EX-35) — nombre de places invalide « -1 » par la voie HTML : refus, stock inchangé
+   │
+   │ nbPlaces=-1
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │ -    'reservation_creee' => null,
+   │ -    'places_restantes' => 4,
+   │ +    'reservation_creee' => Array &1 [
+   │ +        'nb_places' => -1,
+   │ +        'prix_total' => -22.0,
+   │ +    ],
+   │ +    'places_restantes' => 5,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:75
+   │
+ ✘ TC-24 (CA-06, EX-35) — nombre de places invalide « 3.5 » par la voie HTML : refus, stock inchangé
+   │
+   │ nbPlaces=3.5
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │ -    'reservation_creee' => null,
+   │ -    'places_restantes' => 4,
+   │ +    'reservation_creee' => Array &1 [
+   │ +        'nb_places' => 3,
+   │ +        'prix_total' => 66.0,
+   │ +    ],
+   │ +    'places_restantes' => 1,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:75
+   │
+ ✘ TC-24 (CA-06, EX-35) — nombre de places invalide « abc » par la voie HTML : refus, stock inchangé
+   │
+   │ nbPlaces=abc
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │ -    'reservation_creee' => null,
+   │ +    'reservation_creee' => Array &1 [
+   │ +        'nb_places' => 0,
+   │ +        'prix_total' => 0.0,
+   │ +    ],
+   │      'places_restantes' => 4,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:75
+   │
+ ✘ TC-28 (CA-09) — seconde réservation de U-PASS1 sur T-NOMINAL par la voie HTML : refus, une seule réservation
+   │
+   │ Failed asserting that 2 is identical to 1.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:108
+   │
+ ✘ TC-30 (CA-10) — annuler RES-PAST (trajet passé) : refus, statut CONFIRMEE, places inchangées
+   │
+   │ Failed asserting that two strings are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │ -'CONFIRMEE'
+   │ +'ANNULEE'
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:144
+   │
+ ✘ TC-49 (CA-04) — réserver T-PAST (validé mais passé) par la voie HTML : refus, aucune réservation
+   │
+   │ Failed asserting that 1 is identical to 0.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:156
+   │
+ ✘ TC-49 bis (CA-04, CA-09) — réserver T-PAST par la voie JSON : refus, aucune réservation
+   │
+   │ Failed asserting that 1 is identical to 0.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:168
+   │
+ ✘ TC-50 (CA-01) — réserver T-PEND (EN_ATTENTE) par la voie HTML : refus, aucune réservation
+   │
+   │ Failed asserting that 1 is identical to 0.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:179
+   │
+ ✘ CA-15 (EX-34) — annulation par simple GET sans jeton CSRF : refusée (405/403), réservation inchangée
+   │
+   │ L'annulation a été acceptée par GET (HTTP 302)
+   │ Failed asserting that an array contains 302.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:222
+   │
+ ✘ CA-15 (EX-34) — réservation HTML sans jeton CSRF : refusée, aucune réservation
+   │
+   │ Réservation créée par un POST sans jeton CSRF
+   │ Failed asserting that 1 is identical to 0.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:234
+   │
+
+3 tests triggered 2 deprecations:
+
+1) C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Constraints\NotBlank.php:46
+Since symfony/validator 7.3: Passing an array of options to configure the "Symfony\Component\Validator\Constraints\NotBlank" constraint is deprecated, use named arguments instead.
+
+Triggered by:
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testCA18AvisAvantLaFinDuTrajet (3 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:62
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testCA18SecondAvis (2 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:50
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testTC33BornesDeLaNote (8 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:35
+
+2) C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Constraints\Length.php:87
+Since symfony/validator 7.3: Passing an array of options to configure the "Symfony\Component\Validator\Constraints\Length" constraint is deprecated, use named arguments instead.
+
+Triggered by:
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testCA18AvisAvantLaFinDuTrajet (3 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:62
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testCA18SecondAvis (2 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:50
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testTC33BornesDeLaNote (8 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:35
+
+ERRORS!
+Tests: 48, Assertions: 109, Errors: 5, Failures: 41, Deprecations: 2.

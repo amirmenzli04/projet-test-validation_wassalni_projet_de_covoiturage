@@ -1,0 +1,8 @@
+# Synthèse de la campagne de régression
+Révision : cc50095 ; base : wassalni_test ; début : 2026-11-11 22:40:18 +01:00 ; fin : 2026-11-11 22:43:44 +01:00
+
+- PHPUnit regression (anomalies exclues) : code de sortie 0 ;  ✔ IT-06 (CA-20, EX-35) — trajet visé par une réclamation : la base refuse la suppression (RESTRICT), trajet et réclamation intacts |  | OK (87 tests, 245 assertions)
+- PHPUnit anomalies ouvertes : code de sortie 2 ;  | ERRORS! | Tests: 48, Assertions: 109, Errors: 5, Failures: 41, Deprecations: 2.
+- Playwright (navigateur) : code de sortie 1 ;     tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page nouvelle-reclamation  |     tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page mes-reservations  |   20 passed (2.4m)
+- Newman (API) : code de sortie 1 ;                      at assertion:0 in test-script                                                                                 |                      inside "02c — CA-14 : /check-verification-status sans connexion est refusé (ANO-22)"                          | # Requêtes : 19 (échecs 0) ; assertions : 35 (échecs 3)
+- k6 (performance) : code de sortie 0 ; Durée (toutes pages) : moy 102.2 ms ; médiane 90.0 ms ; p95 217.0 ms ; max 318.3 ms | Durée recherche : p95 204.4 ms | Seuils : http_req_duration RESPECTÉ ; checks RESPECTÉ ; http_req_duration{page:recherche} RESPECTÉ ; http_req_failed RESPECTÉ

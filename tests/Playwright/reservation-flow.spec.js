@@ -6,7 +6,9 @@
  * quand les deux villes sont choisies, la date doit donc être saisie avant.
  */
 const { test } = require('@playwright/test');
-const { ACCOUNTS, expect, fixture, login, shot, sqlRow, evidenceLog } = require('./helpers');
+const { ACCOUNTS, expect, fixture, login, resetFixture, shot, sqlRow, evidenceLog } = require('./helpers');
+
+test.beforeAll(() => resetFixture()); // isolation entre fichiers (ANO-T05)
 
 const WEEK = 'semaine9';
 const log = evidenceLog(WEEK, 'S09_parcours-verifications.json');

@@ -1,6 +1,6 @@
 # Registre des preuves — WASSALNI
 
-- **Mise à jour :** 11 novembre 2026 (fin de P0)
+- **Mise à jour :** 11 novembre 2026 (version finale, semaines 1 à 10)
 - **Racine des preuves :** `preuves/semaineN/`
 
 ## Types de preuve
@@ -36,13 +36,26 @@
 | PREUVE-S10-004 | 10 | ANO-T02 | Sonde de l'EntityManager après redémarrage du kernel | 11/11/2026 | idem | `.../04-sonde-entitymanager-detache.txt` | Exécution | Entité détachée, `flush()` sans effet | Réussi (cause confirmée) |
 | PREUVE-S10-005 | 10 | Version de référence | Suite complète sur `test/campagne-finale` | 11/11/2026 | idem | `.../05-suite-reference.txt`, `05-suite-reference-junit.xml` | Exécution | 34 tests, 105 assertions, 0 échec | Réussi |
 | PREUVE-S10-006 | 10 | Qualité statique | `php -l`, conteneur, mapping, Twig, YAML | 11/11/2026 | idem | `.../06-controles-statiques.txt` | Exécution | Tous OK | Réussi |
+| PREUVE-S03-001 | 3 | EX-05, périmètre API | Liste des routes de l'application | 11/11/2026 | Symfony 7.4.23 | `preuves/semaine3/routes-application.txt` | Exécution | Aucune route de profil ; 4 routes JSON | Réussi (constat) |
+| PREUVE-S05-001 | 5 | ST-01 à ST-10 | Scénarios dans Chrome, captures et relectures SQL | 11/11/2026 | Chrome, Playwright 1.59.1, `wassalni_test` | `preuves/semaine5/S05_ST*.png`, `S05_verifications.json`, `S05_playwright-*.{txt,json}` | Résultat | 10 scénarios conformes (ST-09 conforme à la règle validée) | Réussi |
+| PREUVE-S05-002 | 5 | Transitions T-01 à T-06 | Tests BrowserKit des transitions de réclamation | 11/11/2026 | PHPUnit 12.5.23 | `preuves/semaine5/S05_transitions-*` | Exécution | 5 réussis ; T-05 en échec = ANO-33 | Échoué (ANO-33) |
+| PREUVE-S05-003 | 5 | EXPL-01 à 04 | Sessions exploratoires outillées | 11/11/2026 | Chrome, Playwright | `preuves/semaine5/S05_exploration-*`, `S05_EXPL*.png` | Exécution et observations | 5 sondes ; découverte d'ANO-34 | Réussi (sondes) |
+| PREUVE-S05-004 | 5 | ANO-32 | Fuseau horaire de PHP comparé à l'heure locale | 11/11/2026 | PHP 8.4.27 | `preuves/semaine5/S05_fuseau-horaire.txt` | Exécution | UTC contre UTC+1 | Échoué (ANO-32) |
+| PREUVE-S06-003 | 6 | UT-01 à UT-11 | Suite unitaire et couverture PCOV | 11/11/2026 | PHPUnit, PCOV 1.0.12 | `preuves/semaine6/campagne-finale/*`, `S06_TESTS_UNITAIRES.png`, `S06_COUVERTURE.png` | Exécution | 33 tests OK ; 7,00 % (unitaire), 34,65 % (régression) | Réussi |
+| PREUVE-S07-001 | 7 | TC-xx, CA-xx | Catalogue officiel en HTTP/BDD (P1) | 11/11/2026 | BrowserKit, `wassalni_test` | `preuves/semaine7/p1-catalogue/*` | Exécution | 62 tests OK ; 34 tests d'anomalies en échec | Échoué (anomalies) |
+| PREUVE-S07-002 | 7 | IT-01 à IT-06 | Intégration Doctrine, transactions, isolation | 11/11/2026 | MariaDB 10.4.32 | `preuves/semaine7/campagne-finale/*`, `S07_TESTS_INTEGRATION.png` | Exécution | 9 intégration OK ; 45 HTTP/BDD OK ; isolation vérifiée | Réussi |
+| PREUVE-S08-001 | 8 | API JSON | Collection Newman (19 requêtes) | 11/11/2026 | Newman 6.2.3 | `preuves/semaine8/*`, `S08_TESTS_API.png` | Exécution | 32/35 assertions ; 3 échecs = ANO-22 | Échoué (ANO-22) |
+| PREUVE-S09-001 | 9 | CT-29 | Parcours critique dans Chrome | 11/11/2026 | Chrome, Playwright | `preuves/semaine9/S09_PARCOURS_*`, `S09_parcours-verifications.json` | Résultat | Réservation de 2 places, persistance vérifiée | Réussi |
+| PREUVE-S09-002 | 9 | Accessibilité | axe-core sur 4 pages et sonde clavier | 11/11/2026 | @axe-core/playwright 4.14.0 | `preuves/semaine9/S09_A11Y_*`, `S09_accessibilite-axe.json` | Exécution | 3 pages avec violations critiques | Échoué (ANO-36, 37) |
+| PREUVE-S09-003 | 9 | Performance | k6, 5 VU pendant 30 s | 11/11/2026 | k6 2.3.0 | `preuves/semaine9/S09_k6-*` | Exécution | 0 % d'échec, p95 208,7 ms | Réussi |
+| PREUVE-S09-004 | 9 | OBS-J | Concurrence, deux transactions entrelacées | 11/11/2026 | MariaDB 10.4.32 | `preuves/semaine9/S09_concurrence-OBS-J.txt` | Exécution | 2 réservations pour 1 place | Échoué (ANO-38) |
+| PREUVE-S09-005 | 9 | Sécurité | En-têtes, cookie, page d'erreur, audits de dépendances | 11/11/2026 | Chrome, composer, npm | `preuves/semaine9/S09_securite-elementaire.json`, `S09_audit-dependances.txt` | Exécution | Cookie et page d'erreur conformes ; en-têtes absents | Réussi partiel (REC-01) |
+| PREUVE-S10-007 | 10 | Régression | Référence « avant corrections » | 11/11/2026 | PHPUnit | `preuves/semaine10/regression/*` | Exécution | 87 OK ; 48 tests d'anomalies | Référence |
+| PREUVE-S10-008 | 10 | Campagne finale | Rejeu complet sur `cc50095` | 11/11/2026 | Tous les outils | `preuves/semaine10/campagne-finale/*`, `S10_BILAN_FINAL.png`, `S10_PLAYWRIGHT_FINAL.png` | Exécution | PHPUnit 87 OK ; Playwright 20/23 ; Newman 32/35 ; k6 OK | Réussi (régression) ; échecs attendus = anomalies |
 
-## Preuves prévues (non exécutées à ce jour)
+## Preuves non produites
 
-| Semaine | Preuves attendues | Phase |
-|---|---|---|
-| 5 | `S05_ST01` à `S05_ST10` (captures Playwright) et journaux EXPL-01 à 04 | P2 |
-| 7 | JUnit et TestDox des tests d'intégration ; relectures SQL ; test de rollback | P1 |
-| 8 | Rapport Newman (JSON et CLI) et capture `S08_TESTS_API.png` | P3 |
-| 9 | Rapport Playwright, captures `S09_*`, rapport axe, mesures k6 | P2 / P4 |
-| 10 | Régression finale, indicateurs, `S10_BILAN_FINAL.png` | P7 |
+| Domaine | Raison |
+|---|---|
+| Inscription en plusieurs étapes, e-mails (EX-01, 02, 30) | Non exécutés : le transport de mail est `null://null` dans l'environnement de test |
+| Exploration manuelle humaine | Sessions conduites avec outil uniquement ; fiche de journal prête (doc 05 §5.5) |

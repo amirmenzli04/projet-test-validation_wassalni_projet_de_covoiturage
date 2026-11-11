@@ -1,0 +1,4 @@
+# AVANT CORRECTIONS — régression par défaut
+Time: 00:04.644, Memory: 56.00 MB
+
+OK (87 tests, 245 assertions)

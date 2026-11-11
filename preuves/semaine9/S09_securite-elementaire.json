@@ -1,8 +1,8 @@
 {
-  "execution": "2026-11-11T21:21:09.527Z",
+  "execution": "2026-11-11T21:40:47.161Z",
   "entrees": [
     {
-      "horodatage": "2026-11-11T21:21:38.377Z",
+      "horodatage": "2026-11-11T21:42:59.369Z",
       "sonde": "en-têtes HTTP de protection",
       "resultats": {
         "/connexion": {
@@ -35,7 +35,7 @@
       }
     },
     {
-      "horodatage": "2026-11-11T21:21:38.379Z",
+      "horodatage": "2026-11-11T21:42:59.371Z",
       "sonde": "attributs des cookies après connexion (valeurs non enregistrées)",
       "cookies": [
         {
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "horodatage": "2026-11-11T21:21:40.158Z",
+      "horodatage": "2026-11-11T21:43:01.075Z",
       "sonde": "page d'erreur en environnement non-debug",
       "http": 500,
       "fuites_detectees": [],

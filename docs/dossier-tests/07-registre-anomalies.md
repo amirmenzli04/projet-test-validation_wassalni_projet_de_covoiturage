@@ -1,8 +1,26 @@
 # 7. Registre des anomalies
 
-- **Version :** 1.4, 11 novembre 2026 (semaines 1 à 9)
+- **Version :** 2.0 (finale), 11 novembre 2026 — campagne de régression finale sur la révision `cc50095`
 - **Branche de campagne :** `test/campagne-finale`
 - **Environnement commun :** Windows 11, PHP 8.4.27, Symfony 7.4.23, PHPUnit 12.5.23, MariaDB 10.4.32, base `wassalni_test`
+
+## 7.0 Synthèse finale
+
+| Catégorie | Nombre | Statut |
+|---|---|---|
+| Anomalies applicatives corrigées avant la campagne (ANO-01 à 06) | 6 | Vérifiées : régression réussie |
+| **Anomalies applicatives ouvertes (ANO-07 à ANO-38)** | **32** | **Confirmées, non corrigées** (décision : pas de modification du code pendant la campagne) |
+| dont S2 (majeure) | 8 | ANO-07, 12, 13, 20, 21, 22, 35, 38 |
+| dont S3 (moyenne) | 16 | ANO-08, 09, 10, 11, 14, 15, 16, 17, 19, 23, 25, 26, 29, 31, 34, 36 |
+| dont S4 (mineure) | 8 | ANO-18, 24, 27, 28, 30, 32, 33, 37 |
+| Anomalies de l'outillage de test (ANO-T01 à T05) | 5 | Corrigées et vérifiées |
+
+Toutes les anomalies ouvertes sont rejouées à chaque régression par `vendor/bin/phpunit --group anomalie-ouverte` (48 tests : 41 échecs, 5 erreurs, 2 dépréciations), par Playwright (ANO-36 : 3 échecs) et par Newman (ANO-22 : 3 assertions en échec). Preuve : `preuves/semaine10/campagne-finale/`.
+
+**Décisions produit du 11/11/2026 :**
+
+- **Fuseau horaire.** La règle attendue est Africa/Tunis. ANO-32 reste ouverte (S4) comme écart à une règle désormais définie.
+- **Réclamations.** Le traitement direct `EN_ATTENTE → TRAITEE` est accepté. OBS-05-01 est close et ST-09 devient conforme à la règle validée.
 
 ## 7.1 Règles du registre
 
@@ -108,6 +126,7 @@ Le même défaut est **présumé** sur la route HTML `POST /reservation/new/{id}
 | ANO-T01 | `assertSame(50.0, prixTotal)` échoue : `JsonResponse` encode `50.0` en `50`, relu comme entier | Message `Failed asserting that 50 is identical to 50.0` (audit du 11/11) | `b8497aa` : `assertEqualsWithDelta` | Vérifiée |
 | ANO-T02 | Le stock remis à 4 n'est pas persisté : après la 2ᵉ requête, BrowserKit redémarre le kernel, l'EntityManager change et l'entité fixture est détachée | [`04-sonde-entitymanager-detache.txt`](../../preuves/semaine10/p0-reference/04-sonde-entitymanager-detache.txt) : `meme_EM=false`, `places_en_base=4` | `b8497aa` : rechargement du trajet avant modification | Vérifiée |
 | ANO-T03 | Les fixtures ont une date d'arrivée égale à la date de départ : `$departure->modify()` modifie l'objet partagé | Sortie de la commande : `dateDepart 12:00` au lieu de `10:00` | `b8497aa` : `(clone $departure)->modify(...)`. Relecture SQL : 10:00 → 12:00 | Vérifiée |
+| ANO-T05 | Les fichiers Playwright dépendaient de leur ordre d'exécution : le parcours de la semaine 9 laissait au passager A une réservation, et ST-10 recevait ensuite un refus de doublon (HTTP 400, comportement correct de l'application) | Échec de ST-10 lors de la première campagne finale (`03-playwright.txt`, 4 échecs) | `resetFixture()` au début de chaque fichier qui réserve | Vérifiée : campagne finale avec 20 tests réussis, ST-10 réussi |
 | ANO-T04 | Collection Postman illisible : tableau `event` fermé par `}` (ligne 37) | `json.decoder.JSONDecodeError: line 38 column 7` | `a7cd086` | Vérifiée (JSON valide, 10 requêtes) |
 
 ## 7.4 Devenir des observations statiques (P1, 11/11/2026)

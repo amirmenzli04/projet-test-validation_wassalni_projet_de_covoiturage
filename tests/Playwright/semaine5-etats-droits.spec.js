@@ -5,7 +5,9 @@
  * Ce sont des tests automatisés : ils ne remplacent pas les sessions d'exploration (chartes EXPL-01 à 04).
  */
 const { test } = require('@playwright/test');
-const { ACCOUNTS, expect, fixture, login, shot, sqlRow, evidenceLog } = require('./helpers');
+const { ACCOUNTS, expect, fixture, login, resetFixture, shot, sqlRow, evidenceLog } = require('./helpers');
+
+test.beforeAll(() => resetFixture()); // isolation entre fichiers (ANO-T05)
 
 test.describe.configure({ mode: 'serial' });
 
