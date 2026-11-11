@@ -1,0 +1,73 @@
+# 2026-11-11 22:10:28 +0100 | d29d93e + copie de travail | PHP 8.4.27, PHPUnit 12.5.23 | base wassalni_test (MariaDB 10.4.32, InnoDB)
+# vendor/bin/phpunit --testsuite fonctionnel --testdox (HTTP BrowserKit + relecture SQL ; groupe anomalie-ouverte exclu)
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: C:\Users\Dogui\wassalni-tests\phpunit.dist.xml
+
+.............................................                     45 / 45 (100%)
+
+Time: 00:05.206, Memory: 54.00 MB
+
+Anonymous Access (App\Tests\Functional\AnonymousAccess)
+ ✔ Anonymous visitors are redirected from protected routes
+
+Avis Reclamation (App\Tests\Functional\Catalogue\AvisReclamation)
+ ✔ CA-18 — avis sur un trajet jamais réservé (T-P4) : refusé
+ ✔ TC-36 (CA-17, EX-24) — réclamation : message vide et de 9 caractères refusés, 10 accepté ; sujet hors liste (101 car.) refusé
+
+Connexion Acces (App\Tests\Functional\Catalogue\ConnexionAcces)
+ ✔ TC-51 (CA-11) — mauvais mot de passe puis e-mail inconnu : refus, message identique, aucune session
+ ✔ TC-41 (CA-12, EX-31) — U-PASS1 ouvre /admin/dashboard, /admin/utilisateurs et /admin/trajets : 403 pour chaque page
+ ✔ CA-12 (EX-31) — passager sur l'espace conducteur : 403 ; visiteur anonyme : redirection vers /connexion
+ ✔ CA-20 (EX-28, EX-35) — admin supprime T-NOMINAL qui a des réservations : refus propre ou propagation, sans erreur 500 ni orphelin
+ ✔ CA-13 (EX-32) — U-COND2 ouvre la modification du véhicule V1 de U-COND1 : 403
+
+Publication Recherche (App\Tests\Functional\Catalogue\PublicationRecherche)
+ ✔ TC-09 (EX-08) — U-COND1 publie Tunis→Sousse J+1/J+2, 15 DT avec V1 : trajet enregistré, rattaché au conducteur
+ ✔ TC-10 (CA-02) — départ J-1 par requête directe : refus, aucun trajet créé
+ ✔ TC-13 (CA-02) — arrivée J+1 avant départ J+2 : refus, aucun trajet
+ ✔ TC-14 (CA-03) — prix 0 refusé
+ ✔ TC-14 (CA-03) — prix -1 refusé
+ ✔ TC-14 (CA-03) — prix 0,01 accepté
+ ✔ TC-14 (CA-03) — prix 15 accepté
+ ✔ CA-21 (EX-07) — U-COND2 sans véhicule : redirigé vers l'ajout de véhicule, aucun trajet publié
+ ✔ TC-19 (CA-04) — T-NOMINAL trouvé ; T-FULL (0 place) et T-PEND (en attente) absents
+ ✔ TC-20 b (EX-13) — villes saisies en minuscules : mêmes résultats
+ ✔ CA-05 (EX-15) — résultats triés par date de départ croissante : T-FUT-EARLY (J+2) avant T-P4 (J+8)
+ ✔ CA-04 (EX-13) — filtre date J+8 : T-P4 seul, T-FUT-EARLY (J+2) exclu
+
+Reclamation Transitions (App\Tests\Functional\Catalogue\ReclamationTransitions)
+ ✔ T-01 (EX-25) — création par le formulaire : état initial EN_ATTENTE, date de traitement vide
+ ✔ T-02 / OBS-05-01 — EN_ATTENTE → TRAITEE directement par la réponse administrateur (aucun passage par EN_COURS)
+ ✔ T-03 — TRAITEE → TRAITEE : une seconde réponse par requête directe écrase la première (transition non gardée)
+ ✔ T-04 / OBS-05-02 — Reclamation::setStatut() accepte un statut hors liste (aucune garde dans l'entité)
+ ✔ T-06 (CA-12) — un passager ne peut pas traiter une réclamation : 403, statut inchangé
+
+Reclamation Workflow (App\Tests\Functional\ReclamationWorkflow)
+ ✔ Authenticated user can create a complaint
+ ✔ Complaint form rejects nine character message
+ ✔ Only the complaint owner can read its details
+ ✔ Administrator can process and persist a complaint
+ ✔ Empty administrator response leaves complaint pending
+ ✔ Non administrator cannot open administration
+ ✔ Complaint list only contains the current users complaints
+
+Reservation Annulation (App\Tests\Functional\Catalogue\ReservationAnnulation)
+ ✔ TC-22 (CA-07, CA-08) — réserver les 4 places de T-P4 : CONFIRMEE, 0 place restante, total 88 DT
+ ✔ TC-23 (CA-06) — demander 5 places sur 4 par requête directe : refus, aucune réservation, 4 places
+ ✔ TC-25 (CA-07) — totaux de 1, 2 et 4 places à 22 DT : 22, 44 et 88 DT
+ ✔ TC-28 bis (CA-09) — même doublon par la voie JSON : HTTP 400, une seule réservation
+ ✔ TC-29 (CA-10) — annuler RES-F1 puis réserver de nouveau T-NOMINAL : ANNULEE, places rendues, nouvelle réservation acceptée
+ ✔ TC-50 bis (CA-01) — réserver T-PEND par la voie JSON : HTTP 400, aucune réservation
+ ✔ CA-13 — U-PASS2 tente d'annuler RES-F1 de U-PASS1 par URL directe : 403, état et stock inchangés
+ ✔ CA-10 — double annulation de RES-F1 : places rendues une seule fois
+ ✔ CA-12 (EX-31) — un conducteur ne peut pas réserver (route réservée à ROLE_PASSAGER) : 403
+
+Reservation Api (App\Tests\Functional\ReservationApi)
+ ✔ Anonymous user cannot create reservation
+ ✔ Passenger creates reservation and persists availability
+ ✔ Api rejects malformed json and non positive seat counts
+ ✔ Api rejects unknown unavailable and duplicate reservations
+
+OK (45 tests, 164 assertions)

@@ -201,6 +201,22 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
         $this->assertNotServerError('Suppression d\'un utilisateur ayant des réservations');
     }
 
+    #[Group('anomalie-ouverte')]
+    #[Group('ANO-23')]
+    #[TestDox("CA-20 (EX-28) — admin supprime T-P4 visé par une réclamation : refus explicite ou propagation, sans erreur 500")]
+    public function testCA20SuppressionTrajetViseParUneReclamation(): void
+    {
+        $reclamation = (new Reclamation())->setSujet('Retard important')->setMessage('Réclamation sur T-P4')
+            ->setUser($this->user('U-PASS1'))->setTrajetConcerne($this->em()->getRepository(\App\Entity\Trajet::class)->find($this->ids['T-P4']));
+        $this->em()->persist($reclamation);
+        $this->em()->flush();
+        $this->em()->clear();
+
+        $this->client->loginUser($this->user('U-ADMIN'));
+        $this->client->request('GET', '/admin/trajet/supprimer/' . $this->ids['T-P4']);
+        $this->assertNotServerError("Suppression d'un trajet visé par une réclamation");
+    }
+
     #[TestDox('CA-16 (EX-26) — tableau de bord admin : le compteur « Réclamations » égale le nombre en attente en base')]
     #[Group('anomalie-ouverte')]
     #[Group('ANO-24')]

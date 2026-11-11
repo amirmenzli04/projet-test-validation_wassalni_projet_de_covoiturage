@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="C:\Users\Dogui\wassalni-tests\phpunit.dist.xml" tests="9" assertions="29" errors="0" failures="0" skipped="0" time="0.646289">
+    <testsuite name="integration" tests="9" assertions="29" errors="0" failures="0" skipped="0" time="0.646289">
+      <testsuite name="App\Tests\Integration\ReservationPersistenceTest" file="C:\Users\Dogui\wassalni-tests\tests\Integration\ReservationPersistenceTest.php" tests="3" assertions="9" errors="0" failures="0" skipped="0" time="0.369937">
+        <testcase name="testReservationCanBeCreatedReadUpdatedAndDeleted" file="C:\Users\Dogui\wassalni-tests\tests\Integration\ReservationPersistenceTest.php" line="26" class="App\Tests\Integration\ReservationPersistenceTest" classname="App.Tests.Integration.ReservationPersistenceTest" assertions="7" time="0.268551"/>
+        <testcase name="testDatabaseRejectsReservationWithUnknownPassenger" file="C:\Users\Dogui\wassalni-tests\tests\Integration\ReservationPersistenceTest.php" line="60" class="App\Tests\Integration\ReservationPersistenceTest" classname="App.Tests.Integration.ReservationPersistenceTest" assertions="1" time="0.059140"/>
+        <testcase name="testDatabaseRejectsDuplicateUserEmail" file="C:\Users\Dogui\wassalni-tests\tests\Integration\ReservationPersistenceTest.php" line="87" class="App\Tests\Integration\ReservationPersistenceTest" classname="App.Tests.Integration.ReservationPersistenceTest" assertions="1" time="0.042247"/>
+      </testsuite>
+      <testsuite name="App\Tests\Integration\TransactionIntegriteTest" file="C:\Users\Dogui\wassalni-tests\tests\Integration\TransactionIntegriteTest.php" tests="6" assertions="20" errors="0" failures="0" skipped="0" time="0.276352">
+        <testcase name="testRollbackExplicite" file="C:\Users\Dogui\wassalni-tests\tests\Integration\TransactionIntegriteTest.php" line="63" class="App\Tests\Integration\TransactionIntegriteTest" classname="App.Tests.Integration.TransactionIntegriteTest" assertions="3" time="0.039450"/>
+        <testcase name="testFlushAtomiqueEnCasDEchec" file="C:\Users\Dogui\wassalni-tests\tests\Integration\TransactionIntegriteTest.php" line="87" class="App\Tests\Integration\TransactionIntegriteTest" classname="App.Tests.Integration.TransactionIntegriteTest" assertions="3" time="0.046429"/>
+        <testcase name="testWrapInTransactionAnnuleSurException" file="C:\Users\Dogui\wassalni-tests\tests\Integration\TransactionIntegriteTest.php" line="116" class="App\Tests\Integration\TransactionIntegriteTest" classname="App.Tests.Integration.TransactionIntegriteTest" assertions="2" time="0.048500"/>
+        <testcase name="testRelationsBidirectionnelles" file="C:\Users\Dogui\wassalni-tests\tests\Integration\TransactionIntegriteTest.php" line="139" class="App\Tests\Integration\TransactionIntegriteTest" classname="App.Tests.Integration.TransactionIntegriteTest" assertions="6" time="0.044441"/>
+        <testcase name="testCascadeDesReservations" file="C:\Users\Dogui\wassalni-tests\tests\Integration\TransactionIntegriteTest.php" line="160" class="App\Tests\Integration\TransactionIntegriteTest" classname="App.Tests.Integration.TransactionIntegriteTest" assertions="3" time="0.049959"/>
+        <testcase name="testSuppressionBloqueeParUneReclamation" file="C:\Users\Dogui\wassalni-tests\tests\Integration\TransactionIntegriteTest.php" line="180" class="App\Tests\Integration\TransactionIntegriteTest" classname="App.Tests.Integration.TransactionIntegriteTest" assertions="3" time="0.047572"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
