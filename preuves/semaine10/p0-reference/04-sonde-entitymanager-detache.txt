@@ -1,0 +1,13 @@
+# 2026-11-11 21:21:10 +0100 - sonde EntityManager apres 2 requetes BrowserKit (copie de travail)
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: C:\Users\Dogui\wassalni-tests\phpunit.dist.xml
+
+managed_avant=true meme_EM=false managed_apres=false
+places_en_base_apres_flush=4 (attendu si persiste: 0)
+.                                                                   1 / 1 (100%)
+
+Time: 00:02.187, Memory: 36.00 MB
+
+OK (1 test, 1 assertion)

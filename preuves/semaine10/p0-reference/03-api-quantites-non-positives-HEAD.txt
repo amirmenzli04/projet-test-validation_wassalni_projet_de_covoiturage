@@ -1,0 +1,43 @@
+# 2026-11-11 21:20:34 +0100 - POST /reservation/new-ajax sur HEAD, nbPlaces=0 (test ReservationApiTest)
+Reservation chargee depuis: <scratchpad>\head-wt\src\Entity\Reservation.php
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: <scratchpad>\head-wt\phpunit.dist.xml
+
+F                                                                   1 / 1 (100%)
+
+Time: 00:01.869, Memory: 36.00 MB
+
+There was 1 failure:
+
+1) App\Tests\Functional\ReservationApiTest::testApiRejectsMalformedJsonAndNonPositiveSeatCounts
+Failed asserting that the Response status code is 400.
+HTTP/1.1 200 OK
+Cache-Control: max-age=0, must-revalidate, private
+Content-Type:  application/json
+Date:          Wed, 11 Nov 2026 20:21:09 GMT
+Expires:       Wed, 11 Nov 2026 20:21:09 GMT
+
+{"success":true,"message":"R\u00e9servation confirm\u00e9e pour 0 place(s) !","reservationId":40,"prixTotal":0}
+
+C:\Users\Dogui\wassalni-tests\vendor\symfony\framework-bundle\Test\BrowserKitAssertionsTrait.php:198
+C:\Users\Dogui\wassalni-tests\vendor\symfony\framework-bundle\Test\BrowserKitAssertionsTrait.php:48
+<scratchpad>\head-wt\tests\Functional\ReservationApiTest.php:73
+
+FAILURES!
+Tests: 1, Assertions: 3, Failures: 1.
+
+# nbPlaces=-1 (sonde)
+Reservation chargee depuis: <scratchpad>\head-wt\src\Entity\Reservation.php
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: <scratchpad>\head-wt\phpunit.dist.xml
+
+HTTP=200 body={"success":true,"message":"R\u00e9servation confirm\u00e9e pour -1 place(s) !","reservationId":41,"prixTotal":-25} places_avant=4 places_apres=5
+.                                                                   1 / 1 (100%)
+
+Time: 00:00.267, Memory: 36.00 MB
+
+OK (1 test, 1 assertion)

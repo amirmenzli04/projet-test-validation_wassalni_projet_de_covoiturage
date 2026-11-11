@@ -1,9 +1,12 @@
 # Dossier de test — WASSALNI
 
-- **Version :** 1.3 (résultats unitaires et intégration HTTP/DB)
-- **Date du dossier :** 10 novembre 2026
+- **Version :** 1.4 (P0 : version de référence et registre des anomalies)
+- **Date du dossier :** 11 novembre 2026
+- **Branche de campagne :** `test/campagne-finale`
 - **Périmètre :** application web de covoiturage Symfony
-- **Statut :** suite PHPUnit et tests d'intégration HTTP/DB exécutés; exploration navigateur et contrôles non fonctionnels à compléter.
+- **Statut :** version de référence stabilisée ; suite complète **34 tests, 105 assertions, 0 échec** ; 6 anomalies applicatives confirmées et corrigées ([registre](07-registre-anomalies.md)) ; exploration navigateur, API Newman et non fonctionnel à exécuter.
+
+> **Mise à jour du 11/11/2026 (P0).** Les chiffres « 27 tests / 74 assertions » cités plus bas restent exacts pour le périmètre historique du 10/11/2026, revérifié à l'identique. La suite courante en compte 34. Voir le [journal de campagne](08-journal-campagne.md).
 
 ## Contenu
 
@@ -13,6 +16,9 @@
 4. [Catalogue de cas de test et données](04-cas-de-test-donnees.md)
 5. [Cycle de vie, exploration et anomalies à confirmer](05-etats-exploration-anomalies.md)
 6. [Automatisation, rapports et décision de livraison](06-automatisation-bilan.md)
+7. [Registre des anomalies](07-registre-anomalies.md)
+8. [Journal de la campagne finale](08-journal-campagne.md)
+9. Preuves : [index](../rapport-preuves/index-preuves.md) et [registre](../rapport-preuves/registre-preuves.md)
 
 Une copie PDF complète de l'entité de réservation est disponible ici : [Reservation-complete.pdf](Reservation-complete.pdf).
 
