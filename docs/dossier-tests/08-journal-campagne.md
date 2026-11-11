@@ -66,3 +66,36 @@ php bin/console lint:container --env=test ; php bin/console lint:twig templates 
 - `docs/docs/semaine2-environnement.md` est un fichier **vide**, doublon de `docs/semaine2-environnement.md`. Il est laissé non versionné, en attente de votre accord pour le supprimer.
 - `Reservation-complete.pdf` est une impression du code source, non une preuve d'exécution. Il est conservé mais ne sera pas cité comme preuve.
 - **Deux référentiels d'identifiants coexistent** : la lignée PDF des semaines 1 à 4 (`EX`, `CA`, `TC`, `A`) et la lignée Markdown du dossier (`R`, `EX`, `CT`). Les numéros `EX-xx` ont des **significations différentes** d'une lignée à l'autre. Une harmonisation est prévue en P5, après votre décision.
+
+## P1 — Confirmation des observations et exécution du catalogue officiel (11/11/2026) — **Terminé**
+
+### Décisions appliquées
+
+Le référentiel adopté est celui des PDF : exigences `EX-01` à `EX-35` et critères `CA-01` à `CA-22` (semaine 3), cas `TC-xx` (semaine 4, version officielle de `docs/`), écarts `A-xx`. Le catalogue Markdown `CT-xx` sera relié à ce référentiel par une table de correspondance (P5).
+
+### Opérations
+
+1. **Jeu de données officiel** (`tests/Support/CatalogueFixture.php`), conforme à la section 3 du PDF de la semaine 4 : 6 comptes, 2 véhicules, 8 trajets, 3 réservations, dates relatives au jour J. Le nettoyage ne supprime que les lignes rattachées aux comptes `cat-*@example.test` créés par le test.
+2. **Quatre classes de tests HTTP/BDD**, une par groupe A à E du PDF, nommées avec leur identifiant TC/CA (`#[TestDox]`).
+3. **Trois défauts de mes propres tests** détectés puis corrigés avant de produire les preuves :
+   - propriétés `private` du trait invisibles depuis les sous-classes, d'où des URL sans identifiant et un 404 ; certains tests auraient pu réussir à tort ;
+   - méthode `status()` réservée par PHPUnit ;
+   - sujet de réclamation absent de la liste des choix dans TC-36.
+4. **Classement des tests révélant une anomalie** dans les groupes `anomalie-ouverte` et `ANO-xx`, exclus de la régression par défaut.
+5. **`phpunit.dist.xml`** découpé en trois suites : `unitaire`, `integration`, `fonctionnel`.
+
+### Résultats
+
+| Mesure | Valeur |
+|---|---|
+| Régression par défaut | **62 tests, 189 assertions, OK** |
+| Groupe `anomalie-ouverte` | **34 tests : 32 échecs, 2 dépréciations** |
+| Anomalies confirmées | 21 (ANO-07 à ANO-27), dont **6 de sévérité S2** (ANO-07, 12, 13, 20, 21, 22) |
+| Observations OBS-A à OBS-I | Toutes confirmées ; OBS-J reportée en P4 |
+| Isolation de la base | Comptages identiques avant et après ; 0 résidu |
+
+Les preuves sont dans `preuves/semaine7/p1-catalogue/` (voir son README) ; le détail des anomalies est dans [07 §7.5](07-registre-anomalies.md).
+
+### Points en attente
+
+Aucune correction du code métier n'a été faite. Les corrections proposées vous seront présentées anomalie par anomalie avant P6.
