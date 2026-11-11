@@ -1,0 +1,14 @@
+{
+  "scenario": "Recherche de trajets Tunis-Sfax à date fixe",
+  "samplesMs": [
+    57.88,
+    56.3,
+    49.32,
+    48.11,
+    47.67
+  ],
+  "medianMs": 49.32,
+  "maximumMs": 57.88,
+  "maximumAllowedMs": 2000,
+  "result": "PASS"
+}

@@ -1,0 +1,21 @@
+# 2026-11-11 22:21:01 +0100 | 549dcdc + copie de travail | vendor/bin/phpunit --exclude-group aucun tests/Integration/ConcurrenceReservationTest.php
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: C:\Users\Dogui\wassalni-tests\phpunit.dist.xml
+
+F                                                                   1 / 1 (100%)
+
+Time: 00:00.345, Memory: 38.00 MB
+
+Concurrence Reservation (App\Tests\Integration\ConcurrenceReservation)
+ ✘ IT-07 (R1, EX-35, CA-06) — deux réservations entrelacées sur la dernière place : une seule doit être confirmée
+   │
+   │ Surréservation : {"controle_A_passe":true,"controle_B_passe":true,"reservations_confirmees":2,"places_restantes":0}
+   │ Failed asserting that 2 is equal to 1 or is less than 1.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Integration\ConcurrenceReservationTest.php:98
+   │
+
+FAILURES!
+Tests: 1, Assertions: 3, Failures: 1.

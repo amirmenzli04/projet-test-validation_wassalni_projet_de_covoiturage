@@ -1,6 +1,6 @@
 # 7. Registre des anomalies
 
-- **Version :** 1.3, 11 novembre 2026 (phases P0, P1, semaines 5 et 6)
+- **Version :** 1.4, 11 novembre 2026 (semaines 1 à 9)
 - **Branche de campagne :** `test/campagne-finale`
 - **Environnement commun :** Windows 11, PHP 8.4.27, Symfony 7.4.23, PHPUnit 12.5.23, MariaDB 10.4.32, base `wassalni_test`
 
@@ -125,10 +125,10 @@ Chaque observation a été soumise à un test HTTP/BDD (preuve : `preuves/semain
 | OBS-G | **Confirmée** : `DateMalformedStringException`, HTTP 500. | ANO-19 |
 | OBS-H | **Confirmée** : HTTP 500 sur les deux routes. | ANO-25 |
 | OBS-I | **Confirmée** : le compteur affiche 0 pour 6 réclamations en attente. | ANO-24 |
-| OBS-J | Non exécutée en P1 : il faut des requêtes concurrentes sur un serveur démarré. | Prévue en P4 |
+| OBS-J | **Confirmée en semaine 9** par simulation déterministe de deux transactions entrelacées : surréservation. | ANO-38 |
 | OBS-05-01 à 04 | Cycle de vie des réclamations | Traité en P2 |
 
-## 7.5 Anomalies confirmées en P1 et en semaines 5 et 6
+## 7.5 Anomalies confirmées en P1 et en semaines 5 à 9
 
 Champs communs à toutes les fiches de cette section :
 
@@ -173,6 +173,9 @@ Champs communs à toutes les fiches de cette section :
 | ANO-33 | Les statistiques de « Mes réclamations » ignorent le statut EN_COURS | U-PASS1 possède une réclamation `EN_COURS` ; ouvre `/reclamation/mes-reclamations` | Total = en attente + traitées (+ en cours) (EX-29) | Total 1, en attente 0, traitées 0 | S4 / P4 | OBS-05-04 | `ReclamationTransitionsTest::testStatistiquesAvecEnCours` |
 | ANO-34 | Le tableau de bord passager renvoie une erreur 500 | U-PASS1 connecté ; `GET /passager/dashboard` | Page affichée (EX-29) | HTTP 500 : `Variable "stats" does not exist in "dashboard/passager.html.twig" at line 14` (le contrôleur ne transmet que `reservations`) | S3 / P2 | — | `ConnexionAccesTest::testTableauDeBordPassager` ; découverte en exploration EXPL-02 |
 | ANO-35 | Le formulaire de véhicule plante : contrainte `Range` mal paramétrée | U-COND2 (sans véhicule) ouvre `/vehicule/nouveau` et soumet les 5 champs valides | Véhicule enregistré (EX-06, CA-21) ; ensuite, publication possible (EX-07) | **HTTP 500** : `Error: Unknown named parameter $message` (`Vehicule.php` ligne 34 : `#[Assert\Range(..., message: ...)]`, paramètre inexistant pour `Range`). Toute validation d'un véhicule échoue : ajout et modification impossibles | **S2 / P1** | — | `PublicationRechercheTest::testCA21AjoutVehicule` ; découverte par les tests unitaires UT-05 et UT-06 |
+| ANO-36 | Des champs de formulaire n'ont pas de nom accessible (axe : gravité critique) | Audit axe-core (WCAG 2.0/2.1 A et AA) de `/trajet/recherche`, `/reclamation/nouvelle`, `/reservation/mes-reservations` | Chaque contrôle a un libellé associé (WCAG 1.3.1, 4.1.2) | `select-name` : 3 listes sur la recherche (`#villeDepart`…), 3 sur la réclamation (`#reclamation_sujet`…), 1 sur « Mes réservations » (`#statusFilter`) ; `label` : `#dateDepart` sans libellé associé | S3 / P3 | — | `semaine9-accessibilite-securite.spec.js` (pages recherche, nouvelle-reclamation, mes-reservations) ; `preuves/semaine9/S09_accessibilite-axe.json` |
+| ANO-37 | Contraste de couleurs insuffisant | Audit axe-core de `/connexion` et `/trajet/recherche` | Contraste ≥ 4,5:1 (WCAG 1.4.3, niveau AA) | `color-contrast` (gravité *serious*) : 2 éléments sur la connexion, 15 sur la recherche (libellés du formulaire) | S4 / P4 | — | Même spécification (constat, la règle n'est pas bloquante) |
+| ANO-38 | Surréservation possible en cas de réservations simultanées (OBS-J) | Trajet à 1 place ; deux passagers ; l'algorithme de `newAjax` est rejoué dans deux connexions MariaDB distinctes, entrelacées (A lit, B lit, A écrit, B écrit) | Une seule réservation confirmée ; stock jamais incohérent (R1, EX-35, CA-06) | Les deux contrôles passent ; **2 réservations confirmées pour 1 place** ; stock final 0 (mise à jour perdue). Aucun verrou (`PESSIMISTIC_WRITE`, version optimiste ou décrément conditionnel en SQL) | S2 / P2 | R1 | `ConcurrenceReservationTest::testDerniereplaceEntrelacee` (simulation déterministe ; la concurrence HTTP réelle est impossible avec `php -S` sous Windows) |
 
 ### Cas conformes vérifiés en P1
 

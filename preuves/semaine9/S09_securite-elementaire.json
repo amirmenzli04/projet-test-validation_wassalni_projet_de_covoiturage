@@ -1,0 +1,57 @@
+{
+  "execution": "2026-11-11T21:21:09.527Z",
+  "entrees": [
+    {
+      "horodatage": "2026-11-11T21:21:38.377Z",
+      "sonde": "en-têtes HTTP de protection",
+      "resultats": {
+        "/connexion": {
+          "x-frame-options": "ABSENT",
+          "content-security-policy": "ABSENT",
+          "x-content-type-options": "ABSENT",
+          "referrer-policy": "ABSENT",
+          "strict-transport-security": "ABSENT",
+          "permissions-policy": "ABSENT",
+          "x-powered-by": "PHP/8.4.27"
+        },
+        "/trajet/recherche": {
+          "x-frame-options": "ABSENT",
+          "content-security-policy": "ABSENT",
+          "x-content-type-options": "ABSENT",
+          "referrer-policy": "ABSENT",
+          "strict-transport-security": "ABSENT",
+          "permissions-policy": "ABSENT",
+          "x-powered-by": "PHP/8.4.27"
+        },
+        "/health": {
+          "x-frame-options": "ABSENT",
+          "content-security-policy": "ABSENT",
+          "x-content-type-options": "ABSENT",
+          "referrer-policy": "ABSENT",
+          "strict-transport-security": "ABSENT",
+          "permissions-policy": "ABSENT",
+          "x-powered-by": "PHP/8.4.27"
+        }
+      }
+    },
+    {
+      "horodatage": "2026-11-11T21:21:38.379Z",
+      "sonde": "attributs des cookies après connexion (valeurs non enregistrées)",
+      "cookies": [
+        {
+          "nom": "MOCKSESSID",
+          "httpOnly": true,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ]
+    },
+    {
+      "horodatage": "2026-11-11T21:21:40.158Z",
+      "sonde": "page d'erreur en environnement non-debug",
+      "http": 500,
+      "fuites_detectees": [],
+      "capture": "preuves\\semaine9\\S09_SECU_page_erreur_500.png"
+    }
+  ]
+}

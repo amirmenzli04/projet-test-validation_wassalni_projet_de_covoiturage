@@ -61,15 +61,31 @@ function sqlRow(query) {
 
 /** Journal de preuve JSON (une entrée par vérification) écrit à côté des captures. */
 function evidenceLog(week, file) {
-    const entries = [];
+    // Écriture immédiate à chaque ajout : Playwright redémarre le processus de test après un échec,
+    // un journal tenu seulement en mémoire perdrait les entrées précédentes. Les entrées d'une
+    // exécution antérieure (identifiant d'exécution différent) sont remplacées.
+    const directory = path.join(ROOT, 'preuves', week);
+    const target = path.join(directory, file);
+    const runId = process.env.WASSALNI_RUN_ID || 'manuel';
     return {
         add(entry) {
-            entries.push({ horodatage: new Date().toISOString(), ...entry });
+            fs.mkdirSync(directory, { recursive: true });
+            let stored = { execution: runId, entrees: [] };
+            if (fs.existsSync(target)) {
+                try {
+                    const previous = JSON.parse(fs.readFileSync(target, 'utf8'));
+                    if (previous.execution === runId && Array.isArray(previous.entrees)) {
+                        stored = previous;
+                    }
+                } catch {
+                    // fichier d'une version précédente du format : remplacé
+                }
+            }
+            stored.entrees.push({ horodatage: new Date().toISOString(), ...entry });
+            fs.writeFileSync(target, JSON.stringify(stored, null, 2) + '\n');
         },
         save() {
-            const directory = path.join(ROOT, 'preuves', week);
-            fs.mkdirSync(directory, { recursive: true });
-            fs.writeFileSync(path.join(directory, file), JSON.stringify(entries, null, 2) + '\n');
+            // conservé pour compatibilité : l'écriture est déjà faite à chaque ajout
         },
     };
 }

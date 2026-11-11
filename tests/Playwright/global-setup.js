@@ -27,4 +27,6 @@ module.exports = async (config) => {
     fs.mkdirSync(path.join(root, 'test-results'), { recursive: true });
     fs.writeFileSync(path.join(root, 'test-results', 'fixture.json'), JSON.stringify(fixture, null, 2));
     process.env.WASSALNI_FIXTURE_TRIP_ID = String(fixture.tripId);
+    // Identifiant d'exécution partagé par les processus de test (journaux de preuve).
+    process.env.WASSALNI_RUN_ID = new Date().toISOString();
 };

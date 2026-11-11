@@ -1,0 +1,112 @@
+# 2026-11-11 22:21:01 +0100 | 549dcdc + copie de travail | Playwright 1.59.1, Chrome local, @axe-core/playwright 4.14.0 | serveur php -S (APP_ENV=test forcé)
+
+Running 8 tests using 1 worker
+
+  ok 1 tests\Playwright\reservation-flow.spec.js:15:1 › CT-29 — un passager se connecte, recherche, réserve 2 places et retrouve sa réservation (7.4s)
+  ok 2 tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page connexion (1.5s)
+  x  3 tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page recherche (3.3s)
+  x  4 tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page nouvelle-reclamation (3.1s)
+  x  5 tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page mes-reservations (3.0s)
+  ok 6 tests\Playwright\semaine9-accessibilite-securite.spec.js:48:1 › Accessibilité — connexion entièrement au clavier (Tab, saisie, Entrée) (1.9s)
+  ok 7 tests\Playwright\semaine9-accessibilite-securite.spec.js:71:1 › Sécurité élémentaire — en-têtes de protection et cookie de session (1.8s)
+  ok 8 tests\Playwright\semaine9-accessibilite-securite.spec.js:93:1 › Sécurité élémentaire — une erreur serveur ne divulgue ni trace ni chemin de fichier (1.6s)
+
+
+  1) tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page recherche 
+
+    Error: Violations critiques sur recherche
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 2
+
+      42 |         a11y.add({ page: target.name, url: target.url.split('?')[0], regles_verifiees: results.passes.length + results.violations.length, conformes: results.passes.length, violations_par_impact: byImpact, violations, capture: file });
+      43 |         // Constat consigné ; les violations critiques sont signalées comme échec (soft) sans arrêter la campagne.
+    > 44 |         expect.soft(byImpact.critical, `Violations critiques sur ${target.name}`).toBe(0);
+         |                                                                                   ^
+      45 |     });
+      46 | }
+      47 |
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\error-context.md
+
+    Error Context: test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    Usage:
+
+        npx playwright show-trace test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page nouvelle-reclamation 
+
+    Error: Violations critiques sur nouvelle-reclamation
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      42 |         a11y.add({ page: target.name, url: target.url.split('?')[0], regles_verifiees: results.passes.length + results.violations.length, conformes: results.passes.length, violations_par_impact: byImpact, violations, capture: file });
+      43 |         // Constat consigné ; les violations critiques sont signalées comme échec (soft) sans arrêter la campagne.
+    > 44 |         expect.soft(byImpact.critical, `Violations critiques sur ${target.name}`).toBe(0);
+         |                                                                                   ^
+      45 |     });
+      46 | }
+      47 |
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\semaine9-accessibilite-sec-9f84d-—-page-nouvelle-reclamation\error-context.md
+
+    Error Context: test-results\semaine9-accessibilite-sec-9f84d-—-page-nouvelle-reclamation\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    Usage:
+
+        npx playwright show-trace test-results\semaine9-accessibilite-sec-9f84d-—-page-nouvelle-reclamation\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page mes-reservations 
+
+    Error: Violations critiques sur mes-reservations
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      42 |         a11y.add({ page: target.name, url: target.url.split('?')[0], regles_verifiees: results.passes.length + results.violations.length, conformes: results.passes.length, violations_par_impact: byImpact, violations, capture: file });
+      43 |         // Constat consigné ; les violations critiques sont signalées comme échec (soft) sans arrêter la campagne.
+    > 44 |         expect.soft(byImpact.critical, `Violations critiques sur ${target.name}`).toBe(0);
+         |                                                                                   ^
+      45 |     });
+      46 | }
+      47 |
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\semaine9-accessibilite-sec-8f58e--AA-—-page-mes-reservations\error-context.md
+
+    Error Context: test-results\semaine9-accessibilite-sec-8f58e--AA-—-page-mes-reservations\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    Usage:
+
+        npx playwright show-trace test-results\semaine9-accessibilite-sec-8f58e--AA-—-page-mes-reservations\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page recherche 
+    tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page nouvelle-reclamation 
+    tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 › Accessibilité (axe, WCAG A/AA) — page mes-reservations 
+  5 passed (36.8s)
