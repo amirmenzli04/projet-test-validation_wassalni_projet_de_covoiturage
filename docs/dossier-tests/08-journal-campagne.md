@@ -63,7 +63,7 @@ php bin/console lint:container --env=test ; php bin/console lint:twig templates 
 
 ### Limites et points en attente
 
-- `docs/docs/semaine2-environnement.md` est un fichier **vide**, doublon de `docs/semaine2-environnement.md`. Il est laissé non versionné, en attente de votre accord pour le supprimer.
+- `docs/docs/semaine2-environnement.md` était un fichier **vide**, doublon de `docs/semaine2-environnement.md`. Il a été supprimé le 21/11/2026.
 - `Reservation-complete.pdf` est une impression du code source, non une preuve d'exécution. Il est conservé mais ne sera pas cité comme preuve.
 - **Deux référentiels d'identifiants coexistent** : la lignée PDF des semaines 1 à 4 (`EX`, `CA`, `TC`, `A`) et la lignée Markdown du dossier (`R`, `EX`, `CT`). Les numéros `EX-xx` ont des **significations différentes** d'une lignée à l'autre. Une harmonisation est prévue en P5, après votre décision.
 

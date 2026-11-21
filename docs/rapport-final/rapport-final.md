@@ -1,23 +1,28 @@
 # Rapport final — Test et validation de l'application WASSALNI
 
 **Mini-projet Licence 3 TI, DSI — Atelier Test et validation des logiciels**
-Étudiant : Mohamed Lajili · Dépôt : `projet-test-validation_wassalni_projet_de_covoiturage`, branche `test/campagne-finale` · Version du dossier 1.0.0 · 11 novembre 2026
+Étudiant : Mohamed Lajili · Dépôt : `projet-test-validation_wassalni_projet_de_covoiturage`, branches `test/campagne-finale` et `fix/anomalies-s2` · Version du dossier 2.0 · 21 novembre 2026 (version 1.0.0 du 11 novembre 2026)
 
 ---
 
 ## Résumé
 
-WASSALNI est une application Symfony 7.4 de covoiturage avec trois rôles : passager, conducteur et administrateur. La campagne a été menée sur dix semaines, sur une base dédiée `wassalni_test` ; la base principale n'a jamais été utilisée. Elle a produit :
+WASSALNI est une application Symfony 7.4 de covoiturage avec trois rôles : passager, conducteur et administrateur. La campagne a été menée sur dix semaines, sur une base dédiée `wassalni_test` ; la base principale n'a jamais été utilisée.
 
-- **87 tests de régression** PHPUnit, tous réussis ;
-- **48 tests démontrant 32 anomalies** confirmées et non corrigées ;
-- **23 tests navigateur** Playwright (20 réussis) ;
-- **19 requêtes API** Newman (35 assertions, dont 32 réussies) ;
-- **un test de charge** k6, dont les seuils sont respectés.
+**Campagne finale du 11/11/2026 (révision `cc50095`).** 87 tests de régression réussis ; 48 tests démontrant 32 anomalies, dont 8 majeures (S2) ; Playwright 20/23 ; Newman 32/35 assertions ; k6 conforme ; couverture 34,65 % des lignes. **Décision : refus de livraison (NO-GO).**
 
-La couverture de code de la régression atteint 34,65 % des lignes. Sur les 35 exigences, 9 sont satisfaites, 9 partiellement, 14 non satisfaites, et 3 n'ont pas été exécutées.
+**Corrections et rejeu du 21/11/2026 (révision `72cff37`).** Les 8 anomalies S2 ont été corrigées sur la branche `fix/anomalies-s2`, puis toute la campagne a été rejouée :
 
-**Décision : refus de livraison (NO-GO).** Huit anomalies majeures (S2) restent ouvertes en sécurité, en intégrité des réservations et sur un parcours bloquant.
+- **110 tests de régression** PHPUnit, tous réussis (291 assertions) ;
+- **27 tests démontrant les 24 anomalies encore ouvertes** (16 S3, 8 S4, aucune S2, aucune P1) ;
+- **23 tests navigateur** Playwright (20 réussis ; les 3 échecs sont l'accessibilité, ANO-36) ;
+- **19 requêtes API** Newman, **35 assertions sur 35** réussies ;
+- **un test de charge** k6, dont les seuils sont respectés ;
+- **couverture : 41,33 % des lignes**, et entre 85,7 % et 100 % sur les classes critiques.
+
+Sur les 35 exigences, 15 sont satisfaites, 10 partiellement, 7 non satisfaites, et 3 n'ont pas été exécutées.
+
+**Décision en vigueur : validation conditionnelle.** Aucun défaut S1 ou S2 n'est ouvert et tous les seuils du plan sont atteints, sauf l'accessibilité. Les conditions de livraison sont détaillées au §8.
 
 | Semaine | Livrable | Document |
 |---|---|---|
@@ -31,6 +36,7 @@ La couverture de code de la régression atteint 34,65 % des lignes. Sur les 35 e
 | 8 | API | [11](../dossier-tests/11-semaine8-api.md) |
 | 9 | Interface et non fonctionnel | [12](../dossier-tests/12-semaine9-interface-non-fonctionnel.md) |
 | 10 | Régression, anomalies, décision | [14](../dossier-tests/14-semaine10-bilan-decision.md), [07 registre](../dossier-tests/07-registre-anomalies.md), [13 recommandations](../dossier-tests/13-plan-corrections.md) |
+| 21/11 | Corrections S2, rejeu, nouvelle décision | [14 §14.7](../dossier-tests/14-semaine10-bilan-decision.md), [07 §7.7](../dossier-tests/07-registre-anomalies.md), [15 écarts avec l'énoncé](../dossier-tests/15-ecarts-enonce.md) |
 
 ---
 
@@ -105,7 +111,7 @@ L'application n'expose **aucune API REST** : il y a 4 routes JSON, et aucune n'a
 **Figure 11** — Page auditée par axe-core. *Résultat observé* : 2 règles critiques en défaut (`select-name`, `label`) et des contrastes insuffisants. *Interprétation* : ANO-36 et ANO-37. Aucune conformité WCAG n'est revendiquée.
 
 - **Performance (k6, 5 VU, 30 s) :** 0 % d'échec, p95 de 217 ms. Mesure faite sur un serveur de développement mono-processus.
-- **Concurrence :** deux transactions entrelacées produisent **2 réservations pour 1 place** (ANO-38).
+- **Concurrence :** deux transactions entrelacées produisent **2 réservations pour 1 place** (ANO-38, corrigée le 21/11, voir §8).
 - **Sécurité élémentaire :** `composer audit` est propre, le cookie est `HttpOnly`/`SameSite`, la page d'erreur ne divulgue rien. Les en-têtes de protection sont absents (REC-01).
 
 ## 7. Semaine 10 — Régression et décision
@@ -123,23 +129,65 @@ L'application n'expose **aucune API REST** : il y a 4 routes JSON, et aucune n'a
 | k6 | Seuils respectés |
 | Exigences | 9 réussies, 9 partielles, 14 échouées, 3 non exécutées |
 
-**Décision : NO-GO (refus de livraison).** Les critères de sortie ne sont pas atteints : 8 anomalies S2 sont ouvertes, et le stock comme le prix peuvent être manipulés. Les conditions d'un GO et les corrections recommandées figurent dans les documents [14](../dossier-tests/14-semaine10-bilan-decision.md) et [13](../dossier-tests/13-plan-corrections.md).
+**Décision du 11/11 : NO-GO (refus de livraison).** Les critères de sortie ne sont pas atteints : 8 anomalies S2 sont ouvertes, et le stock comme le prix peuvent être manipulés. Les conditions d'un GO et les corrections recommandées figurent dans les documents [14](../dossier-tests/14-semaine10-bilan-decision.md) et [13](../dossier-tests/13-plan-corrections.md).
 
-## 8. Limites de la campagne
+## 8. Corrections des anomalies S2 et rejeu (21/11/2026)
+
+Les corrections ont été faites sur la branche `fix/anomalies-s2`. Pour chaque anomalie, le test qui la démontrait est sorti du groupe `anomalie-ouverte` et fait désormais partie de la régression.
+
+| Anomalie | Correction |
+|---|---|
+| ANO-07 | Le nombre de places de la voie HTML est validé (entier ≥ 1), comme la voie JSON |
+| ANO-20, ANO-21 | Un `UserChecker` refuse la connexion d'un compte non vérifié ou bloqué |
+| ANO-22 | Les routes de suivi d'inscription ne répondent que pour la session en cours |
+| ANO-35 | Paramètre de la contrainte `Range` corrigé : l'ajout de véhicule fonctionne |
+| ANO-12, ANO-13 | Toutes les actions qui modifient des données exigent un POST et un jeton CSRF propre à l'action |
+| ANO-38 | Décrément du stock par une requête SQL conditionnelle atomique, dans la même transaction que la réservation |
+
+Avant ces corrections, l'intégration continue a été réparée : ses 12 exécutions précédentes échouaient toutes, faute de fichier `.env` dans le dépôt.
+
+![Figure 13](../../preuves/semaine10/S10_CI_verte.png)
+
+**Figure 13** — Intégration continue GitHub Actions verte après réparation du workflow. *Interprétation* : la régression PHPUnit est rejouée automatiquement à chaque push, sur une base MariaDB neuve.
+
+**Un incident instructif.** Le premier commit de la correction d'ANO-38 ne contenait pas le contrôleur modifié, et le rejeu était pourtant vert : le test IT-07 vérifiait l'atomicité du service, pas son utilisation par le contrôleur. Un test garde-fou a été ajouté ; il échoue sur la révision incomplète et passe sur la révision corrigée. Un test réussi ne prouve que ce qu'il vise réellement.
+
+| Résultat | 11/11 (`cc50095`) | 21/11 (`72cff37`) |
+|---|---|---|
+| Régression PHPUnit | 87 / 87 | **110 / 110** |
+| Anomalies ouvertes | 32 (8 S2) | **24 (0 S2)** |
+| Newman | 32 / 35 | **35 / 35** |
+| Playwright | 20 / 23 | 20 / 23 (ANO-36) |
+| Couverture des lignes | 34,65 % | **41,33 %** |
+| Exigences réussies / partielles / échouées / non exécutées | 9 / 9 / 14 / 3 | **15 / 10 / 7 / 3** |
+
+**Décision du 21/11 : validation conditionnelle.** Tous les seuils du plan de test (§2.7.2) sont atteints, sauf l'accessibilité (ANO-36). Conditions de livraison :
+
+1. avant la mise en production, corriger les anomalies S3 qui touchent l'intégrité métier (ANO-08, 09, 10, 11, 15, 16, 17) et les erreurs 500 connues (ANO-23, 25, 34) ;
+2. dans le mois suivant, corriger l'accessibilité (ANO-36) puis les autres anomalies S3/S4 ;
+3. après chaque correction, rejouer la campagne complète et garder la CI verte.
+
+Le détail figure dans le document [14, §14.7](../dossier-tests/14-semaine10-bilan-decision.md).
+
+## 9. Limites de la campagne
 
 - Les explorations ont été conduites avec un outil et non manuellement.
 - L'inscription et les e-mails n'ont pas été exécutés.
 - La concurrence a été démontrée par simulation déterministe, car `php -S` est mono-processus sous Windows.
 - La performance a été mesurée sur un serveur de développement.
 - L'accessibilité repose sur un audit automatique partiel.
-- Aucune correction n'a été appliquée : la régression atteste la stabilité, pas une amélioration.
+- Seules les 8 anomalies S2 ont été corrigées ; 24 anomalies S3/S4 restent ouvertes et sont rejouées à chaque régression.
+- Le référentiel de l'énoncé (RéclaGest) diffère de WASSALNI : affectation, historique, priorité et API REST n'existent pas et n'ont pas été testés ([15](../dossier-tests/15-ecarts-enonce.md)).
 
-## 9. Reproduire
+## 10. Reproduire
 
 ```powershell
 composer install ; npm ci
 # Définir WASSALNI_TEST_PASSWORD dans .env.test.local (non versionné), base MariaDB wassalni_test migrée
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-regression.ps1
+Remove-Item -Recurse -Force var\cache\test
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-regression.ps1 -Sortie preuves/semaine10/<nouveau-dossier>
 ```
+
+La régression PHPUnit est aussi rejouée automatiquement par GitHub Actions (`.github/workflows/ci.yml`) à chaque push.
 
 Les preuves sont indexées dans [`docs/rapport-preuves/index-preuves.md`](../rapport-preuves/index-preuves.md).

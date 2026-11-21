@@ -1,0 +1,79 @@
+# WASSALNI — Campagne de test et validation
+
+Mini-projet **« Atelier Test et validation des logiciels »**, Licence 3 Technologies de l'information, spécialité DSI.
+Application testée : **WASSALNI**, application web de covoiturage (Symfony 7.4, PHP 8.4, MariaDB), avec trois rôles (passager, conducteur, administrateur) et un module de réclamations.
+
+Étudiant : Mohamed Lajili
+
+## Résultat en bref
+
+| | Campagne finale du 11/11/2026 | **Après corrections, 21/11/2026** |
+|---|---|---|
+| Révision | `cc50095` | **`72cff37`** |
+| Régression PHPUnit (unitaire, intégration, HTTP) | 87 tests, OK | **110 tests, 291 assertions, OK** |
+| Anomalies ouvertes | 32 (dont 8 majeures S2) | **24 (0 S2, 16 S3, 8 S4)** |
+| API (Postman / Newman) | 32 / 35 assertions | **35 / 35** |
+| Interface (Playwright) | 20 / 23 | 20 / 23 (3 échecs = accessibilité, ANO-36) |
+| Performance (k6) | Seuils respectés | Seuils respectés |
+| Couverture des lignes | 34,65 % | **41,33 %** |
+| Décision | Refus de livraison | **Validation conditionnelle** |
+
+## Où trouver quoi
+
+| Besoin | Emplacement |
+|---|---|
+| **Rapport final** (illustré) | [`docs/rapport-final/rapport-final.md`](docs/rapport-final/rapport-final.md) · [PDF](docs/rapport-final/rapport-final.pdf) |
+| Dossier de test complet (plan, exigences, matrice, catalogue, registre, bilan) | [`docs/dossier-tests/`](docs/dossier-tests/README.md) |
+| Plan de test et critères de sortie | [`02-strategie-calendrier.md`](docs/dossier-tests/02-strategie-calendrier.md) |
+| Matrice de traçabilité | [`09-matrice-tracabilite.md`](docs/dossier-tests/09-matrice-tracabilite.md) |
+| Registre des anomalies | [`07-registre-anomalies.md`](docs/dossier-tests/07-registre-anomalies.md) |
+| Bilan et décision de livraison | [`14-semaine10-bilan-decision.md`](docs/dossier-tests/14-semaine10-bilan-decision.md) |
+| Écarts avec le référentiel de l'énoncé (RéclaGest) | [`15-ecarts-enonce.md`](docs/dossier-tests/15-ecarts-enonce.md) |
+| Livrables PDF des semaines 1 à 4 | [`docs/`](docs/README.md) |
+| Preuves d'exécution (sorties, rapports JUnit, captures) | [`preuves/`](preuves/) — rejeu final : [`preuves/semaine10/apres-corrections/`](preuves/semaine10/apres-corrections/) |
+
+## Tests automatisés
+
+| Niveau | Outil | Emplacement |
+|---|---|---|
+| Unitaire | PHPUnit (suite `unitaire`) | `tests/Entity`, `tests/Service`, `tests/Controller` |
+| Intégration et base de données | PHPUnit (suite `integration`) | `tests/Integration` |
+| Système HTTP et relecture en base | PHPUnit (suite `fonctionnel`) | `tests/Functional` |
+| Anomalies ouvertes (échecs attendus) | PHPUnit, groupe `anomalie-ouverte` | réparti dans les suites |
+| API | Postman + Newman | `postman/`, `scripts/run-newman.js` |
+| Interface | Playwright (Chrome) | `tests/Playwright` |
+| Performance | k6 | `tests/k6` |
+| Intégration continue | GitHub Actions | `.github/workflows/ci.yml` |
+
+## Reproduire la campagne
+
+Prérequis : PHP 8.4, Composer, Node.js, MariaDB avec une base `wassalni_test`, Chrome ; k6 pour la performance.
+
+```powershell
+composer install ; npm ci
+# Créer .env.test.local (jamais versionné) avec : WASSALNI_TEST_PASSWORD=<12 caractères minimum>
+php bin/console doctrine:database:create --env=test --if-not-exists
+php bin/console doctrine:migrations:migrate --env=test --no-interaction
+
+# Toujours vider le cache de test avant d'exécuter (voir ANO-T06)
+Remove-Item -Recurse -Force var\cache\test
+
+# Régression seule
+vendor\bin\phpunit
+# Anomalies encore ouvertes (échecs attendus)
+vendor\bin\phpunit --group anomalie-ouverte
+# Campagne complète : PHPUnit, anomalies, Playwright, Newman, k6
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-regression.ps1 -Sortie preuves/semaine10/<nouveau-dossier>
+```
+
+Toutes les commandes travaillent exclusivement sur la base `wassalni_test` ; chaque outil vérifie le nom de la base avant d'agir.
+
+## Branches et versions
+
+| Branche ou tag | Contenu |
+|---|---|
+| `main` | Application de référence |
+| `baseline-v0` (tag) | État initial avant la campagne |
+| `v1.0.0` (tag) | Campagne finale du 11/11/2026 (décision NO-GO) |
+| `test/campagne-finale` | Dossier de test et outillage de la campagne |
+| `fix/anomalies-s2` | Corrections des 8 anomalies S2 et rejeu du 21/11/2026 |
