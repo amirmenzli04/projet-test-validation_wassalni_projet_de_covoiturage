@@ -7,16 +7,16 @@ Application testée : **WASSALNI**, application web de covoiturage (Symfony 7.4,
 
 ## Résultat en bref
 
-| | Campagne finale du 11/11/2026 | **Après corrections, 21/11/2026** |
-|---|---|---|
-| Révision | `cc50095` | **`72cff37`** |
-| Régression PHPUnit (unitaire, intégration, HTTP) | 87 tests, OK | **110 tests, 291 assertions, OK** |
-| Anomalies ouvertes | 32 (dont 8 majeures S2) | **24 (0 S2, 16 S3, 8 S4)** |
-| API (Postman / Newman) | 32 / 35 assertions | **35 / 35** |
-| Interface (Playwright) | 20 / 23 | 20 / 23 (3 échecs = accessibilité, ANO-36) |
-| Performance (k6) | Seuils respectés | Seuils respectés |
-| Couverture des lignes | 34,65 % | **41,33 %** |
-| Décision | Refus de livraison | **Validation conditionnelle** |
+| | Campagne finale du 11/11/2026 | Corrections S2 (21/11) | **Version finale (21/11)** |
+|---|---|---|---|
+| Révision | `cc50095` | `72cff37` | **`1ed214b`** |
+| Régression PHPUnit (unitaire, intégration, HTTP, API) | 87 tests | 110 tests | **131 tests, 365 assertions, OK** |
+| Anomalies ouvertes | 32 (dont 8 S2) | 24 (0 S2) | **23 (0 S2, 15 S3, 8 S4)** |
+| API (Postman / Newman) | 19 requêtes, 32/35 | 19 requêtes, 35/35 | **35 requêtes, 59/59** (dont l'API REST des réclamations) |
+| Interface (Playwright) | 20 / 23 | 20 / 23 | **23 / 23** (accessibilité corrigée) |
+| Performance (k6) | Seuils respectés | Seuils respectés | Seuils respectés |
+| Couverture des lignes | 34,65 % | 41,33 % | **44,69 %** |
+| Décision | Refus de livraison | Validation conditionnelle | **Validation conditionnelle (confirmée)** |
 
 ## Où trouver quoi
 
@@ -30,7 +30,7 @@ Application testée : **WASSALNI**, application web de covoiturage (Symfony 7.4,
 | Bilan et décision de livraison | [`14-semaine10-bilan-decision.md`](docs/dossier-tests/14-semaine10-bilan-decision.md) |
 | Écarts avec le référentiel de l'énoncé (RéclaGest) | [`15-ecarts-enonce.md`](docs/dossier-tests/15-ecarts-enonce.md) |
 | Livrables PDF des semaines 1 à 4 | [`docs/`](docs/README.md) |
-| Preuves d'exécution (sorties, rapports JUnit, captures) | [`preuves/`](preuves/) — rejeu final : [`preuves/semaine10/apres-corrections/`](preuves/semaine10/apres-corrections/) |
+| Preuves d'exécution (sorties, rapports JUnit, captures) | [`preuves/`](preuves/) — rejeu final : [`preuves/semaine10/apres-ameliorations/`](preuves/semaine10/apres-ameliorations/) |
 
 ## Tests automatisés
 
@@ -40,7 +40,7 @@ Application testée : **WASSALNI**, application web de covoiturage (Symfony 7.4,
 | Intégration et base de données | PHPUnit (suite `integration`) | `tests/Integration` |
 | Système HTTP et relecture en base | PHPUnit (suite `fonctionnel`) | `tests/Functional` |
 | Anomalies ouvertes (échecs attendus) | PHPUnit, groupe `anomalie-ouverte` | réparti dans les suites |
-| API | Postman + Newman | `postman/`, `scripts/run-newman.js` |
+| API (routes JSON et API REST `/api/reclamations`) | Postman + Newman ; PHPUnit | `postman/`, `scripts/run-newman.js`, `tests/Functional/Api` |
 | Interface | Playwright (Chrome) | `tests/Playwright` |
 | Performance | k6 | `tests/k6` |
 | Intégration continue | GitHub Actions | `.github/workflows/ci.yml` |
@@ -55,8 +55,9 @@ composer install ; npm ci
 php bin/console doctrine:database:create --env=test --if-not-exists
 php bin/console doctrine:migrations:migrate --env=test --no-interaction
 
-# Toujours vider le cache de test avant d'exécuter (voir ANO-T06)
+# Toujours vider puis reconstruire le cache de test avant d'exécuter (voir ANO-T06 et ANO-T08)
 Remove-Item -Recurse -Force var\cache\test
+php bin/console cache:warmup --env=test --no-debug
 
 # Régression seule
 vendor\bin\phpunit
@@ -77,3 +78,5 @@ Toutes les commandes travaillent exclusivement sur la base `wassalni_test` ; cha
 | `v1.0.0` (tag) | Campagne finale du 11/11/2026 (décision NO-GO) |
 | `test/campagne-finale` | Dossier de test et outillage de la campagne |
 | `fix/anomalies-s2` | Corrections des 8 anomalies S2 et rejeu du 21/11/2026 |
+| `amelioration/a11y-api` | Accessibilité (ANO-36), API REST des réclamations, ANO-39 |
+| `v2.0.0` (tag) | Après corrections S2 (validation conditionnelle) |

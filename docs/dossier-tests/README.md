@@ -2,7 +2,7 @@
 
 - **Version :** 2.0 (finale) — 11 novembre 2026 — tag `v1.0.0`
 - **Branche :** `test/campagne-finale` · **Révision testée :** `cc50095` (code applicatif identique à `e2fe62b`)
-- **Statut :** campagne des semaines 1 à 10 terminée le 11/11 (NO-GO), puis anomalies S2 corrigées et campagne rejouée le 21/11 sur `72cff37` (branche `fix/anomalies-s2`). **Décision en vigueur : VALIDATION CONDITIONNELLE**, voir [14 §14.7](14-semaine10-bilan-decision.md).
+- **Statut :** campagne des semaines 1 à 10 terminée le 11/11 (NO-GO), puis anomalies S2 corrigées et campagne rejouée le 21/11 sur `72cff37` (branche `fix/anomalies-s2`). Accessibilité corrigée et API REST des réclamations ajoutée le 21/11 sur `1ed214b` (branche `amelioration/a11y-api`). **Décision en vigueur : VALIDATION CONDITIONNELLE (confirmée)**, voir [14 §14.8](14-semaine10-bilan-decision.md).
 - **Rapport final illustré :** [Markdown](../rapport-final/rapport-final.md) · [PDF](../rapport-final/rapport-final.pdf)
 
 ## Livrables par semaine
@@ -29,7 +29,8 @@ Les fichiers 01 à 06 sont conservés comme **dossier de travail** (historique d
 ```powershell
 composer install ; npm ci
 # .env.test.local : WASSALNI_TEST_PASSWORD=<12 caractères min.> (jamais versionné) ; MariaDB avec la base wassalni_test migrée
-Remove-Item -Recurse -Force var\cache\test   # obligatoire après toute modification de configuration (ANO-T06)
+Remove-Item -Recurse -Force var\cache\test   # obligatoire après toute modification (ANO-T06)
+php bin/console cache:warmup --env=test --no-debug   # évite le délai dépassé au démarrage du serveur (ANO-T08)
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-regression.ps1 -Sortie preuves/semaine10/<nouveau-dossier>
 ```
 
@@ -60,18 +61,18 @@ Les versions sources sont [le catalogue semaine 4](04-cas-de-test-donnees.md) et
 
 WASSALNI est une application Symfony 7.4 de covoiturage avec trois rôles (passager, conducteur, administrateur) et un traitement des réclamations. Le volet API porte sur les 4 routes JSON existantes (pas d'API REST générale ; écarts avec l'énoncé : [15](15-ecarts-enonce.md)).
 
-| Niveau | 11/11 (`cc50095`) | **21/11 (`72cff37`)** |
-|---|---|---|
-| Régression PHPUnit | 87 tests, OK | **110 tests, 291 assertions, OK** |
-| Anomalies ouvertes | 32 (8 S2) | **24 (0 S2, 16 S3, 8 S4)** |
-| Playwright | 20 / 23 | 20 / 23 (3 = accessibilité, ANO-36) |
-| Newman | 32 / 35 | **35 / 35** |
-| k6 | Seuils respectés | Seuils respectés |
-| Couverture des lignes | 34,65 % | **41,33 %** |
-| Exigences (réussies / partielles / échouées / non exécutées) | 9 / 9 / 14 / 3 | **15 / 10 / 7 / 3** |
-| Décision | Refus de livraison | **Validation conditionnelle** |
+| Niveau | 11/11 (`cc50095`) | 21/11, corrections S2 (`72cff37`) | **21/11, version finale (`1ed214b`)** |
+|---|---|---|---|
+| Régression PHPUnit | 87 tests | 110 tests | **131 tests, 365 assertions, OK** |
+| Anomalies ouvertes | 32 (8 S2) | 24 (0 S2) | **23 (0 S2, 15 S3, 8 S4)** |
+| Playwright | 20 / 23 | 20 / 23 | **23 / 23** |
+| Newman | 19 requêtes, 32 / 35 | 19 requêtes, 35 / 35 | **35 requêtes, 59 / 59** |
+| k6 | Seuils respectés | Seuils respectés | Seuils respectés |
+| Couverture des lignes | 34,65 % | 41,33 % | **44,69 %** |
+| Exigences (R / P / E / NE) | 9 / 9 / 14 / 3 | 15 / 10 / 7 / 3 | 15 / 10 / 7 / 3 |
+| Décision | Refus de livraison | Validation conditionnelle | **Validation conditionnelle (confirmée)** |
 
-Les conditions de livraison sont listées au [§14.7.3](14-semaine10-bilan-decision.md) ; les corrections sont détaillées au [registre, §7.7](07-registre-anomalies.md).
+Les conditions de livraison sont listées au [§14.8](14-semaine10-bilan-decision.md) ; les corrections sont détaillées au [registre, §7.7 et §7.8](07-registre-anomalies.md) ; l'API REST au [§11.5](11-semaine8-api.md).
 
 ## Utilisation
 

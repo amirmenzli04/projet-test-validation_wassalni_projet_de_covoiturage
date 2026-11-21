@@ -1,6 +1,6 @@
 # 14. Semaine 10 — Campagne finale, bilan et décision de livraison
 
-> **Mise à jour du 21/11/2026.** Après la décision NO-GO du 11/11 (§14.1 à §14.6, conservés tels quels), les 8 anomalies S2 ont été corrigées et la campagne complète a été rejouée. **La décision en vigueur est au §14.7 : validation conditionnelle.**
+> **Mise à jour du 21/11/2026.** Après la décision NO-GO du 11/11 (§14.1 à §14.6, conservés tels quels), les 8 anomalies S2 ont été corrigées et la campagne complète a été rejouée. **La décision en vigueur est au §14.8 : validation conditionnelle, confirmée après l'accessibilité et l'API REST.**
 
 - **Date :** 11 novembre 2026
 - **Révision testée :** `cc50095` (branche `test/campagne-finale`). Le code applicatif est identique à `e2fe62b`.
@@ -141,3 +141,47 @@ La hausse du p95 de k6 (217 → 393 ms) reste très en dessous du seuil de 1 500
 | Responsable de campagne | NO-GO (refus de livraison) | `cc50095` | 11/11/2026 |
 | Responsable de campagne | **Validation conditionnelle** | `72cff37` | 21/11/2026 |
 | Responsable produit / enseignant | À viser | — | — |
+
+## 14.8 Accessibilité, API REST et confirmation de la décision (21/11/2026)
+
+- **Révision testée :** `1ed214b` (branche `amelioration/a11y-api`)
+- **Commande :** `scripts/run-regression.ps1 -Sortie preuves/semaine10/apres-ameliorations`
+- **Changements :** ANO-36 corrigée ; API REST des réclamations ([11 §11.5](11-semaine8-api.md)) ; ANO-39 découverte et corrigée ([07 §7.8](07-registre-anomalies.md))
+
+| Niveau | 21/11, après corrections S2 (`72cff37`) | **21/11, après améliorations (`1ed214b`)** |
+|---|---|---|
+| Régression PHPUnit | 110 tests, 291 assertions | **131 tests, 365 assertions, OK** |
+| Tests d'anomalies ouvertes | 27 | 27 |
+| Playwright | 20 / 23 | **23 / 23** |
+| Newman | 19 requêtes, 35 / 35 | **35 requêtes, 59 / 59** |
+| k6 | p95 392,8 ms | p95 250,8 ms ; seuils respectés |
+| Couverture des lignes | 41,33 % | **44,69 %** (`ApiReclamationController` : 98,1 %) |
+| Anomalies ouvertes | 24 (0 S2, 16 S3, 8 S4) | **23 (0 S2, 15 S3, 8 S4)** |
+| Exigences | 15 R, 10 P, 7 E, 3 NE | 15 R, 10 P, 7 E, 3 NE |
+
+**Seuils du plan (§2.7.2) : tous atteints**, y compris l'accessibilité (0 violation critique sur les 4 pages auditées).
+
+### Décision : **VALIDATION CONDITIONNELLE (confirmée)**
+
+Tous les seuils quantitatifs sont atteints. La validation simple n'est pourtant pas retenue :
+
+- au sens de l'énoncé, une validation suppose qu'**aucun défaut bloquant ne soit connu** et que les exigences critiques soient satisfaites ; or **7 exigences restent non satisfaites** (EX-05, 09, 10, 11, 12, 26, 29), dont les règles de publication des trajets (EX-09 à EX-12) ;
+- 15 anomalies S3 restent ouvertes, dont 7 qui touchent l'intégrité métier (réservation de trajets passés ou non validés, prix non numérique, modération contournée) ;
+- la réserve sur ANO-15 (prix « abc » enregistré à 0 DT) est maintenue.
+
+Ces défauts sont connus, documentés, rejoués par des tests et ne compromettent ni la sécurité ni la cohérence du stock : ils relèvent de la validation conditionnelle.
+
+**Conditions de livraison (mises à jour) :**
+
+1. **Avant la mise en production :** corriger ANO-08, 09, 10, 11, 15, 16 et 17 (intégrité métier) et les erreurs 500 connues (ANO-23, 25, 34) ; corriger ANO-25 fera passer l'inscription par la validation de `User`, désormais sans erreur (ANO-39).
+2. **Dans le mois suivant :** corriger les autres anomalies S3/S4, dont le contraste (ANO-37).
+3. **Pour chaque correction :** sortir le test du groupe `anomalie-ouverte`, rejouer `scripts/run-regression.ps1`, garder la CI verte.
+4. **Risques résiduels acceptés :** inscription et e-mails non testés (EX-01, EX-02, EX-30) ; performance mesurée sur un serveur de développement ; écarts restants avec l'énoncé (E-01 à E-06, [15](15-ecarts-enonce.md)).
+
+| Décisionnaire | Décision | Révision | Date |
+|---|---|---|---|
+| Responsable de campagne | NO-GO (refus de livraison) | `cc50095` | 11/11/2026 |
+| Responsable de campagne | Validation conditionnelle | `72cff37` | 21/11/2026 |
+| Responsable de campagne | **Validation conditionnelle (confirmée)** | `1ed214b` | 21/11/2026 |
+| Responsable produit / enseignant | À viser | — | — |
+

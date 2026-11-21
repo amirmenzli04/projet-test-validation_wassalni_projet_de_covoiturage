@@ -20,7 +20,7 @@ L'objectif est de fournir des preuves reproductibles sur les parcours à risque 
 
 Chaque exécution porte sur une révision identifiée par son SHA Git. Les règles métier ambiguës sont arbitrées par le responsable produit avant exécution, ou marquées **Bloqué**.
 
-**API.** L'application n'expose pas d'API REST générale : le volet API porte sur les 4 routes JSON existantes, dont `POST /reservation/new-ajax`. Ce périmètre est une limite assumée de la campagne.
+**API.** Jusqu'au 21/11/2026, l'application n'exposait pas d'API REST : le volet API portait sur les 4 routes JSON existantes, dont `POST /reservation/new-ajax`. Depuis le 21/11/2026, une API REST des réclamations (`/api/reclamations`) est testée en plus ([11 §11.5](11-semaine8-api.md)).
 
 **Hors périmètre de la campagne du 11/11 :** assistant d'inscription et envoi d'e-mails (EX-01, EX-02, EX-30 — transport `null://null`), charge réaliste sur serveur de production, audit d'accessibilité manuel.
 
@@ -32,7 +32,7 @@ Chaque exécution porte sur une révision identifiée par son SHA Git. Les règl
 | Intégration | Doctrine et MariaDB : CRUD, contraintes, transactions, cascades | PHPUnit + noyau Symfony, base `wassalni_test` | `tests/Integration` (suite `integration`) | 9 tests, 29 assertions, OK |
 | Système (HTTP) | Parcours HTTP, droits par rôle, relecture en base | WebTestCase / BrowserKit, fixtures isolées | `tests/Functional` (suite `fonctionnel`) | 45 tests de régression, OK |
 | Anomalies ouvertes | Démonstration rejouable de chaque défaut non corrigé | PHPUnit, groupe `anomalie-ouverte` (exclu de la régression) | répartis dans les suites | 48 tests en échec attendu |
-| API | Routes JSON : statuts HTTP, corps JSON, authentification, cas négatifs | Postman + Newman | `postman/`, `scripts/run-newman.js` | 19 requêtes, 32/35 assertions |
+| API | Routes JSON et API REST des réclamations : méthodes, statuts HTTP, corps JSON, en-têtes, authentification, droits, cas négatifs | Postman + Newman ; PHPUnit (API-01 à API-14) | `postman/`, `scripts/run-newman.js`, `tests/Functional/Api` | 19 requêtes, 32/35 assertions (11/11) ; 35 requêtes, 59/59 (21/11) |
 | Interface | Parcours critique et scénarios d'états dans un navigateur | Playwright (Chrome) | `tests/Playwright/` | 23 tests, 20 réussis |
 | Non fonctionnel | Performance, accessibilité, sécurité élémentaire, concurrence | k6, axe-core, contrôles d'en-têtes, `composer audit` | `tests/k6/`, `tests/Playwright/semaine9-*` | Voir [12](12-semaine9-interface-non-fonctionnel.md) |
 | Acceptation | Scénarios métier par rôle | Scénarios ST-01 à ST-10, visa du responsable produit | [05](05-etats-exploration-anomalies.md) | 10 scénarios exécutés |

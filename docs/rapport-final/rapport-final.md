@@ -1,7 +1,7 @@
 # Rapport final — Test et validation de l'application WASSALNI
 
 **Mini-projet Licence 3 TI, DSI — Atelier Test et validation des logiciels**
-Étudiant : Mohamed Lajili · Dépôt : `projet-test-validation_wassalni_projet_de_covoiturage`, branches `test/campagne-finale` et `fix/anomalies-s2` · Version du dossier 2.0 · 21 novembre 2026 (version 1.0.0 du 11 novembre 2026)
+Étudiant : Mohamed Lajili · Dépôt : `projet-test-validation_wassalni_projet_de_covoiturage`, branches `test/campagne-finale`, `fix/anomalies-s2` et `amelioration/a11y-api` · Version du dossier 2.1 · 21 novembre 2026 (version 1.0.0 du 11 novembre 2026)
 
 ---
 
@@ -11,18 +11,20 @@ WASSALNI est une application Symfony 7.4 de covoiturage avec trois rôles : pass
 
 **Campagne finale du 11/11/2026 (révision `cc50095`).** 87 tests de régression réussis ; 48 tests démontrant 32 anomalies, dont 8 majeures (S2) ; Playwright 20/23 ; Newman 32/35 assertions ; k6 conforme ; couverture 34,65 % des lignes. **Décision : refus de livraison (NO-GO).**
 
-**Corrections et rejeu du 21/11/2026 (révision `72cff37`).** Les 8 anomalies S2 ont été corrigées sur la branche `fix/anomalies-s2`, puis toute la campagne a été rejouée :
+**Corrections du 21/11/2026 (révision `72cff37`).** Les 8 anomalies S2 ont été corrigées et la campagne rejouée : 110 tests de régression réussis, 0 anomalie S2. **Décision : validation conditionnelle.**
 
-- **110 tests de régression** PHPUnit, tous réussis (291 assertions) ;
-- **27 tests démontrant les 24 anomalies encore ouvertes** (16 S3, 8 S4, aucune S2, aucune P1) ;
-- **23 tests navigateur** Playwright (20 réussis ; les 3 échecs sont l'accessibilité, ANO-36) ;
-- **19 requêtes API** Newman, **35 assertions sur 35** réussies ;
+**Version finale du 21/11/2026 (révision `1ed214b`).** L'accessibilité a été corrigée et une API REST des réclamations a été ajoutée et testée :
+
+- **131 tests de régression** PHPUnit, tous réussis (365 assertions), dont 14 tests de l'API REST ;
+- **27 tests démontrant les 23 anomalies encore ouvertes** (15 S3, 8 S4, aucune S2, aucune P1) ;
+- **23 tests navigateur** Playwright, **tous réussis** ;
+- **35 requêtes API** Newman, **59 assertions sur 59** réussies ;
 - **un test de charge** k6, dont les seuils sont respectés ;
-- **couverture : 41,33 % des lignes**, et entre 85,7 % et 100 % sur les classes critiques.
+- **couverture : 44,69 % des lignes**, et entre 85,7 % et 100 % sur les classes critiques.
 
 Sur les 35 exigences, 15 sont satisfaites, 10 partiellement, 7 non satisfaites, et 3 n'ont pas été exécutées.
 
-**Décision en vigueur : validation conditionnelle.** Aucun défaut S1 ou S2 n'est ouvert et tous les seuils du plan sont atteints, sauf l'accessibilité. Les conditions de livraison sont détaillées au §8.
+**Décision en vigueur : validation conditionnelle (confirmée).** Tous les seuils du plan sont atteints, mais 7 exigences restent non satisfaites et 15 anomalies S3 restent ouvertes. Les conditions de livraison sont détaillées au §8.
 
 | Semaine | Livrable | Document |
 |---|---|---|
@@ -169,6 +171,16 @@ Avant ces corrections, l'intégration continue a été réparée : ses 12 exécu
 
 Le détail figure dans le document [14, §14.7](../dossier-tests/14-semaine10-bilan-decision.md).
 
+### 8.1 Accessibilité, API REST et confirmation de la décision
+
+**Accessibilité (ANO-36).** Les étiquettes des formulaires n'étaient reliées à aucun champ. Neuf étiquettes ont été reliées ; l'audit axe-core ne trouve plus aucune violation critique, et Playwright passe à 23 tests sur 23.
+
+**API REST des réclamations.** `GET`, `POST` et `PATCH` sur `/api/reclamations`, avec les codes 200, 201 (et en-tête `Location`), 400, 401, 403, 404, 405, 409, 415 et 422. Une réclamation traitée est close (409). L'API est couverte par 14 tests PHPUnit (API-01 à API-14) et 16 requêtes Newman. L'efficacité des tests a été vérifiée par mutation : deux défauts introduits volontairement dans l'API ont chacun fait échouer un test.
+
+**Un défaut découvert en route (ANO-39).** La reconstruction du cache a révélé une contrainte mal paramétrée sur l'entité `User` : toute validation d'un utilisateur provoquait une erreur fatale. Le défaut était latent (l'inscription est déjà en erreur pour une autre raison). Il a été corrigé, et un test vérifie désormais que les contraintes des six entités se chargent sans erreur.
+
+**Décision confirmée : validation conditionnelle.** Tous les seuils du plan sont atteints. La validation simple n'est pas retenue, car 7 exigences restent non satisfaites et 15 anomalies S3 restent ouvertes. Les conditions, mises à jour, sont au [§14.8](../dossier-tests/14-semaine10-bilan-decision.md).
+
 ## 9. Limites de la campagne
 
 - Les explorations ont été conduites avec un outil et non manuellement.
@@ -185,6 +197,7 @@ Le détail figure dans le document [14, §14.7](../dossier-tests/14-semaine10-bi
 composer install ; npm ci
 # Définir WASSALNI_TEST_PASSWORD dans .env.test.local (non versionné), base MariaDB wassalni_test migrée
 Remove-Item -Recurse -Force var\cache\test
+php bin/console cache:warmup --env=test --no-debug
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-regression.ps1 -Sortie preuves/semaine10/<nouveau-dossier>
 ```
 

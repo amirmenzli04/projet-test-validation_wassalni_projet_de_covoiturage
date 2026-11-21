@@ -61,3 +61,43 @@ La même route est testée au niveau HTTP avec relecture en base dans `Reservati
 node scripts/run-newman.js                  # écrit dans preuves/semaine8
 npx newman run postman/Wassalni-Semaine-8-API.postman_collection.json -e postman/Wassalni-Test.postman_environment.json --env-var passengerPassword=<secret>   # serveur de test déjà démarré
 ```
+
+## 11.5 API REST des réclamations (ajoutée le 21/11/2026)
+
+L'écart E-08 ([15](15-ecarts-enonce.md)) a été traité en ajoutant une API REST au module de réclamations (`src/Controller/ApiReclamationController.php`).
+
+| Requête | Rôle | Codes |
+|---|---|---|
+| `GET /api/reclamations?statut=&dateMin=&dateMax=` | Le passager voit les siennes, l'administrateur toutes | 200, 400 (filtre invalide), 401 |
+| `GET /api/reclamations/{id}` | Auteur ou administrateur | 200, 401, 403, 404 |
+| `POST /api/reclamations` | Tout utilisateur connecté | 201 + `Location`, 400, 401, 415, 422 |
+| `PATCH /api/reclamations/{id}` | Administrateur | 200, 401, 403, 404, 409 (transition interdite ou réclamation close), 415, 422 |
+| `DELETE`, `PUT` | — | 405 |
+
+**Choix de conception.** Authentification par la session de l'application. Les requêtes qui modifient des données exigent `Content-Type: application/json` (sinon 415) : un formulaire d'un site tiers ne peut pas l'envoyer sans autorisation CORS, ce qui protège contre le CSRF. L'adresse e-mail de l'auteur n'est jamais renvoyée (EX-33). Les sujets autorisés sont partagés avec le formulaire HTML (`Reclamation::SUJETS`).
+
+**Tests PHPUnit (`tests/Functional/Api/ReclamationApiRestTest.php`).**
+
+| Id | Cas | Exigence |
+|---|---|---|
+| API-01 | Visiteur anonyme : 401 JSON sur les 4 opérations | EX-33 |
+| API-02 | Liste limitée aux réclamations du passager ; aucune adresse e-mail | EX-32, EX-33 |
+| API-03 | L'administrateur liste tout et filtre par statut | EX-25 |
+| API-04 | Filtres invalides (statut inconnu, dates mal formées) : 400 | — |
+| API-05 | Filtre par date : aujourd'hui inclus, demain exclu (valeurs limites) | — |
+| API-06 | Détail : 200 (auteur), 403 (autre passager), 404 (inexistante) | EX-32 |
+| API-07 | Création valide : 201, `Location`, `EN_ATTENTE`, relecture en base | EX-24 |
+| API-08 | Message de 9 caractères refusé (422), de 10 accepté (201) | EX-24 |
+| API-09 | Sujet hors liste, trajet inconnu (422) ; JSON malformé (400) ; formulaire au lieu de JSON (415) ; rien en base | EX-24 |
+| API-10 | Un passager ne peut pas modifier le statut : 403 | EX-31 |
+| API-11 | Cycle complet `EN_ATTENTE → EN_COURS → TRAITEE`, réponse et date enregistrées | EX-25 |
+| API-12 | Retour en arrière et modification d'une réclamation close : 409, réponse inchangée | EX-25 |
+| API-13 | Traitement sans réponse, statut inconnu (422) ; inexistante (404) | EX-25 |
+| API-14 | `DELETE` et `PUT` : 405 | — |
+
+**Efficacité des tests vérifiée par mutation.** Deux défauts ont été introduits volontairement dans l'API : suppression du contrôle de propriétaire, puis autorisation des transitions interdites. API-06 puis API-12 ont échoué ; le code d'origine les fait de nouveau réussir.
+
+**Collection Newman : requêtes 11 à 26.** Parcours passager (création, erreurs 422 et 415, liste, modification refusée, `DELETE` refusé), déconnexion et accès anonyme (401), puis parcours administrateur (`EN_COURS`, refus sans réponse, `TRAITEE`, 409 sur la réclamation close, filtres). Un compte administrateur fictif (`adminEmail`) a été ajouté à l'environnement.
+
+**Résultat du rejeu (révision `1ed214b`) :** 35 requêtes, **59 assertions, 0 échec** (`preuves/semaine10/apres-ameliorations/04-newman.txt`).
+
