@@ -20,6 +20,8 @@
 | 9 | — | [12 interface et non fonctionnel](12-semaine9-interface-non-fonctionnel.md) | `preuves/semaine9/` |
 | 10 | [Semaine-10 PDF](Semaine-10-Bilan-decision.pdf) | [14 bilan et décision](14-semaine10-bilan-decision.md), [07 anomalies](07-registre-anomalies.md), [13 recommandations](13-plan-corrections.md), [08 journal](08-journal-campagne.md) | `preuves/semaine10/` |
 
+Écarts entre le référentiel de l'énoncé (RéclaGest) et WASSALNI : [15](15-ecarts-enonce.md).
+
 Les fichiers 01 à 06 sont conservés comme **dossier de travail** (historique des semaines 1 à 6) ; les identifiants officiels sont ceux des PDF (voir [00](00-referentiel-correspondances.md)).
 
 ## Reproduire toute la campagne
