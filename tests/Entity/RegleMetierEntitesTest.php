@@ -116,7 +116,6 @@ final class RegleMetierEntitesTest extends TestCase
         yield '10 places (VL)' => [10, 1];
     }
 
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-35')]
     #[DataProvider('seats')]
     #[TestDox('UT-05 (EX-06) — véhicule : $_dataName → $expected violation(s)')]
@@ -126,7 +125,6 @@ final class RegleMetierEntitesTest extends TestCase
         self::assertSame($expected, $this->violations($vehicle, 'nbPlaces'));
     }
 
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-35')]
     #[TestDox('UT-06 (EX-06) — immatriculation : « TUN1234 » acceptée, « 123 TUN 4567 » (format avec espaces) refusée')]
     public function testFormatImmatriculation(): void

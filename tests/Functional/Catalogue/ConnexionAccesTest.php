@@ -22,7 +22,6 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
     }
 
     #[TestDox('TC-03 (CA-11, EX-03) — compte non vérifié avec le bon mot de passe : aucune session authentifiée')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-20')]
     public function testTC03CompteNonVerifie(): void
     {
@@ -57,7 +56,6 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
     }
 
     #[TestDox('TC-04 (CA-11, EX-04) — U-PASS2 bloqué par l\'admin ne peut plus se connecter ; réactivé, il le peut')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-21')]
     public function testTC04BlocagePuisReactivation(): void
     {
@@ -119,7 +117,6 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
     }
 
     #[TestDox('TC-45 (CA-14, EX-33) — /get-last-user-email sans connexion : accès refusé, aucune adresse e-mail renvoyée')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-22')]
     public function testTC45FuiteEmailDernierInscrit(): void
     {
@@ -130,7 +127,6 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
     }
 
     #[TestDox('CA-14 (EX-33) — /check-verification-status sans connexion : accès refusé')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-22')]
     public function testCA14StatutVerificationAnonyme(): void
     {

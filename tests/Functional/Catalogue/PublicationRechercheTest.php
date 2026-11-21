@@ -164,7 +164,6 @@ final class PublicationRechercheTest extends CatalogueWebTestCase
         self::assertNull($id, 'Trajet publié avec le véhicule d\'un autre conducteur');
     }
 
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-35')]
     #[TestDox("CA-21 (EX-06) — U-COND2 ajoute un véhicule par le formulaire (5 champs) : véhicule enregistré")]
     public function testCA21AjoutVehicule(): void

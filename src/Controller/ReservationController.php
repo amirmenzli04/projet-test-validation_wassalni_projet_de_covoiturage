@@ -21,8 +21,13 @@ class ReservationController extends AbstractController
     #[IsGranted('ROLE_PASSAGER')]
     public function new(Trajet $trajet, Request $request, EntityManagerInterface $em): Response
     {
-        $nbPlaces = (int) $request->request->get('nbPlaces', 1);
-        
+        // ANO-07 : même contrôle que la voie JSON (entier strictement positif)
+        $nbPlaces = filter_var($request->request->get('nbPlaces', 1), FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+        if ($nbPlaces === false) {
+            $this->addFlash('error', 'Le nombre de places doit être un entier positif.');
+            return $this->redirectToRoute('trajet_search');
+        }
+
         if ($trajet->getPlacesDisponibles() < $nbPlaces) {
             $this->addFlash('error', 'Pas assez de places disponibles !');
             return $this->redirectToRoute('trajet_search');

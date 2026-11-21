@@ -61,7 +61,6 @@ final class ReservationAnnulationTest extends CatalogueWebTestCase
 
     #[DataProvider('invalidSeatCounts')]
     #[TestDox('TC-24 (CA-06, EX-35) — nombre de places invalide « $seats » par la voie HTML : refus, stock inchangé')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-07')]
     public function testTC24NombreDePlacesInvalideVoieHtml(string $seats): void
     {
