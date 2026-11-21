@@ -2,7 +2,7 @@
 
 - **Version :** 2.0 (finale) — 11 novembre 2026 — tag `v1.0.0`
 - **Branche :** `test/campagne-finale` · **Révision testée :** `cc50095` (code applicatif identique à `e2fe62b`)
-- **Statut :** campagne des semaines 1 à 10 terminée. **Décision : REFUS DE LIVRAISON (NO-GO)**, voir [14](14-semaine10-bilan-decision.md).
+- **Statut :** campagne des semaines 1 à 10 terminée le 11/11 (NO-GO), puis anomalies S2 corrigées et campagne rejouée le 21/11 sur `72cff37` (branche `fix/anomalies-s2`). **Décision en vigueur : VALIDATION CONDITIONNELLE**, voir [14 §14.7](14-semaine10-bilan-decision.md).
 - **Rapport final illustré :** [Markdown](../rapport-final/rapport-final.md) · [PDF](../rapport-final/rapport-final.pdf)
 
 ## Livrables par semaine
@@ -29,7 +29,8 @@ Les fichiers 01 à 06 sont conservés comme **dossier de travail** (historique d
 ```powershell
 composer install ; npm ci
 # .env.test.local : WASSALNI_TEST_PASSWORD=<12 caractères min.> (jamais versionné) ; MariaDB avec la base wassalni_test migrée
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-regression.ps1
+Remove-Item -Recurse -Force var\cache\test   # obligatoire après toute modification de configuration (ANO-T06)
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-regression.ps1 -Sortie preuves/semaine10/<nouveau-dossier>
 ```
 
 ## Historique (version 1.4 et antérieures)
@@ -55,21 +56,22 @@ Une copie PDF complète de l'entité de réservation est disponible ici : [Reser
 
 Les versions sources sont [le catalogue semaine 4](04-cas-de-test-donnees.md) et [le dossier semaine 5](05-etats-exploration-anomalies.md).
 
-## Résumé exécutif (campagne du 11/11/2026, révision `cc50095`)
+## Résumé exécutif
 
-WASSALNI est une application Symfony 7.4 de covoiturage avec trois rôles (passager, conducteur, administrateur) et un traitement des réclamations. La campagne a couvert la connexion et les droits, la publication et la recherche de trajets, la réservation et l'annulation, les avis, les réclamations et l'administration. Le volet API porte sur les 4 routes JSON existantes (pas d'API REST générale).
+WASSALNI est une application Symfony 7.4 de covoiturage avec trois rôles (passager, conducteur, administrateur) et un traitement des réclamations. Le volet API porte sur les 4 routes JSON existantes (pas d'API REST générale ; écarts avec l'énoncé : [15](15-ecarts-enonce.md)).
 
-| Niveau | Résultat |
-|---|---|
-| Régression PHPUnit (unitaire, intégration, HTTP/BDD) | 87 tests, 245 assertions, tous réussis |
-| Anomalies ouvertes démontrées | 48 tests en échec attendu, 32 anomalies (8 S2, 16 S3, 8 S4) |
-| Interface (Playwright) | 23 tests, 20 réussis (3 échecs = ANO-36, accessibilité) |
-| API (Newman) | 19 requêtes, 32 / 35 assertions (3 échecs = ANO-22) |
-| Performance (k6) | Seuils respectés, p95 217 ms |
-| Couverture des lignes | 34,65 % |
-| Exigences EX-01 à EX-35 | 9 réussies, 9 partielles, 14 échouées, 3 non exécutées |
+| Niveau | 11/11 (`cc50095`) | **21/11 (`72cff37`)** |
+|---|---|---|
+| Régression PHPUnit | 87 tests, OK | **110 tests, 291 assertions, OK** |
+| Anomalies ouvertes | 32 (8 S2) | **24 (0 S2, 16 S3, 8 S4)** |
+| Playwright | 20 / 23 | 20 / 23 (3 = accessibilité, ANO-36) |
+| Newman | 32 / 35 | **35 / 35** |
+| k6 | Seuils respectés | Seuils respectés |
+| Couverture des lignes | 34,65 % | **41,33 %** |
+| Exigences (réussies / partielles / échouées / non exécutées) | 9 / 9 / 14 / 3 | **15 / 10 / 7 / 3** |
+| Décision | Refus de livraison | **Validation conditionnelle** |
 
-**Décision : refus de livraison (NO-GO)**, car 8 anomalies majeures (S2) restent ouvertes. Justification et conditions d'un GO : [14](14-semaine10-bilan-decision.md). Critères et seuils de sortie : [plan de test, §2.7](02-strategie-calendrier.md).
+Les conditions de livraison sont listées au [§14.7.3](14-semaine10-bilan-decision.md) ; les corrections sont détaillées au [registre, §7.7](07-registre-anomalies.md).
 
 ## Utilisation
 

@@ -1,0 +1,513 @@
+﻿# Playwright (navigateur) | 2026-11-21 17:13:54 +01:00 | revision 72cff37 | base wassalni_test
+[WebServer] [Sat Nov 21 17:13:58 2026] PHP 8.4.27 Development Server (http://127.0.0.1:8000) started
+[WebServer] [Sat Nov 21 17:13:58 2026] 127.0.0.1:64092 Accepted
+[WebServer] [Sat Nov 21 17:13:58 2026] 127.0.0.1:64092 Closing
+[WebServer] [Sat Nov 21 17:14:05 2026] 127.0.0.1:55189 Accepted
+[WebServer] [Sat Nov 21 17:14:05 2026] 127.0.0.1:55189 Closing
+
+Running 23 tests using 1 worker
+
+[WebServer] [Sat Nov 21 17:14:14 2026] 127.0.0.1:55951 Accepted
+[WebServer] [Sat Nov 21 17:14:14 2026] 127.0.0.1:55951 Closing
+[WebServer] [Sat Nov 21 17:14:14 2026] 127.0.0.1:60028 Accepted
+[WebServer] [Sat Nov 21 17:14:14 2026] 127.0.0.1:60028 Closing
+[WebServer] [Sat Nov 21 17:14:14 2026] 127.0.0.1:64395 Accepted
+[WebServer] [Sat Nov 21 17:14:15 2026] 127.0.0.1:64395 Closing
+[WebServer] [Sat Nov 21 17:14:15 2026] 127.0.0.1:63011 Accepted
+[WebServer] [Sat Nov 21 17:14:15 2026] 127.0.0.1:63011 Closing
+[WebServer] [Sat Nov 21 17:14:16 2026] 127.0.0.1:49785 Accepted
+[WebServer] [Sat Nov 21 17:14:16 2026] 127.0.0.1:49785 Closing
+[WebServer] [Sat Nov 21 17:14:17 2026] 127.0.0.1:54649 Accepted
+[WebServer] [Sat Nov 21 17:14:18 2026] 127.0.0.1:54649 Closing
+[WebServer] [Sat Nov 21 17:14:18 2026] 127.0.0.1:54145 Accepted
+[WebServer] [Sat Nov 21 17:14:18 2026] 127.0.0.1:54145 Closing
+  ok  1 tests\Playwright\reservation-flow.spec.js:17:1 ÔÇ║ CT-29 ÔÇö un passager se connecte, recherche, r├®serve 2 places et retrouve sa r├®servation (5.7s)
+[WebServer] [Sat Nov 21 17:14:22 2026] 127.0.0.1:52982 Accepted
+[WebServer] [Sat Nov 21 17:14:22 2026] 127.0.0.1:52982 Closing
+[WebServer] [Sat Nov 21 17:14:22 2026] 127.0.0.1:56745 Accepted
+[WebServer] [Sat Nov 21 17:14:23 2026] 127.0.0.1:56745 Closing
+[WebServer] [Sat Nov 21 17:14:23 2026] 127.0.0.1:61891 Accepted
+[WebServer] [Sat Nov 21 17:14:23 2026] 127.0.0.1:61891 Closing
+[WebServer] [Sat Nov 21 17:14:24 2026] 127.0.0.1:61180 Accepted
+[WebServer] [Sat Nov 21 17:14:24 2026] 127.0.0.1:61180 Closing
+[WebServer] [Sat Nov 21 17:14:24 2026] 127.0.0.1:53085 Accepted
+[WebServer] [Sat Nov 21 17:14:24 2026] 127.0.0.1:53085 Closing
+[WebServer] [Sat Nov 21 17:14:24 2026] 127.0.0.1:57659 Accepted
+[WebServer] [Sat Nov 21 17:14:24 2026] 127.0.0.1:57659 Closing
+  ok  2 tests\Playwright\semaine5-etats-droits.spec.js:32:1 ÔÇ║ ST-01 ÔÇö passager A cr├®e une r├®clamation valide : EN_ATTENTE, rattach├®e ├á A, visible dans sa liste (4.3s)
+[WebServer] [Sat Nov 21 17:14:26 2026] 127.0.0.1:55361 Accepted
+[WebServer] [Sat Nov 21 17:14:26 2026] 127.0.0.1:55361 Closing
+[WebServer] [Sat Nov 21 17:14:26 2026] 127.0.0.1:53320 Accepted
+[WebServer] [Sat Nov 21 17:14:28 2026] 127.0.0.1:53320 Closing
+[WebServer] [Sat Nov 21 17:14:28 2026] 127.0.0.1:51867 Accepted
+[WebServer] [Sat Nov 21 17:14:28 2026] 127.0.0.1:51867 Closing
+[WebServer] [Sat Nov 21 17:14:28 2026] 127.0.0.1:59686 Accepted
+[WebServer] [Sat Nov 21 17:14:29 2026] 127.0.0.1:59686 Closing
+[WebServer] [Sat Nov 21 17:14:29 2026] 127.0.0.1:50738 Accepted
+[WebServer] [Sat Nov 21 17:14:29 2026] 127.0.0.1:50738 Closing
+[WebServer] [Sat Nov 21 17:14:30 2026] 127.0.0.1:51853 Accepted
+[WebServer] [Sat Nov 21 17:14:30 2026] 127.0.0.1:51853 Closing
+  ok  3 tests\Playwright\semaine5-etats-droits.spec.js:48:1 ÔÇ║ ST-02 ÔÇö message vide puis de 9 caract├¿res : formulaire refus├®, aucun enregistrement (5.4s)
+[WebServer] [Sat Nov 21 17:14:31 2026] 127.0.0.1:64504 Accepted
+[WebServer] [Sat Nov 21 17:14:31 2026] 127.0.0.1:64504 Closing
+[WebServer] [Sat Nov 21 17:14:32 2026] 127.0.0.1:52567 Accepted
+[WebServer] [Sat Nov 21 17:14:33 2026] 127.0.0.1:52567 Closing
+[WebServer] [Sat Nov 21 17:14:33 2026] 127.0.0.1:50249 Accepted
+[WebServer] [Sat Nov 21 17:14:33 2026] 127.0.0.1:50249 Closing
+[WebServer] [Sat Nov 21 17:14:33 2026] 127.0.0.1:58665 Accepted
+[WebServer] [Sat Nov 21 17:14:33 2026] 127.0.0.1:58665 Closing
+[WebServer] [Sat Nov 21 17:14:33 2026] 127.0.0.1:59534 Accepted
+[WebServer] [Sat Nov 21 17:14:33 2026] 127.0.0.1:59534 Closing
+[WebServer] [Sat Nov 21 17:14:33 2026] 127.0.0.1:64917 Accepted
+[WebServer] [Sat Nov 21 17:14:33 2026] 127.0.0.1:64917 Closing
+  ok  4 tests\Playwright\semaine5-etats-droits.spec.js:65:1 ÔÇ║ ST-03 ÔÇö message d'exactement 10 caract├¿res avec un sujet de la liste : accept├® (3.5s)
+[WebServer] [Sat Nov 21 17:14:35 2026] 127.0.0.1:53263 Accepted
+[WebServer] [Sat Nov 21 17:14:35 2026] 127.0.0.1:53263 Closing
+[WebServer] [Sat Nov 21 17:14:35 2026] 127.0.0.1:53263 Accepted
+[WebServer] [Sat Nov 21 17:14:36 2026] 127.0.0.1:53263 Closing
+[WebServer] [Sat Nov 21 17:14:36 2026] 127.0.0.1:64290 Accepted
+[WebServer] [Sat Nov 21 17:14:36 2026] 127.0.0.1:64290 Closing
+[WebServer] [Sat Nov 21 17:14:37 2026] 127.0.0.1:52706 Accepted
+[WebServer] [Sat Nov 21 17:14:37 2026] 127.0.0.1:52706 Closing
+  ok  5 tests\Playwright\semaine5-etats-droits.spec.js:79:1 ÔÇ║ ST-04 ÔÇö passager B ouvre la r├®clamation de A par URL directe : 403, aucune donn├®e de A r├®v├®l├®e (2.7s)
+[WebServer] [Sat Nov 21 17:14:38 2026] 127.0.0.1:63445 Accepted
+[WebServer] [Sat Nov 21 17:14:38 2026] 127.0.0.1:63445 Closing
+[WebServer] [Sat Nov 21 17:14:38 2026] 127.0.0.1:58896 Accepted
+[WebServer] [Sat Nov 21 17:14:39 2026] 127.0.0.1:58896 Closing
+[WebServer] [Sat Nov 21 17:14:39 2026] 127.0.0.1:63881 Accepted
+[WebServer] [Sat Nov 21 17:14:39 2026] 127.0.0.1:63881 Closing
+[WebServer] [Sat Nov 21 17:14:39 2026] 127.0.0.1:50060 Accepted
+[WebServer] [Sat Nov 21 17:14:39 2026] 127.0.0.1:50060 Closing
+[WebServer] [Sat Nov 21 17:14:40 2026] 127.0.0.1:54725 Accepted
+[WebServer] [Sat Nov 21 17:14:40 2026] 127.0.0.1:54725 Closing
+  ok  6 tests\Playwright\semaine5-etats-droits.spec.js:89:1 ÔÇ║ ST-05 ÔÇö l'administrateur consulte le d├®tail de la r├®clamation de A puis la liste d'administration (2.8s)
+[WebServer] [Sat Nov 21 17:14:40 2026] 127.0.0.1:52222 Accepted
+[WebServer] [Sat Nov 21 17:14:40 2026] 127.0.0.1:52222 Closing
+[WebServer] [Sat Nov 21 17:14:41 2026] 127.0.0.1:51383 Accepted
+[WebServer] [Sat Nov 21 17:14:42 2026] 127.0.0.1:51383 Closing
+[WebServer] [Sat Nov 21 17:14:42 2026] 127.0.0.1:58844 Accepted
+[WebServer] [Sat Nov 21 17:14:42 2026] 127.0.0.1:58844 Closing
+[WebServer] [Sat Nov 21 17:14:42 2026] 127.0.0.1:54445 Accepted
+[WebServer] [Sat Nov 21 17:14:42 2026] 127.0.0.1:54445 Closing
+[WebServer] [Sat Nov 21 17:14:42 2026] 127.0.0.1:56597 Accepted
+[WebServer] [Sat Nov 21 17:14:42 2026] 127.0.0.1:56597 Closing
+[WebServer] [Sat Nov 21 17:14:42 2026] 127.0.0.1:55280 Accepted
+[WebServer] [Sat Nov 21 17:14:42 2026] 127.0.0.1:55280 Closing
+[WebServer] [Sat Nov 21 17:14:44 2026] 127.0.0.1:61878 Accepted
+[WebServer] [Sat Nov 21 17:14:44 2026] 127.0.0.1:61878 Closing
+[WebServer] [Sat Nov 21 17:14:45 2026] 127.0.0.1:49256 Accepted
+[WebServer] [Sat Nov 21 17:14:45 2026] 127.0.0.1:49256 Closing
+[WebServer] [Sat Nov 21 17:14:45 2026] 127.0.0.1:54577 Accepted
+[WebServer] [Sat Nov 21 17:14:45 2026] 127.0.0.1:54577 Closing
+[WebServer] [Sat Nov 21 17:14:46 2026] 127.0.0.1:53053 Accepted
+[WebServer] [Sat Nov 21 17:14:46 2026] 127.0.0.1:53053 Closing
+  ok  7 tests\Playwright\semaine5-etats-droits.spec.js:103:1 ÔÇ║ ST-06 ÔÇö l'administrateur r├®pond : TRAITEE, r├®ponse et date de traitement persist├®es ; A voit la r├®ponse (5.9s)
+[WebServer] [Sat Nov 21 17:14:46 2026] 127.0.0.1:58552 Accepted
+[WebServer] [Sat Nov 21 17:14:46 2026] 127.0.0.1:58552 Closing
+[WebServer] [Sat Nov 21 17:14:47 2026] 127.0.0.1:51270 Accepted
+[WebServer] [Sat Nov 21 17:14:48 2026] 127.0.0.1:51270 Closing
+[WebServer] [Sat Nov 21 17:14:48 2026] 127.0.0.1:50763 Accepted
+[WebServer] [Sat Nov 21 17:14:48 2026] 127.0.0.1:50763 Closing
+[WebServer] [Sat Nov 21 17:14:48 2026] 127.0.0.1:60818 Accepted
+[WebServer] [Sat Nov 21 17:14:48 2026] 127.0.0.1:60818 Closing
+[WebServer] [Sat Nov 21 17:14:48 2026] 127.0.0.1:52620 Accepted
+[WebServer] [Sat Nov 21 17:14:49 2026] 127.0.0.1:52620 Closing
+[WebServer] [Sat Nov 21 17:14:49 2026] 127.0.0.1:52245 Accepted
+[WebServer] [Sat Nov 21 17:14:49 2026] 127.0.0.1:52245 Closing
+  ok  8 tests\Playwright\semaine5-etats-droits.spec.js:127:1 ÔÇ║ ST-07 ÔÇö r├®ponse administrateur vide : statut et date inchang├®s (3.8s)
+[WebServer] [Sat Nov 21 17:14:50 2026] 127.0.0.1:56430 Accepted
+[WebServer] [Sat Nov 21 17:14:50 2026] 127.0.0.1:56430 Closing
+[WebServer] [Sat Nov 21 17:14:51 2026] 127.0.0.1:64276 Accepted
+[WebServer] [Sat Nov 21 17:14:52 2026] 127.0.0.1:64276 Closing
+[WebServer] [Sat Nov 21 17:14:52 2026] 127.0.0.1:54906 Accepted
+[WebServer] [Sat Nov 21 17:14:52 2026] 127.0.0.1:54906 Closing
+[WebServer] [Sat Nov 21 17:14:52 2026] 127.0.0.1:57273 Accepted
+[WebServer] [Sat Nov 21 17:14:52 2026] 127.0.0.1:57273 Closing
+  ok  9 tests\Playwright\semaine5-etats-droits.spec.js:145:1 ÔÇ║ ST-08 ÔÇö passager A appelle directement la route de traitement administrateur : 403, aucune mutation (2.7s)
+[WebServer] [Sat Nov 21 17:14:53 2026] 127.0.0.1:55367 Accepted
+[WebServer] [Sat Nov 21 17:14:53 2026] 127.0.0.1:55367 Closing
+[WebServer] [Sat Nov 21 17:14:53 2026] 127.0.0.1:60191 Accepted
+[WebServer] [Sat Nov 21 17:14:54 2026] 127.0.0.1:60191 Closing
+[WebServer] [Sat Nov 21 17:14:54 2026] 127.0.0.1:50917 Accepted
+[WebServer] [Sat Nov 21 17:14:54 2026] 127.0.0.1:50917 Closing
+[WebServer] [Sat Nov 21 17:14:54 2026] 127.0.0.1:49675 Accepted
+[WebServer] [Sat Nov 21 17:14:55 2026] 127.0.0.1:49675 Closing
+  ok 10 tests\Playwright\semaine5-etats-droits.spec.js:156:1 ÔÇ║ ST-09 ÔÇö transition vers EN_COURS : aucune action propos├®e ├á l'administrateur (constat, r├¿gle ├á arbitrer) (2.3s)
+[WebServer] [Sat Nov 21 17:14:55 2026] 127.0.0.1:51183 Accepted
+[WebServer] [Sat Nov 21 17:14:55 2026] 127.0.0.1:51183 Closing
+[WebServer] [Sat Nov 21 17:14:56 2026] 127.0.0.1:56841 Accepted
+[WebServer] [Sat Nov 21 17:14:57 2026] 127.0.0.1:56841 Closing
+[WebServer] [Sat Nov 21 17:14:57 2026] 127.0.0.1:52212 Accepted
+[WebServer] [Sat Nov 21 17:14:57 2026] 127.0.0.1:52212 Closing
+[WebServer] [Sat Nov 21 17:14:57 2026] 127.0.0.1:58850 Accepted
+[WebServer] [Sat Nov 21 17:14:57 2026] 127.0.0.1:58850 Closing
+[WebServer] [Sat Nov 21 17:14:58 2026] 127.0.0.1:50951 Accepted
+[WebServer] [Sat Nov 21 17:14:59 2026] 127.0.0.1:50951 Closing
+[WebServer] [Sat Nov 21 17:14:59 2026] 127.0.0.1:54346 Accepted
+[WebServer] [Sat Nov 21 17:14:59 2026] 127.0.0.1:54346 Closing
+[WebServer] [Sat Nov 21 17:15:00 2026] 127.0.0.1:52816 Accepted
+[WebServer] [Sat Nov 21 17:15:01 2026] 127.0.0.1:52816 Closing
+[WebServer] [Sat Nov 21 17:15:02 2026] 127.0.0.1:57521 Accepted
+[WebServer] [Sat Nov 21 17:15:03 2026] 127.0.0.1:57521 Closing
+[WebServer] [Sat Nov 21 17:15:04 2026] 127.0.0.1:51604 Accepted
+[WebServer] [Sat Nov 21 17:15:04 2026] 127.0.0.1:51604 Closing
+[WebServer] [Sat Nov 21 17:15:05 2026] 127.0.0.1:56752 Accepted
+[WebServer] [Sat Nov 21 17:15:06 2026] 127.0.0.1:56752 Closing
+[WebServer] [Sat Nov 21 17:15:06 2026] 127.0.0.1:56182 Accepted
+[WebServer] [Sat Nov 21 17:15:06 2026] 127.0.0.1:56182 Closing
+[WebServer] [Sat Nov 21 17:15:06 2026] 127.0.0.1:60314 Accepted
+[WebServer] [Sat Nov 21 17:15:07 2026] 127.0.0.1:60314 Closing
+[WebServer] [Sat Nov 21 17:15:07 2026] 127.0.0.1:65398 Accepted
+[WebServer] [Sat Nov 21 17:15:07 2026] 127.0.0.1:65398 Closing
+[WebServer] [Sat Nov 21 17:15:07 2026] 127.0.0.1:65401 Accepted
+[WebServer] [Sat Nov 21 17:15:07 2026] 127.0.0.1:65401 Closing
+[WebServer] [Sat Nov 21 17:15:07 2026] 127.0.0.1:65403 Accepted
+[WebServer] [Sat Nov 21 17:15:08 2026] 127.0.0.1:65403 Closing
+[WebServer] [Sat Nov 21 17:15:08 2026] 127.0.0.1:60723 Accepted
+[WebServer] [Sat Nov 21 17:15:08 2026] 127.0.0.1:60723 Closing
+[WebServer] [Sat Nov 21 17:15:08 2026] 127.0.0.1:61912 Accepted
+[WebServer] [Sat Nov 21 17:15:09 2026] 127.0.0.1:61912 Closing
+  ok 11 tests\Playwright\semaine5-etats-droits.spec.js:167:1 ÔÇ║ ST-10 ÔÇö deux sessions : r├®servation, rafra├«chissement, annulation puis annulation r├®p├®t├®e ; stock coh├®rent (13.7s)
+[WebServer] [Sat Nov 21 17:15:12 2026] 127.0.0.1:56817 Accepted
+[WebServer] [Sat Nov 21 17:15:12 2026] 127.0.0.1:56817 Closing
+[WebServer] [Sat Nov 21 17:15:12 2026] 127.0.0.1:60341 Accepted
+[WebServer] [Sat Nov 21 17:15:12 2026] 127.0.0.1:60341 Closing
+[WebServer] [Sat Nov 21 17:15:12 2026] 127.0.0.1:53743 Accepted
+[WebServer] [Sat Nov 21 17:15:12 2026] 127.0.0.1:53743 Closing
+[WebServer] [Sat Nov 21 17:15:12 2026] 127.0.0.1:51045 Accepted
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:51045 Closing
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:57884 Accepted
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:57884 Closing
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:56665 Accepted
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:56665 Closing
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:55713 Accepted
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:55713 Closing
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:61311 Accepted
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:61311 Closing
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:64179 Accepted
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:64179 Closing
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:52696 Accepted
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:52696 Closing
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:54980 Accepted
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:54980 Closing
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:62394 Accepted
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:62394 Closing
+[WebServer] [Sat Nov 21 17:15:13 2026] 127.0.0.1:54463 Accepted
+[WebServer] [Sat Nov 21 17:15:14 2026] 127.0.0.1:54463 Closing
+[WebServer] [Sat Nov 21 17:15:14 2026] 127.0.0.1:53906 Accepted
+[WebServer] [Sat Nov 21 17:15:14 2026] 127.0.0.1:53906 Closing
+[WebServer] [Sat Nov 21 17:15:14 2026] 127.0.0.1:58810 Accepted
+[WebServer] [Sat Nov 21 17:15:14 2026] 127.0.0.1:58810 Closing
+[WebServer] [Sat Nov 21 17:15:15 2026] 127.0.0.1:53560 Accepted
+[WebServer] [Sat Nov 21 17:15:16 2026] 127.0.0.1:53560 Closing
+[WebServer] [Sat Nov 21 17:15:16 2026] 127.0.0.1:51588 Accepted
+[WebServer] [Sat Nov 21 17:15:16 2026] 127.0.0.1:51588 Closing
+[WebServer] [Sat Nov 21 17:15:16 2026] 127.0.0.1:60644 Accepted
+[WebServer] [Sat Nov 21 17:15:17 2026] 127.0.0.1:60644 Closing
+[WebServer] [Sat Nov 21 17:15:17 2026] 127.0.0.1:50261 Accepted
+[WebServer] [Sat Nov 21 17:15:17 2026] 127.0.0.1:50261 Closing
+[WebServer] [Sat Nov 21 17:15:17 2026] 127.0.0.1:63272 Accepted
+[WebServer] [Sat Nov 21 17:15:17 2026] 127.0.0.1:63272 Closing
+[WebServer] [Sat Nov 21 17:15:17 2026] 127.0.0.1:58483 Accepted
+[WebServer] [Sat Nov 21 17:15:17 2026] 127.0.0.1:58483 Closing
+[WebServer] [Sat Nov 21 17:15:17 2026] 127.0.0.1:50414 Accepted
+[WebServer] [Sat Nov 21 17:15:17 2026] 127.0.0.1:50414 Closing
+[WebServer] [Sat Nov 21 17:15:17 2026] 127.0.0.1:57733 Accepted
+[WebServer] [Sat Nov 21 17:15:17 2026] 127.0.0.1:57733 Closing
+[WebServer] [Sat Nov 21 17:15:18 2026] 127.0.0.1:56031 Accepted
+[WebServer] [Sat Nov 21 17:15:18 2026] 127.0.0.1:56031 Closing
+[WebServer] [Sat Nov 21 17:15:18 2026] 127.0.0.1:59355 Accepted
+[WebServer] [Sat Nov 21 17:15:18 2026] 127.0.0.1:59355 Closing
+[WebServer] [Sat Nov 21 17:15:19 2026] 127.0.0.1:50714 Accepted
+[WebServer] [Sat Nov 21 17:15:20 2026] 127.0.0.1:50714 Closing
+[WebServer] [Sat Nov 21 17:15:20 2026] 127.0.0.1:56264 Accepted
+[WebServer] [Sat Nov 21 17:15:20 2026] 127.0.0.1:56264 Closing
+[WebServer] [Sat Nov 21 17:15:20 2026] 127.0.0.1:61629 Accepted
+[WebServer] [Sat Nov 21 17:15:20 2026] 127.0.0.1:61629 Closing
+[WebServer] [Sat Nov 21 17:15:20 2026] 127.0.0.1:58400 Accepted
+[WebServer] [Sat Nov 21 17:15:21 2026] 127.0.0.1:58400 Closing
+[WebServer] [Sat Nov 21 17:15:21 2026] 127.0.0.1:54238 Accepted
+[WebServer] [Sat Nov 21 17:15:21 2026] 127.0.0.1:54238 Closing
+[WebServer] [Sat Nov 21 17:15:21 2026] 127.0.0.1:62806 Accepted
+[WebServer] [Sat Nov 21 17:15:21 2026] 127.0.0.1:62806 Closing
+[WebServer] [Sat Nov 21 17:15:21 2026] 127.0.0.1:61209 Accepted
+[WebServer] [Sat Nov 21 17:15:22 2026] 127.0.0.1:61209 Closing
+[WebServer] [Sat Nov 21 17:15:22 2026] 127.0.0.1:63906 Accepted
+[WebServer] [Sat Nov 21 17:15:22 2026] 127.0.0.1:63906 Closing
+[WebServer] [Sat Nov 21 17:15:22 2026] 127.0.0.1:58944 Accepted
+[WebServer] [Sat Nov 21 17:15:22 2026] 127.0.0.1:58944 Closing
+[WebServer] [Sat Nov 21 17:15:22 2026] 127.0.0.1:60553 Accepted
+[WebServer] [Sat Nov 21 17:15:22 2026] 127.0.0.1:60553 Closing
+[WebServer] [Sat Nov 21 17:15:23 2026] 127.0.0.1:64155 Accepted
+[WebServer] [Sat Nov 21 17:15:24 2026] 127.0.0.1:64155 Closing
+[WebServer] [Sat Nov 21 17:15:24 2026] 127.0.0.1:55984 Accepted
+[WebServer] [Sat Nov 21 17:15:24 2026] 127.0.0.1:55984 Closing
+[WebServer] [Sat Nov 21 17:15:25 2026] 127.0.0.1:64092 Accepted
+[WebServer] [Sat Nov 21 17:15:25 2026] 127.0.0.1:64092 Closing
+[WebServer] [Sat Nov 21 17:15:25 2026] 127.0.0.1:64104 Accepted
+[WebServer] [Sat Nov 21 17:15:25 2026] 127.0.0.1:64104 Closing
+[WebServer] [Sat Nov 21 17:15:25 2026] 127.0.0.1:55134 Accepted
+[WebServer] [Sat Nov 21 17:15:25 2026] 127.0.0.1:55134 Closing
+[WebServer] [Sat Nov 21 17:15:25 2026] 127.0.0.1:54411 Accepted
+[WebServer] [Sat Nov 21 17:15:26 2026] 127.0.0.1:54411 Closing
+[WebServer] [Sat Nov 21 17:15:26 2026] 127.0.0.1:59006 Accepted
+[WebServer] [Sat Nov 21 17:15:26 2026] 127.0.0.1:59006 Closing
+[WebServer] [Sat Nov 21 17:15:26 2026] 127.0.0.1:59988 Accepted
+[WebServer] [Sat Nov 21 17:15:26 2026] 127.0.0.1:59988 Closing
+[WebServer] [Sat Nov 21 17:15:26 2026] 127.0.0.1:65460 Accepted
+[WebServer] [Sat Nov 21 17:15:26 2026] 127.0.0.1:65460 Closing
+  ok 12 tests\Playwright\semaine5-exploration.spec.js:19:1 ÔÇ║ EXPL-02 ÔÇö acc├¿s directs par URL pour chaque r├┤le (statut HTTP observ├®) (14.7s)
+[WebServer] [Sat Nov 21 17:15:26 2026] 127.0.0.1:62842 Accepted
+[WebServer] [Sat Nov 21 17:15:26 2026] 127.0.0.1:62842 Closing
+[WebServer] [Sat Nov 21 17:15:27 2026] 127.0.0.1:50793 Accepted
+[WebServer] [Sat Nov 21 17:15:29 2026] 127.0.0.1:50793 Closing
+[WebServer] [Sat Nov 21 17:15:29 2026] 127.0.0.1:62134 Accepted
+[WebServer] [Sat Nov 21 17:15:29 2026] 127.0.0.1:62134 Closing
+[WebServer] [Sat Nov 21 17:15:29 2026] 127.0.0.1:49950 Accepted
+[WebServer] [Sat Nov 21 17:15:29 2026] 127.0.0.1:49950 Closing
+[WebServer] [Sat Nov 21 17:15:31 2026] 127.0.0.1:51298 Accepted
+[WebServer] [Sat Nov 21 17:15:31 2026] 127.0.0.1:51298 Closing
+[WebServer] [Sat Nov 21 17:15:33 2026] 127.0.0.1:62396 Accepted
+[WebServer] [Sat Nov 21 17:15:33 2026] 127.0.0.1:62396 Closing
+  ok 13 tests\Playwright\semaine5-exploration.spec.js:45:1 ÔÇ║ EXPL-04 ÔÇö double clic sur ┬½ Confirmer la r├®servation ┬╗ (voie JSON) (8.4s)
+[WebServer] [Sat Nov 21 17:15:35 2026] 127.0.0.1:50765 Accepted
+[WebServer] [Sat Nov 21 17:15:35 2026] 127.0.0.1:50765 Closing
+[WebServer] [Sat Nov 21 17:15:37 2026] 127.0.0.1:59049 Accepted
+[WebServer] [Sat Nov 21 17:15:37 2026] 127.0.0.1:59049 Closing
+[WebServer] [Sat Nov 21 17:15:37 2026] 127.0.0.1:54955 Accepted
+[WebServer] [Sat Nov 21 17:15:37 2026] 127.0.0.1:54955 Closing
+[WebServer] [Sat Nov 21 17:15:38 2026] 127.0.0.1:58546 Accepted
+[WebServer] [Sat Nov 21 17:15:38 2026] 127.0.0.1:58546 Closing
+[WebServer] [Sat Nov 21 17:15:38 2026] 127.0.0.1:59385 Accepted
+[WebServer] [Sat Nov 21 17:15:38 2026] 127.0.0.1:59385 Closing
+[WebServer] [Sat Nov 21 17:15:38 2026] 127.0.0.1:60291 Accepted
+[WebServer] [Sat Nov 21 17:15:38 2026] 127.0.0.1:60291 Closing
+  ok 14 tests\Playwright\semaine5-exploration.spec.js:64:1 ÔÇ║ EXPL-04 ÔÇö session expir├®e (cookies effac├®s) puis envoi du formulaire de r├®clamation (5.2s)
+[WebServer] [Sat Nov 21 17:15:40 2026] 127.0.0.1:52344 Accepted
+[WebServer] [Sat Nov 21 17:15:40 2026] 127.0.0.1:52344 Closing
+[WebServer] [Sat Nov 21 17:15:41 2026] 127.0.0.1:52583 Accepted
+[WebServer] [Sat Nov 21 17:15:42 2026] 127.0.0.1:52583 Closing
+[WebServer] [Sat Nov 21 17:15:42 2026] 127.0.0.1:64230 Accepted
+[WebServer] [Sat Nov 21 17:15:42 2026] 127.0.0.1:64230 Closing
+[WebServer] [Sat Nov 21 17:15:43 2026] 127.0.0.1:53265 Accepted
+[WebServer] [Sat Nov 21 17:15:43 2026] 127.0.0.1:53265 Closing
+[WebServer] [Sat Nov 21 17:15:43 2026] 127.0.0.1:51970 Accepted
+[WebServer] [Sat Nov 21 17:15:43 2026] 127.0.0.1:51970 Closing
+[WebServer] [Sat Nov 21 17:15:43 2026] 127.0.0.1:56096 Accepted
+[WebServer] [Sat Nov 21 17:15:43 2026] 127.0.0.1:56096 Closing
+[WebServer] [Sat Nov 21 17:15:43 2026] 127.0.0.1:58216 Accepted
+[WebServer] [Sat Nov 21 17:15:43 2026] 127.0.0.1:58216 Closing
+[WebServer] [Sat Nov 21 17:15:44 2026] 127.0.0.1:64085 Accepted
+[WebServer] [Sat Nov 21 17:15:44 2026] 127.0.0.1:64085 Closing
+  ok 15 tests\Playwright\semaine5-exploration.spec.js:79:1 ÔÇ║ EXPL-01 ÔÇö rafra├«chissement apr├¿s cr├®ation d'une r├®clamation (doublon ?) (5.2s)
+[WebServer] [Sat Nov 21 17:15:45 2026] 127.0.0.1:53760 Accepted
+[WebServer] [Sat Nov 21 17:15:45 2026] 127.0.0.1:53760 Closing
+[WebServer] [Sat Nov 21 17:15:46 2026] 127.0.0.1:57885 Accepted
+[WebServer] [Sat Nov 21 17:15:47 2026] 127.0.0.1:57885 Closing
+[WebServer] [Sat Nov 21 17:15:47 2026] 127.0.0.1:54004 Accepted
+[WebServer] [Sat Nov 21 17:15:47 2026] 127.0.0.1:54004 Closing
+[WebServer] [Sat Nov 21 17:15:48 2026] 127.0.0.1:53741 Accepted
+[WebServer] [Sat Nov 21 17:15:48 2026] 127.0.0.1:53741 Closing
+  ok 16 tests\Playwright\semaine5-exploration.spec.js:95:1 ÔÇ║ EXPL-03 ÔÇö fen├¬tre de r├®servation : la quantit├® ne d├®passe pas les places disponibles (4.6s)
+[WebServer] [Sat Nov 21 17:15:50 2026] 127.0.0.1:50566 Accepted
+[WebServer] [Sat Nov 21 17:15:51 2026] 127.0.0.1:50566 Closing
+  ok 17 tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 ÔÇ║ Accessibilit├® (axe, WCAG A/AA) ÔÇö page connexion (2.8s)
+[WebServer] [Sat Nov 21 17:15:53 2026] 127.0.0.1:50725 Accepted
+[WebServer] [Sat Nov 21 17:15:54 2026] 127.0.0.1:50725 Closing
+[WebServer] [Sat Nov 21 17:15:55 2026] 127.0.0.1:61166 Accepted
+[WebServer] [Sat Nov 21 17:15:55 2026] 127.0.0.1:61166 Closing
+[WebServer] [Sat Nov 21 17:15:55 2026] 127.0.0.1:54316 Accepted
+[WebServer] [Sat Nov 21 17:15:56 2026] 127.0.0.1:54316 Closing
+[WebServer] [Sat Nov 21 17:15:56 2026] 127.0.0.1:63577 Accepted
+[WebServer] [Sat Nov 21 17:15:57 2026] 127.0.0.1:63577 Closing
+  x  18 tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 ÔÇ║ Accessibilit├® (axe, WCAG A/AA) ÔÇö page recherche (8.6s)
+[WebServer] [Sat Nov 21 17:16:06 2026] 127.0.0.1:53454 Accepted
+[WebServer] [Sat Nov 21 17:16:06 2026] 127.0.0.1:53454 Closing
+[WebServer] [Sat Nov 21 17:16:06 2026] 127.0.0.1:62527 Accepted
+[WebServer] [Sat Nov 21 17:16:06 2026] 127.0.0.1:62527 Closing
+[WebServer] [Sat Nov 21 17:16:06 2026] 127.0.0.1:49972 Accepted
+[WebServer] [Sat Nov 21 17:16:07 2026] 127.0.0.1:49972 Closing
+[WebServer] [Sat Nov 21 17:16:07 2026] 127.0.0.1:64852 Accepted
+[WebServer] [Sat Nov 21 17:16:07 2026] 127.0.0.1:64852 Closing
+[WebServer] [Sat Nov 21 17:16:07 2026] 127.0.0.1:53751 Accepted
+[WebServer] [Sat Nov 21 17:16:07 2026] 127.0.0.1:53751 Closing
+  x  19 tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 ÔÇ║ Accessibilit├® (axe, WCAG A/AA) ÔÇö page nouvelle-reclamation (3.3s)
+[WebServer] [Sat Nov 21 17:16:11 2026] 127.0.0.1:53265 Accepted
+[WebServer] [Sat Nov 21 17:16:11 2026] 127.0.0.1:53265 Closing
+[WebServer] [Sat Nov 21 17:16:12 2026] 127.0.0.1:60041 Accepted
+[WebServer] [Sat Nov 21 17:16:12 2026] 127.0.0.1:60041 Closing
+[WebServer] [Sat Nov 21 17:16:12 2026] 127.0.0.1:53924 Accepted
+[WebServer] [Sat Nov 21 17:16:13 2026] 127.0.0.1:53924 Closing
+[WebServer] [Sat Nov 21 17:16:13 2026] 127.0.0.1:62248 Accepted
+[WebServer] [Sat Nov 21 17:16:13 2026] 127.0.0.1:62248 Closing
+[WebServer] [Sat Nov 21 17:16:14 2026] 127.0.0.1:62143 Accepted
+[WebServer] [Sat Nov 21 17:16:14 2026] 127.0.0.1:62143 Closing
+  x  20 tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 ÔÇ║ Accessibilit├® (axe, WCAG A/AA) ÔÇö page mes-reservations (4.7s)
+[WebServer] [Sat Nov 21 17:16:18 2026] 127.0.0.1:58419 Accepted
+[WebServer] [Sat Nov 21 17:16:18 2026] 127.0.0.1:58419 Closing
+[WebServer] [Sat Nov 21 17:16:18 2026] 127.0.0.1:51652 Accepted
+[WebServer] [Sat Nov 21 17:16:18 2026] 127.0.0.1:51652 Closing
+[WebServer] [Sat Nov 21 17:16:18 2026] 127.0.0.1:52816 Accepted
+[WebServer] [Sat Nov 21 17:16:19 2026] 127.0.0.1:52816 Closing
+[WebServer] [Sat Nov 21 17:16:19 2026] 127.0.0.1:52232 Accepted
+[WebServer] [Sat Nov 21 17:16:19 2026] 127.0.0.1:52232 Closing
+  ok 21 tests\Playwright\semaine9-accessibilite-securite.spec.js:48:1 ÔÇ║ Accessibilit├® ÔÇö connexion enti├¿rement au clavier (Tab, saisie, Entr├®e) (2.2s)
+[WebServer] [Sat Nov 21 17:16:20 2026] 127.0.0.1:57662 Accepted
+[WebServer] [Sat Nov 21 17:16:20 2026] 127.0.0.1:57662 Closing
+[WebServer] [Sat Nov 21 17:16:20 2026] 127.0.0.1:57663 Accepted
+[WebServer] [Sat Nov 21 17:16:20 2026] 127.0.0.1:57663 Closing
+[WebServer] [Sat Nov 21 17:16:20 2026] 127.0.0.1:57665 Accepted
+[WebServer] [Sat Nov 21 17:16:20 2026] 127.0.0.1:57665 Closing
+[WebServer] [Sat Nov 21 17:16:20 2026] 127.0.0.1:57731 Accepted
+[WebServer] [Sat Nov 21 17:16:20 2026] 127.0.0.1:57731 Closing
+[WebServer] [Sat Nov 21 17:16:20 2026] 127.0.0.1:53789 Accepted
+[WebServer] [Sat Nov 21 17:16:21 2026] 127.0.0.1:53789 Closing
+[WebServer] [Sat Nov 21 17:16:21 2026] 127.0.0.1:51714 Accepted
+[WebServer] [Sat Nov 21 17:16:22 2026] 127.0.0.1:51714 Closing
+  ok 22 tests\Playwright\semaine9-accessibilite-securite.spec.js:71:1 ÔÇ║ S├®curit├® ├®l├®mentaire ÔÇö en-t├¬tes de protection et cookie de session (2.5s)
+[WebServer] [Sat Nov 21 17:16:22 2026] 127.0.0.1:54225 Accepted
+[WebServer] [Sat Nov 21 17:16:22 2026] 127.0.0.1:54225 Closing
+[WebServer] [Sat Nov 21 17:16:23 2026] 127.0.0.1:57183 Accepted
+[WebServer] [Sat Nov 21 17:16:24 2026] 127.0.0.1:57183 Closing
+[WebServer] [Sat Nov 21 17:16:24 2026] 127.0.0.1:62228 Accepted
+[WebServer] [Sat Nov 21 17:16:24 2026] 127.0.0.1:62228 Closing
+[WebServer] [Sat Nov 21 17:16:24 2026] 127.0.0.1:50170 Accepted
+[WebServer] [Sat Nov 21 17:16:24 2026] 127.0.0.1:50170 Closing
+  ok 23 tests\Playwright\semaine9-accessibilite-securite.spec.js:93:1 ÔÇ║ S├®curit├® ├®l├®mentaire ÔÇö une erreur serveur ne divulgue ni trace ni chemin de fichier (2.5s)
+
+
+  1) tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 ÔÇ║ Accessibilit├® (axe, WCAG A/AA) ÔÇö page recherche 
+
+    Error: Violations critiques sur recherche
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 2
+
+      42 |         a11y.add({ page: target.name, url: target.url.split('?')[0], regles_verifiees: results.passes.length + results.violations.length, conformes: results.passes.length, violations_par_impact: byImpact, violations, capture: file });
+      43 |         // Constat consign├® ; les violations critiques sont signal├®es comme ├®chec (soft) sans arr├¬ter la campagne.
+    > 44 |         expect.soft(byImpact.critical, `Violations critiques sur ${target.name}`).toBe(0);
+         |                                                                                   ^
+      45 |     });
+      46 | }
+      47 |
+        at C:\Users\Dogui\wassalni-tests\tests\Playwright\semaine9-accessibilite-securite.spec.js:44:83
+
+    attachment #1: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-ÔÇö-page-recherche\test-failed-1.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    attachment #2: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-ÔÇö-page-recherche\test-failed-6.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    attachment #3: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-ÔÇö-page-recherche\test-failed-7.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    attachment #4: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-ÔÇö-page-recherche\test-failed-2.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    attachment #5: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-ÔÇö-page-recherche\test-failed-5.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    attachment #6: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-ÔÇö-page-recherche\test-failed-3.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    attachment #7: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-ÔÇö-page-recherche\test-failed-8.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    attachment #8: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-ÔÇö-page-recherche\test-failed-4.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    Error Context: test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-ÔÇö-page-recherche\error-context.md
+
+    Error Context: test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-ÔÇö-page-recherche\error-context.md
+
+    attachment #11: trace (application/zip) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-ÔÇö-page-recherche\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-ÔÇö-page-recherche\trace.zip
+
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+  2) tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 ÔÇ║ Accessibilit├® (axe, WCAG A/AA) ÔÇö page nouvelle-reclamation 
+
+    Error: Violations critiques sur nouvelle-reclamation
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      42 |         a11y.add({ page: target.name, url: target.url.split('?')[0], regles_verifiees: results.passes.length + results.violations.length, conformes: results.passes.length, violations_par_impact: byImpact, violations, capture: file });
+      43 |         // Constat consign├® ; les violations critiques sont signal├®es comme ├®chec (soft) sans arr├¬ter la campagne.
+    > 44 |         expect.soft(byImpact.critical, `Violations critiques sur ${target.name}`).toBe(0);
+         |                                                                                   ^
+      45 |     });
+      46 | }
+      47 |
+        at C:\Users\Dogui\wassalni-tests\tests\Playwright\semaine9-accessibilite-securite.spec.js:44:83
+
+    attachment #1: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\semaine9-accessibilite-sec-9f84d-ÔÇö-page-nouvelle-reclamation\test-failed-1.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    Error Context: test-results\semaine9-accessibilite-sec-9f84d-ÔÇö-page-nouvelle-reclamation\error-context.md
+
+    Error Context: test-results\semaine9-accessibilite-sec-9f84d-ÔÇö-page-nouvelle-reclamation\error-context.md
+
+    attachment #4: trace (application/zip) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\semaine9-accessibilite-sec-9f84d-ÔÇö-page-nouvelle-reclamation\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\semaine9-accessibilite-sec-9f84d-ÔÇö-page-nouvelle-reclamation\trace.zip
+
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+  3) tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 ÔÇ║ Accessibilit├® (axe, WCAG A/AA) ÔÇö page mes-reservations 
+
+    Error: Violations critiques sur mes-reservations
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      42 |         a11y.add({ page: target.name, url: target.url.split('?')[0], regles_verifiees: results.passes.length + results.violations.length, conformes: results.passes.length, violations_par_impact: byImpact, violations, capture: file });
+      43 |         // Constat consign├® ; les violations critiques sont signal├®es comme ├®chec (soft) sans arr├¬ter la campagne.
+    > 44 |         expect.soft(byImpact.critical, `Violations critiques sur ${target.name}`).toBe(0);
+         |                                                                                   ^
+      45 |     });
+      46 | }
+      47 |
+        at C:\Users\Dogui\wassalni-tests\tests\Playwright\semaine9-accessibilite-securite.spec.js:44:83
+
+    attachment #1: screenshot (image/png) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\semaine9-accessibilite-sec-8f58e--AA-ÔÇö-page-mes-reservations\test-failed-1.png
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+    Error Context: test-results\semaine9-accessibilite-sec-8f58e--AA-ÔÇö-page-mes-reservations\error-context.md
+
+    Error Context: test-results\semaine9-accessibilite-sec-8f58e--AA-ÔÇö-page-mes-reservations\error-context.md
+
+    attachment #4: trace (application/zip) ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+    test-results\semaine9-accessibilite-sec-8f58e--AA-ÔÇö-page-mes-reservations\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\semaine9-accessibilite-sec-8f58e--AA-ÔÇö-page-mes-reservations\trace.zip
+
+    ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+  3 failed
+    tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 ÔÇ║ Accessibilit├® (axe, WCAG A/AA) ÔÇö page recherche 
+    tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 ÔÇ║ Accessibilit├® (axe, WCAG A/AA) ÔÇö page nouvelle-reclamation 
+    tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 ÔÇ║ Accessibilit├® (axe, WCAG A/AA) ÔÇö page mes-reservations 
+  20 passed (2.5m)

@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 abstract class CatalogueWebTestCase extends WebTestCase
 {
     use CatalogueFixture;
+    use CsrfTokenTrait;
 
     protected KernelBrowser $client;
 
@@ -32,6 +33,11 @@ abstract class CatalogueWebTestCase extends WebTestCase
     protected function httpStatus(): int
     {
         return $this->client->getResponse()->getStatusCode();
+    }
+
+    protected function csrfToken(string $tokenId): string
+    {
+        return $this->csrfTokenFor($this->client, $tokenId);
     }
 
     protected function body(): string

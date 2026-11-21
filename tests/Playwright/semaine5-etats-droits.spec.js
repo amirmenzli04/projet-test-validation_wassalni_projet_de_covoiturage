@@ -178,8 +178,12 @@ test('ST-10 — deux sessions : réservation, rafraîchissement, annulation puis
     await pageA.goto(searchUrl);
     await pageA.locator(`.result-card[data-trajet-id="${tripId}"]`).getByRole('button', { name: /Réserver/ }).click();
     const reply = pageA.waitForResponse(r => r.url().includes('/reservation/new-ajax'));
+    // La page se recharge seule 1,5 s après une réservation réussie : on attend ce rechargement
+    // pour qu'il n'interrompe pas la navigation suivante (ANO-T07, test instable).
+    const reloaded = pageA.waitForEvent('load', { timeout: 10000 });
     await pageA.locator('#confirmReservationBtn').click();
     expect((await reply).status()).toBe(200);
+    await reloaded;
     states.apres_reservation_A = seats();
     const f1 = await shot(pageA, WEEK, 'S05_ST10_1_reservation_session_A.png', { fullPage: false });
 
@@ -190,13 +194,17 @@ test('ST-10 — deux sessions : réservation, rafraîchissement, annulation puis
 
     await pageA.goto('/reservation/mes-reservations');
     const reservation = pageA.locator('.reservation-card', { hasText: 'Sfax' }).filter({ has: pageA.locator('.btn-cancel') }).first();
-    const cancelHref = await reservation.locator('.btn-cancel').getAttribute('href');
-    await reservation.locator('.btn-cancel').click();
-    await pageA.waitForLoadState('networkidle');
+    // Depuis ANO-12 : l'annulation est un formulaire POST avec jeton CSRF (plus un lien GET).
+    const cancelForm = reservation.locator('form', { has: pageA.locator('.btn-cancel') });
+    const cancelAction = await cancelForm.getAttribute('action');
+    const cancelToken = await cancelForm.locator('input[name="_token"]').inputValue();
+    await Promise.all([pageA.waitForURL('**/reservation/mes-reservations'), reservation.locator('.btn-cancel').click()]);
     states.apres_annulation = seats();
     const f3 = await shot(pageA, WEEK, 'S05_ST10_3_annulation_session_A.png', { fullPage: false });
 
-    await pageA.goto(cancelHref);
+    // Annulation répétée : on renvoie exactement le même formulaire (même jeton, même session).
+    await pageA.request.post(cancelAction, { form: { _token: cancelToken } });
+    await pageA.goto('/reservation/mes-reservations');
     states.apres_double_annulation = seats();
     const f4 = await shot(pageA, WEEK, 'S05_ST10_4_annulation_repetee.png', { fullPage: false });
 
@@ -204,5 +212,5 @@ test('ST-10 — deux sessions : réservation, rafraîchissement, annulation puis
     await expect(pageB.locator(`.result-card[data-trajet-id="${tripId}"]`)).toContainText(`${states.initial} places`);
 
     expect(states).toEqual({ initial: 4, apres_reservation_A: 3, apres_annulation: 4, apres_double_annulation: 4 });
-    log.add({ scenario: 'ST-10', captures: [f1, f2, f3, f4], stock: states, url_annulation: cancelHref, resultat: 'Réussi' });
+    log.add({ scenario: 'ST-10', captures: [f1, f2, f3, f4], stock: states, url_annulation: cancelAction, resultat: 'Réussi' });
 });

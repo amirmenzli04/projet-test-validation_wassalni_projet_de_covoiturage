@@ -1,0 +1,4144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="C:\Users\Dogui\wassalni-tests\phpunit.dist.xml" tests="27" assertions="73" errors="0" failures="25" skipped="0" time="3.793271">
+    <testsuite name="unitaire" tests="1" assertions="1" errors="0" failures="1" skipped="0" time="0.035290">
+      <testsuite name="App\Tests\Entity\RegleMetierEntitesTest" file="C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php" tests="1" assertions="1" errors="0" failures="1" skipped="0" time="0.035290">
+        <testcase name="testDepartPasseDuJourMeme" file="C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php" line="99" class="App\Tests\Entity\RegleMetierEntitesTest" classname="App.Tests.Entity.RegleMetierEntitesTest" assertions="1" time="0.035290">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Entity\RegleMetierEntitesTest::testDepartPasseDuJourMeme&#13;
+Un départ déjà passé de la journée est accepté par la contrainte de l'entité
+Failed asserting that 0 is identical to 1.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php:108</failure>
+        </testcase>
+      </testsuite>
+    </testsuite>
+    <testsuite name="fonctionnel" tests="26" assertions="72" errors="0" failures="24" skipped="0" time="3.757981">
+      <testsuite name="App\Tests\Functional\Catalogue\AvisReclamationTest" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php" tests="3" assertions="14" errors="0" failures="1" skipped="0" time="1.574874">
+        <testcase name="testTC33BornesDeLaNote" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php" line="35" class="App\Tests\Functional\Catalogue\AvisReclamationTest" classname="App.Tests.Functional.Catalogue.AvisReclamationTest" assertions="6" time="1.336149"/>
+        <testcase name="testCA18SecondAvis" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php" line="50" class="App\Tests\Functional\Catalogue\AvisReclamationTest" classname="App.Tests.Functional.Catalogue.AvisReclamationTest" assertions="5" time="0.124529"/>
+        <testcase name="testCA18AvisAvantLaFinDuTrajet" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php" line="62" class="App\Tests\Functional\Catalogue\AvisReclamationTest" classname="App.Tests.Functional.Catalogue.AvisReclamationTest" assertions="3" time="0.114197">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\AvisReclamationTest::testCA18AvisAvantLaFinDuTrajet&#13;
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &amp;0 [
+-    'formulaire_propose' =&gt; false,
+-    'avis_enregistres' =&gt; 0,
++    'formulaire_propose' =&gt; true,
++    'avis_enregistres' =&gt; 1,
+ ]
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:70</failure>
+        </testcase>
+      </testsuite>
+      <testsuite name="App\Tests\Functional\Catalogue\ConnexionAccesTest" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" tests="7" assertions="18" errors="0" failures="7" skipped="0" time="1.267597">
+        <testcase name="testA09MessageDeConnexionEnFrancais" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="50" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="2" time="0.617571">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testA09MessageDeConnexionEnFrancais&#13;
+Message affiché : « Invalid credentials. »
+Failed asserting that 'Invalid credentials.' [ASCII](length: 20) does not contain "Invalid credentials" [ASCII](length: 19).
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:55</failure>
+        </testcase>
+        <testcase name="testCA20SuppressionUtilisateurAvecReservations" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="189" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="2" time="0.113296">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testCA20SuppressionUtilisateurAvecReservations&#13;
+Suppression d'un utilisateur ayant des réservations : erreur serveur HTTP 500
+Failed asserting that 500 is less than 500.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:51
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:193</failure>
+        </testcase>
+        <testcase name="testCA20SuppressionTrajetViseParUneReclamation" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="199" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="3" time="0.099225">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testCA20SuppressionTrajetViseParUneReclamation&#13;
+Suppression d'un trajet visé par une réclamation : erreur serveur HTTP 500
+Failed asserting that 500 is less than 500.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:51
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:209</failure>
+        </testcase>
+        <testcase name="testCA16CompteurReclamationsAdmin" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="215" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="4" time="0.098971">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testCA16CompteurReclamationsAdmin&#13;
+Failed asserting that 0 is identical to 6.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:226</failure>
+        </testcase>
+        <testcase name="testPagesSansErreurServeur" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="232" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="1" time="0.078416">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testPagesSansErreurServeur&#13;
+{"\/avis\/conducteur\/{id}":500,"\/inscription":500}
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &amp;0 [
+-    '/avis/conducteur/{id}' =&gt; false,
+-    '/inscription' =&gt; false,
++    '/avis/conducteur/{id}' =&gt; true,
++    '/inscription' =&gt; true,
+ ]
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:239</failure>
+        </testcase>
+        <testcase name="testTableauDeBordPassager" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="245" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="2" time="0.103259">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testTableauDeBordPassager&#13;
+/passager/dashboard : erreur serveur HTTP 500
+Failed asserting that 500 is less than 500.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:51
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:249</failure>
+        </testcase>
+        <testcase name="testMessageFlashAffiche" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="256" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="4" time="0.156860">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testMessageFlashAffiche&#13;
+Failed asserting that '&lt;!DOCTYPE html&gt;\n
+&lt;html lang="fr"&gt;\n
+&lt;head&gt;\n
+    &lt;meta charset="UTF-8"&gt;\n
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;\n
+\n
+    &lt;title&gt;\n
+        Gestion des réclamations - Admin    &lt;/title&gt;\n
+\n
+    &lt;!-- Fonts --&gt;\n
+    &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"&gt;\n
+\n
+    &lt;!-- Icons --&gt;\n
+    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"&gt;\n
+\n
+    &lt;style&gt;\n
+\n
+        *{\n
+            margin:0;\n
+            padding:0;\n
+            box-sizing:border-box;\n
+        }\n
+\n
+        :root{\n
+            --primary:#6d28d9;\n
+            --primary-dark:#4c1d95;\n
+            --secondary:#8b5cf6;\n
+            --dark:#0f172a;\n
+            --dark-2:#1e293b;\n
+            --light:#f8fafc;\n
+            --border:#e2e8f0;\n
+            --text:#334155;\n
+            --white:#ffffff;\n
+            --gold:#facc15;\n
+        }\n
+\n
+        body{\n
+            font-family:'Inter',sans-serif;\n
+            background:var(--light);\n
+            color:var(--text);\n
+            overflow-x:hidden;\n
+        }\n
+\n
+        /* ===================================================\n
+                           NAVBAR\n
+        =================================================== */\n
+\n
+        .navbar{\n
+            position:sticky;\n
+            top:0;\n
+            z-index:9999;\n
+\n
+            background:\n
+                linear-gradient(\n
+                    135deg,\n
+                    #0f172a 0%,\n
+                    #1e1b4b 45%,\n
+                    #4c1d95 100%\n
+                );\n
+\n
+            backdrop-filter:blur(20px);\n
+\n
+            border-bottom:1px solid rgba(255,255,255,0.08);\n
+\n
+            box-shadow:\n
+                0 10px 30px rgba(0,0,0,0.08);\n
+        }\n
+\n
+        .nav-container{\n
+            max-width:1600px;\n
+            margin:auto;\n
+\n
+            min-height:82px;\n
+\n
+            display:flex;\n
+            align-items:center;\n
+            justify-content:space-between;\n
+\n
+            gap:25px;\n
+\n
+            padding:0 25px;\n
+        }\n
+\n
+        /* ===================================================\n
+                           LOGO\n
+        =================================================== */\n
+\n
+        .logo{\n
+            flex-shrink:0;\n
+        }\n
+\n
+        .logo a{\n
+            text-decoration:none;\n
+\n
+            display:flex;\n
+            align-items:center;\n
+            gap:12px;\n
+\n
+            font-size:30px;\n
+            font-weight:900;\n
+            letter-spacing:-1px;\n
+\n
+            color:white;\n
+        }\n
+\n
+        .logo-icon{\n
+            width:50px;\n
+            height:50px;\n
+\n
+            border-radius:16px;\n
+\n
+            background:\n
+                linear-gradient(\n
+                    135deg,\n
+                    #facc15,\n
+                    #fde047\n
+                );\n
+\n
+            display:flex;\n
+            align-items:center;\n
+            justify-content:center;\n
+\n
+            box-shadow:\n
+                0 10px 20px rgba(250,204,21,0.3);\n
+        }\n
+\n
+        .logo-icon i{\n
+            color:#4c1d95;\n
+            font-size:24px;\n
+        }\n
+\n
+        .logo-text{\n
+            display:flex;\n
+            flex-direction:column;\n
+            line-height:1;\n
+        }\n
+\n
+        .logo-text strong{\n
+            color:white;\n
+            font-size:28px;\n
+        }\n
+\n
+        .logo-text span{\n
+            font-size:11px;\n
+            color:#c4b5fd;\n
+            letter-spacing:2px;\n
+            margin-top:4px;\n
+        }\n
+\n
+        /* ===================================================\n
+                        NAVIGATION LINKS\n
+        =================================================== */\n
+\n
+        .nav-links{\n
+            flex:1;\n
+\n
+            display:flex;\n
+            align-items:center;\n
+            justify-content:center;\n
+\n
+            gap:10px;\n
+\n
+            min-width:0;\n
+\n
+            overflow-x:auto;\n
+            overflow-y:hidden;\n
+\n
+            scrollbar-width:none;\n
+\n
+            padding:8px 5px;\n
+        }\n
+\n
+        .nav-links::-webkit-scrollbar{\n
+            display:none;\n
+        }\n
+\n
+        /* IMPORTANT :\n
+           TOUS LES TABS SERONT VISIBLES */\n
+        .nav-links a{\n
+            flex-shrink:0;\n
+\n
+            display:flex;\n
+            align-items:center;\n
+            gap:10px;\n
+\n
+            padding:12px 18px;\n
+\n
+            border-radius:18px;\n
+\n
+            text-decoration:none;\n
+\n
+            color:#e2e8f0;\n
+\n
+            font-size:14px;\n
+            font-weight:600;\n
+\n
+            transition:0.3s ease;\n
+\n
+            white-space:nowrap;\n
+\n
+            position:relative;\n
+        }\n
+\n
+        .nav-links a i{\n
+            font-size:15px;\n
+        }\n
+\n
+        .nav-links a:hover{\n
+            background:rgba(255,255,255,0.12);\n
+\n
+            color:white;\n
+\n
+            transform:translateY(-2px);\n
+        }\n
+\n
+        .nav-links a.active{\n
+            background:\n
+                linear-gradient(\n
+                    135deg,\n
+                    rgba(255,255,255,0.18),\n
+                    rgba(255,255,255,0.08)\n
+                );\n
+\n
+            color:#fff;\n
+\n
+            box-shadow:\n
+                0 10px 20px rgba(0,0,0,0.15);\n
+        }\n
+\n
+        /* ===================================================\n
+                         USER MENU\n
+        =================================================== */\n
+\n
+        .user-menu{\n
+            flex-shrink:0;\n
+\n
+            display:flex;\n
+            align-items:center;\n
+            gap:15px;\n
+        }\n
+\n
+        .btn-login{\n
+            display:flex;\n
+            align-items:center;\n
+            gap:10px;\n
+\n
+            text-decoration:none;\n
+\n
+            padding:12px 24px;\n
+\n
+            border-radius:50px;\n
+\n
+            color:white;\n
+            font-weight:700;\n
+\n
+            background:\n
+                linear-gradient(\n
+                    135deg,\n
+                    #8b5cf6,\n
+                    #6d28d9\n
+                );\n
+\n
+            transition:0.3s ease;\n
+        }\n
+\n
+        .btn-login:hover{\n
+            transform:translateY(-3px);\n
+\n
+            box-shadow:\n
+                0 15px 25px rgba(109,40,217,0.35);\n
+        }\n
+\n
+        /* ===================================================\n
+                      USER PROFILE\n
+        =================================================== */\n
+\n
+        .dropdown{\n
+            position:relative;\n
+        }\n
+\n
+        .user-info{\n
+            display:flex;\n
+            align-items:center;\n
+            gap:14px;\n
+\n
+            padding:10px 18px;\n
+\n
+            border-radius:60px;\n
+\n
+            background:rgba(255,255,255,0.1);\n
+\n
+            border:1px solid rgba(255,255,255,0.12);\n
+\n
+            cursor:pointer;\n
+\n
+            transition:0.3s ease;\n
+        }\n
+\n
+        .user-info:hover{\n
+            background:rgba(255,255,255,0.18);\n
+        }\n
+\n
+        .user-avatar{\n
+            width:42px;\n
+            height:42px;\n
+\n
+            border-radius:50%;\n
+\n
+            background:\n
+                linear-gradient(\n
+                    135deg,\n
+                    #facc15,\n
+                    #fde047\n
+                );\n
+\n
+            display:flex;\n
+            align-items:center;\n
+            justify-content:center;\n
+\n
+            flex-shrink:0;\n
+        }\n
+\n
+        .user-avatar i{\n
+            color:#4c1d95;\n
+            font-size:18px;\n
+        }\n
+\n
+        .user-details{\n
+            display:flex;\n
+            flex-direction:column;\n
+            line-height:1.2;\n
+        }\n
+\n
+        .user-details strong{\n
+            color:white;\n
+            font-size:14px;\n
+            font-weight:700;\n
+        }\n
+\n
+        .user-details span{\n
+            color:#cbd5e1;\n
+            font-size:12px;\n
+        }\n
+\n
+        /* ===================================================\n
+                        DROPDOWN MENU\n
+        =================================================== */\n
+\n
+        .dropdown-menu{\n
+            position:absolute;\n
+\n
+            top:72px;\n
+            right:0;\n
+\n
+            width:280px;\n
+\n
+            background:white;\n
+\n
+            border-radius:24px;\n
+\n
+            overflow:hidden;\n
+\n
+            opacity:0;\n
+            visibility:hidden;\n
+            transform:translateY(15px);\n
+\n
+            transition:0.3s ease;\n
+\n
+            box-shadow:\n
+                0 20px 40px rgba(0,0,0,0.12);\n
+\n
+            z-index:9999;\n
+        }\n
+\n
+        .dropdown:hover .dropdown-menu{\n
+            opacity:1;\n
+            visibility:visible;\n
+            transform:translateY(0);\n
+        }\n
+\n
+        .dropdown-header{\n
+            padding:22px;\n
+\n
+            background:\n
+                linear-gradient(\n
+                    135deg,\n
+                    #6d28d9,\n
+                    #4c1d95\n
+                );\n
+\n
+            color:white;\n
+        }\n
+\n
+        .dropdown-header h4{\n
+            font-size:16px;\n
+            margin-bottom:5px;\n
+        }\n
+\n
+        .dropdown-header p{\n
+            font-size:13px;\n
+            opacity:0.9;\n
+        }\n
+\n
+        .dropdown-menu a{\n
+            display:flex;\n
+            align-items:center;\n
+            gap:14px;\n
+\n
+            padding:15px 22px;\n
+\n
+            text-decoration:none;\n
+\n
+            color:#1e293b;\n
+\n
+            font-weight:600;\n
+            font-size:14px;\n
+\n
+            border-bottom:1px solid #f1f5f9;\n
+\n
+            transition:0.25s ease;\n
+        }\n
+\n
+        .dropdown-menu a:last-child{\n
+            border-bottom:none;\n
+        }\n
+\n
+        .dropdown-menu a i{\n
+            width:18px;\n
+            color:#6d28d9;\n
+        }\n
+\n
+        .dropdown-menu a:hover{\n
+            background:#f8fafc;\n
+            padding-left:30px;\n
+        }\n
+\n
+        .dropdown-menu .logout{\n
+            color:#dc2626;\n
+        }\n
+\n
+        .dropdown-menu .logout i{\n
+            color:#dc2626;\n
+        }\n
+\n
+        .dropdown-menu .logout:hover{\n
+            background:#fef2f2;\n
+        }\n
+\n
+        /* ===================================================\n
+                         MOBILE BUTTON\n
+        =================================================== */\n
+\n
+        .mobile-menu-btn{\n
+            display:none;\n
+\n
+            width:46px;\n
+            height:46px;\n
+\n
+            border:none;\n
+\n
+            border-radius:14px;\n
+\n
+            background:rgba(255,255,255,0.12);\n
+\n
+            color:white;\n
+\n
+            cursor:pointer;\n
+\n
+            font-size:20px;\n
+\n
+            transition:0.3s ease;\n
+        }\n
+\n
+        .mobile-menu-btn:hover{\n
+            background:rgba(255,255,255,0.2);\n
+        }\n
+\n
+        /* ===================================================\n
+                        MAIN CONTENT\n
+        =================================================== */\n
+\n
+        .main-content{\n
+            min-height:calc(100vh - 170px);\n
+        }\n
+\n
+        /* ===================================================\n
+                           FOOTER\n
+        =================================================== */\n
+\n
+        .footer{\n
+            margin-top:80px;\n
+\n
+            background:\n
+                linear-gradient(\n
+                    135deg,\n
+                    #0f172a,\n
+                    #1e1b4b\n
+                );\n
+\n
+            color:white;\n
+\n
+            text-align:center;\n
+\n
+            padding:45px 20px;\n
+        }\n
+\n
+        .footer p{\n
+            opacity:0.75;\n
+            font-size:14px;\n
+        }\n
+\n
+        /* ===================================================\n
+                        RESPONSIVE TABLET\n
+        =================================================== */\n
+\n
+        @media(max-width:1200px){\n
+\n
+            .nav-links{\n
+                justify-content:flex-start;\n
+            }\n
+\n
+        }\n
+\n
+        /* ===================================================\n
+                        RESPONSIVE MOBILE\n
+        =================================================== */\n
+\n
+        @media(max-width:900px){\n
+\n
+            .nav-container{\n
+                min-height:75px;\n
+            }\n
+\n
+            .mobile-menu-btn{\n
+                display:flex;\n
+                align-items:center;\n
+                justify-content:center;\n
+            }\n
+\n
+            .nav-links{\n
+                position:absolute;\n
+\n
+                top:75px;\n
+                left:0;\n
+                right:0;\n
+\n
+                display:flex;\n
+                flex-direction:column;\n
+                align-items:stretch;\n
+                justify-content:flex-start;\n
+\n
+                gap:10px;\n
+\n
+                padding:20px;\n
+\n
+                background:\n
+                    linear-gradient(\n
+                        135deg,\n
+                        #0f172a,\n
+                        #1e1b4b\n
+                    );\n
+\n
+                max-height:0;\n
+                overflow:hidden;\n
+\n
+                opacity:0;\n
+\n
+                transition:0.4s ease;\n
+            }\n
+\n
+            .nav-links.mobile-open{\n
+                max-height:1000px;\n
+                opacity:1;\n
+                overflow-y:auto;\n
+            }\n
+\n
+            .nav-links a{\n
+                width:100%;\n
+                justify-content:flex-start;\n
+\n
+                padding:14px 18px;\n
+\n
+                border-radius:16px;\n
+            }\n
+\n
+            .user-details{\n
+                display:none;\n
+            }\n
+\n
+            .dropdown-menu{\n
+                right:-20px;\n
+                width:260px;\n
+            }\n
+\n
+        }\n
+\n
+        @media(max-width:600px){\n
+\n
+            .logo-text strong{\n
+                font-size:22px;\n
+            }\n
+\n
+            .logo-icon{\n
+                width:42px;\n
+                height:42px;\n
+            }\n
+\n
+            .logo-icon i{\n
+                font-size:20px;\n
+            }\n
+\n
+            .btn-login span{\n
+                display:none;\n
+            }\n
+\n
+            .btn-login{\n
+                width:46px;\n
+                height:46px;\n
+                padding:0;\n
+\n
+                justify-content:center;\n
+            }\n
+\n
+        }\n
+\n
+    &lt;/style&gt;\n
+\n
+    \n
+&lt;style&gt;\n
+    .page-header {\n
+        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #4c1d95 100%);\n
+        padding: 50px 0 70px 0;\n
+        text-align: center;\n
+        color: white;\n
+    }\n
+    \n
+    .page-header h1 {\n
+        font-size: 36px;\n
+        font-weight: 800;\n
+        margin-bottom: 10px;\n
+    }\n
+    \n
+    .container-custom {\n
+        max-width: 1200px;\n
+        margin: -40px auto 0;\n
+        padding: 0 20px;\n
+    }\n
+    \n
+    .card {\n
+        background: white;\n
+        border-radius: 24px;\n
+        overflow: hidden;\n
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);\n
+        margin-bottom: 30px;\n
+    }\n
+    \n
+    .card-header {\n
+        background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%);\n
+        padding: 20px 25px;\n
+        color: white;\n
+    }\n
+    \n
+    .card-header h3 {\n
+        font-size: 18px;\n
+        font-weight: 700;\n
+        margin: 0;\n
+        display: flex;\n
+        align-items: center;\n
+        gap: 10px;\n
+    }\n
+    \n
+    .reclamation-card {\n
+        padding: 25px;\n
+        border-bottom: 1px solid #f1f5f9;\n
+    }\n
+    \n
+    .reclamation-card:last-child {\n
+        border-bottom: none;\n
+    }\n
+    \n
+    .reclamation-header {\n
+        display: flex;\n
+        justify-content: space-between;\n
+        align-items: center;\n
+        margin-bottom: 15px;\n
+        flex-wrap: wrap;\n
+        gap: 10px;\n
+    }\n
+    \n
+    .reclamation-title {\n
+        font-size: 18px;\n
+        font-weight: 700;\n
+        color: #1e293b;\n
+    }\n
+    \n
+    .badge {\n
+        padding: 4px 12px;\n
+        border-radius: 20px;\n
+        font-size: 11px;\n
+        font-weight: 600;\n
+    }\n
+    \n
+    .badge-warning {\n
+        background: #fef3c7;\n
+        color: #b45309;\n
+    }\n
+    \n
+    .badge-info {\n
+        background: #e0f2fe;\n
+        color: #0369a1;\n
+    }\n
+    \n
+    .badge-success {\n
+        background: #dcfce7;\n
+        color: #15803d;\n
+    }\n
+    \n
+    .reclamation-meta {\n
+        color: #64748b;\n
+        font-size: 13px;\n
+        margin-bottom: 15px;\n
+        display: flex;\n
+        gap: 20px;\n
+        flex-wrap: wrap;\n
+    }\n
+    \n
+    .reclamation-message {\n
+        background: #f8fafc;\n
+        padding: 15px;\n
+        border-radius: 16px;\n
+        margin-bottom: 20px;\n
+        line-height: 1.6;\n
+    }\n
+    \n
+    .response-form {\n
+        margin-top: 20px;\n
+    }\n
+    \n
+    .response-form textarea {\n
+        width: 100%;\n
+        padding: 12px;\n
+        border: 2px solid #e2e8f0;\n
+        border-radius: 16px;\n
+        font-family: inherit;\n
+        margin-bottom: 10px;\n
+        resize: vertical;\n
+    }\n
+    \n
+    .response-form textarea:focus {\n
+        outline: none;\n
+        border-color: #4c1d95;\n
+    }\n
+    \n
+    .btn-submit {\n
+        background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%);\n
+        color: white;\n
+        padding: 10px 20px;\n
+        border-radius: 30px;\n
+        border: none;\n
+        cursor: pointer;\n
+        font-weight: 600;\n
+        transition: all 0.3s;\n
+    }\n
+    \n
+    .btn-submit:hover {\n
+        transform: translateY(-2px);\n
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.3);\n
+    }\n
+    \n
+    .response-display {\n
+        background: #f1f5f9;\n
+        padding: 15px;\n
+        border-radius: 16px;\n
+        margin-top: 15px;\n
+    }\n
+    \n
+    .response-display strong {\n
+        color: #4c1d95;\n
+    }\n
+    \n
+    @media (max-width: 768px) {\n
+        .reclamation-header {\n
+            flex-direction: column;\n
+            align-items: flex-start;\n
+        }\n
+    }\n
+&lt;/style&gt;\n
+&lt;/head&gt;\n
+\n
+&lt;body&gt;\n
+\n
+&lt;!-- ===================================================\n
+                        NAVBAR\n
+=================================================== --&gt;\n
+\n
+&lt;nav class="navbar"&gt;\n
+\n
+    &lt;div class="nav-container"&gt;\n
+\n
+        &lt;!-- LOGO --&gt;\n
+        &lt;div class="logo"&gt;\n
+\n
+            &lt;a href="/"&gt;\n
+\n
+                &lt;div class="logo-icon"&gt;\n
+                    &lt;i class="fas fa-car-side"&gt;&lt;/i&gt;\n
+                &lt;/div&gt;\n
+\n
+                &lt;div class="logo-text"&gt;\n
+                    &lt;strong&gt;Wassalni&lt;/strong&gt;\n
+                    &lt;span&gt;TUNISIA&lt;/span&gt;\n
+                &lt;/div&gt;\n
+\n
+            &lt;/a&gt;\n
+\n
+        &lt;/div&gt;\n
+\n
+        &lt;!-- NAVIGATION --&gt;\n
+        &lt;div class="nav-links" id="navLinks"&gt;\n
+\n
+            \n
+                \n
+                    &lt;a href="/admin/dashboard"&gt;\n
+                        &lt;i class="fas fa-gauge-high"&gt;&lt;/i&gt;\n
+                        Dashboard\n
+                    &lt;/a&gt;\n
+\n
+                    &lt;a href="/admin/utilisateurs"&gt;\n
+                        &lt;i class="fas fa-users"&gt;&lt;/i&gt;\n
+                        Utilisateurs\n
+                    &lt;/a&gt;\n
+\n
+                    &lt;a href="/admin/trajets"&gt;\n
+                        &lt;i class="fas fa-route"&gt;&lt;/i&gt;\n
+                        Trajets\n
+                    &lt;/a&gt;\n
+\n
+                    &lt;a href="/admin/reclamations"&gt;\n
+                        &lt;i class="fas fa-file-alt"&gt;&lt;/i&gt;\n
+                        Réclamations\n
+                    &lt;/a&gt;\n
+\n
+                \n
+            \n
+        &lt;/div&gt;\n
+\n
+        &lt;!-- USER MENU --&gt;\n
+        &lt;div class="user-menu"&gt;\n
+\n
+            \n
+                &lt;div class="dropdown"&gt;\n
+\n
+                    &lt;div class="user-info"&gt;\n
+\n
+                        &lt;div class="user-avatar"&gt;\n
+                            &lt;i class="fas fa-user"&gt;&lt;/i&gt;\n
+                        &lt;/div&gt;\n
+\n
+                        &lt;div class="user-details"&gt;\n
+\n
+                            &lt;strong&gt;\n
+                                U-ADMIN\n
+                                C.\n
+                            &lt;/strong&gt;\n
+\n
+                            &lt;span&gt;\n
+                                                                    Administrateur\n
+                                                            &lt;/span&gt;\n
+\n
+                        &lt;/div&gt;\n
+\n
+                        &lt;i class="fas fa-chevron-down" style="color:white;font-size:12px;"&gt;&lt;/i&gt;\n
+\n
+                    &lt;/div&gt;\n
+\n
+                    &lt;!-- DROPDOWN --&gt;\n
+                    &lt;div class="dropdown-menu"&gt;\n
+\n
+                        &lt;div class="dropdown-header"&gt;\n
+\n
+                            &lt;h4&gt;\n
+                                U-ADMIN\n
+                                Catalogue\n
+                            &lt;/h4&gt;\n
+\n
+                            &lt;p&gt;\n
+                                                                    Administrateur\n
+                                                            &lt;/p&gt;\n
+\n
+                        &lt;/div&gt;\n
+\n
+                        &lt;a href="/reclamation/mes-reclamations"&gt;\n
+                            &lt;i class="fas fa-file-alt"&gt;&lt;/i&gt;\n
+                            Mes réclamations\n
+                        &lt;/a&gt;\n
+\n
+                        &lt;a href="/reclamation/nouvelle"&gt;\n
+                            &lt;i class="fas fa-plus-circle"&gt;&lt;/i&gt;\n
+                            Nouvelle réclamation\n
+                        &lt;/a&gt;\n
+\n
+                        &lt;a href="/deconnexion"\n
+                           class="logout"\n
+                           onclick="return confirm('Déconnexion ?')"&gt;\n
+\n
+                            &lt;i class="fas fa-right-from-bracket"&gt;&lt;/i&gt;\n
+                            Déconnexion\n
+\n
+                        &lt;/a&gt;\n
+\n
+                    &lt;/div&gt;\n
+\n
+                &lt;/div&gt;\n
+\n
+            \n
+        &lt;/div&gt;\n
+\n
+        &lt;!-- MOBILE BUTTON --&gt;\n
+        &lt;button class="mobile-menu-btn" id="mobileMenuBtn"&gt;\n
+\n
+            &lt;i class="fas fa-bars"&gt;&lt;/i&gt;\n
+\n
+        &lt;/button&gt;\n
+\n
+    &lt;/div&gt;\n
+\n
+&lt;/nav&gt;\n
+\n
+&lt;!-- ===================================================\n
+                      MAIN CONTENT\n
+=================================================== --&gt;\n
+\n
+&lt;main class="main-content"&gt;\n
+\n
+    &lt;div class="page-header"&gt;\n
+    &lt;div class="container"&gt;\n
+        &lt;h1&gt;&lt;i class="fas fa-file-alt"&gt;&lt;/i&gt; Gestion des réclamations&lt;/h1&gt;\n
+        &lt;p&gt;Consultez et traitez les réclamations des utilisateurs&lt;/p&gt;\n
+    &lt;/div&gt;\n
+&lt;/div&gt;\n
+\n
+&lt;div class="container-custom"&gt;\n
+    &lt;div class="card"&gt;\n
+        &lt;div class="card-header"&gt;\n
+            &lt;h3&gt;&lt;i class="fas fa-list"&gt;&lt;/i&gt; Liste des réclamations&lt;/h3&gt;\n
+        &lt;/div&gt;\n
+        \n
+                                    &lt;div class="reclamation-card"&gt;\n
+                    &lt;div class="reclamation-header"&gt;\n
+                        &lt;div class="reclamation-title"&gt;\n
+                            Retard important du conducteur\n
+                        &lt;/div&gt;\n
+                        &lt;div&gt;\n
+                                                            &lt;span class="badge badge-success"&gt;Traitée&lt;/span&gt;\n
+                                                    &lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-meta"&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt; Mohamed Lajili&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; mohamed.lajili@wassalni.tn&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-calendar"&gt;&lt;/i&gt; 27/04/2026 20:08&lt;/span&gt;\n
+                                                    &lt;span&gt;&lt;i class="fas fa-route"&gt;&lt;/i&gt; Trajet #1&lt;/span&gt;\n
+                                            &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-message"&gt;\n
+                        &lt;strong&gt;Message :&lt;/strong&gt;&lt;br&gt;\n
+                        Le conducteur avait plus de 45 minutes de retard sans aucun appel ni message. J&amp;#039;ai dû prendre un taxi et j&amp;#039;ai payé 60 DT supplémentaire.\n
+                    &lt;/div&gt;\n
+                    \n
+                                            &lt;div class="response-display"&gt;\n
+                            &lt;strong&gt;&lt;i class="fas fa-reply"&gt;&lt;/i&gt; Réponse :&lt;/strong&gt;&lt;br&gt;\n
+                            Nous avons contacté le conducteur et lui avons fait un rappel des règles. Veuillez nous fournir la facture du taxi pour un éventuel remboursement.\n
+                            &lt;br&gt;&lt;br&gt;\n
+                            &lt;small&gt;Date traitement: 29/04/2026 20:08&lt;/small&gt;\n
+                        &lt;/div&gt;\n
+                                    &lt;/div&gt;\n
+                            &lt;div class="reclamation-card"&gt;\n
+                    &lt;div class="reclamation-header"&gt;\n
+                        &lt;div class="reclamation-title"&gt;\n
+                            Annulation 1 heure avant le départ\n
+                        &lt;/div&gt;\n
+                        &lt;div&gt;\n
+                                                            &lt;span class="badge badge-info"&gt;En cours&lt;/span&gt;\n
+                                                    &lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-meta"&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt; Nour Chedli&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; nour.chedli@wassalni.tn&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-calendar"&gt;&lt;/i&gt; 02/05/2026 20:08&lt;/span&gt;\n
+                                                    &lt;span&gt;&lt;i class="fas fa-route"&gt;&lt;/i&gt; Trajet #3&lt;/span&gt;\n
+                                            &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-message"&gt;\n
+                        &lt;strong&gt;Message :&lt;/strong&gt;&lt;br&gt;\n
+                        Le conducteur a annulé le trajet 1 heure avant le départ alors que j&amp;#039;avais déjà pris mes dispositions. Je me suis retrouvé bloqué sans solution de transport.\n
+                    &lt;/div&gt;\n
+                    \n
+                                            &lt;form action="/admin/reclamation/traiter/7" method="post" class="response-form"&gt;\n
+                            &lt;input type="hidden" name="_token" value="7f9fc78110fc5cc114b254cbc.WH26EqYL_ELbL31X_x0-wbGCybXeUgFOhPAXS6c966M.FC6Pd_F5kDDvG0gWvXt8icnPvfPtKCwg_sBjOuBJ0vkJTd903E-4JJF4LA"&gt;\n
+                            &lt;textarea name="reponse" rows="3" placeholder="Votre réponse..."&gt;&lt;/textarea&gt;\n
+                            &lt;button type="submit" class="btn-submit"&gt;\n
+                                &lt;i class="fas fa-paper-plane"&gt;&lt;/i&gt; Répondre et traiter\n
+                            &lt;/button&gt;\n
+                        &lt;/form&gt;\n
+                                    &lt;/div&gt;\n
+                            &lt;div class="reclamation-card"&gt;\n
+                    &lt;div class="reclamation-header"&gt;\n
+                        &lt;div class="reclamation-title"&gt;\n
+                            Véhicule différent de l&amp;#039;annonce\n
+                        &lt;/div&gt;\n
+                        &lt;div&gt;\n
+                                                            &lt;span class="badge badge-warning"&gt;En attente&lt;/span&gt;\n
+                                                    &lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-meta"&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt; Mohamed Lajili&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; mohamed.lajili@wassalni.tn&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-calendar"&gt;&lt;/i&gt; 04/05/2026 20:08&lt;/span&gt;\n
+                                                    &lt;span&gt;&lt;i class="fas fa-route"&gt;&lt;/i&gt; Trajet #5&lt;/span&gt;\n
+                                            &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-message"&gt;\n
+                        &lt;strong&gt;Message :&lt;/strong&gt;&lt;br&gt;\n
+                        Le véhicule annoncé était une BMW Série 3 récente, mais le conducteur est venu avec une vieille Clio en mauvais état, sans climatisation et avec une odeur de tabac.\n
+                    &lt;/div&gt;\n
+                    \n
+                                            &lt;form action="/admin/reclamation/traiter/8" method="post" class="response-form"&gt;\n
+                            &lt;input type="hidden" name="_token" value="536707527ef.KgEHCQ7sAy55M2cK1p6Oiugwy91laDX_nFAEyZ-vczA.bjVkSm_ZewNJXyJbk_zG0pAEveoHNwG80x1Fnsf8J2R5bDA6Zb5XYQplLg"&gt;\n
+                            &lt;textarea name="reponse" rows="3" placeholder="Votre réponse..."&gt;&lt;/textarea&gt;\n
+                            &lt;button type="submit" class="btn-submit"&gt;\n
+                                &lt;i class="fas fa-paper-plane"&gt;&lt;/i&gt; Répondre et traiter\n
+                            &lt;/button&gt;\n
+                        &lt;/form&gt;\n
+                                    &lt;/div&gt;\n
+                            &lt;div class="reclamation-card"&gt;\n
+                    &lt;div class="reclamation-header"&gt;\n
+                        &lt;div class="reclamation-title"&gt;\n
+                            Conducteur impoli et dangereux\n
+                        &lt;/div&gt;\n
+                        &lt;div&gt;\n
+                                                            &lt;span class="badge badge-warning"&gt;En attente&lt;/span&gt;\n
+                                                    &lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-meta"&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt; Nour Chedli&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; nour.chedli@wassalni.tn&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-calendar"&gt;&lt;/i&gt; 05/05/2026 20:08&lt;/span&gt;\n
+                                                    &lt;span&gt;&lt;i class="fas fa-route"&gt;&lt;/i&gt; Trajet #11&lt;/span&gt;\n
+                                            &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-message"&gt;\n
+                        &lt;strong&gt;Message :&lt;/strong&gt;&lt;br&gt;\n
+                        Le conducteur a conduit de manière dangereuse (excès de vitesse, téléphone au volant). De plus, il était impoli avec tous les passagers.\n
+                    &lt;/div&gt;\n
+                    \n
+                                            &lt;form action="/admin/reclamation/traiter/9" method="post" class="response-form"&gt;\n
+                            &lt;input type="hidden" name="_token" value="843.ontkmy5RNMFnS6fqWEnW2VmWLjQ_3SwhPEKHfs0cVVE.yi8GqWQmVq8BeeXHbzmlnWDeT3txuRxZbXXwR793GBTnPRLtGzh-iCAsxA"&gt;\n
+                            &lt;textarea name="reponse" rows="3" placeholder="Votre réponse..."&gt;&lt;/textarea&gt;\n
+                            &lt;button type="submit" class="btn-submit"&gt;\n
+                                &lt;i class="fas fa-paper-plane"&gt;&lt;/i&gt; Répondre et traiter\n
+                            &lt;/button&gt;\n
+                        &lt;/form&gt;\n
+                                    &lt;/div&gt;\n
+                            &lt;div class="reclamation-card"&gt;\n
+                    &lt;div class="reclamation-header"&gt;\n
+                        &lt;div class="reclamation-title"&gt;\n
+                            Passager très bruyant\n
+                        &lt;/div&gt;\n
+                        &lt;div&gt;\n
+                                                            &lt;span class="badge badge-warning"&gt;En attente&lt;/span&gt;\n
+                                                    &lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-meta"&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt; Mohamed Lajili&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; mohamed.lajili@wassalni.tn&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-calendar"&gt;&lt;/i&gt; 30/04/2026 20:08&lt;/span&gt;\n
+                                                    &lt;span&gt;&lt;i class="fas fa-route"&gt;&lt;/i&gt; Trajet #9&lt;/span&gt;\n
+                                            &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-message"&gt;\n
+                        &lt;strong&gt;Message :&lt;/strong&gt;&lt;br&gt;\n
+                        Un autre passager a été très bruyant pendant tout le trajet (musique forte, appels téléphoniques). Le conducteur n&amp;#039;a rien fait pour calmer la situation.\n
+                    &lt;/div&gt;\n
+                    \n
+                                            &lt;form action="/admin/reclamation/traiter/10" method="post" class="response-form"&gt;\n
+                            &lt;input type="hidden" name="_token" value="0f5525ed3ca0f1fe21ebbd63a7.WQJV_3LsVMmtvFJya53oJ5PVMh91_6RToEk2h7GPOPc.HHsehRHaI7-A-gMeLcySZvC5fkY4p8Frzzt-w-fMCYQ_MhyXAaQC8fvtHw"&gt;\n
+                            &lt;textarea name="reponse" rows="3" placeholder="Votre réponse..."&gt;&lt;/textarea&gt;\n
+                            &lt;button type="submit" class="btn-submit"&gt;\n
+                                &lt;i class="fas fa-paper-plane"&gt;&lt;/i&gt; Répondre et traiter\n
+                            &lt;/button&gt;\n
+                        &lt;/form&gt;\n
+                                    &lt;/div&gt;\n
+                            &lt;div class="reclamation-card"&gt;\n
+                    &lt;div class="reclamation-header"&gt;\n
+                        &lt;div class="reclamation-title"&gt;\n
+                            Passager non respectueux\n
+                        &lt;/div&gt;\n
+                        &lt;div&gt;\n
+                                                            &lt;span class="badge badge-success"&gt;Traitée&lt;/span&gt;\n
+                                                    &lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-meta"&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt; Ahmed Ben Ali&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; ahmed.benali@wassalni.tn&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-calendar"&gt;&lt;/i&gt; 25/04/2026 20:08&lt;/span&gt;\n
+                                                    &lt;span&gt;&lt;i class="fas fa-route"&gt;&lt;/i&gt; Trajet #1&lt;/span&gt;\n
+                                            &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-message"&gt;\n
+                        &lt;strong&gt;Message :&lt;/strong&gt;&lt;br&gt;\n
+                        Le passager a annulé sa réservation à la dernière minute sans raison valable. Cela m&amp;#039;a fait perdre du temps et de l&amp;#039;argent car j&amp;#039;aurais pu prendre d&amp;#039;autres passagers.\n
+                    &lt;/div&gt;\n
+                    \n
+                                            &lt;div class="response-display"&gt;\n
+                            &lt;strong&gt;&lt;i class="fas fa-reply"&gt;&lt;/i&gt; Réponse :&lt;/strong&gt;&lt;br&gt;\n
+                            Nous avons noté ce comportement. Le passager a été averti que des annulations répétées pourraient entraîner la suspension de son compte.\n
+                            &lt;br&gt;&lt;br&gt;\n
+                            &lt;small&gt;Date traitement: 27/04/2026 20:08&lt;/small&gt;\n
+                        &lt;/div&gt;\n
+                                    &lt;/div&gt;\n
+                            &lt;div class="reclamation-card"&gt;\n
+                    &lt;div class="reclamation-header"&gt;\n
+                        &lt;div class="reclamation-title"&gt;\n
+                            Problème de paiement double débit\n
+                        &lt;/div&gt;\n
+                        &lt;div&gt;\n
+                                                            &lt;span class="badge badge-info"&gt;En cours&lt;/span&gt;\n
+                                                    &lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-meta"&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt; Mohamed Lajili&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; mohamed.lajili@wassalni.tn&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-calendar"&gt;&lt;/i&gt; 03/05/2026 20:08&lt;/span&gt;\n
+                                                    &lt;span&gt;&lt;i class="fas fa-route"&gt;&lt;/i&gt; Trajet #3&lt;/span&gt;\n
+                                            &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-message"&gt;\n
+                        &lt;strong&gt;Message :&lt;/strong&gt;&lt;br&gt;\n
+                        J&amp;#039;ai été débité deux fois pour la même réservation. Une première fois de 25 DT, puis une seconde fois de 25 DT. Je demande un remboursement de la somme en trop.\n
+                    &lt;/div&gt;\n
+                    \n
+                                            &lt;form action="/admin/reclamation/traiter/12" method="post" class="response-form"&gt;\n
+                            &lt;input type="hidden" name="_token" value="28fe7c1970bb4f1fdeb81634fc.mVc5ei3G1o9dfKmvmh3HDF1RwZQosOKxrDns3IxhHH0.2gJ2MRqUjv4LKJnryyupdSw5jPNL86fn3Wy5utNTfSfDBVIUQIq-wC4uyg"&gt;\n
+                            &lt;textarea name="reponse" rows="3" placeholder="Votre réponse..."&gt;&lt;/textarea&gt;\n
+                            &lt;button type="submit" class="btn-submit"&gt;\n
+                                &lt;i class="fas fa-paper-plane"&gt;&lt;/i&gt; Répondre et traiter\n
+                            &lt;/button&gt;\n
+                        &lt;/form&gt;\n
+                                    &lt;/div&gt;\n
+                            &lt;div class="reclamation-card"&gt;\n
+                    &lt;div class="reclamation-header"&gt;\n
+                        &lt;div class="reclamation-title"&gt;\n
+                            Erreur lors de la réservation\n
+                        &lt;/div&gt;\n
+                        &lt;div&gt;\n
+                                                            &lt;span class="badge badge-warning"&gt;En attente&lt;/span&gt;\n
+                                                    &lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-meta"&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt; Nour Chedli&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; nour.chedli@wassalni.tn&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-calendar"&gt;&lt;/i&gt; 06/05/2026 20:08&lt;/span&gt;\n
+                                            &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-message"&gt;\n
+                        &lt;strong&gt;Message :&lt;/strong&gt;&lt;br&gt;\n
+                        L&amp;#039;application affiche une erreur quand j&amp;#039;essaie de réserver un trajet. Le message d&amp;#039;erreur: &amp;quot;Erreur interne du serveur&amp;quot;. Impossible de finaliser ma réservation.\n
+                    &lt;/div&gt;\n
+                    \n
+                                            &lt;form action="/admin/reclamation/traiter/13" method="post" class="response-form"&gt;\n
+                            &lt;input type="hidden" name="_token" value="e.4AYBO0H1RAMADl-ai3bUJPDio9hLyZVA7zJnIj3zB4U.hkx7dTTCNmFfNyjI6Tq4dMmQ9JIIhMIniAIrSHaKRcGZZ2VMFLcOTS1qOA"&gt;\n
+                            &lt;textarea name="reponse" rows="3" placeholder="Votre réponse..."&gt;&lt;/textarea&gt;\n
+                            &lt;button type="submit" class="btn-submit"&gt;\n
+                                &lt;i class="fas fa-paper-plane"&gt;&lt;/i&gt; Répondre et traiter\n
+                            &lt;/button&gt;\n
+                        &lt;/form&gt;\n
+                                    &lt;/div&gt;\n
+                            &lt;div class="reclamation-card"&gt;\n
+                    &lt;div class="reclamation-header"&gt;\n
+                        &lt;div class="reclamation-title"&gt;\n
+                            Conducteur très agréable (compliment)\n
+                        &lt;/div&gt;\n
+                        &lt;div&gt;\n
+                                                            &lt;span class="badge badge-success"&gt;Traitée&lt;/span&gt;\n
+                                                    &lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-meta"&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt; Mohamed Lajili&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; mohamed.lajili@wassalni.tn&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-calendar"&gt;&lt;/i&gt; 22/04/2026 20:08&lt;/span&gt;\n
+                                                    &lt;span&gt;&lt;i class="fas fa-route"&gt;&lt;/i&gt; Trajet #5&lt;/span&gt;\n
+                                            &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-message"&gt;\n
+                        &lt;strong&gt;Message :&lt;/strong&gt;&lt;br&gt;\n
+                        Je voulais signaler un conducteur exceptionnel. Le trajet était très agréable, le conducteur ponctuel, courtois et la voiture impeccable. Félicitations !\n
+                    &lt;/div&gt;\n
+                    \n
+                                            &lt;div class="response-display"&gt;\n
+                            &lt;strong&gt;&lt;i class="fas fa-reply"&gt;&lt;/i&gt; Réponse :&lt;/strong&gt;&lt;br&gt;\n
+                            Merci pour ce retour positif ! Nous avons transmis votre message au conducteur.\n
+                            &lt;br&gt;&lt;br&gt;\n
+                            &lt;small&gt;Date traitement: 23/04/2026 20:08&lt;/small&gt;\n
+                        &lt;/div&gt;\n
+                                    &lt;/div&gt;\n
+                            &lt;div class="reclamation-card"&gt;\n
+                    &lt;div class="reclamation-header"&gt;\n
+                        &lt;div class="reclamation-title"&gt;\n
+                            Passager annulation sans prévenir\n
+                        &lt;/div&gt;\n
+                        &lt;div&gt;\n
+                                                            &lt;span class="badge badge-warning"&gt;En attente&lt;/span&gt;\n
+                                                    &lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-meta"&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt; yassine Ben Ammar&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; yassine@gmail.com&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-calendar"&gt;&lt;/i&gt; 07/05/2026 20:08&lt;/span&gt;\n
+                                                    &lt;span&gt;&lt;i class="fas fa-route"&gt;&lt;/i&gt; Trajet #11&lt;/span&gt;\n
+                                            &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-message"&gt;\n
+                        &lt;strong&gt;Message :&lt;/strong&gt;&lt;br&gt;\n
+                        Un passager a réservé et n&amp;#039;est jamais venu, sans aucun message. Il a bloqué une place que j&amp;#039;aurais pu proposer à quelqu&amp;#039;un d&amp;#039;autre.\n
+                    &lt;/div&gt;\n
+                    \n
+                                            &lt;form action="/admin/reclamation/traiter/15" method="post" class="response-form"&gt;\n
+                            &lt;input type="hidden" name="_token" value="db8c0d7d3429e4d5def6.84n1r7q6qoWK5CTNGCceoasKvKejv1qBqbjjvMqsrp0.tfPC8I_22PfQgXeOYkNy9uZGj8GW_Bbkz8CHxbjN_Mmq7ZTDwNXs6MGtFA"&gt;\n
+                            &lt;textarea name="reponse" rows="3" placeholder="Votre réponse..."&gt;&lt;/textarea&gt;\n
+                            &lt;button type="submit" class="btn-submit"&gt;\n
+                                &lt;i class="fas fa-paper-plane"&gt;&lt;/i&gt; Répondre et traiter\n
+                            &lt;/button&gt;\n
+                        &lt;/form&gt;\n
+                                    &lt;/div&gt;\n
+                            &lt;div class="reclamation-card"&gt;\n
+                    &lt;div class="reclamation-header"&gt;\n
+                        &lt;div class="reclamation-title"&gt;\n
+                            Annulation de dernière minute\n
+                        &lt;/div&gt;\n
+                        &lt;div&gt;\n
+                                                            &lt;span class="badge badge-success"&gt;Traitée&lt;/span&gt;\n
+                                                    &lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-meta"&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt; Mohamed Lajili&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; mohamed.lajili@wassalni.tn&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-calendar"&gt;&lt;/i&gt; 07/05/2026 19:13&lt;/span&gt;\n
+                                                    &lt;span&gt;&lt;i class="fas fa-route"&gt;&lt;/i&gt; Trajet #20&lt;/span&gt;\n
+                                            &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-message"&gt;\n
+                        &lt;strong&gt;Message :&lt;/strong&gt;&lt;br&gt;\n
+                        mouche mregelll rahou djddhhdhd\n
+                    &lt;/div&gt;\n
+                    \n
+                                            &lt;div class="response-display"&gt;\n
+                            &lt;strong&gt;&lt;i class="fas fa-reply"&gt;&lt;/i&gt; Réponse :&lt;/strong&gt;&lt;br&gt;\n
+                            okkk tawa ywalli mregelll\n
+                            &lt;br&gt;&lt;br&gt;\n
+                            &lt;small&gt;Date traitement: 07/05/2026 19:14&lt;/small&gt;\n
+                        &lt;/div&gt;\n
+                                    &lt;/div&gt;\n
+                            &lt;div class="reclamation-card"&gt;\n
+                    &lt;div class="reclamation-header"&gt;\n
+                        &lt;div class="reclamation-title"&gt;\n
+                            Retard important\n
+                        &lt;/div&gt;\n
+                        &lt;div&gt;\n
+                                                            &lt;span class="badge badge-warning"&gt;En attente&lt;/span&gt;\n
+                                                    &lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-meta"&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt; U-PASS1 Catalogue&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; cat-ce7c0749-pass1@example.test&lt;/span&gt;\n
+                        &lt;span&gt;&lt;i class="fas fa-calendar"&gt;&lt;/i&gt; 21/11/2026 16:13&lt;/span&gt;\n
+                                            &lt;/div&gt;\n
+                    \n
+                    &lt;div class="reclamation-message"&gt;\n
+                        &lt;strong&gt;Message :&lt;/strong&gt;&lt;br&gt;\n
+                        Réclamation pour message flash\n
+                    &lt;/div&gt;\n
+                    \n
+                                            &lt;form action="/admin/reclamation/traiter/392" method="post" class="response-form"&gt;\n
+                            &lt;input type="hidden" name="_token" value="33e1c79ebaa10e1df34911.NSCtXBc4x4SBoH9oyQY7eX-N5-qeM9-EQuBfQPyiH9k.Q0OVGWJZ_sPK7kwmr2NwMDXerpP9fO_AAc1rH6XmS7RYR-sMXXqk6PTLMg"&gt;\n
+                            &lt;textarea name="reponse" rows="3" placeholder="Votre réponse..."&gt;&lt;/textarea&gt;\n
+                            &lt;button type="submit" class="btn-submit"&gt;\n
+                                &lt;i class="fas fa-paper-plane"&gt;&lt;/i&gt; Répondre et traiter\n
+                            &lt;/button&gt;\n
+                        &lt;/form&gt;\n
+                                    &lt;/div&gt;\n
+                        &lt;/div&gt;\n
+&lt;/div&gt;\n
+\n
+&lt;/main&gt;\n
+\n
+&lt;!-- ===================================================\n
+                         FOOTER\n
+=================================================== --&gt;\n
+\n
+&lt;footer class="footer"&gt;\n
+\n
+    &lt;p&gt;\n
+        © 2025 Wassalni.TN — Plateforme moderne de covoiturage en Tunisie\n
+    &lt;/p&gt;\n
+\n
+&lt;/footer&gt;\n
+\n
+&lt;!-- ===================================================\n
+                       JAVASCRIPT\n
+=================================================== --&gt;\n
+\n
+&lt;script&gt;\n
+\n
+    const mobileBtn = document.getElementById('mobileMenuBtn');\n
+    const navLinks  = document.getElementById('navLinks');\n
+\n
+    mobileBtn.addEventListener('click', () =&gt; {\n
+\n
+        navLinks.classList.toggle('mobile-open');\n
+\n
+        if(navLinks.classList.contains('mobile-open')){\n
+            mobileBtn.innerHTML =\n
+                '&lt;i class="fas fa-times"&gt;&lt;/i&gt;';\n
+        }else{\n
+            mobileBtn.innerHTML =\n
+                '&lt;i class="fas fa-bars"&gt;&lt;/i&gt;';\n
+        }\n
+\n
+    });\n
+\n
+    // Fermer menu mobile au clic\n
+    document.querySelectorAll('.nav-links a')\n
+        .forEach(link =&gt; {\n
+\n
+            link.addEventListener('click', () =&gt; {\n
+\n
+                navLinks.classList.remove('mobile-open');\n
+\n
+                mobileBtn.innerHTML =\n
+                    '&lt;i class="fas fa-bars"&gt;&lt;/i&gt;';\n
+\n
+            });\n
+\n
+        });\n
+\n
+&lt;/script&gt;\n
+\n
+\n
+&lt;/body&gt;\n
+&lt;/html&gt;' [UTF-8](length: 45356) contains "Veuillez saisir une réponse" [UTF-8](length: 28).
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:265</failure>
+        </testcase>
+      </testsuite>
+      <testsuite name="App\Tests\Functional\Catalogue\PublicationRechercheTest" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" tests="10" assertions="24" errors="0" failures="10" skipped="0" time="0.595645">
+        <testcase name="testTC11DepartLeJourMeme" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="78" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="2" time="0.044275">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testTC11DepartLeJourMeme&#13;
+Trajet du jour accepté à 00:00
+Failed asserting that 9621 is null.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:80</failure>
+        </testcase>
+        <testcase name="testTC12ArriveeEgaleAuDepart" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="86" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="2" time="0.058186">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testTC12ArriveeEgaleAuDepart&#13;
+Arrivée = départ acceptée
+Failed asserting that 9630 is null.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:88</failure>
+        </testcase>
+        <testcase name="testTC14PrixNonNumerique" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="117" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="2" time="0.049931">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testTC14PrixNonNumerique&#13;
+prix=abc : trajet créé, prix enregistré 0
+Failed asserting that 9639 is null.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:121</failure>
+        </testcase>
+        <testcase name="testTC15StatutInitialEnAttente" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="127" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="3" time="0.048213">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testTC15StatutInitialEnAttente&#13;
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'EN_ATTENTE'
++'VALIDE'
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:131</failure>
+        </testcase>
+        <testcase name="testTC16TrajetNonValideInvisible" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="137" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="4" time="0.127176">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testTC16TrajetNonValideInvisible&#13;
+Failed asserting that true is false.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:142</failure>
+        </testcase>
+        <testcase name="testCA13VehiculeDUnAutreConducteur" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="156" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="3" time="0.041834">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testCA13VehiculeDUnAutreConducteur&#13;
+Trajet publié avec le véhicule d'un autre conducteur
+Failed asserting that 9666 is null.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:164</failure>
+        </testcase>
+        <testcase name="testTC18TrajetPasseAbsent" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="189" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="2" time="0.052109">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testTC18TrajetPasseAbsent&#13;
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &amp;0 [
+     'T-FUT-EARLY' =&gt; true,
+     'T-P4' =&gt; true,
+-    'T-PAST' =&gt; false,
++    'T-PAST' =&gt; true,
+ ]
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:192</failure>
+        </testcase>
+        <testcase name="testTC20FiltrePrix" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="210" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="2" time="0.046106">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testTC20FiltrePrix&#13;
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &amp;0 [
+     'T-FUT-EARLY' =&gt; true,
+-    'T-P4' =&gt; false,
++    'T-P4' =&gt; true,
+ ]
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:213</failure>
+        </testcase>
+        <testcase name="testA05StatistiquesDeLaRecherche" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="244" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="2" time="0.097240">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testA05StatistiquesDeLaRecherche&#13;
+La page affiche « 50k+ » alors que la base compte 26 utilisateurs
+Failed asserting that '&lt;!DOCTYPE html&gt;\n
+&lt;html lang="fr"&gt;\n
+&lt;head&gt;\n
+    &lt;meta charset="UTF-8"&gt;\n
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;\n
+\n
+    &lt;title&gt;\n
+        Rechercher un trajet - Wassalni    &lt;/title&gt;\n
+\n
+    &lt;!-- Fonts --&gt;\n
+    &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"&gt;\n
+\n
+    &lt;!-- Icons --&gt;\n
+    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"&gt;\n
+\n
+    &lt;style&gt;\n
+\n
+        *{\n
+            margin:0;\n
+            padding:0;\n
+            box-sizing:border-box;\n
+        }\n
+\n
+        :root{\n
+            --primary:#6d28d9;\n
+            --primary-dark:#4c1d95;\n
+            --secondary:#8b5cf6;\n
+            --dark:#0f172a;\n
+            --dark-2:#1e293b;\n
+            --light:#f8fafc;\n
+            --border:#e2e8f0;\n
+            --text:#334155;\n
+            --white:#ffffff;\n
+            --gold:#facc15;\n
+        }\n
+\n
+        body{\n
+            font-family:'Inter',sans-serif;\n
+            background:var(--light);\n
+            color:var(--text);\n
+            overflow-x:hidden;\n
+        }\n
+\n
+        /* ===================================================\n
+                           NAVBAR\n
+        =================================================== */\n
+\n
+        .navbar{\n
+            position:sticky;\n
+            top:0;\n
+            z-index:9999;\n
+\n
+            background:\n
+                linear-gradient(\n
+                    135deg,\n
+                    #0f172a 0%,\n
+                    #1e1b4b 45%,\n
+                    #4c1d95 100%\n
+                );\n
+\n
+            backdrop-filter:blur(20px);\n
+\n
+            border-bottom:1px solid rgba(255,255,255,0.08);\n
+\n
+            box-shadow:\n
+                0 10px 30px rgba(0,0,0,0.08);\n
+        }\n
+\n
+        .nav-container{\n
+            max-width:1600px;\n
+            margin:auto;\n
+\n
+            min-height:82px;\n
+\n
+            display:flex;\n
+            align-items:center;\n
+            justify-content:space-between;\n
+\n
+            gap:25px;\n
+\n
+            padding:0 25px;\n
+        }\n
+\n
+        /* ===================================================\n
+                           LOGO\n
+        =================================================== */\n
+\n
+        .logo{\n
+            flex-shrink:0;\n
+        }\n
+\n
+        .logo a{\n
+            text-decoration:none;\n
+\n
+            display:flex;\n
+            align-items:center;\n
+            gap:12px;\n
+\n
+            font-size:30px;\n
+            font-weight:900;\n
+            letter-spacing:-1px;\n
+\n
+            color:white;\n
+        }\n
+\n
+        .logo-icon{\n
+            width:50px;\n
+            height:50px;\n
+\n
+            border-radius:16px;\n
+\n
+            background:\n
+                linear-gradient(\n
+                    135deg,\n
+                    #facc15,\n
+                    #fde047\n
+                );\n
+\n
+            display:flex;\n
+            align-items:center;\n
+            justify-content:center;\n
+\n
+            box-shadow:\n
+                0 10px 20px rgba(250,204,21,0.3);\n
+        }\n
+\n
+        .logo-icon i{\n
+            color:#4c1d95;\n
+            font-size:24px;\n
+        }\n
+\n
+        .logo-text{\n
+            display:flex;\n
+            flex-direction:column;\n
+            line-height:1;\n
+        }\n
+\n
+        .logo-text strong{\n
+            color:white;\n
+            font-size:28px;\n
+        }\n
+\n
+        .logo-text span{\n
+            font-size:11px;\n
+            color:#c4b5fd;\n
+            letter-spacing:2px;\n
+            margin-top:4px;\n
+        }\n
+\n
+        /* ===================================================\n
+                        NAVIGATION LINKS\n
+        =================================================== */\n
+\n
+        .nav-links{\n
+            flex:1;\n
+\n
+            display:flex;\n
+            align-items:center;\n
+            justify-content:center;\n
+\n
+            gap:10px;\n
+\n
+            min-width:0;\n
+\n
+            overflow-x:auto;\n
+            overflow-y:hidden;\n
+\n
+            scrollbar-width:none;\n
+\n
+            padding:8px 5px;\n
+        }\n
+\n
+        .nav-links::-webkit-scrollbar{\n
+            display:none;\n
+        }\n
+\n
+        /* IMPORTANT :\n
+           TOUS LES TABS SERONT VISIBLES */\n
+        .nav-links a{\n
+            flex-shrink:0;\n
+\n
+            display:flex;\n
+            align-items:center;\n
+            gap:10px;\n
+\n
+            padding:12px 18px;\n
+\n
+            border-radius:18px;\n
+\n
+            text-decoration:none;\n
+\n
+            color:#e2e8f0;\n
+\n
+            font-size:14px;\n
+            font-weight:600;\n
+\n
+            transition:0.3s ease;\n
+\n
+            white-space:nowrap;\n
+\n
+            position:relative;\n
+        }\n
+\n
+        .nav-links a i{\n
+            font-size:15px;\n
+        }\n
+\n
+        .nav-links a:hover{\n
+            background:rgba(255,255,255,0.12);\n
+\n
+            color:white;\n
+\n
+            transform:translateY(-2px);\n
+        }\n
+\n
+        .nav-links a.active{\n
+            background:\n
+                linear-gradient(\n
+                    135deg,\n
+                    rgba(255,255,255,0.18),\n
+                    rgba(255,255,255,0.08)\n
+                );\n
+\n
+            color:#fff;\n
+\n
+            box-shadow:\n
+                0 10px 20px rgba(0,0,0,0.15);\n
+        }\n
+\n
+        /* ===================================================\n
+                         USER MENU\n
+        =================================================== */\n
+\n
+        .user-menu{\n
+            flex-shrink:0;\n
+\n
+            display:flex;\n
+            align-items:center;\n
+            gap:15px;\n
+        }\n
+\n
+        .btn-login{\n
+            display:flex;\n
+            align-items:center;\n
+            gap:10px;\n
+\n
+            text-decoration:none;\n
+\n
+            padding:12px 24px;\n
+\n
+            border-radius:50px;\n
+\n
+            color:white;\n
+            font-weight:700;\n
+\n
+            background:\n
+                linear-gradient(\n
+                    135deg,\n
+                    #8b5cf6,\n
+                    #6d28d9\n
+                );\n
+\n
+            transition:0.3s ease;\n
+        }\n
+\n
+        .btn-login:hover{\n
+            transform:translateY(-3px);\n
+\n
+            box-shadow:\n
+                0 15px 25px rgba(109,40,217,0.35);\n
+        }\n
+\n
+        /* ===================================================\n
+                      USER PROFILE\n
+        =================================================== */\n
+\n
+        .dropdown{\n
+            position:relative;\n
+        }\n
+\n
+        .user-info{\n
+            display:flex;\n
+            align-items:center;\n
+            gap:14px;\n
+\n
+            padding:10px 18px;\n
+\n
+            border-radius:60px;\n
+\n
+            background:rgba(255,255,255,0.1);\n
+\n
+            border:1px solid rgba(255,255,255,0.12);\n
+\n
+            cursor:pointer;\n
+\n
+            transition:0.3s ease;\n
+        }\n
+\n
+        .user-info:hover{\n
+            background:rgba(255,255,255,0.18);\n
+        }\n
+\n
+        .user-avatar{\n
+            width:42px;\n
+            height:42px;\n
+\n
+            border-radius:50%;\n
+\n
+            background:\n
+                linear-gradient(\n
+                    135deg,\n
+                    #facc15,\n
+                    #fde047\n
+                );\n
+\n
+            display:flex;\n
+            align-items:center;\n
+            justify-content:center;\n
+\n
+            flex-shrink:0;\n
+        }\n
+\n
+        .user-avatar i{\n
+            color:#4c1d95;\n
+            font-size:18px;\n
+        }\n
+\n
+        .user-details{\n
+            display:flex;\n
+            flex-direction:column;\n
+            line-height:1.2;\n
+        }\n
+\n
+        .user-details strong{\n
+            color:white;\n
+            font-size:14px;\n
+            font-weight:700;\n
+        }\n
+\n
+        .user-details span{\n
+            color:#cbd5e1;\n
+            font-size:12px;\n
+        }\n
+\n
+        /* ===================================================\n
+                        DROPDOWN MENU\n
+        =================================================== */\n
+\n
+        .dropdown-menu{\n
+            position:absolute;\n
+\n
+            top:72px;\n
+            right:0;\n
+\n
+            width:280px;\n
+\n
+            background:white;\n
+\n
+            border-radius:24px;\n
+\n
+            overflow:hidden;\n
+\n
+            opacity:0;\n
+            visibility:hidden;\n
+            transform:translateY(15px);\n
+\n
+            transition:0.3s ease;\n
+\n
+            box-shadow:\n
+                0 20px 40px rgba(0,0,0,0.12);\n
+\n
+            z-index:9999;\n
+        }\n
+\n
+        .dropdown:hover .dropdown-menu{\n
+            opacity:1;\n
+            visibility:visible;\n
+            transform:translateY(0);\n
+        }\n
+\n
+        .dropdown-header{\n
+            padding:22px;\n
+\n
+            background:\n
+                linear-gradient(\n
+                    135deg,\n
+                    #6d28d9,\n
+                    #4c1d95\n
+                );\n
+\n
+            color:white;\n
+        }\n
+\n
+        .dropdown-header h4{\n
+            font-size:16px;\n
+            margin-bottom:5px;\n
+        }\n
+\n
+        .dropdown-header p{\n
+            font-size:13px;\n
+            opacity:0.9;\n
+        }\n
+\n
+        .dropdown-menu a{\n
+            display:flex;\n
+            align-items:center;\n
+            gap:14px;\n
+\n
+            padding:15px 22px;\n
+\n
+            text-decoration:none;\n
+\n
+            color:#1e293b;\n
+\n
+            font-weight:600;\n
+            font-size:14px;\n
+\n
+            border-bottom:1px solid #f1f5f9;\n
+\n
+            transition:0.25s ease;\n
+        }\n
+\n
+        .dropdown-menu a:last-child{\n
+            border-bottom:none;\n
+        }\n
+\n
+        .dropdown-menu a i{\n
+            width:18px;\n
+            color:#6d28d9;\n
+        }\n
+\n
+        .dropdown-menu a:hover{\n
+            background:#f8fafc;\n
+            padding-left:30px;\n
+        }\n
+\n
+        .dropdown-menu .logout{\n
+            color:#dc2626;\n
+        }\n
+\n
+        .dropdown-menu .logout i{\n
+            color:#dc2626;\n
+        }\n
+\n
+        .dropdown-menu .logout:hover{\n
+            background:#fef2f2;\n
+        }\n
+\n
+        /* ===================================================\n
+                         MOBILE BUTTON\n
+        =================================================== */\n
+\n
+        .mobile-menu-btn{\n
+            display:none;\n
+\n
+            width:46px;\n
+            height:46px;\n
+\n
+            border:none;\n
+\n
+            border-radius:14px;\n
+\n
+            background:rgba(255,255,255,0.12);\n
+\n
+            color:white;\n
+\n
+            cursor:pointer;\n
+\n
+            font-size:20px;\n
+\n
+            transition:0.3s ease;\n
+        }\n
+\n
+        .mobile-menu-btn:hover{\n
+            background:rgba(255,255,255,0.2);\n
+        }\n
+\n
+        /* ===================================================\n
+                        MAIN CONTENT\n
+        =================================================== */\n
+\n
+        .main-content{\n
+            min-height:calc(100vh - 170px);\n
+        }\n
+\n
+        /* ===================================================\n
+                           FOOTER\n
+        =================================================== */\n
+\n
+        .footer{\n
+            margin-top:80px;\n
+\n
+            background:\n
+                linear-gradient(\n
+                    135deg,\n
+                    #0f172a,\n
+                    #1e1b4b\n
+                );\n
+\n
+            color:white;\n
+\n
+            text-align:center;\n
+\n
+            padding:45px 20px;\n
+        }\n
+\n
+        .footer p{\n
+            opacity:0.75;\n
+            font-size:14px;\n
+        }\n
+\n
+        /* ===================================================\n
+                        RESPONSIVE TABLET\n
+        =================================================== */\n
+\n
+        @media(max-width:1200px){\n
+\n
+            .nav-links{\n
+                justify-content:flex-start;\n
+            }\n
+\n
+        }\n
+\n
+        /* ===================================================\n
+                        RESPONSIVE MOBILE\n
+        =================================================== */\n
+\n
+        @media(max-width:900px){\n
+\n
+            .nav-container{\n
+                min-height:75px;\n
+            }\n
+\n
+            .mobile-menu-btn{\n
+                display:flex;\n
+                align-items:center;\n
+                justify-content:center;\n
+            }\n
+\n
+            .nav-links{\n
+                position:absolute;\n
+\n
+                top:75px;\n
+                left:0;\n
+                right:0;\n
+\n
+                display:flex;\n
+                flex-direction:column;\n
+                align-items:stretch;\n
+                justify-content:flex-start;\n
+\n
+                gap:10px;\n
+\n
+                padding:20px;\n
+\n
+                background:\n
+                    linear-gradient(\n
+                        135deg,\n
+                        #0f172a,\n
+                        #1e1b4b\n
+                    );\n
+\n
+                max-height:0;\n
+                overflow:hidden;\n
+\n
+                opacity:0;\n
+\n
+                transition:0.4s ease;\n
+            }\n
+\n
+            .nav-links.mobile-open{\n
+                max-height:1000px;\n
+                opacity:1;\n
+                overflow-y:auto;\n
+            }\n
+\n
+            .nav-links a{\n
+                width:100%;\n
+                justify-content:flex-start;\n
+\n
+                padding:14px 18px;\n
+\n
+                border-radius:16px;\n
+            }\n
+\n
+            .user-details{\n
+                display:none;\n
+            }\n
+\n
+            .dropdown-menu{\n
+                right:-20px;\n
+                width:260px;\n
+            }\n
+\n
+        }\n
+\n
+        @media(max-width:600px){\n
+\n
+            .logo-text strong{\n
+                font-size:22px;\n
+            }\n
+\n
+            .logo-icon{\n
+                width:42px;\n
+                height:42px;\n
+            }\n
+\n
+            .logo-icon i{\n
+                font-size:20px;\n
+            }\n
+\n
+            .btn-login span{\n
+                display:none;\n
+            }\n
+\n
+            .btn-login{\n
+                width:46px;\n
+                height:46px;\n
+                padding:0;\n
+\n
+                justify-content:center;\n
+            }\n
+\n
+        }\n
+\n
+    &lt;/style&gt;\n
+\n
+    \n
+&lt;style&gt;\n
+    * {\n
+        margin: 0;\n
+        padding: 0;\n
+        box-sizing: border-box;\n
+    }\n
+    \n
+    body {\n
+        font-family: 'Inter', sans-serif;\n
+        background: #f8fafc;\n
+    }\n
+    \n
+    /* Hero Section avec effet de vague */\n
+    .hero-section {\n
+        position: relative;\n
+        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #4c1d95 100%);\n
+        padding: 120px 0 140px 0;\n
+        text-align: center;\n
+        color: white;\n
+        overflow: hidden;\n
+        isolation: isolate;\n
+    }\n
+    \n
+    .hero-section::before {\n
+        content: '';\n
+        position: absolute;\n
+        top: 0;\n
+        left: 0;\n
+        right: 0;\n
+        bottom: 0;\n
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='rgba(255,255,255,0.05)' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E") repeat-x bottom;\n
+        background-size: cover;\n
+        opacity: 0.3;\n
+        pointer-events: none;\n
+    }\n
+    \n
+    .hero-section h1 {\n
+        font-size: 56px;\n
+        font-weight: 800;\n
+        margin-bottom: 20px;\n
+        background: linear-gradient(135deg, #fff, #c4b5fd);\n
+        -webkit-background-clip: text;\n
+        -webkit-text-fill-color: transparent;\n
+        background-clip: text;\n
+        letter-spacing: -1px;\n
+    }\n
+    \n
+    .hero-section p {\n
+        font-size: 18px;\n
+        opacity: 0.9;\n
+        max-width: 600px;\n
+        margin: 0 auto;\n
+        line-height: 1.6;\n
+    }\n
+    \n
+    /* Carte de recherche - Glassmorphisme */\n
+    .search-card {\n
+        background: rgba(255, 255, 255, 0.95);\n
+        backdrop-filter: blur(10px);\n
+        border-radius: 32px;\n
+        padding: 48px;\n
+        margin: -80px auto 0 auto;\n
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);\n
+        max-width: 1100px;\n
+        border: 1px solid rgba(255,255,255,0.2);\n
+        transition: transform 0.3s ease, box-shadow 0.3s ease;\n
+    }\n
+    \n
+    .search-card:hover {\n
+        transform: translateY(-5px);\n
+        box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);\n
+    }\n
+    \n
+    .search-title {\n
+        font-size: 28px;\n
+        font-weight: 800;\n
+        background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);\n
+        -webkit-background-clip: text;\n
+        -webkit-text-fill-color: transparent;\n
+        background-clip: text;\n
+        margin-bottom: 40px;\n
+        text-align: center;\n
+        letter-spacing: -0.5px;\n
+    }\n
+    \n
+    /* Grille des champs */\n
+    .search-grid {\n
+        display: grid;\n
+        grid-template-columns: repeat(4, 1fr);\n
+        gap: 24px;\n
+        margin-bottom: 40px;\n
+    }\n
+    \n
+    .form-group {\n
+        display: flex;\n
+        flex-direction: column;\n
+    }\n
+    \n
+    .form-group label {\n
+        font-size: 13px;\n
+        font-weight: 600;\n
+        text-transform: uppercase;\n
+        letter-spacing: 0.5px;\n
+        color: #64748b;\n
+        margin-bottom: 10px;\n
+    }\n
+    \n
+    .input-wrapper {\n
+        position: relative;\n
+        transition: all 0.3s ease;\n
+    }\n
+    \n
+    .input-wrapper i {\n
+        position: absolute;\n
+        left: 16px;\n
+        top: 50%;\n
+        transform: translateY(-50%);\n
+        color: #94a3b8;\n
+        font-size: 18px;\n
+        transition: all 0.3s ease;\n
+        z-index: 1;\n
+        pointer-events: none;\n
+    }\n
+    \n
+    .input-wrapper select {\n
+        width: 100%;\n
+        padding: 16px 16px 16px 48px;\n
+        border: 2px solid #e2e8f0;\n
+        border-radius: 20px;\n
+        font-size: 15px;\n
+        font-weight: 500;\n
+        font-family: 'Inter', sans-serif;\n
+        background: white;\n
+        transition: all 0.3s ease;\n
+        color: #1e293b;\n
+        appearance: none;\n
+        cursor: pointer;\n
+    }\n
+    \n
+    .input-wrapper input {\n
+        width: 100%;\n
+        padding: 16px 16px 16px 48px;\n
+        border: 2px solid #e2e8f0;\n
+        border-radius: 20px;\n
+        font-size: 15px;\n
+        font-weight: 500;\n
+        font-family: 'Inter', sans-serif;\n
+        background: white;\n
+        transition: all 0.3s ease;\n
+        color: #1e293b;\n
+    }\n
+    \n
+    .input-wrapper select:focus,\n
+    .input-wrapper input:focus {\n
+        outline: none;\n
+        border-color: #4c1d95;\n
+        box-shadow: 0 0 0 4px rgba(76, 29, 149, 0.1);\n
+    }\n
+    \n
+    .input-wrapper select:focus + i,\n
+    .input-wrapper input:focus + i {\n
+        color: #4c1d95;\n
+    }\n
+    \n
+    .input-wrapper select:hover,\n
+    .input-wrapper input:hover {\n
+        border-color: #c4b5fd;\n
+    }\n
+    \n
+    /* Flèche personnalisée pour le select */\n
+    .input-wrapper .arrow-down {\n
+        position: absolute;\n
+        right: 16px;\n
+        top: 50%;\n
+        transform: translateY(-50%);\n
+        color: #94a3b8;\n
+        pointer-events: none;\n
+        font-size: 14px;\n
+    }\n
+    \n
+    /* Bouton de recherche */\n
+    .btn-search {\n
+        width: 100%;\n
+        padding: 18px;\n
+        background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #7c3aed 100%);\n
+        color: white;\n
+        border: none;\n
+        border-radius: 28px;\n
+        font-size: 16px;\n
+        font-weight: 700;\n
+        cursor: pointer;\n
+        transition: all 0.3s ease;\n
+        display: flex;\n
+        align-items: center;\n
+        justify-content: center;\n
+        gap: 12px;\n
+        letter-spacing: 0.5px;\n
+        position: relative;\n
+        overflow: hidden;\n
+    }\n
+    \n
+    .btn-search::before {\n
+        content: '';\n
+        position: absolute;\n
+        top: 0;\n
+        left: -100%;\n
+        width: 100%;\n
+        height: 100%;\n
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);\n
+        transition: left 0.5s ease;\n
+    }\n
+    \n
+    .btn-search:hover::before {\n
+        left: 100%;\n
+    }\n
+    \n
+    .btn-search:hover {\n
+        transform: translateY(-3px);\n
+        box-shadow: 0 20px 40px -8px rgba(76, 29, 149, 0.4);\n
+    }\n
+    \n
+    .btn-search:active {\n
+        transform: translateY(0);\n
+    }\n
+    \n
+    .btn-search i {\n
+        font-size: 18px;\n
+        transition: transform 0.3s ease;\n
+    }\n
+    \n
+    .btn-search:hover i {\n
+        transform: scale(1.1);\n
+    }\n
+    \n
+    /* Animation d'entrée */\n
+    @keyframes fadeInUp {\n
+        from {\n
+            opacity: 0;\n
+            transform: translateY(30px);\n
+        }\n
+        to {\n
+            opacity: 1;\n
+            transform: translateY(0);\n
+        }\n
+    }\n
+    \n
+    .search-card {\n
+        animation: fadeInUp 0.6s ease-out;\n
+    }\n
+    \n
+    /* Stats section */\n
+    .stats-section {\n
+        max-width: 1100px;\n
+        margin: 80px auto 0;\n
+        display: flex;\n
+        justify-content: space-between;\n
+        gap: 30px;\n
+        flex-wrap: wrap;\n
+    }\n
+    \n
+    .stat-card {\n
+        flex: 1;\n
+        background: white;\n
+        border-radius: 24px;\n
+        padding: 30px;\n
+        text-align: center;\n
+        box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);\n
+        transition: all 0.3s ease;\n
+        border: 1px solid #f1f5f9;\n
+    }\n
+    \n
+    .stat-card:hover {\n
+        transform: translateY(-5px);\n
+        box-shadow: 0 20px 40px -12px rgba(0,0,0,0.1);\n
+    }\n
+    \n
+    .stat-card i {\n
+        font-size: 40px;\n
+        background: linear-gradient(135deg, #1e1b4b 0%, #7c3aed 100%);\n
+        -webkit-background-clip: text;\n
+        -webkit-text-fill-color: transparent;\n
+        margin-bottom: 15px;\n
+    }\n
+    \n
+    .stat-card .number {\n
+        font-size: 32px;\n
+        font-weight: 800;\n
+        color: #1e293b;\n
+        margin-bottom: 5px;\n
+    }\n
+    \n
+    .stat-card .label {\n
+        color: #64748b;\n
+        font-size: 14px;\n
+        font-weight: 500;\n
+    }\n
+    \n
+    /* Result Card */\n
+    .results-section {\n
+        max-width: 1100px;\n
+        margin: 40px auto;\n
+        padding: 0 20px;\n
+    }\n
+    \n
+    .results-header {\n
+        display: flex;\n
+        justify-content: space-between;\n
+        align-items: center;\n
+        margin-bottom: 25px;\n
+    }\n
+    \n
+    .result-card {\n
+        background: white;\n
+        border-radius: 20px;\n
+        padding: 24px;\n
+        margin-bottom: 20px;\n
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);\n
+        transition: all 0.3s;\n
+        border: 1px solid #eef2ff;\n
+        animation: fadeInUp 0.5s ease-out;\n
+    }\n
+    \n
+    .result-card:hover {\n
+        transform: translateY(-4px);\n
+        box-shadow: 0 15px 35px -12px rgba(0,0,0,0.15);\n
+    }\n
+    \n
+    .journey-route {\n
+        display: flex;\n
+        align-items: center;\n
+        gap: 20px;\n
+        margin-bottom: 20px;\n
+    }\n
+    \n
+    .journey-point {\n
+        flex: 1;\n
+        text-align: center;\n
+    }\n
+    \n
+    .journey-point .city {\n
+        font-size: 20px;\n
+        font-weight: 800;\n
+        color: #1e293b;\n
+    }\n
+    \n
+    .journey-point .time {\n
+        font-size: 13px;\n
+        color: #64748b;\n
+        margin-top: 5px;\n
+    }\n
+    \n
+    .journey-line {\n
+        color: #4c1d95;\n
+        font-size: 24px;\n
+    }\n
+    \n
+    .driver-info {\n
+        display: flex;\n
+        align-items: center;\n
+        gap: 15px;\n
+        margin: 15px 0;\n
+        padding: 15px 0;\n
+        border-top: 1px solid #eef2ff;\n
+        border-bottom: 1px solid #eef2ff;\n
+    }\n
+    \n
+    .driver-avatar {\n
+        width: 50px;\n
+        height: 50px;\n
+        background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);\n
+        border-radius: 50%;\n
+        display: flex;\n
+        align-items: center;\n
+        justify-content: center;\n
+        color: white;\n
+        font-size: 20px;\n
+    }\n
+    \n
+    .driver-details h4 {\n
+        font-size: 16px;\n
+        font-weight: 700;\n
+        margin: 0;\n
+    }\n
+    \n
+    .driver-details p {\n
+        font-size: 13px;\n
+        color: #64748b;\n
+        margin-top: 5px;\n
+    }\n
+    \n
+    .journey-footer {\n
+        display: flex;\n
+        justify-content: space-between;\n
+        align-items: center;\n
+        margin-top: 15px;\n
+        flex-wrap: wrap;\n
+        gap: 15px;\n
+    }\n
+    \n
+    .price {\n
+        font-size: 28px;\n
+        font-weight: 800;\n
+        color: #28a745;\n
+    }\n
+    \n
+    .price small {\n
+        font-size: 12px;\n
+        font-weight: normal;\n
+        color: #64748b;\n
+    }\n
+    \n
+    .btn-reserve {\n
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);\n
+        color: white;\n
+        border: none;\n
+        padding: 10px 24px;\n
+        border-radius: 30px;\n
+        font-weight: 700;\n
+        cursor: pointer;\n
+        transition: all 0.3s;\n
+    }\n
+    \n
+    .btn-reserve:hover {\n
+        transform: scale(1.05);\n
+        box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);\n
+    }\n
+    \n
+    .btn-reserve:disabled {\n
+        opacity: 0.5;\n
+        cursor: not-allowed;\n
+        transform: none;\n
+    }\n
+    \n
+    .no-results {\n
+        text-align: center;\n
+        padding: 60px;\n
+        background: white;\n
+        border-radius: 24px;\n
+    }\n
+    \n
+    /* Modal de Réservation */\n
+    .modal-reserve {\n
+        display: none;\n
+        position: fixed;\n
+        top: 0;\n
+        left: 0;\n
+        right: 0;\n
+        bottom: 0;\n
+        background: rgba(0, 0, 0, 0.7);\n
+        backdrop-filter: blur(8px);\n
+        z-index: 2000;\n
+        align-items: center;\n
+        justify-content: center;\n
+        animation: fadeIn 0.3s ease-out;\n
+    }\n
+    \n
+    .modal-reserve.active {\n
+        display: flex;\n
+    }\n
+    \n
+    @keyframes fadeIn {\n
+        from { opacity: 0; }\n
+        to { opacity: 1; }\n
+    }\n
+    \n
+    .modal-content {\n
+        background: white;\n
+        border-radius: 28px;\n
+        padding: 40px;\n
+        max-width: 500px;\n
+        width: 90%;\n
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);\n
+        animation: slideUp 0.4s ease-out;\n
+        position: relative;\n
+        border: 1px solid rgba(0,0,0,0.05);\n
+    }\n
+    \n
+    @keyframes slideUp {\n
+        from {\n
+            opacity: 0;\n
+            transform: translateY(40px);\n
+        }\n
+        to {\n
+            opacity: 1;\n
+            transform: translateY(0);\n
+        }\n
+    }\n
+    \n
+    .modal-header {\n
+        margin-bottom: 30px;\n
+    }\n
+    \n
+    .modal-header h2 {\n
+        font-size: 28px;\n
+        font-weight: 800;\n
+        color: #1e293b;\n
+        margin-bottom: 8px;\n
+    }\n
+    \n
+    .modal-header p {\n
+        color: #64748b;\n
+        font-size: 14px;\n
+    }\n
+    \n
+    .modal-close {\n
+        position: absolute;\n
+        top: 20px;\n
+        right: 20px;\n
+        background: none;\n
+        border: none;\n
+        font-size: 24px;\n
+        color: #94a3b8;\n
+        cursor: pointer;\n
+        transition: all 0.3s ease;\n
+        width: 40px;\n
+        height: 40px;\n
+        display: flex;\n
+        align-items: center;\n
+        justify-content: center;\n
+        border-radius: 12px;\n
+    }\n
+    \n
+    .modal-close:hover {\n
+        background: #f1f5f9;\n
+        color: #1e293b;\n
+    }\n
+    \n
+    .places-selector {\n
+        background: #f8fafc;\n
+        border-radius: 16px;\n
+        padding: 20px;\n
+        margin-bottom: 30px;\n
+    }\n
+    \n
+    .places-selector label {\n
+        display: block;\n
+        font-size: 14px;\n
+        font-weight: 600;\n
+        color: #475569;\n
+        margin-bottom: 12px;\n
+    }\n
+    \n
+    .places-input-group {\n
+        display: flex;\n
+        align-items: center;\n
+        gap: 16px;\n
+    }\n
+    \n
+    .places-btn {\n
+        width: 45px;\n
+        height: 45px;\n
+        border: 2px solid #e2e8f0;\n
+        background: white;\n
+        border-radius: 12px;\n
+        font-size: 18px;\n
+        cursor: pointer;\n
+        transition: all 0.3s ease;\n
+        display: flex;\n
+        align-items: center;\n
+        justify-content: center;\n
+        font-weight: 600;\n
+        color: #4c1d95;\n
+    }\n
+    \n
+    .places-btn:hover:not(:disabled) {\n
+        border-color: #4c1d95;\n
+        background: #f3e8ff;\n
+    }\n
+    \n
+    .places-btn:disabled {\n
+        opacity: 0.4;\n
+        cursor: not-allowed;\n
+    }\n
+    \n
+    .places-display {\n
+        flex: 1;\n
+        background: white;\n
+        border: 2px solid #e2e8f0;\n
+        border-radius: 12px;\n
+        padding: 12px;\n
+        text-align: center;\n
+        font-weight: 700;\n
+        font-size: 20px;\n
+        color: #4c1d95;\n
+    }\n
+    \n
+    .price-summary {\n
+        background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);\n
+        border-radius: 16px;\n
+        padding: 20px;\n
+        margin-bottom: 30px;\n
+        border: 1px solid #d8b4fe;\n
+    }\n
+    \n
+    .price-row {\n
+        display: flex;\n
+        justify-content: space-between;\n
+        align-items: center;\n
+        margin-bottom: 12px;\n
+        font-size: 14px;\n
+        color: #4c1d95;\n
+    }\n
+    \n
+    .price-row:last-child {\n
+        margin-bottom: 0;\n
+        border-top: 2px solid rgba(76, 29, 149, 0.2);\n
+        padding-top: 12px;\n
+        font-weight: 700;\n
+        font-size: 16px;\n
+    }\n
+    \n
+    .modal-actions {\n
+        display: flex;\n
+        gap: 12px;\n
+    }\n
+    \n
+    .btn-cancel-modal,\n
+    .btn-confirm-modal {\n
+        flex: 1;\n
+        padding: 14px;\n
+        border-radius: 14px;\n
+        font-weight: 600;\n
+        font-size: 15px;\n
+        cursor: pointer;\n
+        transition: all 0.3s ease;\n
+        border: none;\n
+        display: flex;\n
+        align-items: center;\n
+        justify-content: center;\n
+        gap: 8px;\n
+    }\n
+    \n
+    .btn-cancel-modal {\n
+        background: #f1f5f9;\n
+        color: #475569;\n
+    }\n
+    \n
+    .btn-cancel-modal:hover {\n
+        background: #e2e8f0;\n
+        transform: translateY(-2px);\n
+    }\n
+    \n
+    .btn-confirm-modal {\n
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);\n
+        color: white;\n
+        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);\n
+    }\n
+    \n
+    .btn-confirm-modal:hover:not(:disabled) {\n
+        transform: translateY(-2px);\n
+        box-shadow: 0 8px 24px rgba(40, 167, 69, 0.3);\n
+    }\n
+    \n
+    .btn-confirm-modal:disabled {\n
+        opacity: 0.6;\n
+        cursor: wait;\n
+    }\n
+    \n
+    @media (max-width: 768px) {\n
+        .hero-section h1 { font-size: 36px; }\n
+        .search-grid { grid-template-columns: 1fr; }\n
+        .journey-route { flex-direction: column; text-align: center; }\n
+        .journey-footer { flex-direction: column; }\n
+        .btn-reserve { width: 100%; }\n
+        .modal-content { padding: 30px 25px; }\n
+    }\n
+&lt;/style&gt;\n
+&lt;/head&gt;\n
+\n
+&lt;body&gt;\n
+\n
+&lt;!-- ===================================================\n
+                        NAVBAR\n
+=================================================== --&gt;\n
+\n
+&lt;nav class="navbar"&gt;\n
+\n
+    &lt;div class="nav-container"&gt;\n
+\n
+        &lt;!-- LOGO --&gt;\n
+        &lt;div class="logo"&gt;\n
+\n
+            &lt;a href="/"&gt;\n
+\n
+                &lt;div class="logo-icon"&gt;\n
+                    &lt;i class="fas fa-car-side"&gt;&lt;/i&gt;\n
+                &lt;/div&gt;\n
+\n
+                &lt;div class="logo-text"&gt;\n
+                    &lt;strong&gt;Wassalni&lt;/strong&gt;\n
+                    &lt;span&gt;TUNISIA&lt;/span&gt;\n
+                &lt;/div&gt;\n
+\n
+            &lt;/a&gt;\n
+\n
+        &lt;/div&gt;\n
+\n
+        &lt;!-- NAVIGATION --&gt;\n
+        &lt;div class="nav-links" id="navLinks"&gt;\n
+\n
+            \n
+                \n
+                    &lt;a href="/trajet/recherche"&gt;\n
+                        &lt;i class="fas fa-search"&gt;&lt;/i&gt;\n
+                        Chercher un trajet\n
+                    &lt;/a&gt;\n
+\n
+                    &lt;a href="/reservation/mes-reservations"&gt;\n
+                        &lt;i class="fas fa-calendar-check"&gt;&lt;/i&gt;\n
+                        Mes réservations\n
+                    &lt;/a&gt;\n
+\n
+                    &lt;a href="/reclamation/nouvelle"&gt;\n
+                        &lt;i class="fas fa-file-circle-plus"&gt;&lt;/i&gt;\n
+                        Nouvelle réclamation\n
+                    &lt;/a&gt;\n
+\n
+                    &lt;a href="/reclamation/mes-reclamations"&gt;\n
+                        &lt;i class="fas fa-list"&gt;&lt;/i&gt;\n
+                        Mes réclamations\n
+                    &lt;/a&gt;\n
+\n
+                \n
+            \n
+        &lt;/div&gt;\n
+\n
+        &lt;!-- USER MENU --&gt;\n
+        &lt;div class="user-menu"&gt;\n
+\n
+            \n
+                &lt;div class="dropdown"&gt;\n
+\n
+                    &lt;div class="user-info"&gt;\n
+\n
+                        &lt;div class="user-avatar"&gt;\n
+                            &lt;i class="fas fa-user"&gt;&lt;/i&gt;\n
+                        &lt;/div&gt;\n
+\n
+                        &lt;div class="user-details"&gt;\n
+\n
+                            &lt;strong&gt;\n
+                                U-PASS1\n
+                                C.\n
+                            &lt;/strong&gt;\n
+\n
+                            &lt;span&gt;\n
+                                                                    Passager\n
+                                                            &lt;/span&gt;\n
+\n
+                        &lt;/div&gt;\n
+\n
+                        &lt;i class="fas fa-chevron-down" style="color:white;font-size:12px;"&gt;&lt;/i&gt;\n
+\n
+                    &lt;/div&gt;\n
+\n
+                    &lt;!-- DROPDOWN --&gt;\n
+                    &lt;div class="dropdown-menu"&gt;\n
+\n
+                        &lt;div class="dropdown-header"&gt;\n
+\n
+                            &lt;h4&gt;\n
+                                U-PASS1\n
+                                Catalogue\n
+                            &lt;/h4&gt;\n
+\n
+                            &lt;p&gt;\n
+                                                                    Passager\n
+                                                            &lt;/p&gt;\n
+\n
+                        &lt;/div&gt;\n
+\n
+                        &lt;a href="/reclamation/mes-reclamations"&gt;\n
+                            &lt;i class="fas fa-file-alt"&gt;&lt;/i&gt;\n
+                            Mes réclamations\n
+                        &lt;/a&gt;\n
+\n
+                        &lt;a href="/reclamation/nouvelle"&gt;\n
+                            &lt;i class="fas fa-plus-circle"&gt;&lt;/i&gt;\n
+                            Nouvelle réclamation\n
+                        &lt;/a&gt;\n
+\n
+                        &lt;a href="/deconnexion"\n
+                           class="logout"\n
+                           onclick="return confirm('Déconnexion ?')"&gt;\n
+\n
+                            &lt;i class="fas fa-right-from-bracket"&gt;&lt;/i&gt;\n
+                            Déconnexion\n
+\n
+                        &lt;/a&gt;\n
+\n
+                    &lt;/div&gt;\n
+\n
+                &lt;/div&gt;\n
+\n
+            \n
+        &lt;/div&gt;\n
+\n
+        &lt;!-- MOBILE BUTTON --&gt;\n
+        &lt;button class="mobile-menu-btn" id="mobileMenuBtn"&gt;\n
+\n
+            &lt;i class="fas fa-bars"&gt;&lt;/i&gt;\n
+\n
+        &lt;/button&gt;\n
+\n
+    &lt;/div&gt;\n
+\n
+&lt;/nav&gt;\n
+\n
+&lt;!-- ===================================================\n
+                      MAIN CONTENT\n
+=================================================== --&gt;\n
+\n
+&lt;main class="main-content"&gt;\n
+\n
+    &lt;div class="hero-section"&gt;\n
+    &lt;canvas id="particleCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"&gt;&lt;/canvas&gt;\n
+    &lt;div class="container" style="position: relative; z-index: 2;"&gt;\n
+        &lt;h1&gt;Voyagez malin, économisez ensemble&lt;/h1&gt;\n
+        &lt;p&gt;Rejoignez notre communauté de covoiturage et découvrez une nouvelle façon de voyager.&lt;/p&gt;\n
+    &lt;/div&gt;\n
+&lt;/div&gt;\n
+\n
+&lt;div class="container" style="max-width: 1100px; margin: 0 auto;"&gt;\n
+    &lt;div class="search-card"&gt;\n
+        &lt;div class="search-title"&gt;Rechercher un trajet&lt;/div&gt;\n
+        \n
+        &lt;form method="get" action="/trajet/recherche" id="searchForm"&gt;\n
+            &lt;div class="search-grid"&gt;\n
+                &lt;div class="form-group"&gt;\n
+                    &lt;label&gt;Départ&lt;/label&gt;\n
+                    &lt;div class="input-wrapper"&gt;\n
+                        &lt;i class="fas fa-map-marker-alt"&gt;&lt;/i&gt;\n
+                        &lt;select name="villeDepart" id="villeDepart"&gt;\n
+                            &lt;option value=""&gt;Sélectionnez une ville&lt;/option&gt;\n
+                            &lt;option value="Tunis" selected&gt;Tunis&lt;/option&gt;\n
+                            &lt;option value="Sfax" &gt;Sfax&lt;/option&gt;\n
+                            &lt;option value="Sousse" &gt;Sousse&lt;/option&gt;\n
+                            &lt;option value="Nabeul" &gt;Nabeul&lt;/option&gt;\n
+                            &lt;option value="Bizerte" &gt;Bizerte&lt;/option&gt;\n
+                            &lt;option value="Monastir" &gt;Monastir&lt;/option&gt;\n
+                        &lt;/select&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="form-group"&gt;\n
+                    &lt;label&gt;Arrivée&lt;/label&gt;\n
+                    &lt;div class="input-wrapper"&gt;\n
+                        &lt;i class="fas fa-flag-checkered"&gt;&lt;/i&gt;\n
+                        &lt;select name="destination" id="destination"&gt;\n
+                            &lt;option value=""&gt;Sélectionnez une ville&lt;/option&gt;\n
+                            &lt;option value="Tunis" &gt;Tunis&lt;/option&gt;\n
+                            &lt;option value="Sfax" &gt;Sfax&lt;/option&gt;\n
+                            &lt;option value="Sousse" &gt;Sousse&lt;/option&gt;\n
+                            &lt;option value="Nabeul" &gt;Nabeul&lt;/option&gt;\n
+                            &lt;option value="Bizerte" &gt;Bizerte&lt;/option&gt;\n
+                            &lt;option value="Monastir" &gt;Monastir&lt;/option&gt;\n
+                        &lt;/select&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="form-group"&gt;\n
+                    &lt;label&gt;Date&lt;/label&gt;\n
+                    &lt;div class="input-wrapper"&gt;\n
+                        &lt;i class="fas fa-calendar"&gt;&lt;/i&gt;\n
+                        &lt;input type="date" name="dateDepart" id="dateDepart" value="" min="2026-11-21"&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="form-group"&gt;\n
+                    &lt;label&gt;Passagers&lt;/label&gt;\n
+                    &lt;div class="input-wrapper"&gt;\n
+                        &lt;i class="fas fa-users"&gt;&lt;/i&gt;\n
+                        &lt;select name="passagers" id="passagers"&gt;\n
+                            &lt;option value="1" &gt;1 passager&lt;/option&gt;\n
+                            &lt;option value="2" &gt;2 passagers&lt;/option&gt;\n
+                            &lt;option value="3" &gt;3 passagers&lt;/option&gt;\n
+                            &lt;option value="4" &gt;4 passagers&lt;/option&gt;\n
+                        &lt;/select&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+            &lt;/div&gt;\n
+            \n
+            &lt;button type="submit" class="btn-search" id="searchBtn"&gt;\n
+                &lt;i class="fas fa-search"&gt;&lt;/i&gt;\n
+                &lt;span&gt;Rechercher des trajets&lt;/span&gt;\n
+            &lt;/button&gt;\n
+        &lt;/form&gt;\n
+    &lt;/div&gt;\n
+    \n
+    &lt;div class="stats-section"&gt;\n
+        &lt;div class="stat-card"&gt;\n
+            &lt;i class="fas fa-users"&gt;&lt;/i&gt;\n
+            &lt;div class="number"&gt;50k+&lt;/div&gt;\n
+            &lt;div class="label"&gt;Utilisateurs actifs&lt;/div&gt;\n
+        &lt;/div&gt;\n
+        &lt;div class="stat-card"&gt;\n
+            &lt;i class="fas fa-car"&gt;&lt;/i&gt;\n
+            &lt;div class="number"&gt;10k+&lt;/div&gt;\n
+            &lt;div class="label"&gt;Trajets partagés&lt;/div&gt;\n
+        &lt;/div&gt;\n
+        &lt;div class="stat-card"&gt;\n
+            &lt;i class="fas fa-star"&gt;&lt;/i&gt;\n
+            &lt;div class="number"&gt;4.9&lt;/div&gt;\n
+            &lt;div class="label"&gt;Note moyenne&lt;/div&gt;\n
+        &lt;/div&gt;\n
+    &lt;/div&gt;\n
+&lt;/div&gt;\n
+\n
+&lt;!-- SECTION RÉSULTATS DES TRAJETS --&gt;\n
+&lt;div class="results-section"&gt;\n
+            &lt;div class="results-header"&gt;\n
+            &lt;h3&gt;&lt;i class="fas fa-route"&gt;&lt;/i&gt; 22 trajet(s) trouvé(s)&lt;/h3&gt;\n
+            &lt;span&gt;Prix par personne&lt;/span&gt;\n
+        &lt;/div&gt;\n
+        \n
+                    &lt;div class="result-card" data-trajet-id="32" data-places-max="2" data-prix="15"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;01/05/2025 08:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Sousse&lt;/div&gt;\n
+                        &lt;div class="time"&gt;01/05/2025 10:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;yassine Ben Ammar&lt;/h4&gt;\n
+                        &lt;p&gt;Volkswagen Tiguan • 123 TUN 1&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;15 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 2 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(32, 2, 15)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="34" data-places-max="4" data-prix="10"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;01/05/2025 14:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Nabeul&lt;/div&gt;\n
+                        &lt;div class="time"&gt;01/05/2025 15:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;yassine Ben Ammar&lt;/h4&gt;\n
+                        &lt;p&gt;Renault Clio • 456 TUN 2&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;10 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 4 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(34, 4, 10)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="33" data-places-max="1" data-prix="25"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;02/05/2025 07:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Sfax&lt;/div&gt;\n
+                        &lt;div class="time"&gt;02/05/2025 10:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;yassine Ben Ammar&lt;/h4&gt;\n
+                        &lt;p&gt;Volkswagen Tiguan • 123 TUN 1&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;25 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 1 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(33, 1, 25)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="5" data-places-max="3" data-prix="10"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;01/05/2026 10:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Nabeul&lt;/div&gt;\n
+                        &lt;div class="time"&gt;01/05/2026 11:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;Ahmed Ben Ali&lt;/h4&gt;\n
+                        &lt;p&gt;Volkswagen Tiguan • 123 TUN 1&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;10 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 3 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(5, 3, 10)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="22" data-places-max="3" data-prix="10"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;01/05/2026 10:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Nabeul&lt;/div&gt;\n
+                        &lt;div class="time"&gt;01/05/2026 11:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;Ahmed Ben Ali&lt;/h4&gt;\n
+                        &lt;p&gt;Volkswagen Tiguan • 123 TUN 1&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;10 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 3 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(22, 3, 10)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="7" data-places-max="3" data-prix="12"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;01/05/2026 15:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Bizerte&lt;/div&gt;\n
+                        &lt;div class="time"&gt;01/05/2026 16:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;Karim Souissi&lt;/h4&gt;\n
+                        &lt;p&gt;Hyundai i20 • 987 TUN 6&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;12 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 3 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(7, 3, 12)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="23" data-places-max="2" data-prix="12"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;01/05/2026 15:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Bizerte&lt;/div&gt;\n
+                        &lt;div class="time"&gt;01/05/2026 16:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;Sarah Mansouri&lt;/h4&gt;\n
+                        &lt;p&gt;BMW Serie 3 • 321 TUN 4&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;12 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 2 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(23, 2, 12)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="6" data-places-max="4" data-prix="8"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;02/05/2026 08:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Nabeul&lt;/div&gt;\n
+                        &lt;div class="time"&gt;02/05/2026 09:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;Sarah Mansouri&lt;/h4&gt;\n
+                        &lt;p&gt;BMW Serie 3 • 321 TUN 4&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;8 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 4 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(6, 4, 8)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="2" data-places-max="4" data-prix="12"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;02/05/2026 09:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Sousse&lt;/div&gt;\n
+                        &lt;div class="time"&gt;02/05/2026 11:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;Sarah Mansouri&lt;/h4&gt;\n
+                        &lt;p&gt;Peugeot 208 • 789 TUN 3&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;12 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 4 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(2, 4, 12)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="20" data-places-max="4" data-prix="12"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;02/05/2026 09:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Sousse&lt;/div&gt;\n
+                        &lt;div class="time"&gt;02/05/2026 11:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;Sarah Mansouri&lt;/h4&gt;\n
+                        &lt;p&gt;Peugeot 208 • 789 TUN 3&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;12 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 4 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(20, 4, 12)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="18" data-places-max="2" data-prix="18"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;02/05/2026 10:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Monastir&lt;/div&gt;\n
+                        &lt;div class="time"&gt;02/05/2026 12:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;Sarah Mansouri&lt;/h4&gt;\n
+                        &lt;p&gt;BMW Serie 3 • 321 TUN 4&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;18 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 2 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(18, 2, 18)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="26" data-places-max="2" data-prix="18"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;02/05/2026 10:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Monastir&lt;/div&gt;\n
+                        &lt;div class="time"&gt;02/05/2026 12:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;Sarah Mansouri&lt;/h4&gt;\n
+                        &lt;p&gt;BMW Serie 3 • 321 TUN 4&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;18 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 2 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(26, 2, 18)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="4" data-places-max="4" data-prix="22"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;03/05/2026 07:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Sfax&lt;/div&gt;\n
+                        &lt;div class="time"&gt;03/05/2026 10:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;Karim Souissi&lt;/h4&gt;\n
+                        &lt;p&gt;Mercedes Classe C • 654 TUN 5&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;22 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 4 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(4, 4, 22)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="21" data-places-max="4" data-prix="22"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;03/05/2026 07:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Sfax&lt;/div&gt;\n
+                        &lt;div class="time"&gt;03/05/2026 10:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;Karim Souissi&lt;/h4&gt;\n
+                        &lt;p&gt;Mercedes Classe C • 654 TUN 5&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;22 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 4 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(21, 4, 22)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="8" data-places-max="5" data-prix="10"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;03/05/2026 10:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Bizerte&lt;/div&gt;\n
+                        &lt;div class="time"&gt;03/05/2026 11:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;Ahmed Ben Ali&lt;/h4&gt;\n
+                        &lt;p&gt;Volkswagen Tiguan • 123 TUN 1&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;10 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 5 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(8, 5, 10)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="9689" data-places-max="3" data-prix="22"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;11/11/2026 07:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Sfax&lt;/div&gt;\n
+                        &lt;div class="time"&gt;11/11/2026 10:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;U-COND1 Catalogue&lt;/h4&gt;\n
+                        &lt;p&gt;Peugeot 308 • CATDD419A&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;22 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 3 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(9689, 3, 22)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="9685" data-places-max="3" data-prix="18"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;23/11/2026 09:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Sfax&lt;/div&gt;\n
+                        &lt;div class="time"&gt;23/11/2026 12:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;U-COND1 Catalogue&lt;/h4&gt;\n
+                        &lt;p&gt;Peugeot 308 • CATDD419A&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;18 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 3 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(9685, 3, 18)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="9683" data-places-max="2" data-prix="15"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;28/11/2026 08:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Sousse&lt;/div&gt;\n
+                        &lt;div class="time"&gt;28/11/2026 10:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;U-COND1 Catalogue&lt;/h4&gt;\n
+                        &lt;p&gt;Peugeot 308 • CATDD419A&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;15 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 2 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(9683, 2, 15)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="9684" data-places-max="4" data-prix="22"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;29/11/2026 07:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Sfax&lt;/div&gt;\n
+                        &lt;div class="time"&gt;29/11/2026 10:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;U-COND1 Catalogue&lt;/h4&gt;\n
+                        &lt;p&gt;Peugeot 308 • CATDD419A&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;22 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 4 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(9684, 4, 22)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="9686" data-places-max="1" data-prix="10"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;30/11/2026 10:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Nabeul&lt;/div&gt;\n
+                        &lt;div class="time"&gt;30/11/2026 11:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;U-COND1 Catalogue&lt;/h4&gt;\n
+                        &lt;p&gt;Peugeot 308 • CATDD419A&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;10 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 1 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(9686, 1, 10)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="39" data-places-max="4" data-prix="14"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;04/12/2026 00:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;kairouan&lt;/div&gt;\n
+                        &lt;div class="time"&gt;04/12/2026 00:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;Ahmed Ben Ali&lt;/h4&gt;\n
+                        &lt;p&gt;Renault Clio • 456 TUN 2&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;14 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 4 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(39, 4, 14)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+                    &lt;div class="result-card" data-trajet-id="56" data-places-max="4" data-prix="25"&gt;\n
+                &lt;div class="journey-route"&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Tunis&lt;/div&gt;\n
+                        &lt;div class="time"&gt;01/12/2099 10:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div class="journey-line"&gt;&lt;i class="fas fa-arrow-right"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="journey-point"&gt;\n
+                        &lt;div class="city"&gt;Sfax&lt;/div&gt;\n
+                        &lt;div class="time"&gt;01/12/2099 12:00&lt;/div&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="driver-info"&gt;\n
+                    &lt;div class="driver-avatar"&gt;&lt;i class="fas fa-user"&gt;&lt;/i&gt;&lt;/div&gt;\n
+                    &lt;div class="driver-details"&gt;\n
+                        &lt;h4&gt;Conducteur W7-9 Tests W7-9&lt;/h4&gt;\n
+                        &lt;p&gt;Toyota Corolla • WASSALNI79&lt;/p&gt;\n
+                    &lt;/div&gt;\n
+                &lt;/div&gt;\n
+                \n
+                &lt;div class="journey-footer"&gt;\n
+                    &lt;div&gt;\n
+                        &lt;span class="price"&gt;25 DT&lt;/span&gt;\n
+                        &lt;small&gt;/personne&lt;/small&gt;\n
+                    &lt;/div&gt;\n
+                    &lt;div&gt;&lt;i class="fas fa-chair"&gt;&lt;/i&gt; 4 places&lt;/div&gt;\n
+                                            &lt;button class="btn-reserve" onclick="openReservationModal(56, 4, 25)"&gt;\n
+                            &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Réserver\n
+                        &lt;/button&gt;\n
+                                    &lt;/div&gt;\n
+            &lt;/div&gt;\n
+            &lt;/div&gt;\n
+\n
+&lt;!-- MODAL DE RÉSERVATION --&gt;\n
+&lt;div id="reservationModal" class="modal-reserve"&gt;\n
+    &lt;div class="modal-content"&gt;\n
+        &lt;button class="modal-close" onclick="closeReservationModal()"&gt;\n
+            &lt;i class="fas fa-times"&gt;&lt;/i&gt;\n
+        &lt;/button&gt;\n
+        \n
+        &lt;div class="modal-header"&gt;\n
+            &lt;h2&gt;&lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Confirmer la réservation&lt;/h2&gt;\n
+            &lt;p&gt;Veuillez sélectionner le nombre de places souhaitées&lt;/p&gt;\n
+        &lt;/div&gt;\n
+        \n
+        &lt;div class="places-selector"&gt;\n
+            &lt;label&gt;Nombre de places&lt;/label&gt;\n
+            &lt;div class="places-input-group"&gt;\n
+                &lt;button class="places-btn" id="decrementBtn" onclick="decrementPlaces()"&gt;−&lt;/button&gt;\n
+                &lt;div class="places-display"&gt;\n
+                    &lt;span id="selectedPlaces"&gt;1&lt;/span&gt; place(s)\n
+                &lt;/div&gt;\n
+                &lt;button class="places-btn" id="incrementBtn" onclick="incrementPlaces()"&gt;+&lt;/button&gt;\n
+            &lt;/div&gt;\n
+        &lt;/div&gt;\n
+        \n
+        &lt;div class="price-summary"&gt;\n
+            &lt;div class="price-row"&gt;\n
+                &lt;span&gt;Prix par personne&lt;/span&gt;\n
+                &lt;span&gt;&lt;span id="pricePerPerson"&gt;0&lt;/span&gt; DT&lt;/span&gt;\n
+            &lt;/div&gt;\n
+            &lt;div class="price-row"&gt;\n
+                &lt;span&gt;Nombre de places&lt;/span&gt;\n
+                &lt;span id="placesCount"&gt;0&lt;/span&gt;\n
+            &lt;/div&gt;\n
+            &lt;div class="price-row"&gt;\n
+                &lt;span&gt;Total&lt;/span&gt;\n
+                &lt;span&gt;&lt;strong&gt;&lt;span id="totalPrice"&gt;0&lt;/span&gt; DT&lt;/strong&gt;&lt;/span&gt;\n
+            &lt;/div&gt;\n
+        &lt;/div&gt;\n
+        \n
+        &lt;div class="modal-actions"&gt;\n
+            &lt;button class="btn-cancel-modal" onclick="closeReservationModal()"&gt;\n
+                &lt;i class="fas fa-times"&gt;&lt;/i&gt; Annuler\n
+            &lt;/button&gt;\n
+            &lt;button class="btn-confirm-modal" id="confirmReservationBtn" onclick="confirmReservation()"&gt;\n
+                &lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Confirmer\n
+            &lt;/button&gt;\n
+        &lt;/div&gt;\n
+    &lt;/div&gt;\n
+&lt;/div&gt;\n
+\n
+&lt;script&gt;\n
+    // Animation des particules\n
+    const canvas = document.getElementById('particleCanvas');\n
+    if (canvas) {\n
+        canvas.width = canvas.offsetWidth;\n
+        canvas.height = canvas.offsetHeight;\n
+        const ctx = canvas.getContext('2d');\n
+        let particles = [];\n
+        for (let i = 0; i &lt; 50; i++) {\n
+            particles.push({\n
+                x: Math.random() * canvas.width,\n
+                y: Math.random() * canvas.height,\n
+                radius: Math.random() * 3 + 1,\n
+                alpha: Math.random() * 0.5 + 0.2,\n
+                speedX: (Math.random() - 0.5) * 0.5,\n
+                speedY: (Math.random() - 0.5) * 0.5\n
+            });\n
+        }\n
+        function animate() {\n
+            ctx.clearRect(0, 0, canvas.width, canvas.height);\n
+            particles.forEach(p =&gt; {\n
+                p.x += p.speedX;\n
+                p.y += p.speedY;\n
+                if (p.x &lt; 0) p.x = canvas.width;\n
+                if (p.x &gt; canvas.width) p.x = 0;\n
+                if (p.y &lt; 0) p.y = canvas.height;\n
+                if (p.y &gt; canvas.height) p.y = 0;\n
+                ctx.beginPath();\n
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);\n
+                ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;\n
+                ctx.fill();\n
+            });\n
+            requestAnimationFrame(animate);\n
+        }\n
+        animate();\n
+        window.addEventListener('resize', () =&gt; {\n
+            canvas.width = canvas.offsetWidth;\n
+            canvas.height = canvas.offsetHeight;\n
+        });\n
+    }\n
+    \n
+    // Recherche automatique\n
+    const villeDepart = document.getElementById('villeDepart');\n
+    const destination = document.getElementById('destination');\n
+    const searchForm = document.getElementById('searchForm');\n
+    \n
+    function performSearch() {\n
+        if (villeDepart.value &amp;&amp; destination.value) {\n
+            searchForm.submit();\n
+        }\n
+    }\n
+    \n
+    villeDepart.addEventListener('change', performSearch);\n
+    destination.addEventListener('change', performSearch);\n
+    \n
+    // Variables du modal\n
+    let currentTrajetId = null;\n
+    let currentMaxPlaces = 1;\n
+    let currentPricePerPerson = 0;\n
+    let currentSelectedPlaces = 1;\n
+    \n
+    function openReservationModal(trajetId, maxPlaces, pricePerPerson) {\n
+        currentTrajetId = trajetId;\n
+        currentMaxPlaces = maxPlaces;\n
+        currentPricePerPerson = pricePerPerson;\n
+        currentSelectedPlaces = 1;\n
+        \n
+        document.getElementById('selectedPlaces').textContent = '1';\n
+        document.getElementById('placesCount').textContent = '1';\n
+        document.getElementById('pricePerPerson').textContent = pricePerPerson;\n
+        document.getElementById('totalPrice').textContent = pricePerPerson;\n
+        \n
+        updateButtonsState();\n
+        document.getElementById('reservationModal').classList.add('active');\n
+    }\n
+    \n
+    function closeReservationModal() {\n
+        document.getElementById('reservationModal').classList.remove('active');\n
+        currentTrajetId = null;\n
+    }\n
+    \n
+    function incrementPlaces() {\n
+        if (currentSelectedPlaces &lt; currentMaxPlaces) {\n
+            currentSelectedPlaces++;\n
+            updateModalDisplay();\n
+        }\n
+    }\n
+    \n
+    function decrementPlaces() {\n
+        if (currentSelectedPlaces &gt; 1) {\n
+            currentSelectedPlaces--;\n
+            updateModalDisplay();\n
+        }\n
+    }\n
+    \n
+    function updateModalDisplay() {\n
+        document.getElementById('selectedPlaces').textContent = currentSelectedPlaces;\n
+        document.getElementById('placesCount').textContent = currentSelectedPlaces;\n
+        const total = currentSelectedPlaces * currentPricePerPerson;\n
+        document.getElementById('totalPrice').textContent = total;\n
+        updateButtonsState();\n
+    }\n
+    \n
+    function updateButtonsState() {\n
+        const incrementBtn = document.getElementById('incrementBtn');\n
+        const decrementBtn = document.getElementById('decrementBtn');\n
+        \n
+        incrementBtn.disabled = currentSelectedPlaces &gt;= currentMaxPlaces;\n
+        decrementBtn.disabled = currentSelectedPlaces &lt;= 1;\n
+    }\n
+    \n
+    function confirmReservation() {\n
+        const confirmBtn = document.getElementById('confirmReservationBtn');\n
+        confirmBtn.innerHTML = '&lt;i class="fas fa-spinner fa-spin"&gt;&lt;/i&gt; Chargement...';\n
+        confirmBtn.disabled = true;\n
+        \n
+        fetch('/reservation/new-ajax', {\n
+            method: 'POST',\n
+            headers: {\n
+                'Content-Type': 'application/json',\n
+                'X-Requested-With': 'XMLHttpRequest'\n
+            },\n
+            body: JSON.stringify({\n
+                trajetId: currentTrajetId,\n
+                nbPlaces: currentSelectedPlaces\n
+            })\n
+        })\n
+        .then(response =&gt; response.json())\n
+        .then(data =&gt; {\n
+            if (data.success) {\n
+                closeReservationModal();\n
+                showToast('Réservation confirmée avec succès !', 'success');\n
+                setTimeout(() =&gt; location.reload(), 1500);\n
+            } else {\n
+                closeReservationModal();\n
+                showToast(data.message || 'Erreur lors de la réservation', 'error');\n
+            }\n
+        })\n
+        .catch(error =&gt; {\n
+            closeReservationModal();\n
+            showToast('Erreur réseau. Veuillez réessayer.', 'error');\n
+        })\n
+        .finally(() =&gt; {\n
+            confirmBtn.innerHTML = '&lt;i class="fas fa-check-circle"&gt;&lt;/i&gt; Confirmer';\n
+            confirmBtn.disabled = false;\n
+        });\n
+    }\n
+    \n
+    function showToast(message, type) {\n
+        let toastContainer = document.getElementById('toast-container');\n
+        if (!toastContainer) {\n
+            toastContainer = document.createElement('div');\n
+            toastContainer.id = 'toast-container';\n
+            toastContainer.style.cssText = 'position: fixed; bottom: 30px; right: 30px; z-index: 3000; display: flex; flex-direction: column; gap: 12px;';\n
+            document.body.appendChild(toastContainer);\n
+        }\n
+        \n
+        const toast = document.createElement('div');\n
+        toast.style.cssText = `\n
+            background: ${type === 'success' ? '#10b981' : '#ef4444'};\n
+            color: white;\n
+            padding: 14px 24px;\n
+            border-radius: 16px;\n
+            font-weight: 600;\n
+            font-size: 14px;\n
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);\n
+            animation: slideInRight 0.3s ease;\n
+            display: flex;\n
+            align-items: center;\n
+            gap: 12px;\n
+        `;\n
+        toast.innerHTML = `&lt;i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" style="font-size: 20px;"&gt;&lt;/i&gt; ${message}`;\n
+        toastContainer.appendChild(toast);\n
+        \n
+        setTimeout(() =&gt; {\n
+            toast.style.animation = 'slideOutRight 0.3s ease';\n
+            setTimeout(() =&gt; toast.remove(), 300);\n
+        }, 3000);\n
+    }\n
+    \n
+    // Styles des animations de toast\n
+    const style = document.createElement('style');\n
+    style.textContent = `\n
+        @keyframes slideInRight {\n
+            from { transform: translateX(100%); opacity: 0; }\n
+            to { transform: translateX(0); opacity: 1; }\n
+        }\n
+        @keyframes slideOutRight {\n
+            from { transform: translateX(0); opacity: 1; }\n
+            to { transform: translateX(100%); opacity: 0; }\n
+        }\n
+    `;\n
+    document.head.appendChild(style);\n
+&lt;/script&gt;\n
+\n
+&lt;/main&gt;\n
+\n
+&lt;!-- ===================================================\n
+                         FOOTER\n
+=================================================== --&gt;\n
+\n
+&lt;footer class="footer"&gt;\n
+\n
+    &lt;p&gt;\n
+        © 2025 Wassalni.TN — Plateforme moderne de covoiturage en Tunisie\n
+    &lt;/p&gt;\n
+\n
+&lt;/footer&gt;\n
+\n
+&lt;!-- ===================================================\n
+                       JAVASCRIPT\n
+=================================================== --&gt;\n
+\n
+&lt;script&gt;\n
+\n
+    const mobileBtn = document.getElementById('mobileMenuBtn');\n
+    const navLinks  = document.getElementById('navLinks');\n
+\n
+    mobileBtn.addEventListener('click', () =&gt; {\n
+\n
+        navLinks.classList.toggle('mobile-open');\n
+\n
+        if(navLinks.classList.contains('mobile-open')){\n
+            mobileBtn.innerHTML =\n
+                '&lt;i class="fas fa-times"&gt;&lt;/i&gt;';\n
+        }else{\n
+            mobileBtn.innerHTML =\n
+                '&lt;i class="fas fa-bars"&gt;&lt;/i&gt;';\n
+        }\n
+\n
+    });\n
+\n
+    // Fermer menu mobile au clic\n
+    document.querySelectorAll('.nav-links a')\n
+        .forEach(link =&gt; {\n
+\n
+            link.addEventListener('click', () =&gt; {\n
+\n
+                navLinks.classList.remove('mobile-open');\n
+\n
+                mobileBtn.innerHTML =\n
+                    '&lt;i class="fas fa-bars"&gt;&lt;/i&gt;';\n
+\n
+            });\n
+\n
+        });\n
+\n
+&lt;/script&gt;\n
+\n
+\n
+&lt;/body&gt;\n
+&lt;/html&gt;' [UTF-8](length: 82476) does not contain "50k+" [ASCII](length: 4).
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:248</failure>
+        </testcase>
+        <testcase name="testRechercheDateInvalide" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="254" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="2" time="0.030574">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testRechercheDateInvalide&#13;
+Recherche dateDepart=abc : erreur serveur HTTP 500
+Failed asserting that 500 is less than 500.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:51
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:257</failure>
+        </testcase>
+      </testsuite>
+      <testsuite name="App\Tests\Functional\Catalogue\ReclamationTransitionsTest" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReclamationTransitionsTest.php" tests="1" assertions="4" errors="0" failures="1" skipped="0" time="0.047181">
+        <testcase name="testStatistiquesAvecEnCours" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReclamationTransitionsTest.php" line="89" class="App\Tests\Functional\Catalogue\ReclamationTransitionsTest" classname="App.Tests.Functional.Catalogue.ReclamationTransitionsTest" assertions="4" time="0.047181">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReclamationTransitionsTest::testStatistiquesAvecEnCours&#13;
+Total 1, en attente 0, traitées 0
+Failed asserting that 0 is identical to 1.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReclamationTransitionsTest.php:97</failure>
+        </testcase>
+      </testsuite>
+      <testsuite name="App\Tests\Functional\Catalogue\ReservationAnnulationTest" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" tests="5" assertions="12" errors="0" failures="5" skipped="0" time="0.272683">
+        <testcase name="testTC28DoublonVoieHtml" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="112" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="3" time="0.051849">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC28DoublonVoieHtml&#13;
+Failed asserting that 2 is identical to 1.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:118</failure>
+        </testcase>
+        <testcase name="testTC30AnnulationReservationPassee" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="148" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="3" time="0.058058">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC30AnnulationReservationPassee&#13;
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'CONFIRMEE'
++'ANNULEE'
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:154</failure>
+        </testcase>
+        <testcase name="testTC49TrajetPasseVoieHtml" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="161" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="2" time="0.062256">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC49TrajetPasseVoieHtml&#13;
+Failed asserting that 1 is identical to 0.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:166</failure>
+        </testcase>
+        <testcase name="testTC49TrajetPasseVoieJson" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="173" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="2" time="0.044299">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC49TrajetPasseVoieJson&#13;
+Failed asserting that 1 is identical to 0.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:178</failure>
+        </testcase>
+        <testcase name="testTC50TrajetNonValideVoieHtml" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="184" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="2" time="0.056221">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC50TrajetNonValideVoieHtml&#13;
+Failed asserting that 1 is identical to 0.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:189</failure>
+        </testcase>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

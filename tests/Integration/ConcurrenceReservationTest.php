@@ -5,6 +5,7 @@ namespace App\Tests\Integration;
 use App\Entity\Reservation;
 use App\Entity\Trajet;
 use App\Entity\User;
+use App\Service\StockPlaces;
 use App\Tests\Support\ReservationTestFixture;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
@@ -22,6 +23,10 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
  * distinctes à wassalni_test, avec un entrelacement déterministe : A lit, B lit, A écrit, B écrit.
  * C'est exactement ce qui se produit lorsque deux requêtes PHP-FPM simultanées passent le contrôle
  * avant que l'une ou l'autre ne valide sa transaction.
+ *
+ * Avant correction (révision cc50095), l'étape d'écriture faisait « stock − n » en PHP : 2 réservations
+ * pour 1 place (ANO-38). Depuis la correction, l'écriture passe par StockPlaces::prendre(), le même code
+ * que le contrôleur : un UPDATE conditionnel atomique. Le test rejoue donc l'algorithme CORRIGÉ.
  */
 final class ConcurrenceReservationTest extends KernelTestCase
 {
@@ -51,15 +56,20 @@ final class ConcurrenceReservationTest extends KernelTestCase
         return $trip->getPlacesDisponibles() >= $seats ? $trip : null;
     }
 
-    /** Étape « écriture » du contrôleur. */
-    private function write(EntityManagerInterface $em, Trajet $trip, int $passengerId, int $seats): void
+    /** Étape « écriture » du contrôleur corrigé : décrément atomique puis enregistrement, dans une transaction. */
+    private function write(EntityManagerInterface $em, Trajet $trip, int $passengerId, int $seats): bool
     {
-        $em->persist((new Reservation())->setPassager($em->find(User::class, $passengerId))->setTrajet($trip)->setNbPlaces($seats));
-        $trip->setPlacesDisponibles($trip->getPlacesDisponibles() - $seats);
-        $em->flush();
+        return $em->wrapInTransaction(function () use ($em, $trip, $passengerId, $seats): bool {
+            if (!(new StockPlaces())->prendre($em->getConnection(), $trip->getId(), $seats)) {
+                return false;
+            }
+            $em->persist((new Reservation())->setPassager($em->find(User::class, $passengerId))->setTrajet($trip)->setNbPlaces($seats));
+            $em->flush();
+
+            return true;
+        });
     }
 
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-38')]
     #[TestDox('IT-07 (R1, EX-35, CA-06) — deux réservations entrelacées sur la dernière place : une seule doit être confirmée')]
     public function testDerniereplaceEntrelacee(): void
@@ -80,21 +90,25 @@ final class ConcurrenceReservationTest extends KernelTestCase
         // Act : A lit, B lit, A écrit, B écrit
         $tripSeenByA = $this->readAndCheck($first, $tripId, 1);
         $tripSeenByB = $this->readAndCheck($this->second, $tripId, 1);
-        if ($tripSeenByA) {
-            $this->write($first, $tripSeenByA, $fixture['passenger']->getId(), 1);
-        }
-        if ($tripSeenByB) {
-            $this->write($this->second, $tripSeenByB, $other->getId(), 1);
-        }
+        $writeA = $tripSeenByA ? $this->write($first, $tripSeenByA, $fixture['passenger']->getId(), 1) : false;
+        $writeB = $tripSeenByB ? $this->write($this->second, $tripSeenByB, $other->getId(), 1) : false;
 
         // Assert : au plus une réservation confirmée pour une place
         $sql = $first->getConnection();
         $state = [
             'controle_A_passe' => $tripSeenByA !== null,
             'controle_B_passe' => $tripSeenByB !== null,
+            'ecriture_A' => $writeA,
+            'ecriture_B' => $writeB,
             'reservations_confirmees' => (int) $sql->fetchOne("SELECT COUNT(*) FROM reservation WHERE trajet_id = ? AND statut = 'CONFIRMEE'", [$tripId]),
             'places_restantes' => (int) $sql->fetchOne('SELECT places_disponibles FROM trajet WHERE id = ?', [$tripId]),
         ];
-        self::assertLessThanOrEqual(1, $state['reservations_confirmees'], 'Surréservation : ' . json_encode($state));
+        // Les deux contrôles passent (c'est le scénario dangereux) ; seule la première écriture doit réussir.
+        self::assertSame(
+            ['controle_A_passe' => true, 'controle_B_passe' => true, 'ecriture_A' => true, 'ecriture_B' => false,
+             'reservations_confirmees' => 1, 'places_restantes' => 0],
+            $state,
+            'Surréservation : ' . json_encode($state)
+        );
     }
 }

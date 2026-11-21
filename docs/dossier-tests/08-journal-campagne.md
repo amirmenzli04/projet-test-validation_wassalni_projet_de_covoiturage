@@ -63,7 +63,7 @@ php bin/console lint:container --env=test ; php bin/console lint:twig templates 
 
 ### Limites et points en attente
 
-- `docs/docs/semaine2-environnement.md` est un fichier **vide**, doublon de `docs/semaine2-environnement.md`. Il est laissé non versionné, en attente de votre accord pour le supprimer.
+- `docs/docs/semaine2-environnement.md` était un fichier **vide**, doublon de `docs/semaine2-environnement.md`. Il a été supprimé le 21/11/2026.
 - `Reservation-complete.pdf` est une impression du code source, non une preuve d'exécution. Il est conservé mais ne sera pas cité comme preuve.
 - **Deux référentiels d'identifiants coexistent** : la lignée PDF des semaines 1 à 4 (`EX`, `CA`, `TC`, `A`) et la lignée Markdown du dossier (`R`, `EX`, `CT`). Les numéros `EX-xx` ont des **significations différentes** d'une lignée à l'autre. Une harmonisation est prévue en P5, après votre décision.
 
@@ -119,3 +119,19 @@ Aucune correction du code métier n'a été faite. Les corrections proposées vo
 
 - **ANO-T05 :** dépendance d'ordre entre fichiers Playwright.
 - **Encodage de la synthèse PowerShell :** script réenregistré en UTF-8 avec BOM ; l'en-tête de `00-synthese.txt` a été redécodé de cp1252 vers UTF-8, sans changement des valeurs.
+
+## Corrections S2 et rejeu (21/11/2026)
+
+| Étape | Réalisé | Révision |
+|---|---|---|
+| Intégration continue | Workflow réparé : `.env` absent du dépôt (cause des 12 échecs), base MariaDB éphémère, rapports en artefacts | `d5f4c7c` |
+| Plan de test v2.0 | Seuils quantitatifs de sortie (§2.7.2) et règle de décision (§2.7.3) | `e166adf` |
+| Écarts avec l'énoncé | Document [15](15-ecarts-enonce.md) | `7038214` |
+| Corrections 1 | ANO-07, 20, 21, 22, 35 ; 14 tests passés en régression | `f7a3aca` |
+| Corrections 2 | ANO-12, 13 (CSRF) ; 6 tests passés en régression ; ST-10 stabilisé (ANO-T07) | `adc66be` |
+| Corrections 3 | ANO-38 (décrément atomique) ; garde-fou d'architecture après un commit incomplet | `cb09a55`, `72cff37` |
+| Rejeu complet | 110 tests OK ; 27 tests d'anomalies ; Newman 35/35 ; Playwright 20/23 ; k6 respecté | `72cff37` |
+| Décision | **Validation conditionnelle** ([14 §14.7](14-semaine10-bilan-decision.md)) | `72cff37` |
+
+**Incidents d'outillage :** ANO-T06 (cache de test non reconstruit en `debug => false`) et ANO-T07 (ST-10 instable), voir [07 §7.3](07-registre-anomalies.md).
+

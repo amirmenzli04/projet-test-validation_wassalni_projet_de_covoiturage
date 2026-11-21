@@ -14,9 +14,20 @@ use PHPUnit\Framework\Attributes\TestDox;
  */
 final class ReservationAnnulationTest extends CatalogueWebTestCase
 {
-    private function reserveHtml(string $tripAlias, string|int $seats): void
+    /** Réservation par le formulaire HTML, avec le jeton CSRF que porte le formulaire (sauf $withToken = false). */
+    private function reserveHtml(string $tripAlias, string|int $seats, bool $withToken = true): void
     {
-        $this->client->request('POST', '/reservation/new/' . $this->ids[$tripAlias], ['nbPlaces' => (string) $seats]);
+        $params = ['nbPlaces' => (string) $seats];
+        if ($withToken) {
+            $params['_token'] = $this->csrfToken('reserver' . $this->ids[$tripAlias]);
+        }
+        $this->client->request('POST', '/reservation/new/' . $this->ids[$tripAlias], $params);
+    }
+
+    private function cancelHtml(string $reservationAlias): void
+    {
+        $id = $this->ids[$reservationAlias];
+        $this->client->request('POST', '/reservation/annuler/' . $id, ['_token' => $this->csrfToken('annuler' . $id)]);
     }
 
     private function reserveJson(string $tripAlias, int $seats): void
@@ -61,7 +72,6 @@ final class ReservationAnnulationTest extends CatalogueWebTestCase
 
     #[DataProvider('invalidSeatCounts')]
     #[TestDox('TC-24 (CA-06, EX-35) — nombre de places invalide « $seats » par la voie HTML : refus, stock inchangé')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-07')]
     public function testTC24NombreDePlacesInvalideVoieHtml(string $seats): void
     {
@@ -123,7 +133,7 @@ final class ReservationAnnulationTest extends CatalogueWebTestCase
     public function testTC29AnnulerPuisReserverDeNouveau(): void
     {
         $this->client->loginUser($this->user('U-PASS1'));
-        $this->client->request('GET', '/reservation/annuler/' . $this->ids['RES-F1']);
+        $this->cancelHtml('RES-F1');
         self::assertSame(Reservation::STATUT_ANNULE, $this->reload(Reservation::class, 'RES-F1')?->getStatut());
         self::assertSame(3, $this->seats('T-NOMINAL'));
 
@@ -138,7 +148,7 @@ final class ReservationAnnulationTest extends CatalogueWebTestCase
     public function testTC30AnnulationReservationPassee(): void
     {
         $this->client->loginUser($this->user('U-PASS1'));
-        $this->client->request('GET', '/reservation/annuler/' . $this->ids['RES-PAST']);
+        $this->cancelHtml('RES-PAST');
 
         $this->assertNotServerError('TC-30');
         self::assertSame(Reservation::STATUT_CONFIRME, $this->reload(Reservation::class, 'RES-PAST')?->getStatut());
@@ -194,7 +204,7 @@ final class ReservationAnnulationTest extends CatalogueWebTestCase
     public function testCA13AnnulationParUnAutrePassager(): void
     {
         $this->client->loginUser($this->user('U-PASS2'));
-        $this->client->request('GET', '/reservation/annuler/' . $this->ids['RES-F1']);
+        $this->cancelHtml('RES-F1');
 
         self::assertResponseStatusCodeSame(403);
         self::assertSame(Reservation::STATUT_CONFIRME, $this->reload(Reservation::class, 'RES-F1')?->getStatut());
@@ -205,14 +215,13 @@ final class ReservationAnnulationTest extends CatalogueWebTestCase
     public function testCA10DoubleAnnulation(): void
     {
         $this->client->loginUser($this->user('U-PASS1'));
-        $this->client->request('GET', '/reservation/annuler/' . $this->ids['RES-F1']);
-        $this->client->request('GET', '/reservation/annuler/' . $this->ids['RES-F1']);
+        $this->cancelHtml('RES-F1');
+        $this->cancelHtml('RES-F1');
 
         self::assertSame(3, $this->seats('T-NOMINAL'));
     }
 
     #[TestDox('CA-15 (EX-34) — annulation par simple GET sans jeton CSRF : refusée (405/403), réservation inchangée')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-12')]
     public function testCA15AnnulationParGetSansJeton(): void
     {
@@ -224,12 +233,11 @@ final class ReservationAnnulationTest extends CatalogueWebTestCase
     }
 
     #[TestDox('CA-15 (EX-34) — réservation HTML sans jeton CSRF : refusée, aucune réservation')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-12')]
     public function testCA15ReservationHtmlSansJeton(): void
     {
         $this->client->loginUser($this->user('U-PASS1'));
-        $this->reserveHtml('T-P4', 1);
+        $this->reserveHtml('T-P4', 1, false);
 
         self::assertSame(0, $this->countReservations('U-PASS1', 'T-P4'), 'Réservation créée par un POST sans jeton CSRF');
     }

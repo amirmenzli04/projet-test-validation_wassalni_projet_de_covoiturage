@@ -68,7 +68,7 @@ img{max-width:100%;max-height:430px;display:block;margin:10px auto;border:1px so
 code{background:#f1f5f9;padding:0 3px;font-size:9pt}pre{background:#0f172a;color:#e2e8f0;padding:8px;font-size:8.5pt;white-space:pre-wrap}
 p{margin:6px 0}a{color:#3730a3}hr{border:0;border-top:1px solid #cbd5e1}
 </style></head><body>${render(fs.readFileSync(source, 'utf8'))}</body></html>`;
-    const chrome = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+    const chrome = process.env.CHROME_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
     const browser = await chromium.launch({ executablePath: fs.existsSync(chrome) ? chrome : undefined });
     const page = await browser.newPage();
     const tmp = path.join(path.dirname(path.resolve(target)), '.rendu-temporaire.html');

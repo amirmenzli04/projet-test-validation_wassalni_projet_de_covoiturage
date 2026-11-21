@@ -1,0 +1,8 @@
+﻿# Synthèse de la campagne de régression
+Révision : 72cff37 ; base : wassalni_test ; début : 2026-11-21 17:13:33 +01:00 ; fin : 2026-11-21 17:17:10 +01:00
+
+- PHPUnit regression (anomalies exclues) : code de sortie 0 ;  Ô£ö IT-06 (CA-20, EX-35) ÔÇö trajet vis├® par une r├®clamation : la base refuse la suppression (RESTRICT), trajet et r├®clamation intacts |  | OK (110 tests, 291 assertions)
+- PHPUnit anomalies ouvertes : code de sortie 1 ;  | FAILURES! | Tests: 27, Assertions: 73, Failures: 25, Deprecations: 2.
+- Playwright (navigateur) : code de sortie 1 ;     tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 ÔÇ║ Accessibilit├® (axe, WCAG A/AA) ÔÇö page nouvelle-reclamation  |     tests\Playwright\semaine9-accessibilite-securite.spec.js:30:5 ÔÇ║ Accessibilit├® (axe, WCAG A/AA) ÔÇö page mes-reservations  |   20 passed (2.5m)
+- Newman (API) : code de sortie 0 ; Ôöé average response time: 154ms [min: 60ms, max: 1193ms, s.d.: 249ms] Ôöé | ÔööÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÿ | # Requ├¬tes : 19 (├®checs 0) ; assertions : 35 (├®checs 0)
+- k6 (performance) : code de sortie 0 ; Dur├®e (toutes pages) : moy 183.3 ms ; m├®diane 157.6 ms ; p95 392.8 ms ; max 522.2 ms | Dur├®e recherche : p95 373.2 ms | Seuils : http_req_duration RESPECT├ë ; http_req_duration{page:recherche} RESPECT├ë ; checks RESPECT├ë ; http_req_failed RESPECT├ë

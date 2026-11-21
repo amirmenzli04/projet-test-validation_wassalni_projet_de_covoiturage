@@ -20,6 +20,8 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted('ROLE_ADMIN')]
 class AdminController extends AbstractController
 {
+    use CsrfGuardTrait;
+
     //ychargi les utilisateurs ,trajet et reclmation depuis la bases des données
     #[Route('/dashboard', name: 'admin_dashboard')]
     public function dashboard(
@@ -108,8 +110,10 @@ class AdminController extends AbstractController
     }
     //ya5ou l'id w yaktivilou el compte te3ou  
     #[Route('/utilisateur/activer/{id}', name: 'admin_user_activate')]
-    public function activateUser(User $user, EntityManagerInterface $em): Response
+    public function activateUser(User $user, Request $request, EntityManagerInterface $em): Response
     {
+        $this->denyUnlessValidCsrf($request, 'activer-utilisateur' . $user->getId());
+
         $user->setStatut('ACTIF');
         $em->flush();
         
@@ -118,8 +122,10 @@ class AdminController extends AbstractController
     }
     //yeblockii user
     #[Route('/utilisateur/bloquer/{id}', name: 'admin_user_block')]
-    public function blockUser(User $user, EntityManagerInterface $em): Response
+    public function blockUser(User $user, Request $request, EntityManagerInterface $em): Response
     {
+        $this->denyUnlessValidCsrf($request, 'bloquer-utilisateur' . $user->getId());
+
         $user->setStatut('BLOQUE');
         $em->flush();
         
@@ -128,8 +134,10 @@ class AdminController extends AbstractController
     }
     
     #[Route('/utilisateur/supprimer/{id}', name: 'admin_user_delete')]
-    public function deleteUser(User $user, EntityManagerInterface $em): Response
+    public function deleteUser(User $user, Request $request, EntityManagerInterface $em): Response
     {
+        $this->denyUnlessValidCsrf($request, 'supprimer-utilisateur' . $user->getId());
+
         $email = $user->getEmail();
         $em->remove($user);
         $em->flush();
@@ -149,8 +157,10 @@ class AdminController extends AbstractController
     }
     //changer le statut en atten en "en valide"
     #[Route('/trajet/valider/{id}', name: 'admin_trajet_validate')]
-    public function validateTrajet(Trajet $trajet, EntityManagerInterface $em): Response
+    public function validateTrajet(Trajet $trajet, Request $request, EntityManagerInterface $em): Response
     {
+        $this->denyUnlessValidCsrf($request, 'valider-trajet' . $trajet->getId());
+
         $trajet->setStatut('VALIDE');
         $em->flush();
         
@@ -159,8 +169,10 @@ class AdminController extends AbstractController
     }
     //dellete deffinitivement un trajet 
     #[Route('/trajet/supprimer/{id}', name: 'admin_trajet_delete')]
-    public function deleteTrajet(Trajet $trajet, EntityManagerInterface $em): Response
+    public function deleteTrajet(Trajet $trajet, Request $request, EntityManagerInterface $em): Response
     {
+        $this->denyUnlessValidCsrf($request, 'supprimer-trajet' . $trajet->getId());
+
         $em->remove($trajet);
         $em->flush();
         
@@ -181,6 +193,8 @@ class AdminController extends AbstractController
     #[Route('/reclamation/traiter/{id}', name: 'admin_reclamation_process')]
     public function processReclamation(Request $request, Reclamation $reclamation, EntityManagerInterface $em): Response
     {
+        $this->denyUnlessValidCsrf($request, 'traiter-reclamation' . $reclamation->getId());
+
         $reponse = $request->request->get('reponse');
         
         if ($reponse) {

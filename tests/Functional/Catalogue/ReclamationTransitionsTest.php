@@ -53,7 +53,7 @@ final class ReclamationTransitionsTest extends CatalogueWebTestCase
         $id = $this->complaint();
         $this->client->loginUser($this->user('U-ADMIN'));
         $before = new \DateTimeImmutable('-2 seconds');
-        $this->client->request('POST', '/admin/reclamation/traiter/' . $id, ['reponse' => 'Réponse T-02']);
+        $this->client->request('POST', '/admin/reclamation/traiter/' . $id, ['reponse' => 'Réponse T-02', '_token' => $this->csrfToken('traiter-reclamation' . $id)]);
         $after = new \DateTimeImmutable('+1 second');
         $row = $this->row($id);
 
@@ -69,8 +69,8 @@ final class ReclamationTransitionsTest extends CatalogueWebTestCase
     {
         $id = $this->complaint();
         $this->client->loginUser($this->user('U-ADMIN'));
-        $this->client->request('POST', '/admin/reclamation/traiter/' . $id, ['reponse' => 'Première réponse']);
-        $this->client->request('POST', '/admin/reclamation/traiter/' . $id, ['reponse' => 'Seconde réponse']);
+        $this->client->request('POST', '/admin/reclamation/traiter/' . $id, ['reponse' => 'Première réponse', '_token' => $this->csrfToken('traiter-reclamation' . $id)]);
+        $this->client->request('POST', '/admin/reclamation/traiter/' . $id, ['reponse' => 'Seconde réponse', '_token' => $this->csrfToken('traiter-reclamation' . $id)]);
 
         self::assertSame(['TRAITEE', 'Seconde réponse'], array_values(array_slice($this->row($id), 0, 2)));
     }
@@ -102,7 +102,7 @@ final class ReclamationTransitionsTest extends CatalogueWebTestCase
     {
         $id = $this->complaint();
         $this->client->loginUser($this->user('U-PASS2'));
-        $this->client->request('POST', '/admin/reclamation/traiter/' . $id, ['reponse' => 'Tentative']);
+        $this->client->request('POST', '/admin/reclamation/traiter/' . $id, ['reponse' => 'Tentative', '_token' => $this->csrfToken('traiter-reclamation' . $id)]);
         self::assertResponseStatusCodeSame(403);
         self::assertSame('EN_ATTENTE', $this->row($id)['statut']);
     }

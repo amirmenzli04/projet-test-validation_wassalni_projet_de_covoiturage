@@ -224,17 +224,20 @@
                             </td>
                             <td>
                                 {% if user.statut == 'ACTIF' %}
-                                    <a href="{{ path('admin_user_block', {'id': user.id}) }}" class="btn-sm btn-warning" onclick="return confirm('Bloquer cet utilisateur ?')">
-                                        <i class="fas fa-ban"></i> Bloquer
-                                    </a>
+                                    <form action="{{ path('admin_user_block', {'id': user.id}) }}" method="post" style="display:inline;" onsubmit="return confirm('Bloquer cet utilisateur ?')">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('bloquer-utilisateur' ~ user.id) }}">
+                                    <button type="submit" class="btn-sm btn-warning" style="border:none;cursor:pointer;"><i class="fas fa-ban"></i> Bloquer</button>
+                                </form>
                                 {% else %}
-                                    <a href="{{ path('admin_user_activate', {'id': user.id}) }}" class="btn-sm btn-success" onclick="return confirm('Activer cet utilisateur ?')">
-                                        <i class="fas fa-check"></i> Activer
-                                    </a>
+                                    <form action="{{ path('admin_user_activate', {'id': user.id}) }}" method="post" style="display:inline;" onsubmit="return confirm('Activer cet utilisateur ?')">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('activer-utilisateur' ~ user.id) }}">
+                                    <button type="submit" class="btn-sm btn-success" style="border:none;cursor:pointer;"><i class="fas fa-check"></i> Activer</button>
+                                </form>
                                 {% endif %}
-                                <a href="{{ path('admin_user_delete', {'id': user.id}) }}" class="btn-sm btn-danger" onclick="return confirm('Supprimer définitivement cet utilisateur ?')">
-                                    <i class="fas fa-trash"></i> Supprimer
-                                </a>
+                                <form action="{{ path('admin_user_delete', {'id': user.id}) }}" method="post" style="display:inline;" onsubmit="return confirm('Supprimer définitivement cet utilisateur ?')">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('supprimer-utilisateur' ~ user.id) }}">
+                                    <button type="submit" class="btn-sm btn-danger" style="border:none;cursor:pointer;"><i class="fas fa-trash"></i> Supprimer</button>
+                                </form>
                             </td>
                         </tr>
                     {% endfor %}

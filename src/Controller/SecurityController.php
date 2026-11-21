@@ -103,40 +103,30 @@ class SecurityController extends AbstractController
         return $this->redirectToRoute('app_login');
     }
     
-    #[Route('/get-last-user-email', name: 'get_last_user_email')]
-    public function getLastUserEmail(Request $request, UserRepository $userRepo): JsonResponse
+    #[Route('/get-last-user-email', name: 'get_last_user_email', methods: ['GET'])]
+    public function getLastUserEmail(Request $request): JsonResponse
     {
-        $session = $request->getSession();
-        $email = $session->get('last_registered_email');
-        
+        // ANO-22 : seule l'adresse saisie dans CETTE session d'inscription peut être renvoyée,
+        // jamais celle du dernier inscrit en base.
+        $email = $request->getSession()->get('last_registered_email');
         if (!$email) {
-            $lastUser = $userRepo->findOneBy([], ['id' => 'DESC']);
-            if ($lastUser) {
-                $email = $lastUser->getEmail();
-            }
+            return $this->json(['error' => 'Accès refusé'], 403);
         }
-        
+
         return $this->json(['email' => $email]);
     }
     
-    #[Route('/check-verification-status', name: 'check_verification_status')]
+    #[Route('/check-verification-status', name: 'check_verification_status', methods: ['GET'])]
     public function checkVerificationStatus(Request $request, UserRepository $userRepo): JsonResponse
     {
-        $session = $request->getSession();
-        $email = $session->get('last_registered_email');
-        
-        if ($email) {
-            $user = $userRepo->findOneBy(['email' => $email]);
-            if ($user && $user->isVerified()) {
-                return $this->json(['verified' => true]);
-            }
-        } else {
-            $lastUser = $userRepo->findOneBy([], ['id' => 'DESC']);
-            if ($lastUser && $lastUser->isVerified()) {
-                return $this->json(['verified' => true]);
-            }
+        // ANO-22 : le statut n'est donné que pour le compte créé dans cette session.
+        $email = $request->getSession()->get('last_registered_email');
+        if (!$email) {
+            return $this->json(['error' => 'Accès refusé'], 403);
         }
-        
-        return $this->json(['verified' => false]);
+
+        $user = $userRepo->findOneBy(['email' => $email]);
+
+        return $this->json(['verified' => $user !== null && $user->isVerified()]);
     }
 }

@@ -22,7 +22,6 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
     }
 
     #[TestDox('TC-03 (CA-11, EX-03) — compte non vérifié avec le bon mot de passe : aucune session authentifiée')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-20')]
     public function testTC03CompteNonVerifie(): void
     {
@@ -57,7 +56,6 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
     }
 
     #[TestDox('TC-04 (CA-11, EX-04) — U-PASS2 bloqué par l\'admin ne peut plus se connecter ; réactivé, il le peut')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-21')]
     public function testTC04BlocagePuisReactivation(): void
     {
@@ -67,7 +65,7 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
         $this->client->request('GET', '/deconnexion');
 
         $this->client->loginUser($this->user('U-ADMIN'));
-        $this->client->request('GET', '/admin/utilisateur/bloquer/' . $this->ids['U-PASS2']);
+        $this->client->request('POST', '/admin/utilisateur/bloquer/' . $this->ids['U-PASS2'], ['_token' => $this->csrfToken('bloquer-utilisateur' . $this->ids['U-PASS2'])]);
         $steps['2_statut_en_base'] = $this->em()->getConnection()->fetchOne('SELECT statut FROM `user` WHERE id = ?', [$this->ids['U-PASS2']]);
         $this->client->request('GET', '/deconnexion');
 
@@ -76,7 +74,7 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
         $this->client->request('GET', '/deconnexion');
 
         $this->client->loginUser($this->user('U-ADMIN'));
-        $this->client->request('GET', '/admin/utilisateur/activer/' . $this->ids['U-PASS2']);
+        $this->client->request('POST', '/admin/utilisateur/activer/' . $this->ids['U-PASS2'], ['_token' => $this->csrfToken('activer-utilisateur' . $this->ids['U-PASS2'])]);
         $this->client->request('GET', '/deconnexion');
         $this->loginByForm($this->client, $this->emails['U-PASS2'], $this->plainPassword);
         $steps['5_connexion_apres_reactivation'] = $this->hasPassengerSession($this->client);
@@ -119,7 +117,6 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
     }
 
     #[TestDox('TC-45 (CA-14, EX-33) — /get-last-user-email sans connexion : accès refusé, aucune adresse e-mail renvoyée')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-22')]
     public function testTC45FuiteEmailDernierInscrit(): void
     {
@@ -130,7 +127,6 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
     }
 
     #[TestDox('CA-14 (EX-33) — /check-verification-status sans connexion : accès refusé')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-22')]
     public function testCA14StatutVerificationAnonyme(): void
     {
@@ -139,7 +135,6 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
     }
 
     #[TestDox('TC-38 (CA-15, EX-34) — admin ouvre par GET /admin/trajet/valider/{T-PEND} : refus, T-PEND reste EN_ATTENTE')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-13')]
     public function testTC38ValidationParGet(): void
     {
@@ -149,7 +144,6 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
     }
 
     #[TestDox('CA-15 (EX-34) — admin bloque U-PASS2 par simple GET sans jeton : refus, statut ACTIF conservé')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-13')]
     public function testCA15BlocageParGet(): void
     {
@@ -159,7 +153,6 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
     }
 
     #[TestDox('CA-15 (EX-34) — admin supprime T-P1 par simple GET sans jeton : refus, trajet conservé')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-13')]
     public function testCA15SuppressionTrajetParGet(): void
     {
@@ -169,7 +162,6 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
     }
 
     #[TestDox('CA-15 (EX-34) — traitement d\'une réclamation par POST sans jeton CSRF : refus, statut EN_ATTENTE conservé')]
-    #[Group('anomalie-ouverte')]
     #[Group('ANO-13')]
     public function testCA15TraitementReclamationSansJeton(): void
     {
@@ -186,7 +178,7 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
     public function testCA20SuppressionTrajetAvecReservations(): void
     {
         $this->client->loginUser($this->user('U-ADMIN'));
-        $this->client->request('GET', '/admin/trajet/supprimer/' . $this->ids['T-NOMINAL']);
+        $this->client->request('POST', '/admin/trajet/supprimer/' . $this->ids['T-NOMINAL'], ['_token' => $this->csrfToken('supprimer-trajet' . $this->ids['T-NOMINAL'])]);
         $orphans = (int) $this->em()->getConnection()->fetchOne('SELECT COUNT(*) FROM reservation r LEFT JOIN trajet t ON t.id = r.trajet_id WHERE t.id IS NULL');
         self::assertSame(['http_5xx' => false, 'reservations_orphelines' => 0], ['http_5xx' => $this->httpStatus() >= 500, 'reservations_orphelines' => $orphans]);
     }
@@ -197,7 +189,7 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
     public function testCA20SuppressionUtilisateurAvecReservations(): void
     {
         $this->client->loginUser($this->user('U-ADMIN'));
-        $this->client->request('GET', '/admin/utilisateur/supprimer/' . $this->ids['U-PASS1']);
+        $this->client->request('POST', '/admin/utilisateur/supprimer/' . $this->ids['U-PASS1'], ['_token' => $this->csrfToken('supprimer-utilisateur' . $this->ids['U-PASS1'])]);
         $this->assertNotServerError('Suppression d\'un utilisateur ayant des réservations');
     }
 
@@ -213,7 +205,7 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
         $this->em()->clear();
 
         $this->client->loginUser($this->user('U-ADMIN'));
-        $this->client->request('GET', '/admin/trajet/supprimer/' . $this->ids['T-P4']);
+        $this->client->request('POST', '/admin/trajet/supprimer/' . $this->ids['T-P4'], ['_token' => $this->csrfToken('supprimer-trajet' . $this->ids['T-P4'])]);
         $this->assertNotServerError("Suppression d'un trajet visé par une réclamation");
     }
 
@@ -267,7 +259,7 @@ final class ConnexionAccesTest extends CatalogueWebTestCase
         $this->em()->persist($reclamation);
         $this->em()->flush();
         $this->client->loginUser($this->user('U-ADMIN'));
-        $this->client->request('POST', '/admin/reclamation/traiter/' . $reclamation->getId(), ['reponse' => '']);
+        $this->client->request('POST', '/admin/reclamation/traiter/' . $reclamation->getId(), ['reponse' => '', '_token' => $this->csrfToken('traiter-reclamation' . $reclamation->getId())]);
         $this->client->followRedirect();
         self::assertResponseIsSuccessful();
         self::assertStringContainsString('Veuillez saisir une réponse', $this->body());
