@@ -135,3 +135,15 @@ Aucune correction du code métier n'a été faite. Les corrections proposées vo
 
 **Incidents d'outillage :** ANO-T06 (cache de test non reconstruit en `debug => false`) et ANO-T07 (ST-10 instable), voir [07 §7.3](07-registre-anomalies.md).
 
+## Accessibilité et API REST (21/11/2026, suite)
+
+| Étape | Réalisé | Révision |
+|---|---|---|
+| Accessibilité | ANO-36 corrigée (9 étiquettes reliées) ; Playwright 23/23 | `eb863be` |
+| API REST | `/api/reclamations` (GET, POST, PATCH) ; API-01 à API-14 ; Newman 11 à 26 ; efficacité des tests vérifiée par mutation | `1ed214b` |
+| Défaut découvert | ANO-39 (contrainte `Length` mal paramétrée sur `User`), corrigée ; garde-fou UT-12, UT-13 | `1ed214b` |
+| Rejeu complet | 131 tests OK ; Playwright 23/23 ; Newman 59/59 ; k6 respecté | `1ed214b` |
+| Décision | Validation conditionnelle confirmée ([14 §14.8](14-semaine10-bilan-decision.md)) | `1ed214b` |
+
+**Incident d'outillage :** ANO-T08 (délai de 30 s dépassé au premier démarrage du serveur après un vidage du cache), voir [07 §7.3](07-registre-anomalies.md).
+

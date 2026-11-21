@@ -46,6 +46,18 @@ class Reclamation
     #[ORM\ManyToOne]
     private ?User $utilisateurConcerne = null;
 
+    /** Sujets autorisés (formulaire HTML et API REST). */
+    public const SUJETS = [
+        'Problème avec un conducteur',
+        'Problème avec un passager',
+        'Problème de paiement',
+        'Annulation de dernière minute',
+        'Véhicule non conforme',
+        'Retard important',
+        'Problème avec une réservation',
+        'Autre problème',
+    ];
+
     public function __construct()
     {
         $this->dateCreation = new \DateTime();

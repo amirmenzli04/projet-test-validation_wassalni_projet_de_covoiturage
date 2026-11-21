@@ -1,6 +1,7 @@
 # 9. Matrice de traçabilité finale — Exigence → Risque → Cas de test → Résultat → Preuve
 
-- **Version :** 2.0, 21 novembre 2026 — colonne « Résultat 21/11 » ajoutée après les corrections S2 (révision `72cff37`)
+- **Version :** 2.1, 21 novembre 2026 — tests de l'API REST ajoutés aux exigences concernées, accessibilité corrigée (révision `1ed214b`)
+- **Version 2.0 :** 21 novembre 2026 — colonne « Résultat 21/11 » ajoutée après les corrections S2 (révision `72cff37`)
 - **Version précédente :** 1.0, 11 novembre 2026 (campagne finale, révision `cc50095`)
 - **Référentiel :** exigences EX et critères CA (PDF semaine 3), risques R (PDF semaine 1), cas TC (PDF semaine 4). Les tests automatisés sont nommés par leur identifiant TC, CA, ST, UT ou IT.
 - **Statuts :** **Réussi** (tous les cas conformes), **Partiel** (une partie des cas conformes, avec anomalie sur le reste), **Échoué** (exigence non satisfaite), **Non exécuté**.
@@ -12,7 +13,8 @@
   - S8 = `preuves/semaine8/` ;
   - S9 = `preuves/semaine9/` ;
   - S10 = `preuves/semaine10/campagne-finale/` (rejeu final du 11/11) ;
-  - S10b = `preuves/semaine10/apres-corrections/` (rejeu du 21/11 après corrections).
+  - S10b = `preuves/semaine10/apres-corrections/` (rejeu du 21/11 après corrections S2) ;
+  - S10c = `preuves/semaine10/apres-ameliorations/` (rejeu du 21/11 après accessibilité et API REST).
 
 | Exigence | Risque | Critère | Cas et tests exécutés | Résultat 11/11 | Résultat 21/11 | Anomalies | Preuve |
 |---|---|---|---|---|---|---|---|
@@ -39,16 +41,16 @@
 | EX-21 Avis 1 à 5 après le trajet | R9 | CA-18 | TC-33, UT-07, CA-18 avant la fin du trajet | **Partiel** (bornes conformes) | Inchangé | ANO-26, ANO-27 | P1, S6 |
 | EX-22 Un seul avis par trajet | R9 | CA-18 | CA-18 second avis, CA-18 sans réservation | **Réussi** (dépréciation ANO-27) | Inchangé | ANO-27 | P1 |
 | EX-23 Note moyenne et avis du conducteur | — | — | UT-09, `/avis/conducteur/{id}` | **Partiel** (calcul conforme, page en erreur 500) | Inchangé | ANO-25 | S6, P1 |
-| EX-24 Dépôt de réclamation (message ≥ 10) | R13 | CA-17 | TC-36, ST-01 à ST-03, `ReclamationWorkflowTest` | **Réussi** | Inchangé | — | P1, S5 |
-| EX-25 Réponse admin et suivi du statut | — | — | ST-05, ST-06, ST-07, ST-09, T-01 à T-06 | **Réussi** pour la règle validée (traitement direct) ; retour utilisateur absent | Inchangé | ANO-31, ANO-33 | S5 |
+| EX-24 Dépôt de réclamation (message ≥ 10) | R13 | CA-17 | TC-36, ST-01 à ST-03, `ReclamationWorkflowTest`, API-07, API-08, API-09 | **Réussi** | Inchangé | — | P1, S5, S10c |
+| EX-25 Réponse admin et suivi du statut | — | — | ST-05, ST-06, ST-07, ST-09, T-01 à T-06, API-03, API-11 à API-13 | **Réussi** pour la règle validée (traitement direct) ; retour utilisateur absent | Inchangé | ANO-31, ANO-33 | S5, S10c |
 | EX-26 Tableau de bord admin | R12 | CA-16 | CA-16 compteur réclamations | **Échoué** | Inchangé | ANO-24 | P1 |
 | EX-27 Gérer les utilisateurs | R20 | CA-15, CA-20 | TC-04 (blocage), CA-15 blocage par GET, CA-20 suppression | **Partiel** (fonction présente, non protégée) | Inchangé | ANO-13, ANO-23 | P1 |
 | EX-28 Valider ou supprimer les trajets | R20, R15 | CA-15, CA-20 | TC-38, CA-15 suppression, CA-20, IT-05, IT-06 | **Partiel** | Inchangé | ANO-13, ANO-23 | P1, S7 |
 | EX-29 Statistiques exactes des tableaux de bord | R12 | CA-16 | `/passager/dashboard`, A-05, T-05 | **Échoué** | Inchangé | ANO-28, ANO-33, ANO-34 | P1, S5 |
 | EX-30 E-mails envoyés | R11 | CA-19 | — (`null://null`) | **Non exécuté** | Inchangé | — | — |
-| EX-31 Accès limité aux pages de son rôle | R2 | CA-12 | TC-41, CA-12, EXPL-02 (matrice 4 rôles × 7 URL), ST-08 | **Réussi** | Inchangé | — | P1, S5 |
-| EX-32 Pas d'accès aux ressources d'autrui | R3 | CA-13 | CA-13 (réservation, véhicule), ST-04, `ReclamationWorkflowTest`, publication avec le véhicule d'autrui | **Partiel** | Inchangé | ANO-17 | P1, S5 |
-| EX-33 Aucune donnée personnelle sans connexion | R21 | CA-14 | TC-45, CA-14, Newman 02b et 02c | **Échoué** | **Réussi** (ANO-22 corrigée) | ANO-22 | P1, S8, S10b |
+| EX-31 Accès limité aux pages de son rôle | R2 | CA-12 | TC-41, CA-12, EXPL-02 (matrice 4 rôles × 7 URL), ST-08, API-10 | **Réussi** | Inchangé | — | P1, S5, S10c |
+| EX-32 Pas d'accès aux ressources d'autrui | R3 | CA-13 | CA-13 (réservation, véhicule), ST-04, `ReclamationWorkflowTest`, publication avec le véhicule d'autrui, API-02, API-06 | **Partiel** | Inchangé | ANO-17 | P1, S5, S10c |
+| EX-33 Aucune donnée personnelle sans connexion | R21 | CA-14 | TC-45, CA-14, Newman 02b et 02c, API-01, API-02 | **Échoué** | **Réussi** (ANO-22 corrigée) | ANO-22 | P1, S8, S10b, S10c |
 | EX-34 Modifications par POST avec jeton CSRF | R20 | CA-15 | CA-15 (réservation, annulation, admin), TC-38 | **Échoué** | **Réussi** (ANO-12, 13 corrigées) | ANO-12, ANO-13 | P1, S10b |
 | EX-35 Cohérence des données | R1, R15 | CA-06, CA-20 | TC-24, IT-01 à IT-07, CA-20 | **Échoué** (transactions et intégrité de la base conformes) | **Réussi** (ANO-07, 38 corrigées) | ANO-07, ANO-38 | P1, S7, S9, S10b |
 
@@ -68,6 +70,24 @@ Total : **35 exigences**. Les 35 exigences sont rattachées à au moins un crit�
 | Domaine | Test | Résultat | Preuve |
 |---|---|---|---|
 | Performance (R14) | k6, 5 VU, 30 s | Réussi : 0 % d'échec, p95 217,0 ms (11/11) ; p95 392,8 ms, seuils respectés (21/11) | S10, S10b |
-| Accessibilité | axe-core sur 4 pages, navigation clavier | Échoué : 3 pages avec violations critiques (ANO-36), contraste (ANO-37) ; clavier conforme | S9, S10 |
+| Accessibilité | axe-core sur 4 pages, navigation clavier | 11/11 : échoué, 3 pages avec violations critiques (ANO-36), contraste (ANO-37) ; clavier conforme. **21/11 : réussi**, 0 violation critique sur les 4 pages (ANO-36 corrigée) ; contraste insuffisant sur la page de connexion (ANO-37, S4, gravité « serious ») | S9, S10, S10c |
 | Sécurité élémentaire | En-têtes, cookie, page d'erreur, audits de dépendances | Partiel : cookie et page d'erreur conformes, `composer audit` propre ; en-têtes absents (REC-01) | S9 |
 | Concurrence (R1) | IT-07, entrelacement de deux transactions | 11/11 : échoué, surréservation (ANO-38). **21/11 : réussi**, une seule réservation, 0 place restante | S9, S10b |
+
+## API REST des réclamations (21/11/2026)
+
+| Test | Exigence | Résultat | Preuve |
+|---|---|---|---|
+| API-01 Anonyme : 401 | EX-33 | Réussi | S10c |
+| API-02 Liste limitée au propriétaire, sans e-mail | EX-32, EX-33 | Réussi | S10c |
+| API-03 Liste et filtre par statut (administrateur) | EX-25 | Réussi | S10c |
+| API-04, API-05 Filtres invalides (400) ; filtre par date | Écart E-07 ([15](15-ecarts-enonce.md)) | Réussi | S10c |
+| API-06 Détail : 200, 403, 404 | EX-32 | Réussi | S10c |
+| API-07 à API-09 Création : 201, valeurs limites, 400, 415, 422 | EX-24 | Réussi | S10c |
+| API-10 Modification refusée à un passager | EX-31 | Réussi | S10c |
+| API-11 à API-13 Transitions autorisées et interdites | EX-25 | Réussi | S10c |
+| API-14 Méthodes non prévues : 405 | Écart E-08 | Réussi | S10c |
+| Newman 11 à 26 | EX-24, EX-25, EX-31, EX-32, EX-33 | Réussi (59/59 assertions sur toute la collection) | S10c |
+
+Les statuts des exigences de la synthèse ne changent pas : EX-24, EX-25, EX-31 et EX-33 étaient déjà réussies ; EX-32 reste partielle à cause d'ANO-17 (véhicule d'un autre conducteur).
+

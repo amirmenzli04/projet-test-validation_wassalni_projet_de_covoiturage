@@ -587,6 +587,537 @@
           }
         }
       ]
+    },
+    {
+      "name": "11 — API REST : créer une réclamation (passager) → 201 + Location",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/reclamations",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"sujet\": \"Retard important\", \"message\": \"Le conducteur est arrivé avec 40 minutes de retard.\", \"trajetId\": {{tripId}}}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"201 Created\", function () { pm.response.to.have.status(201); });",
+              "const json = pm.response.json();",
+              "pm.test(\"En-tête Location vers la ressource créée\", function () { pm.expect(pm.response.headers.get('Location')).to.eql('/api/reclamations/' + json.id); });",
+              "pm.test(\"Statut initial EN_ATTENTE, trajet rattaché\", function () { pm.expect(json.statut).to.eql('EN_ATTENTE'); pm.expect(json.trajetId).to.eql(Number(pm.environment.get('tripId'))); });",
+              "pm.environment.set('reclamationId', json.id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "12 — API REST : message de 9 caractères → 422 avec le champ en erreur",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/reclamations",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"sujet\": \"Autre problème\", \"message\": \"123456789\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"422 Unprocessable Entity\", function () { pm.response.to.have.status(422); });",
+              "pm.test(\"L'erreur désigne le champ message\", function () { pm.expect(pm.response.json().erreurs).to.have.property('message'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "13 — API REST : corps de formulaire au lieu de JSON → 415",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "url": "{{baseUrl}}/api/reclamations",
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "sujet",
+              "value": "Autre problème"
+            },
+            {
+              "key": "message",
+              "value": "Message suffisamment long"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"415 Unsupported Media Type\", function () { pm.response.to.have.status(415); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "14 — API REST : lister mes réclamations → 200, sans adresse e-mail",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/reclamations"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"200 OK en JSON\", function () { pm.response.to.have.status(200); pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'); });",
+              "pm.test(\"La réclamation créée est listée\", function () { pm.expect(pm.response.json().reclamations.map(r => r.id)).to.include(Number(pm.environment.get('reclamationId'))); });",
+              "pm.test(\"Aucune adresse e-mail dans la réponse (EX-33)\", function () { pm.expect(pm.response.text()).to.not.include('@'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "15 — API REST : un passager tente de traiter sa réclamation → 403",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/reclamations/{{reclamationId}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"statut\": \"TRAITEE\", \"reponse\": \"Je me réponds\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"403 Forbidden\", function () { pm.response.to.have.status(403); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "16 — API REST : DELETE non prévu → 405",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/reclamations/{{reclamationId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"405 Method Not Allowed\", function () { pm.response.to.have.status(405); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "17 — Déconnexion du passager",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/deconnexion"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Déconnexion effectuée\", function () { pm.expect(pm.response.code).to.be.oneOf([200, 302]); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "18 — API REST : visiteur anonyme → 401 JSON",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/reclamations"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"401 Unauthorized en JSON\", function () { pm.response.to.have.status(401); pm.expect(pm.response.json()).to.have.property('erreur'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "19 — Charger le jeton CSRF de connexion (administrateur)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/connexion"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Formulaire disponible\", function () { pm.response.to.have.status(200); });",
+              "const token = pm.response.text().match(/name=\"_csrf_token\"\\s+value=\"([^\"]+)\"/);",
+              "pm.test(\"Jeton CSRF présent\", function () { pm.expect(token).not.to.be.null; });",
+              "if (token) pm.environment.set('csrfToken', token[1]);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "20 — Authentifier l'administrateur",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          },
+          {
+            "key": "Origin",
+            "value": "{{baseUrl}}"
+          }
+        ],
+        "url": "{{baseUrl}}/connexion",
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "_username",
+              "value": "{{adminEmail}}"
+            },
+            {
+              "key": "_password",
+              "value": "{{passengerPassword}}"
+            },
+            {
+              "key": "_csrf_token",
+              "value": "{{csrfToken}}"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Connexion de l'administrateur\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "21 — API REST : administrateur EN_ATTENTE → EN_COURS → 200",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/reclamations/{{reclamationId}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"statut\": \"EN_COURS\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"200 OK\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"Statut EN_COURS, pas encore de date de traitement\", function () { const j = pm.response.json(); pm.expect(j.statut).to.eql('EN_COURS'); pm.expect(j.dateTraitement).to.eql(null); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "22 — API REST : traitement sans réponse → 422",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/reclamations/{{reclamationId}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"statut\": \"TRAITEE\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"422 : la réponse est obligatoire\", function () { pm.response.to.have.status(422); pm.expect(pm.response.json().erreurs).to.have.property('reponse'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "23 — API REST : administrateur EN_COURS → TRAITEE avec réponse → 200",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/reclamations/{{reclamationId}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"statut\": \"TRAITEE\", \"reponse\": \"Le conducteur a été averti.\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"200 OK\", function () { pm.response.to.have.status(200); });",
+              "pm.test(\"Statut TRAITEE, réponse et date de traitement enregistrées\", function () { const j = pm.response.json(); pm.expect(j.statut).to.eql('TRAITEE'); pm.expect(j.reponse).to.eql('Le conducteur a été averti.'); pm.expect(j.dateTraitement).to.be.a('string'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "24 — API REST : réclamation close, nouvelle réponse → 409",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/reclamations/{{reclamationId}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"statut\": \"TRAITEE\", \"reponse\": \"Réponse qui écraserait la première\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"409 Conflict : réclamation TRAITEE non modifiable\", function () { pm.response.to.have.status(409); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "25 — API REST : filtre ?statut=TRAITEE (administrateur) → 200",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/reclamations?statut=TRAITEE"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"200 OK et uniquement des réclamations TRAITEE\", function () { pm.response.to.have.status(200); const r = pm.response.json().reclamations; pm.expect(r.map(x => x.id)).to.include(Number(pm.environment.get('reclamationId'))); r.forEach(x => pm.expect(x.statut).to.eql('TRAITEE')); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "26 — API REST : filtre invalide ?statut=CLOTUREE → 400",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/reclamations?statut=CLOTUREE"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"400 Bad Request\", function () { pm.response.to.have.status(400); });"
+            ]
+          }
+        }
+      ]
     }
   ]
 }

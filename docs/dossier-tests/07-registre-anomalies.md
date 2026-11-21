@@ -1,6 +1,7 @@
 # 7. Registre des anomalies
 
-- **Version :** 3.0, 21 novembre 2026 — corrections des anomalies S2 et rejeu complet sur la révision `72cff37` (branche `fix/anomalies-s2`)
+- **Version :** 3.1, 21 novembre 2026 — ANO-36 corrigée, ANO-39 découverte et corrigée, rejeu sur la révision `1ed214b` (branche `amelioration/a11y-api`)
+- **Version 3.0 :** 21 novembre 2026 — corrections des anomalies S2 et rejeu complet sur la révision `72cff37` (branche `fix/anomalies-s2`)
 - **Version précédente :** 2.0, 11 novembre 2026 — campagne finale sur la révision `cc50095`
 - **Branche de campagne :** `test/campagne-finale`
 - **Environnement commun :** Windows 11, PHP 8.4.27, Symfony 7.4.23, PHPUnit 12.5.23, MariaDB 10.4.32, base `wassalni_test`
@@ -11,13 +12,16 @@
 |---|---|---|
 | Anomalies applicatives corrigées avant la campagne (ANO-01 à 06) | 6 | Vérifiées : régression réussie |
 | **Anomalies S2 corrigées le 21/11 (ANO-07, 12, 13, 20, 21, 22, 35, 38)** | **8** | **Vérifiées** : tests passés en régression, rejeu complet réussi (§7.7) |
-| **Anomalies applicatives ouvertes** | **24** | Confirmées, non corrigées |
+| **Anomalies corrigées ensuite (ANO-36, ANO-39)** | **2** | **Vérifiées** (§7.8) |
+| **Anomalies applicatives ouvertes** | **23** | Confirmées, non corrigées |
 | dont S2 (majeure) | **0** | — |
-| dont S3 (moyenne) | 16 | ANO-08, 09, 10, 11, 14, 15, 16, 17, 19, 23, 25, 26, 29, 31, 34, 36 |
+| dont S3 (moyenne) | 15 | ANO-08, 09, 10, 11, 14, 15, 16, 17, 19, 23, 25, 26, 29, 31, 34 |
 | dont S4 (mineure) | 8 | ANO-18, 24, 27, 28, 30, 32, 33, 37 |
-| Anomalies de l'outillage de test (ANO-T01 à T07) | 7 | Corrigées et vérifiées |
+| Anomalies de l'outillage de test (ANO-T01 à T08) | 8 | Corrigées et vérifiées |
 
-Aucune anomalie ouverte n'est de priorité P1. Les anomalies ouvertes sont rejouées à chaque régression par `vendor/bin/phpunit --group anomalie-ouverte` (27 tests : 25 échecs, 2 dépréciations) et par Playwright (ANO-36 : 3 échecs). Preuve : `preuves/semaine10/apres-corrections/`.
+Aucune anomalie ouverte n'est de priorité P1. Les anomalies ouvertes sont rejouées à chaque régression par `vendor/bin/phpunit --group anomalie-ouverte` (27 tests : 25 échecs, 2 dépréciations). Playwright : 23 tests sur 23 réussis. Preuve : `preuves/semaine10/apres-ameliorations/`.
+
+*Situation après les corrections S2 (révision `72cff37`) : 24 anomalies ouvertes, 0 S2 ; Playwright 20/23 (ANO-36). Preuve : `preuves/semaine10/apres-corrections/`.*
 
 *Situation au 11/11/2026 (révision `cc50095`) : 32 anomalies ouvertes dont 8 S2 ; 48 tests d'anomalies ; Newman 32/35. Preuve : `preuves/semaine10/campagne-finale/`.*
 
@@ -133,6 +137,7 @@ Le même défaut est **présumé** sur la route HTML `POST /reservation/new/{id}
 | ANO-T05 | Les fichiers Playwright dépendaient de leur ordre d'exécution : le parcours de la semaine 9 laissait au passager A une réservation, et ST-10 recevait ensuite un refus de doublon (HTTP 400, comportement correct de l'application) | Échec de ST-10 lors de la première campagne finale (`03-playwright.txt`, 4 échecs) | `resetFixture()` au début de chaque fichier qui réserve | Vérifiée : campagne finale avec 20 tests réussis, ST-10 réussi |
 | ANO-T06 | Après une modification de configuration (`security.yaml`), les tests fonctionnels gardent l'ancien comportement : le client de test démarre Symfony avec `debug => false`, mode dans lequel le cache `var/cache/test` n'est pas reconstruit | Le `UserChecker` ajouté pour ANO-20/21 n'était jamais appelé (sonde de journalisation : aucun appel) | Procédure : supprimer `var/cache/test` avant chaque exécution (CI : environnement neuf) | Vérifiée (21/11) |
 | ANO-T07 | ST-10 instable (environ une exécution sur deux) : la page de recherche se recharge seule 1,5 s après une réservation et interrompt la navigation suivante du test (`net::ERR_ABORTED`) | Échec intermittent ligne `pageA.goto('/reservation/mes-reservations')` | Le test attend l'événement `load` du rechargement avant de naviguer | Vérifiée : 5 exécutions consécutives réussies (21/11) |
+| ANO-T08 | Après un vidage du cache, Playwright échoue au démarrage : la première requête au serveur `php -S` reconstruit tout le cache Symfony, ce qui dépasse sous Windows la limite d'exécution de 30 s (`Maximum execution time of 30 seconds exceeded`) | Sortie du serveur de test lors du rejeu d'ANO-36 (poste Windows, 21/11) | Procédure : `php bin/console cache:warmup --env=test --no-debug` avant tout test navigateur ou API lancé seul (`run-regression.ps1` lance PHPUnit d'abord, qui reconstruit le cache) | Vérifiée |
 | ANO-T04 | Collection Postman illisible : tableau `event` fermé par `}` (ligne 37) | `json.decoder.JSONDecodeError: line 38 column 7` | `a7cd086` | Vérifiée (JSON valide, 10 requêtes) |
 
 ## 7.4 Devenir des observations statiques (P1, 11/11/2026)
@@ -248,3 +253,13 @@ Les corrections ont été faites sur la branche `fix/anomalies-s2`, à partir de
 **Incident pendant la correction d'ANO-38.** Le premier commit (`cb09a55`) ne contenait pas le contrôleur modifié : seuls le service et le test avaient été remplacés. Le rejeu était pourtant vert, car IT-07 vérifiait l'atomicité du service sans vérifier que le contrôleur l'utilisait. Le garde-fou `StockPlacesArchitectureTest` a été ajouté : il échoue sur `cb09a55` (lignes 52, 78 et 194 signalées) et passe sur `72cff37`. Le rejeu fait sur `cb09a55` a été supprimé et refait sur `72cff37`.
 
 **Effets de bord vérifiés.** Les tests d'actions légitimes (annulation, double annulation, blocage puis réactivation, traitement des réclamations) envoient désormais le jeton CSRF que porte le formulaire (`tests/Support/CsrfTokenTrait.php`) et restent réussis. Playwright : 20 tests réussis sur 23, comme le 11/11 (les 3 échecs restent ANO-36) ; ST-10 adapté au formulaire d'annulation.
+
+## 7.8 Accessibilité et anomalie découverte avec l'API (21/11/2026)
+
+| Anomalie | Description | Correction | Révision | Preuve et régression | Statut |
+|---|---|---|---|---|---|
+| ANO-36 | Champs de formulaire sans nom accessible : les `<label>` n'étaient reliés à aucun champ (attribut `for` absent) sur la recherche, la nouvelle réclamation et « Mes réservations » | 9 étiquettes reliées à leur champ (`for="…"`, identifiants générés par Symfony pour le formulaire de réclamation). Le champ « Passagers », masqué dans l'audit du 11/11 (axe ne montre qu'un exemple par règle), a été trouvé et corrigé | `eb863be` | axe-core : 0 violation critique sur les 4 pages ; Playwright 23/23 | **Vérifiée** |
+| **ANO-39** | **Nouvelle.** `User::$password` porte `#[Assert\Length(min: 6, message: …)]` : `message` n'existe pas pour `Length`. Toute validation d'un utilisateur lève `Error: Unknown named parameter $message`. **Défaut latent** : seule la page `/inscription` valide un `User`, et elle est déjà en erreur 500 pour une autre cause (ANO-25) ; il serait apparu dès la correction d'ANO-25. Découvert par `cache:warmup --no-debug`, qui charge toutes les métadonnées de validation | `minMessage` au lieu de `message` | `1ed214b` | Sonde : validation d'un `User` → `Error` avant, 5 violations après. Garde-fou `ContraintesEntitesTest` (UT-12 : les 6 entités ; UT-13 : mot de passe de 5 et 6 caractères), en échec sur l'ancienne version | **Vérifiée** |
+
+Sévérité et priorité d'ANO-39 : **S3 / P2** (latent ; bloquerait l'inscription par `/inscription`). ANO-37 (contraste insuffisant, gravité « serious » pour axe) reste ouverte en S4.
+
