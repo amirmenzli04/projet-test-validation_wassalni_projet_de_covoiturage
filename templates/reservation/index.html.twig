@@ -622,9 +622,12 @@
                                 <i class="fas fa-chair"></i> {{ reservation.trajet.placesDisponibles }} places restantes
                             </div>
                             {% if reservation.statut == 'CONFIRMEE' and reservation.trajet.dateDepart > date() %}
-                                <a href="{{ path('reservation_cancel', {'id': reservation.id}) }}" class="btn-cancel" onclick="return confirm('Annuler cette réservation ?')">
-                                    <i class="fas fa-times"></i> Annuler la réservation
-                                </a>
+                                <form action="{{ path('reservation_cancel', {'id': reservation.id}) }}" method="post" onsubmit="return confirm('Annuler cette réservation ?')">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('annuler' ~ reservation.id) }}">
+                                    <button type="submit" class="btn-cancel" style="border:none;cursor:pointer;width:100%;">
+                                        <i class="fas fa-times"></i> Annuler la réservation
+                                    </button>
+                                </form>
                             {% endif %}
                             <a href="{{ path('trajet_show', {'id': reservation.trajet.id}) }}" class="btn-view">
                                 <i class="fas fa-eye"></i> Voir les détails

@@ -313,6 +313,7 @@
                 
                 {% if trajet.placesDisponibles > 0 and is_granted('ROLE_PASSAGER') %}
                     <form action="{{ path('reservation_new', {'id': trajet.id}) }}" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token('reserver' ~ trajet.id) }}">
                         <input type="hidden" name="nbPlaces" value="1">
                         <button type="submit" class="btn-reserve">
                             <i class="fas fa-check"></i> Réserver

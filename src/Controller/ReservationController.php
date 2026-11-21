@@ -17,10 +17,14 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/reservation')]
 class ReservationController extends AbstractController
 {
+    use CsrfGuardTrait;
+
     #[Route('/new/{id}', name: 'reservation_new', methods: ['POST'])]
     #[IsGranted('ROLE_PASSAGER')]
     public function new(Trajet $trajet, Request $request, EntityManagerInterface $em): Response
     {
+        $this->denyUnlessValidCsrf($request, 'reserver' . $trajet->getId());
+
         // ANO-07 : même contrôle que la voie JSON (entier strictement positif)
         $nbPlaces = filter_var($request->request->get('nbPlaces', 1), FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
         if ($nbPlaces === false) {
@@ -56,8 +60,10 @@ class ReservationController extends AbstractController
     
     #[Route('/annuler/{id}', name: 'reservation_cancel')]
     #[IsGranted('ROLE_PASSAGER')]
-    public function cancel(Reservation $reservation, EntityManagerInterface $em): Response
+    public function cancel(Reservation $reservation, Request $request, EntityManagerInterface $em): Response
     {
+        $this->denyUnlessValidCsrf($request, 'annuler' . $reservation->getId());
+
         if ($reservation->getPassager() !== $this->getUser()) {
             throw $this->createAccessDeniedException('Vous ne pouvez pas annuler cette réservation.');
         }

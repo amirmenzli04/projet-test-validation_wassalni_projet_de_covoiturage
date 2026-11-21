@@ -8,9 +8,12 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\AbstractBrowser;
 use Symfony\Component\HttpFoundation\Response;
+use App\Tests\Support\CsrfTokenTrait;
 
 class ReclamationWorkflowTest extends WebTestCase
 {
+    use CsrfTokenTrait;
+
     private AbstractBrowser $client;
     private string $emailPrefix;
     private array $emails = [];
@@ -124,6 +127,7 @@ class ReclamationWorkflowTest extends WebTestCase
 
         $this->client->loginUser($administrator);
         $this->client->request('POST', '/admin/reclamation/traiter/' . $complaint->getId(), [
+            '_token' => $this->csrfTokenFor($this->client, 'traiter-reclamation' . $complaint->getId()),
             'reponse' => 'Votre demande a été examinée.',
         ]);
 
@@ -147,6 +151,7 @@ class ReclamationWorkflowTest extends WebTestCase
 
         $this->client->loginUser($administrator);
         $this->client->request('POST', '/admin/reclamation/traiter/' . $complaint->getId(), [
+            '_token' => $this->csrfTokenFor($this->client, 'traiter-reclamation' . $complaint->getId()),
             'reponse' => '',
         ]);
 
