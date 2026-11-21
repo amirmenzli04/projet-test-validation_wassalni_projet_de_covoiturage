@@ -4,9 +4,9 @@ name: CI
 # sur une base MariaDB éphémère, à chaque push ou pull request.
 on:
   push:
-    branches: [main, "test/**", "fix/**"]
+    branches: [main, "test/**", "fix/**", "amelioration/**", "feat/**"]
   pull_request:
-    branches: [main]
+    branches: [main, "test/**"]
   workflow_dispatch:
 
 permissions:
