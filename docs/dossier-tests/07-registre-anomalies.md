@@ -1,6 +1,7 @@
 # 7. Registre des anomalies
 
-- **Version :** 2.0 (finale), 11 novembre 2026 — campagne de régression finale sur la révision `cc50095`
+- **Version :** 3.0, 21 novembre 2026 — corrections des anomalies S2 et rejeu complet sur la révision `72cff37` (branche `fix/anomalies-s2`)
+- **Version précédente :** 2.0, 11 novembre 2026 — campagne finale sur la révision `cc50095`
 - **Branche de campagne :** `test/campagne-finale`
 - **Environnement commun :** Windows 11, PHP 8.4.27, Symfony 7.4.23, PHPUnit 12.5.23, MariaDB 10.4.32, base `wassalni_test`
 
@@ -9,13 +10,16 @@
 | Catégorie | Nombre | Statut |
 |---|---|---|
 | Anomalies applicatives corrigées avant la campagne (ANO-01 à 06) | 6 | Vérifiées : régression réussie |
-| **Anomalies applicatives ouvertes (ANO-07 à ANO-38)** | **32** | **Confirmées, non corrigées** (décision : pas de modification du code pendant la campagne) |
-| dont S2 (majeure) | 8 | ANO-07, 12, 13, 20, 21, 22, 35, 38 |
+| **Anomalies S2 corrigées le 21/11 (ANO-07, 12, 13, 20, 21, 22, 35, 38)** | **8** | **Vérifiées** : tests passés en régression, rejeu complet réussi (§7.7) |
+| **Anomalies applicatives ouvertes** | **24** | Confirmées, non corrigées |
+| dont S2 (majeure) | **0** | — |
 | dont S3 (moyenne) | 16 | ANO-08, 09, 10, 11, 14, 15, 16, 17, 19, 23, 25, 26, 29, 31, 34, 36 |
 | dont S4 (mineure) | 8 | ANO-18, 24, 27, 28, 30, 32, 33, 37 |
-| Anomalies de l'outillage de test (ANO-T01 à T05) | 5 | Corrigées et vérifiées |
+| Anomalies de l'outillage de test (ANO-T01 à T07) | 7 | Corrigées et vérifiées |
 
-Toutes les anomalies ouvertes sont rejouées à chaque régression par `vendor/bin/phpunit --group anomalie-ouverte` (48 tests : 41 échecs, 5 erreurs, 2 dépréciations), par Playwright (ANO-36 : 3 échecs) et par Newman (ANO-22 : 3 assertions en échec). Preuve : `preuves/semaine10/campagne-finale/`.
+Aucune anomalie ouverte n'est de priorité P1. Les anomalies ouvertes sont rejouées à chaque régression par `vendor/bin/phpunit --group anomalie-ouverte` (27 tests : 25 échecs, 2 dépréciations) et par Playwright (ANO-36 : 3 échecs). Preuve : `preuves/semaine10/apres-corrections/`.
+
+*Situation au 11/11/2026 (révision `cc50095`) : 32 anomalies ouvertes dont 8 S2 ; 48 tests d'anomalies ; Newman 32/35. Preuve : `preuves/semaine10/campagne-finale/`.*
 
 **Décisions produit du 11/11/2026 :**
 
@@ -127,6 +131,8 @@ Le même défaut est **présumé** sur la route HTML `POST /reservation/new/{id}
 | ANO-T02 | Le stock remis à 4 n'est pas persisté : après la 2ᵉ requête, BrowserKit redémarre le kernel, l'EntityManager change et l'entité fixture est détachée | [`04-sonde-entitymanager-detache.txt`](../../preuves/semaine10/p0-reference/04-sonde-entitymanager-detache.txt) : `meme_EM=false`, `places_en_base=4` | `b8497aa` : rechargement du trajet avant modification | Vérifiée |
 | ANO-T03 | Les fixtures ont une date d'arrivée égale à la date de départ : `$departure->modify()` modifie l'objet partagé | Sortie de la commande : `dateDepart 12:00` au lieu de `10:00` | `b8497aa` : `(clone $departure)->modify(...)`. Relecture SQL : 10:00 → 12:00 | Vérifiée |
 | ANO-T05 | Les fichiers Playwright dépendaient de leur ordre d'exécution : le parcours de la semaine 9 laissait au passager A une réservation, et ST-10 recevait ensuite un refus de doublon (HTTP 400, comportement correct de l'application) | Échec de ST-10 lors de la première campagne finale (`03-playwright.txt`, 4 échecs) | `resetFixture()` au début de chaque fichier qui réserve | Vérifiée : campagne finale avec 20 tests réussis, ST-10 réussi |
+| ANO-T06 | Après une modification de configuration (`security.yaml`), les tests fonctionnels gardent l'ancien comportement : le client de test démarre Symfony avec `debug => false`, mode dans lequel le cache `var/cache/test` n'est pas reconstruit | Le `UserChecker` ajouté pour ANO-20/21 n'était jamais appelé (sonde de journalisation : aucun appel) | Procédure : supprimer `var/cache/test` avant chaque exécution (CI : environnement neuf) | Vérifiée (21/11) |
+| ANO-T07 | ST-10 instable (environ une exécution sur deux) : la page de recherche se recharge seule 1,5 s après une réservation et interrompt la navigation suivante du test (`net::ERR_ABORTED`) | Échec intermittent ligne `pageA.goto('/reservation/mes-reservations')` | Le test attend l'événement `load` du rechargement avant de naviguer | Vérifiée : 5 exécutions consécutives réussies (21/11) |
 | ANO-T04 | Collection Postman illisible : tableau `event` fermé par `}` (ligne 37) | `json.decoder.JSONDecodeError: line 38 column 7` | `a7cd086` | Vérifiée (JSON valide, 10 requêtes) |
 
 ## 7.4 Devenir des observations statiques (P1, 11/11/2026)
@@ -225,3 +231,20 @@ Ces cas ont été exécutés avec succès et font partie de la régression par d
 | A-13 | `ReservationService` n'est appelé nulle part | Toujours vrai : les 7 tests de service ne couvrent pas le chemin réel ; la couverture réelle est assurée par les tests HTTP | Observation de conception |
 
 Les captures `essai7` et `essai9` citées dans les PDF ne figurent pas dans `preuves/semaine1/`. La capture `essai13` montre un e-mail mal saisi (`test@tes.com`) refusé avec « Invalid credentials », et non un compte bloqué : la mention « compte bloqué refusé (essai 13) » du PDF de la semaine 3 n'est pas étayée par cette capture, et le test TC-04 démontre l'inverse (ANO-21).
+
+## 7.7 Corrections des anomalies S2 (21/11/2026)
+
+Les corrections ont été faites sur la branche `fix/anomalies-s2`, à partir de `test/campagne-finale`. Pour chaque anomalie, le test qui la démontrait est sorti du groupe `anomalie-ouverte` et fait désormais partie de la régression (il garde son groupe `ANO-xx` pour la traçabilité).
+
+| Anomalie | Correction | Révision | Tests passés en régression | Statut |
+|---|---|---|---|---|
+| ANO-07 | `ReservationController::new()` : nombre de places validé (`FILTER_VALIDATE_INT`, minimum 1), comme la voie JSON | `f7a3aca` | TC-24 (0, −1, 3.5, abc) | **Vérifiée** |
+| ANO-20, ANO-21 | Nouveau `App\Security\UserChecker` (compte non vérifié ou `BLOQUE` refusé avant toute session), déclaré dans `security.yaml` | `f7a3aca` | TC-03, TC-04 | **Vérifiée** |
+| ANO-22 | `/get-last-user-email` et `/check-verification-status` ne répondent que pour l'e-mail de la session d'inscription en cours ; 403 sinon | `f7a3aca` | TC-45, CA-14 ; Newman 35/35 | **Vérifiée** |
+| ANO-35 | `#[Assert\Range]` : paramètre `notInRangeMessage` au lieu de `message` | `f7a3aca` | CA-21, UT-05, UT-06 | **Vérifiée** |
+| ANO-12, ANO-13 | `CsrfGuardTrait` : POST et jeton CSRF propre à l'action et à l'objet, sinon 403 ; liens remplacés par des formulaires POST dans 6 gabarits | `adc66be` | TC-38, CA-15 (5 tests) | **Vérifiée** |
+| ANO-38 | Service `StockPlaces` : décrément conditionnel atomique (`UPDATE … WHERE places_disponibles >= n`) dans la même transaction que l'enregistrement ; incrément atomique à l'annulation | `cb09a55`, `72cff37` | IT-07 (algorithme corrigé) ; garde-fou d'architecture `StockPlacesArchitectureTest` | **Vérifiée** |
+
+**Incident pendant la correction d'ANO-38.** Le premier commit (`cb09a55`) ne contenait pas le contrôleur modifié : seuls le service et le test avaient été remplacés. Le rejeu était pourtant vert, car IT-07 vérifiait l'atomicité du service sans vérifier que le contrôleur l'utilisait. Le garde-fou `StockPlacesArchitectureTest` a été ajouté : il échoue sur `cb09a55` (lignes 52, 78 et 194 signalées) et passe sur `72cff37`. Le rejeu fait sur `cb09a55` a été supprimé et refait sur `72cff37`.
+
+**Effets de bord vérifiés.** Les tests d'actions légitimes (annulation, double annulation, blocage puis réactivation, traitement des réclamations) envoient désormais le jeton CSRF que porte le formulaire (`tests/Support/CsrfTokenTrait.php`) et restent réussis. Playwright : 20 tests réussis sur 23, comme le 11/11 (les 3 échecs restent ANO-36) ; ST-10 adapté au formulaire d'annulation.
