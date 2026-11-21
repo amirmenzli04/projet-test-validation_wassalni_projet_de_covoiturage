@@ -1,0 +1,82 @@
+{
+  "execution": "2026-11-11T21:40:47.161Z",
+  "entrees": [
+    {
+      "horodatage": "2026-11-11T21:42:06.517Z",
+      "charte": "EXPL-02",
+      "sonde": "matrice des accès directs",
+      "observe": {
+        "anonyme": {
+          "/admin/reclamations": "200 → /connexion",
+          "/admin/utilisateurs": "200 → /connexion",
+          "/conducteur/demandes": "200 → /connexion",
+          "/vehicule/mes-vehicules": "200 → /connexion",
+          "/reservation/mes-reservations": "200 → /connexion",
+          "/reclamation/nouvelle": "200 → /connexion",
+          "/passager/dashboard": "200 → /connexion"
+        },
+        "passagerA": {
+          "/admin/reclamations": 403,
+          "/admin/utilisateurs": 403,
+          "/conducteur/demandes": 403,
+          "/vehicule/mes-vehicules": 403,
+          "/reservation/mes-reservations": 200,
+          "/reclamation/nouvelle": 200,
+          "/passager/dashboard": 500
+        },
+        "conducteur": {
+          "/admin/reclamations": 403,
+          "/admin/utilisateurs": 403,
+          "/conducteur/demandes": 200,
+          "/vehicule/mes-vehicules": 200,
+          "/reservation/mes-reservations": 403,
+          "/reclamation/nouvelle": 200,
+          "/passager/dashboard": 403
+        },
+        "admin": {
+          "/admin/reclamations": 200,
+          "/admin/utilisateurs": 200,
+          "/conducteur/demandes": 403,
+          "/vehicule/mes-vehicules": 403,
+          "/reservation/mes-reservations": 403,
+          "/reclamation/nouvelle": 200,
+          "/passager/dashboard": 403
+        }
+      }
+    },
+    {
+      "horodatage": "2026-11-11T21:42:15.101Z",
+      "charte": "EXPL-04",
+      "sonde": "double clic sur la confirmation",
+      "reponses_http": [
+        200
+      ],
+      "reservations_confirmees": 1,
+      "capture": "preuves\\semaine5\\S05_EXPL04_double_clic_reservation.png"
+    },
+    {
+      "horodatage": "2026-11-11T21:42:20.637Z",
+      "charte": "EXPL-04",
+      "sonde": "envoi après expiration de session",
+      "page_finale": "/connexion",
+      "reclamations_enregistrees": 0,
+      "capture": "preuves\\semaine5\\S05_EXPL04_session_expiree.png"
+    },
+    {
+      "horodatage": "2026-11-11T21:42:26.586Z",
+      "charte": "EXPL-01",
+      "sonde": "rafraîchissement puis retour arrière après envoi",
+      "reclamations_enregistrees": 1,
+      "page_apres_retour": "/reclamation/nouvelle"
+    },
+    {
+      "horodatage": "2026-11-11T21:42:31.822Z",
+      "charte": "EXPL-03",
+      "sonde": "6 clics sur « + »",
+      "places_disponibles": 3,
+      "quantite_affichee": 3,
+      "total_affiche": 75,
+      "capture": "preuves\\semaine5\\S05_EXPL03_quantite_plafonnee.png"
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+2 0 obj
+<< /Length 3117 >>
+stream
+BT /F1 11 Tf 36 760 Td (WASSALNI - Entity Reservation) Tj ET
+BT /F1 8 Tf 36 744 Td (Source: src/Entity/Reservation.php | Version complete) Tj ET
+BT /F1 8 Tf 36 732 Td (Code listing; line numbers are for reference.) Tj ET
+BT /F1 7 Tf 36 714 Td
+(001: <?php) Tj 0 -11 Td
+(002:) Tj 0 -11 Td
+(003: namespace App\\Entity;) Tj 0 -11 Td
+(004:) Tj 0 -11 Td
+(005: use App\\Repository\\ReservationRepository;) Tj 0 -11 Td
+(006: use Doctrine\\ORM\\Mapping as ORM;) Tj 0 -11 Td
+(007: use Symfony\\Component\\Validator\\Constraints as Assert;) Tj 0 -11 Td
+(008:) Tj 0 -11 Td
+(009: #[ORM\\Entity\(repositoryClass: ReservationRepository::class\)]) Tj 0 -11 Td
+(010: class Reservation) Tj 0 -11 Td
+(011: {) Tj 0 -11 Td
+(012:     public const STATUT_CONFIRME = 'CONFIRMEE';) Tj 0 -11 Td
+(013:     public const STATUT_ANNULE = 'ANNULEE';) Tj 0 -11 Td
+(014:) Tj 0 -11 Td
+(015:     #[ORM\\Id]) Tj 0 -11 Td
+(016:     #[ORM\\GeneratedValue]) Tj 0 -11 Td
+(017:     #[ORM\\Column]) Tj 0 -11 Td
+(018:     private ?int $id = null;) Tj 0 -11 Td
+(019:) Tj 0 -11 Td
+(020:     #[ORM\\Column\(type: 'datetime'\)]) Tj 0 -11 Td
+(021:     private ?\\DateTimeInterface $dateReservation = null;) Tj 0 -11 Td
+(022:) Tj 0 -11 Td
+(023:     #[ORM\\Column]) Tj 0 -11 Td
+(024:     #[Assert\\NotBlank\(message: "Le nombre de places est obligatoire"\)]) Tj 0 -11 Td
+(025:     #[Assert\\Positive\(message: "Le nombre de places doit Ítre positif"\)]) Tj 0 -11 Td
+(026:     #[Assert\\LessThanOrEqual\(propertyPath: "trajet.placesDisponibles", message: "Pas assez de places disponibles"\)]) Tj 0 -11 Td
+(027:     private ?int $nbPlaces = null;) Tj 0 -11 Td
+(028:) Tj 0 -11 Td
+(029:     #[ORM\\Column\(length: 20\)]) Tj 0 -11 Td
+(030:     #[Assert\\Choice\() Tj 0 -11 Td
+(031:         choices: [self::STATUT_CONFIRME, self::STATUT_ANNULE],) Tj 0 -11 Td
+(032:         message: 'Le statut de la rÈservation est invalide') Tj 0 -11 Td
+(033:     \)]) Tj 0 -11 Td
+(034:     private ?string $statut = self::STATUT_CONFIRME;) Tj 0 -11 Td
+(035:) Tj 0 -11 Td
+(036:     #[ORM\\Column\(type: 'float', nullable: true\)]) Tj 0 -11 Td
+(037:     private ?float $prixTotal = null;) Tj 0 -11 Td
+(038:) Tj 0 -11 Td
+(039:     #[ORM\\Column\(type: 'datetime', nullable: true\)]) Tj 0 -11 Td
+(040:     private ?\\DateTimeInterface $dateAnnulation = null;) Tj 0 -11 Td
+(041:) Tj 0 -11 Td
+(042:     #[ORM\\ManyToOne\(inversedBy: 'reservations'\)]) Tj 0 -11 Td
+(043:     #[ORM\\JoinColumn\(nullable: false\)]) Tj 0 -11 Td
+(044:     private ?User $passager = null;) Tj 0 -11 Td
+(045:) Tj 0 -11 Td
+(046:     #[ORM\\ManyToOne\(inversedBy: 'reservations'\)]) Tj 0 -11 Td
+(047:     #[ORM\\JoinColumn\(nullable: false\)]) Tj 0 -11 Td
+(048:     private ?Trajet $trajet = null;) Tj 0 -11 Td
+(049:) Tj 0 -11 Td
+(050:     public function __construct\(\)) Tj 0 -11 Td
+(051:     {) Tj 0 -11 Td
+(052:         $this->dateReservation = new \\DateTime\(\);) Tj 0 -11 Td
+(053:     }) Tj 0 -11 Td
+(054:) Tj 0 -11 Td
+(055:     public function getId\(\): ?int) Tj 0 -11 Td
+(056:     {) Tj 0 -11 Td
+(057:         return $this->id;) Tj 0 -11 Td
+(058:     }) Tj 0 -11 Td
+ET
+BT /F1 8 Tf 510 24 Td (Page 1 / 3) Tj ET
+endstream
+endobj
+3 0 obj
+<< /Type /Page /Parent 8 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 2 0 R >>
+endobj
+4 0 obj
+<< /Length 2711 >>
+stream
+BT /F1 11 Tf 36 760 Td (WASSALNI - Entity Reservation) Tj ET
+BT /F1 8 Tf 36 744 Td (Source: src/Entity/Reservation.php | Version complete) Tj ET
+BT /F1 8 Tf 36 732 Td (Code listing; line numbers are for reference.) Tj ET
+BT /F1 7 Tf 36 714 Td
+(059:) Tj 0 -11 Td
+(060:     public function getDateReservation\(\): ?\\DateTimeInterface) Tj 0 -11 Td
+(061:     {) Tj 0 -11 Td
+(062:         return $this->dateReservation;) Tj 0 -11 Td
+(063:     }) Tj 0 -11 Td
+(064:) Tj 0 -11 Td
+(065:     public function setDateReservation\(\\DateTimeInterface $dateReservation\): static) Tj 0 -11 Td
+(066:     {) Tj 0 -11 Td
+(067:         $this->dateReservation = $dateReservation;) Tj 0 -11 Td
+(068:         return $this;) Tj 0 -11 Td
+(069:     }) Tj 0 -11 Td
+(070:) Tj 0 -11 Td
+(071:     public function getNbPlaces\(\): ?int) Tj 0 -11 Td
+(072:     {) Tj 0 -11 Td
+(073:         return $this->nbPlaces;) Tj 0 -11 Td
+(074:     }) Tj 0 -11 Td
+(075:) Tj 0 -11 Td
+(076:     public function setNbPlaces\(int $nbPlaces\): static) Tj 0 -11 Td
+(077:     {) Tj 0 -11 Td
+(078:         $this->nbPlaces = $nbPlaces;) Tj 0 -11 Td
+(079:         $this->updatePrixTotal\(\);) Tj 0 -11 Td
+(080:         return $this;) Tj 0 -11 Td
+(081:     }) Tj 0 -11 Td
+(082:) Tj 0 -11 Td
+(083:     public function getStatut\(\): ?string) Tj 0 -11 Td
+(084:     {) Tj 0 -11 Td
+(085:         return $this->statut;) Tj 0 -11 Td
+(086:     }) Tj 0 -11 Td
+(087:) Tj 0 -11 Td
+(088:     public function setStatut\(string $statut\): static) Tj 0 -11 Td
+(089:     {) Tj 0 -11 Td
+(090:         $this->statut = $statut;) Tj 0 -11 Td
+(091:) Tj 0 -11 Td
+(092:         $this->dateAnnulation = $statut === self::STATUT_ANNULE) Tj 0 -11 Td
+(093:             ? \($this->dateAnnulation ?? new \\DateTime\(\)\)) Tj 0 -11 Td
+(094:             : null;) Tj 0 -11 Td
+(095:) Tj 0 -11 Td
+(096:         return $this;) Tj 0 -11 Td
+(097:     }) Tj 0 -11 Td
+(098:) Tj 0 -11 Td
+(099:     public function getPrixTotal\(\): ?float) Tj 0 -11 Td
+(100:     {) Tj 0 -11 Td
+(101:         return $this->prixTotal;) Tj 0 -11 Td
+(102:     }) Tj 0 -11 Td
+(103:) Tj 0 -11 Td
+(104:     public function setPrixTotal\(?float $prixTotal\): static) Tj 0 -11 Td
+(105:     {) Tj 0 -11 Td
+(106:         $this->prixTotal = $prixTotal;) Tj 0 -11 Td
+(107:         return $this;) Tj 0 -11 Td
+(108:     }) Tj 0 -11 Td
+(109:) Tj 0 -11 Td
+(110:     public function getDateAnnulation\(\): ?\\DateTimeInterface) Tj 0 -11 Td
+(111:     {) Tj 0 -11 Td
+(112:         return $this->dateAnnulation;) Tj 0 -11 Td
+(113:     }) Tj 0 -11 Td
+(114:) Tj 0 -11 Td
+(115:     public function setDateAnnulation\(?\\DateTimeInterface $dateAnnulation\): static) Tj 0 -11 Td
+(116:     {) Tj 0 -11 Td
+ET
+BT /F1 8 Tf 510 24 Td (Page 2 / 3) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 8 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 2520 >>
+stream
+BT /F1 11 Tf 36 760 Td (WASSALNI - Entity Reservation) Tj ET
+BT /F1 8 Tf 36 744 Td (Source: src/Entity/Reservation.php | Version complete) Tj ET
+BT /F1 8 Tf 36 732 Td (Code listing; line numbers are for reference.) Tj ET
+BT /F1 7 Tf 36 714 Td
+(117:         $this->dateAnnulation = $dateAnnulation;) Tj 0 -11 Td
+(118:         return $this;) Tj 0 -11 Td
+(119:     }) Tj 0 -11 Td
+(120:) Tj 0 -11 Td
+(121:     public function getPassager\(\): ?User) Tj 0 -11 Td
+(122:     {) Tj 0 -11 Td
+(123:         return $this->passager;) Tj 0 -11 Td
+(124:     }) Tj 0 -11 Td
+(125:) Tj 0 -11 Td
+(126:     public function setPassager\(?User $passager\): static) Tj 0 -11 Td
+(127:     {) Tj 0 -11 Td
+(128:         $this->passager = $passager;) Tj 0 -11 Td
+(129:         return $this;) Tj 0 -11 Td
+(130:     }) Tj 0 -11 Td
+(131:) Tj 0 -11 Td
+(132:     public function getTrajet\(\): ?Trajet) Tj 0 -11 Td
+(133:     {) Tj 0 -11 Td
+(134:         return $this->trajet;) Tj 0 -11 Td
+(135:     }) Tj 0 -11 Td
+(136:) Tj 0 -11 Td
+(137:     public function setTrajet\(?Trajet $trajet\): static) Tj 0 -11 Td
+(138:     {) Tj 0 -11 Td
+(139:         $this->trajet = $trajet;) Tj 0 -11 Td
+(140:         $this->updatePrixTotal\(\);) Tj 0 -11 Td
+(141:         return $this;) Tj 0 -11 Td
+(142:     }) Tj 0 -11 Td
+(143:) Tj 0 -11 Td
+(144:     private function updatePrixTotal\(\): void) Tj 0 -11 Td
+(145:     {) Tj 0 -11 Td
+(146:         $prixUnitaire = $this->trajet?->getPrix\(\);) Tj 0 -11 Td
+(147:) Tj 0 -11 Td
+(148:         if \($this->nbPlaces === null || $prixUnitaire === null\) {) Tj 0 -11 Td
+(149:             $this->prixTotal = null;) Tj 0 -11 Td
+(150:             return;) Tj 0 -11 Td
+(151:         }) Tj 0 -11 Td
+(152:) Tj 0 -11 Td
+(153:         $this->prixTotal = $prixUnitaire * $this->nbPlaces;) Tj 0 -11 Td
+(154:     }) Tj 0 -11 Td
+(155:) Tj 0 -11 Td
+(156:     public function peutEtreAnnulee\(\): bool) Tj 0 -11 Td
+(157:     {) Tj 0 -11 Td
+(158:         if \($this->statut !== self::STATUT_CONFIRME || $this->trajet === null\) {) Tj 0 -11 Td
+(159:             return false;) Tj 0 -11 Td
+(160:         }) Tj 0 -11 Td
+(161:) Tj 0 -11 Td
+(162:         $dateDepart = $this->trajet->getDateDepart\(\);) Tj 0 -11 Td
+(163:         if \($dateDepart === null\) {) Tj 0 -11 Td
+(164:             return false;) Tj 0 -11 Td
+(165:         }) Tj 0 -11 Td
+(166:) Tj 0 -11 Td
+(167:         return $dateDepart->getTimestamp\(\) - time\(\) >= 2 * 60 * 60;) Tj 0 -11 Td
+(168:     }) Tj 0 -11 Td
+(169: }) Tj 0 -11 Td
+ET
+BT /F1 8 Tf 510 24 Td (Page 3 / 3) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 8 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R 7 0 R] /Count 3 >>
+endobj
+9 0 obj
+<< /Type /Catalog /Pages 8 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000015 00000 n 
+0000000110 00000 n 
+0000003279 00000 n 
+0000003405 00000 n 
+0000006168 00000 n 
+0000006294 00000 n 
+0000008866 00000 n 
+0000008992 00000 n 
+0000009061 00000 n 
+trailer
+<< /Size 10 /Root 9 0 R >>
+startxref
+9110
+%%EOF

@@ -1,0 +1,131 @@
+﻿# PHPUnit regression (anomalies exclues) | 2026-11-11 22:40:18 +01:00 | revision cc50095 | base wassalni_test
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: C:\Users\Dogui\wassalni-tests\phpunit.dist.xml
+
+................................................................. 65 / 87 ( 74%)
+......................                                            87 / 87 (100%)
+
+Time: 00:06.185, Memory: 58.00 MB
+
+Anonymous Access (App\Tests\Functional\AnonymousAccess)
+ ✔ Anonymous visitors are redirected from protected routes
+
+Avis Reclamation (App\Tests\Functional\Catalogue\AvisReclamation)
+ ✔ CA-18 — avis sur un trajet jamais réservé (T-P4) : refusé
+ ✔ TC-36 (CA-17, EX-24) — réclamation : message vide et de 9 caractères refusés, 10 accepté ; sujet hors liste (101 car.) refusé
+
+Connexion Acces (App\Tests\Functional\Catalogue\ConnexionAcces)
+ ✔ TC-51 (CA-11) — mauvais mot de passe puis e-mail inconnu : refus, message identique, aucune session
+ ✔ TC-41 (CA-12, EX-31) — U-PASS1 ouvre /admin/dashboard, /admin/utilisateurs et /admin/trajets : 403 pour chaque page
+ ✔ CA-12 (EX-31) — passager sur l'espace conducteur : 403 ; visiteur anonyme : redirection vers /connexion
+ ✔ CA-20 (EX-28, EX-35) — admin supprime T-NOMINAL qui a des réservations : refus propre ou propagation, sans erreur 500 ni orphelin
+ ✔ CA-13 (EX-32) — U-COND2 ouvre la modification du véhicule V1 de U-COND1 : 403
+
+Health Controller (App\Tests\Controller\HealthController)
+ ✔ Health check returns ok when database is available
+
+Publication Recherche (App\Tests\Functional\Catalogue\PublicationRecherche)
+ ✔ TC-09 (EX-08) — U-COND1 publie Tunis→Sousse J+1/J+2, 15 DT avec V1 : trajet enregistré, rattaché au conducteur
+ ✔ TC-10 (CA-02) — départ J-1 par requête directe : refus, aucun trajet créé
+ ✔ TC-13 (CA-02) — arrivée J+1 avant départ J+2 : refus, aucun trajet
+ ✔ TC-14 (CA-03) — prix 0 refusé
+ ✔ TC-14 (CA-03) — prix -1 refusé
+ ✔ TC-14 (CA-03) — prix 0,01 accepté
+ ✔ TC-14 (CA-03) — prix 15 accepté
+ ✔ CA-21 (EX-07) — U-COND2 sans véhicule : redirigé vers l'ajout de véhicule, aucun trajet publié
+ ✔ TC-19 (CA-04) — T-NOMINAL trouvé ; T-FULL (0 place) et T-PEND (en attente) absents
+ ✔ TC-20 b (EX-13) — villes saisies en minuscules : mêmes résultats
+ ✔ CA-05 (EX-15) — résultats triés par date de départ croissante : T-FUT-EARLY (J+2) avant T-P4 (J+8)
+ ✔ CA-04 (EX-13) — filtre date J+8 : T-P4 seul, T-FUT-EARLY (J+2) exclu
+
+Reclamation Transitions (App\Tests\Functional\Catalogue\ReclamationTransitions)
+ ✔ T-01 (EX-25) — création par le formulaire : état initial EN_ATTENTE, date de traitement vide
+ ✔ T-02 / OBS-05-01 — EN_ATTENTE → TRAITEE directement par la réponse administrateur (aucun passage par EN_COURS)
+ ✔ T-03 — TRAITEE → TRAITEE : une seconde réponse par requête directe écrase la première (transition non gardée)
+ ✔ T-04 / OBS-05-02 — Reclamation::setStatut() accepte un statut hors liste (aucune garde dans l'entité)
+ ✔ T-06 (CA-12) — un passager ne peut pas traiter une réclamation : 403, statut inchangé
+
+Reclamation Validation (App\Tests\Entity\ReclamationValidation)
+ ✔ Message de neuf caracteres est refuse
+ ✔ Message de dix caracteres est accepte
+ ✔ Sujet de quatre caracteres est refuse et cinq caracteres est accepte
+ ✔ Reservation refuse une quantite nulle et accepte la quantite disponible
+ ✔ Reservation refuse une quantite superieure au stock
+
+Reclamation Workflow (App\Tests\Functional\ReclamationWorkflow)
+ ✔ Authenticated user can create a complaint
+ ✔ Complaint form rejects nine character message
+ ✔ Only the complaint owner can read its details
+ ✔ Administrator can process and persist a complaint
+ ✔ Empty administrator response leaves complaint pending
+ ✔ Non administrator cannot open administration
+ ✔ Complaint list only contains the current users complaints
+
+Regle Metier Entites (App\Tests\Entity\RegleMetierEntites)
+ ✔ UT-01 (EX-09, VL) — arrivée égale au départ refusée ; arrivée une minute après acceptée
+ ✔ UT-02 (EX-10, CA-03) — prix -1 (EP négatif) : 1 violation(s)
+ ✔ UT-02 (EX-10, CA-03) — prix 0 (VL) : 1 violation(s)
+ ✔ UT-02 (EX-10, CA-03) — prix 0,01 (VL) : 0 violation(s)
+ ✔ UT-02 (EX-10, CA-03) — prix 15 (EP nominal) : 0 violation(s)
+ ✔ UT-03 (EX-09, VL) — départ hier refusé, départ demain accepté
+ ✔ UT-07 (EX-21, CA-18) — avis : note 0 (VL) → 1 violation(s)
+ ✔ UT-07 (EX-21, CA-18) — avis : note 1 (VL) → 0 violation(s)
+ ✔ UT-07 (EX-21, CA-18) — avis : note 5 (VL) → 0 violation(s)
+ ✔ UT-07 (EX-21, CA-18) — avis : note 6 (VL) → 1 violation(s)
+ ✔ UT-08 (EX-31) — getRoles() ajoute toujours ROLE_USER, sans doublon ; un nouvel utilisateur est passager
+ ✔ UT-09 (EX-23) — note moyenne du conducteur : (4 + 5 + 5) / 3 arrondie à 4,7 ; aucun avis → 0
+
+Reservation (App\Tests\Entity\Reservation)
+ ✔ PeutEtreAnnulee refuseUnDepartPasse
+ ✔ PeutEtreAnnulee refuseUnDepartDansMoinsDeDeuxHeures
+ ✔ PeutEtreAnnulee autoriseUnDepartDansPlusDeDeuxHeures
+ ✔ PeutEtreAnnulee refuseUnTrajetAbsent
+ ✔ SetStatut enregistreEtEffaceLaDateAnnulationSelonLeStatut
+ ✔ Le prix total est recalcule quand le trajet est retire
+
+Reservation Annulation (App\Tests\Functional\Catalogue\ReservationAnnulation)
+ ✔ TC-22 (CA-07, CA-08) — réserver les 4 places de T-P4 : CONFIRMEE, 0 place restante, total 88 DT
+ ✔ TC-23 (CA-06) — demander 5 places sur 4 par requête directe : refus, aucune réservation, 4 places
+ ✔ TC-25 (CA-07) — totaux de 1, 2 et 4 places à 22 DT : 22, 44 et 88 DT
+ ✔ TC-28 bis (CA-09) — même doublon par la voie JSON : HTTP 400, une seule réservation
+ ✔ TC-29 (CA-10) — annuler RES-F1 puis réserver de nouveau T-NOMINAL : ANNULEE, places rendues, nouvelle réservation acceptée
+ ✔ TC-50 bis (CA-01) — réserver T-PEND par la voie JSON : HTTP 400, aucune réservation
+ ✔ CA-13 — U-PASS2 tente d'annuler RES-F1 de U-PASS1 par URL directe : 403, état et stock inchangés
+ ✔ CA-10 — double annulation de RES-F1 : places rendues une seule fois
+ ✔ CA-12 (EX-31) — un conducteur ne peut pas réserver (route réservée à ROLE_PASSAGER) : 403
+
+Reservation Api (App\Tests\Functional\ReservationApi)
+ ✔ Anonymous user cannot create reservation
+ ✔ Passenger creates reservation and persists availability
+ ✔ Api rejects malformed json and non positive seat counts
+ ✔ Api rejects unknown unavailable and duplicate reservations
+
+Reservation Persistence (App\Tests\Integration\ReservationPersistence)
+ ✔ Reservation can be created read updated and deleted
+ ✔ Database rejects reservation with unknown passenger
+ ✔ Database rejects duplicate user email
+
+Reservation Service (App\Tests\Service\ReservationService)
+ ✔ Reserver placesSuffisantes creeReservationConfirmee
+ ✔ Reserver placesSuffisantes diminueLesPlacesDuTrajet
+ ✔ Reserver pasAssezDePlaces leveException
+ ✔ Reserver dejaReserveSurCeTrajet leveException
+ ✔ Annuler reservationConfirmee passeAAnnulee
+ ✔ Annuler reservationConfirmee rendLesPlacesAuTrajet
+ ✔ Annuler reservationDejaAnnulee leveException
+
+Reservation Service Interaction (App\Tests\Service\ReservationServiceInteraction)
+ ✔ UT-10 (CA-09) — reserver() recherche une réservation CONFIRMEE du même passager sur le même trajet
+ ✔ UT-11 (CA-06) — stock insuffisant : exception levée sans interroger le dépôt, stock intact
+
+Transaction Integrite (App\Tests\Integration\TransactionIntegrite)
+ ✔ IT-01 (CT-25, EX-35) — rollback explicite : réservation et décrément de stock annulés ensemble
+ ✔ IT-02 (CT-25) — échec au milieu d'un flush (e-mail en double) : rien n'est persisté, stock intact
+ ✔ IT-03 (CT-25) — wrapInTransaction : une exception métier après le flush annule toutes les écritures
+ ✔ IT-04 (EX-18) — relations relues depuis la base : Trajet↔Reservation, Vehicule→Trajet (ANO-05), User→Reservation
+ ✔ IT-05 (CA-20) — suppression d'un trajet : ses réservations sont supprimées en cascade, aucun orphelin
+ ✔ IT-06 (CA-20, EX-35) — trajet visé par une réclamation : la base refuse la suppression (RESTRICT), trajet et réclamation intacts
+
+OK (87 tests, 245 assertions)

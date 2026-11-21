@@ -60,7 +60,10 @@
                             </td>
                             <td>
                                 {% if reservation.statut == 'CONFIRMEE' and reservation.peutEtreAnnulee() %}
-                                    <a href="{{ path('reservation_cancel', {'id': reservation.id}) }}" class="btn btn-sm btn-danger" onclick="return confirm('Annuler cette réservation ?')">Annuler</a>
+                                    <form action="{{ path('reservation_cancel', {'id': reservation.id}) }}" method="post" style="display:inline;" onsubmit="return confirm('Annuler cette réservation ?')">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('annuler' ~ reservation.id) }}">
+                                        <button type="submit" class="btn btn-sm btn-danger">Annuler</button>
+                                    </form>
                                 {% endif %}
                             </td>
                         </tr>

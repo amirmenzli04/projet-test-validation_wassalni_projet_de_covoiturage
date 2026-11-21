@@ -220,6 +220,7 @@
                         </div>
                     {% else %}
                         <form action="{{ path('admin_reclamation_process', {'id': reclamation.id}) }}" method="post" class="response-form">
+                            <input type="hidden" name="_token" value="{{ csrf_token('traiter-reclamation' ~ reclamation.id) }}">
                             <textarea name="reponse" rows="3" placeholder="Votre réponse..."></textarea>
                             <button type="submit" class="btn-submit">
                                 <i class="fas fa-paper-plane"></i> Répondre et traiter

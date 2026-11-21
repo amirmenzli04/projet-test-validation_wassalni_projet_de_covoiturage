@@ -9,6 +9,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
 {
+    public const STATUT_CONFIRME = 'CONFIRMEE';
+    public const STATUT_ANNULE = 'ANNULEE';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -24,7 +27,11 @@ class Reservation
     private ?int $nbPlaces = null;
 
     #[ORM\Column(length: 20)]
-    private ?string $statut = 'CONFIRMEE';
+    #[Assert\Choice(
+        choices: [self::STATUT_CONFIRME, self::STATUT_ANNULE],
+        message: 'Le statut de la réservation est invalide'
+    )]
+    private ?string $statut = self::STATUT_CONFIRME;
 
     #[ORM\Column(type: 'float', nullable: true)]
     private ?float $prixTotal = null;
@@ -81,11 +88,11 @@ class Reservation
     public function setStatut(string $statut): static
     {
         $this->statut = $statut;
-        
-        if ($statut === 'ANNULEE') {
-            $this->dateAnnulation = new \DateTime();
-        }
-        
+
+        $this->dateAnnulation = $statut === self::STATUT_ANNULE
+            ? ($this->dateAnnulation ?? new \DateTime())
+            : null;
+
         return $this;
     }
 
@@ -136,22 +143,27 @@ class Reservation
 
     private function updatePrixTotal(): void
     {
-        if ($this->trajet && $this->nbPlaces) {
-            $this->prixTotal = $this->trajet->getPrix() * $this->nbPlaces;
+        $prixUnitaire = $this->trajet?->getPrix();
+
+        if ($this->nbPlaces === null || $prixUnitaire === null) {
+            $this->prixTotal = null;
+            return;
         }
+
+        $this->prixTotal = $prixUnitaire * $this->nbPlaces;
     }
 
     public function peutEtreAnnulee(): bool
     {
-        if ($this->statut !== 'CONFIRMEE') {
+        if ($this->statut !== self::STATUT_CONFIRME || $this->trajet === null) {
             return false;
         }
-        
-        $now = new \DateTime();
+
         $dateDepart = $this->trajet->getDateDepart();
-        $interval = $now->diff($dateDepart);
-        
-        // Peut annuler jusqu'à 2h avant le départ
-        return $interval->h >= 2 || $interval->invert === 1;
+        if ($dateDepart === null) {
+            return false;
+        }
+
+        return $dateDepart->getTimestamp() - time() >= 2 * 60 * 60;
     }
 }

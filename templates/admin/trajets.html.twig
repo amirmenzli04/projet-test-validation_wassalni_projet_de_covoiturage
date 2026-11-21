@@ -189,13 +189,15 @@
                             </td>
                             <td>
                                 {% if trajet.statut != 'VALIDE' %}
-                                    <a href="{{ path('admin_trajet_validate', {'id': trajet.id}) }}" class="btn-sm btn-success" onclick="return confirm('Valider ce trajet ?')">
-                                        <i class="fas fa-check"></i> Valider
-                                    </a>
+                                    <form action="{{ path('admin_trajet_validate', {'id': trajet.id}) }}" method="post" style="display:inline;" onsubmit="return confirm('Valider ce trajet ?')">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('valider-trajet' ~ trajet.id) }}">
+                                    <button type="submit" class="btn-sm btn-success" style="border:none;cursor:pointer;"><i class="fas fa-check"></i> Valider</button>
+                                </form>
                                 {% endif %}
-                                <a href="{{ path('admin_trajet_delete', {'id': trajet.id}) }}" class="btn-sm btn-danger" onclick="return confirm('Supprimer ce trajet ?')">
-                                    <i class="fas fa-trash"></i> Supprimer
-                                </a>
+                                <form action="{{ path('admin_trajet_delete', {'id': trajet.id}) }}" method="post" style="display:inline;" onsubmit="return confirm('Supprimer ce trajet ?')">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('supprimer-trajet' ~ trajet.id) }}">
+                                    <button type="submit" class="btn-sm btn-danger" style="border:none;cursor:pointer;"><i class="fas fa-trash"></i> Supprimer</button>
+                                </form>
                             </td>
                         </tr>
                     {% endfor %}

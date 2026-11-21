@@ -1,0 +1,8 @@
+# Données préexistantes (comptes hors @example.test) et résidus de test — AVANT
+  users   reservations   reclamations   trajets   residus_tests  
+ ------- -------------- -------------- --------- --------------- 
+  16      26             11             35        0              
+# APRES
+  users   reservations   reclamations   trajets   residus_tests  
+ ------- -------------- -------------- --------- --------------- 
+  16      26             11             35        0              

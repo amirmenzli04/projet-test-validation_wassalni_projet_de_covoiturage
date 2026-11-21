@@ -1,0 +1,16 @@
+{
+  "name": "wassalni-acceptance-tests",
+  "private": true,
+  "scripts": {
+    "test:php": "vendor/bin/phpunit --testdox",
+    "test:anomalies": "vendor/bin/phpunit --testdox --group anomalie-ouverte",
+    "test:api": "node scripts/run-newman.js",
+    "test:ui": "playwright test",
+    "test:regression": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-regression.ps1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.59.1",
+    "newman": "6.2.3"
+  }
+}

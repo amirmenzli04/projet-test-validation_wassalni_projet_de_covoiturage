@@ -1,0 +1,8 @@
+# 2026-11-11T21:19:52.791Z | base wassalni_test | trajet 56 | k6.exe v2.3.0 (commit/e088784614, go1.26.8, windows/amd64)
+Scénario : 5 utilisateurs virtuels pendant 30 s (pause 1 s par itération), 4 requêtes par itération
+Requêtes : 452 ; débit 14.63 req/s ; itérations 113
+Échecs HTTP : 0.00 % ; vérifications réussies : 100.00 %
+Durée (toutes pages) : moy 86.0 ms ; médiane 72.8 ms ; p95 208.7 ms ; max 299.3 ms
+Durée recherche : p95 196.7 ms
+Seuils : checks RESPECTÉ ; http_req_duration{page:recherche} RESPECTÉ ; http_req_duration RESPECTÉ ; http_req_failed RESPECTÉ
+exit=0

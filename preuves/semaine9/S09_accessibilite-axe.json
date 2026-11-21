@@ -1,0 +1,119 @@
+{
+  "execution": "2026-11-11T21:40:47.161Z",
+  "entrees": [
+    {
+      "horodatage": "2026-11-11T21:42:34.557Z",
+      "page": "connexion",
+      "url": "/connexion",
+      "regles_verifiees": 14,
+      "conformes": 13,
+      "violations_par_impact": {
+        "critical": 0,
+        "serious": 1,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": [
+        {
+          "regle": "color-contrast",
+          "impact": "serious",
+          "description": "Elements must meet minimum color contrast ratio thresholds",
+          "elements": 2,
+          "exemple": "span"
+        }
+      ],
+      "capture": "preuves\\semaine9\\S09_A11Y_connexion.png"
+    },
+    {
+      "horodatage": "2026-11-11T21:42:39.275Z",
+      "page": "recherche",
+      "url": "/trajet/recherche",
+      "regles_verifiees": 14,
+      "conformes": 12,
+      "violations_par_impact": {
+        "critical": 2,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": [
+        {
+          "regle": "label",
+          "impact": "critical",
+          "description": "Form elements must have labels",
+          "elements": 1,
+          "exemple": "#dateDepart"
+        },
+        {
+          "regle": "select-name",
+          "impact": "critical",
+          "description": "Select element must have an accessible name",
+          "elements": 3,
+          "exemple": "#villeDepart"
+        }
+      ],
+      "capture": "preuves\\semaine9\\S09_A11Y_recherche.png"
+    },
+    {
+      "horodatage": "2026-11-11T21:42:47.511Z",
+      "page": "nouvelle-reclamation",
+      "url": "/reclamation/nouvelle",
+      "regles_verifiees": 14,
+      "conformes": 13,
+      "violations_par_impact": {
+        "critical": 1,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": [
+        {
+          "regle": "select-name",
+          "impact": "critical",
+          "description": "Select element must have an accessible name",
+          "elements": 3,
+          "exemple": "#reclamation_sujet"
+        }
+      ],
+      "capture": "preuves\\semaine9\\S09_A11Y_nouvelle-reclamation.png"
+    },
+    {
+      "horodatage": "2026-11-11T21:42:52.919Z",
+      "page": "mes-reservations",
+      "url": "/reservation/mes-reservations",
+      "regles_verifiees": 13,
+      "conformes": 12,
+      "violations_par_impact": {
+        "critical": 1,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": [
+        {
+          "regle": "select-name",
+          "impact": "critical",
+          "description": "Select element must have an accessible name",
+          "elements": 1,
+          "exemple": "#statusFilter"
+        }
+      ],
+      "capture": "preuves\\semaine9\\S09_A11Y_mes-reservations.png"
+    },
+    {
+      "horodatage": "2026-11-11T21:42:57.351Z",
+      "page": "connexion",
+      "sonde": "navigation clavier",
+      "appuis_tab_avant_email": 5,
+      "ordre_du_focus": [
+        "_password",
+        "BUTTON:Se connecter",
+        "A:S'inscrire",
+        "BODY:Wassalni\n           ",
+        "_username"
+      ],
+      "focus_apres_email": "_password",
+      "page_apres_entree": "/trajet/recherche"
+    }
+  ]
+}

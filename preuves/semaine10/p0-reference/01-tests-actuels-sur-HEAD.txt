@@ -1,0 +1,85 @@
+# Execution le 2026-11-11 21:19:20 +0100 - code de HEAD b6dc42a (worktree temporaire), tests de la copie de travail
+Reservation chargee depuis: <scratchpad>\head-wt\src\Entity\Reservation.php
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: <scratchpad>\head-wt\phpunit.dist.xml
+
+.....F..EEFDD......                                               19 / 19 (100%)
+
+Time: 01:07.918, Memory: 88.00 MB
+
+Anonymous Access (App\Tests\Functional\AnonymousAccess)
+ ✔ Anonymous visitors are redirected from protected routes
+
+Reclamation Validation (App\Tests\Entity\ReclamationValidation)
+ ✔ Message de neuf caracteres est refuse
+ ✔ Message de dix caracteres est accepte
+ ✔ Sujet de quatre caracteres est refuse et cinq caracteres est accepte
+ ✔ Reservation refuse une quantite nulle et accepte la quantite disponible
+ ✔ Reservation refuse une quantite superieure au stock
+
+Reclamation Workflow (App\Tests\Functional\ReclamationWorkflow)
+ ⚠ Authenticated user can create a complaint
+ ⚠ Complaint form rejects nine character message
+ ✔ Only the complaint owner can read its details
+ ✔ Administrator can process and persist a complaint
+ ✔ Empty administrator response leaves complaint pending
+ ✔ Non administrator cannot open administration
+ ✔ Complaint list only contains the current users complaints
+
+Reservation (App\Tests\Entity\Reservation)
+ ✘ PeutEtreAnnulee refuseUnDepartPasse
+   │
+   │ Failed asserting that true is false.
+   │
+   │ <scratchpad>\head-wt\tests\Entity\ReservationTest.php:18
+   │
+ ✔ PeutEtreAnnulee refuseUnDepartDansMoinsDeDeuxHeures
+ ✔ PeutEtreAnnulee autoriseUnDepartDansPlusDeDeuxHeures
+ ✘ PeutEtreAnnulee refuseUnTrajetAbsent
+   │
+   │ Error: Call to a member function getDateDepart() on null
+   │
+   │ <scratchpad>\head-wt\src\Entity\Reservation.php:151
+   │ <scratchpad>\head-wt\tests\Entity\ReservationTest.php:42
+   │
+ ✘ SetStatut enregistreEtEffaceLaDateAnnulationSelonLeStatut
+   │
+   │ Error: Undefined constant App\Entity\Reservation::STATUT_ANNULE
+   │
+   │ <scratchpad>\head-wt\tests\Entity\ReservationTest.php:50
+   │
+ ✘ Le prix total est recalcule quand le trajet est retire
+   │
+   │ Failed asserting that 20.0 is null.
+   │
+   │ <scratchpad>\head-wt\tests\Entity\ReservationTest.php:68
+   │
+
+2 tests triggered 2 deprecations:
+
+1) C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Constraints\NotBlank.php:46
+Since symfony/validator 7.3: Passing an array of options to configure the "Symfony\Component\Validator\Constraints\NotBlank" constraint is deprecated, use named arguments instead.
+
+Triggered by:
+
+* App\Tests\Functional\ReclamationWorkflowTest::testAuthenticatedUserCanCreateAComplaint (4 times)
+  <scratchpad>\head-wt\tests\Functional\ReclamationWorkflowTest.php:48
+
+* App\Tests\Functional\ReclamationWorkflowTest::testComplaintFormRejectsNineCharacterMessage (4 times)
+  <scratchpad>\head-wt\tests\Functional\ReclamationWorkflowTest.php:80
+
+2) C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Constraints\Length.php:87
+Since symfony/validator 7.3: Passing an array of options to configure the "Symfony\Component\Validator\Constraints\Length" constraint is deprecated, use named arguments instead.
+
+Triggered by:
+
+* App\Tests\Functional\ReclamationWorkflowTest::testAuthenticatedUserCanCreateAComplaint (2 times)
+  <scratchpad>\head-wt\tests\Functional\ReclamationWorkflowTest.php:48
+
+* App\Tests\Functional\ReclamationWorkflowTest::testComplaintFormRejectsNineCharacterMessage (2 times)
+  <scratchpad>\head-wt\tests\Functional\ReclamationWorkflowTest.php:80
+
+ERRORS!
+Tests: 19, Assertions: 56, Errors: 2, Failures: 2, Deprecations: 2.

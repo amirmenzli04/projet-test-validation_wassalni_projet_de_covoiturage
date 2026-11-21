@@ -1,0 +1,8 @@
+# Comptages wassalni_test AVANT - 2026-11-11 21:42:03 +0100
+  base            users   reservations   trajets   vehicules   reclamations   avis   residus  
+ --------------- ------- -------------- --------- ----------- -------------- ------ --------- 
+  wassalni_test   18      26             36        15          11             1      0        
+# Comptages wassalni_test APRES - 2026-11-11 21:42:13 +0100
+  base            users   reservations   trajets   vehicules   reclamations   avis   residus  
+ --------------- ------- -------------- --------- ----------- -------------- ------ --------- 
+  wassalni_test   18      26             36        15          11             1      0        

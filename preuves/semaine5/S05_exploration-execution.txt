@@ -1,0 +1,11 @@
+# 2026-11-11 22:02:45 +0100 | 30fca42 + copie de travail | sessions exploratoires OUTILLÉES (Playwright, Chrome local) | base wassalni_test
+
+Running 5 tests using 1 worker
+
+  ok 1 tests\Playwright\semaine5-exploration.spec.js:17:1 › EXPL-02 — accès directs par URL pour chaque rôle (statut HTTP observé) (8.0s)
+  ok 2 tests\Playwright\semaine5-exploration.spec.js:43:1 › EXPL-04 — double clic sur « Confirmer la réservation » (voie JSON) (12.4s)
+  ok 3 tests\Playwright\semaine5-exploration.spec.js:62:1 › EXPL-04 — session expirée (cookies effacés) puis envoi du formulaire de réclamation (4.9s)
+  ok 4 tests\Playwright\semaine5-exploration.spec.js:77:1 › EXPL-01 — rafraîchissement après création d'une réclamation (doublon ?) (4.6s)
+  ok 5 tests\Playwright\semaine5-exploration.spec.js:93:1 › EXPL-03 — fenêtre de réservation : la quantité ne dépasse pas les places disponibles (3.8s)
+
+  5 passed (43.9s)

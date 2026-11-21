@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Wassalni — Semaine 8 — Tests de l'API JSON" tests="19" time="1.552">
+  <testsuite name="01 — Trouver le trajet reproductible" id="f9980390-fbf3-4ebf-839c-6102a2e36506" timestamp="2026-11-11T21:43:06.712Z" tests="2" failures="0" errors="0" time="0.071">
+    <testcase name="La recherche de fixture renvoie 200" time="0.071" classname="01TrouverLeTrajetReproductible"/>
+    <testcase name="Un seul trajet reproductible est trouvé" time="0.071" classname="01TrouverLeTrajetReproductible"/>
+  </testsuite>
+  <testsuite name="02 — Refuser un visiteur anonyme" id="06c519c6-28ef-41a9-9643-c36bbe0664e0" timestamp="2026-11-11T21:43:06.712Z" tests="2" failures="0" errors="0" time="0.032">
+    <testcase name="Une réservation anonyme est redirigée vers la connexion" time="0.032" classname="02RefuserUnVisiteurAnonyme"/>
+    <testcase name="La redirection mène au formulaire de connexion" time="0.032" classname="02RefuserUnVisiteurAnonyme"/>
+  </testsuite>
+  <testsuite name="02b — CA-14 : /get-last-user-email sans connexion ne divulgue aucune adresse (ANO-22)" id="c16297cf-30a2-4bbc-a33e-2b8026ea12e7" timestamp="2026-11-11T21:43:06.712Z" tests="2" failures="2" errors="0" time="0.095">
+    <testcase name="Accès refusé sans connexion (302, 401 ou 403)" time="0.095" classname="02BCa14GetLastUserEmailSansConnexionNeDivulgueAucuneAdresseAno22">
+      <failure type="AssertionFailure" message="expected [ 302, 401, 403 ] to include 200">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: c1b4ce4b-f694-4d4a-9fd8-50a2b3c5988d.]]>
+        <![CDATA[Collection name: Wassalni — Semaine 8 — Tests de l'API JSON.]]>
+        <![CDATA[Request name: 02b — CA-14 : /get-last-user-email sans connexion ne divulgue aucune adresse (ANO-22).]]>
+        <![CDATA[Test description: Accès refusé sans connexion (302, 401 ou 403).]]>
+        <![CDATA[Error message: expected [ 302, 401, 403 ] to include 200.]]>
+        <![CDATA[Stacktrace: AssertionError: expected [ 302, 401, 403 ] to include 200
+   at Object.eval sandbox-script.js:1:3).]]>
+      </failure>
+    </testcase>
+    <testcase name="Aucune adresse e-mail dans la réponse" time="0.095" classname="02BCa14GetLastUserEmailSansConnexionNeDivulgueAucuneAdresseAno22">
+      <failure type="AssertionFailure" message="expected '{&quot;email&quot;:&quot;semaine7-9.admin@example.te…' not to match /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}/">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: c1b4ce4b-f694-4d4a-9fd8-50a2b3c5988d.]]>
+        <![CDATA[Collection name: Wassalni — Semaine 8 — Tests de l'API JSON.]]>
+        <![CDATA[Request name: 02b — CA-14 : /get-last-user-email sans connexion ne divulgue aucune adresse (ANO-22).]]>
+        <![CDATA[Test description: Aucune adresse e-mail dans la réponse.]]>
+        <![CDATA[Error message: expected '{"email":"semaine7-9.admin@example.te…' not to match /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}/.]]>
+        <![CDATA[Stacktrace: AssertionError: expected '{"email":"semaine7-9.admin@example.te…' not to match /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}/
+   at Object.eval sandbox-script.js:2:3).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="02c — CA-14 : /check-verification-status sans connexion est refusé (ANO-22)" id="8aef09f6-e8fb-454b-8238-724262e0dcbc" timestamp="2026-11-11T21:43:06.712Z" tests="1" failures="1" errors="0" time="0.045">
+    <testcase name="Accès refusé sans connexion (302, 401 ou 403)" time="0.045" classname="02CCa14CheckVerificationStatusSansConnexionEstRefuseAno22">
+      <failure type="AssertionFailure" message="expected [ 302, 401, 403 ] to include 200">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: c1b4ce4b-f694-4d4a-9fd8-50a2b3c5988d.]]>
+        <![CDATA[Collection name: Wassalni — Semaine 8 — Tests de l'API JSON.]]>
+        <![CDATA[Request name: 02c — CA-14 : /check-verification-status sans connexion est refusé (ANO-22).]]>
+        <![CDATA[Test description: Accès refusé sans connexion (302, 401 ou 403).]]>
+        <![CDATA[Error message: expected [ 302, 401, 403 ] to include 200.]]>
+        <![CDATA[Stacktrace: AssertionError: expected [ 302, 401, 403 ] to include 200
+   at Object.eval sandbox-script.js:1:4).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="02d — /health : 200, JSON {status: ok}, en-têtes et temps de réponse" id="d2472cc5-531b-4371-bb0b-26d32b465e7b" timestamp="2026-11-11T21:43:06.712Z" tests="5" failures="0" errors="0" time="0.039">
+    <testcase name="Code 200" time="0.039" classname="02DHealth200JsonStatusOkEnTetesEtTempsDeReponse"/>
+    <testcase name="En-tête Content-Type JSON" time="0.039" classname="02DHealth200JsonStatusOkEnTetesEtTempsDeReponse"/>
+    <testcase name="Corps {&quot;status&quot;:&quot;ok&quot;}" time="0.039" classname="02DHealth200JsonStatusOkEnTetesEtTempsDeReponse"/>
+    <testcase name="Pas de cache public sur l'état de santé" time="0.039" classname="02DHealth200JsonStatusOkEnTetesEtTempsDeReponse"/>
+    <testcase name="Réponse en moins de 1000 ms" time="0.039" classname="02DHealth200JsonStatusOkEnTetesEtTempsDeReponse"/>
+  </testsuite>
+  <testsuite name="02e — /health en POST : méthode non autorisée (405)" id="d0c050a9-9966-413c-9508-0114a30a7ef4" timestamp="2026-11-11T21:43:06.712Z" tests="1" failures="0" errors="0" time="0.036">
+    <testcase name="POST refusé en 405" time="0.036" classname="02EHealthEnPostMethodeNonAutorisee405"/>
+  </testsuite>
+  <testsuite name="03 — Charger le formulaire et le jeton CSRF" id="88fb6b3a-7bdc-47fa-ac1a-1aaffe3c88de" timestamp="2026-11-11T21:43:06.712Z" tests="2" failures="0" errors="0" time="0.037">
+    <testcase name="Le formulaire de connexion est disponible" time="0.037" classname="03ChargerLeFormulaireEtLeJetonCsrf"/>
+    <testcase name="Le formulaire contient un jeton CSRF" time="0.037" classname="03ChargerLeFormulaireEtLeJetonCsrf"/>
+  </testsuite>
+  <testsuite name="04 — Authentifier le passager" id="4961cd68-c521-4488-9e16-48d7bb332337" timestamp="2026-11-11T21:43:06.712Z" tests="1" failures="0" errors="0" time="0.579">
+    <testcase name="La connexion aboutit et la session est conservée" time="0.579" classname="04AuthentifierLePassager"/>
+  </testsuite>
+  <testsuite name="05 — Réserver une place (succès JSON)" id="346aab43-7c30-4c46-9d49-98612ef78f4b" timestamp="2026-11-11T21:43:06.712Z" tests="3" failures="0" errors="0" time="0.081">
+    <testcase name="La réservation retourne 200 JSON" time="0.081" classname="05ReserverUnePlaceSuccesJson"/>
+    <testcase name="La réponse confirme la réservation et son prix" time="0.081" classname="05ReserverUnePlaceSuccesJson"/>
+    <testcase name="En-tête Content-Type JSON" time="0.081" classname="05ReserverUnePlaceSuccesJson"/>
+  </testsuite>
+  <testsuite name="05b — État après réservation : la recherche affiche 3 places pour le trajet (relecture HTTP)" id="bbf561b0-4c23-485f-a2d3-8556bc364229" timestamp="2026-11-11T21:43:06.712Z" tests="2" failures="0" errors="0" time="0.073">
+    <testcase name="Le trajet est toujours affiché" time="0.073" classname="05BEtatApresReservationLaRechercheAffiche3PlacesPourLeTrajetRelectureHttp"/>
+    <testcase name="Stock décrémenté de 4 à 3 (CA-08)" time="0.073" classname="05BEtatApresReservationLaRechercheAffiche3PlacesPourLeTrajetRelectureHttp"/>
+  </testsuite>
+  <testsuite name="05c — Corps JSON malformé : 400 et JSON d'erreur" id="30f0e99d-0902-4f4f-95e3-1104ec20edfb" timestamp="2026-11-11T21:43:06.712Z" tests="3" failures="0" errors="0" time="0.046">
+    <testcase name="Code 400" time="0.046" classname="05CCorpsJsonMalforme400EtJsonDerreur"/>
+    <testcase name="Réponse JSON success=false" time="0.046" classname="05CCorpsJsonMalforme400EtJsonDerreur"/>
+    <testcase name="Message explicite" time="0.046" classname="05CCorpsJsonMalforme400EtJsonDerreur"/>
+  </testsuite>
+  <testsuite name="05d — Quantité négative (-1) : 400, aucune réservation (régression ANO-01)" id="6372d8ca-eb23-49bd-85c0-56079d29f16a" timestamp="2026-11-11T21:43:06.712Z" tests="2" failures="0" errors="0" time="0.058">
+    <testcase name="Code 400" time="0.058" classname="05DQuantiteNegative1400AucuneReservationRegressionAno01"/>
+    <testcase name="Message sur l'entier positif" time="0.058" classname="05DQuantiteNegative1400AucuneReservationRegressionAno01"/>
+  </testsuite>
+  <testsuite name="05e — Identifiant de trajet non numérique : 400" id="5085a6d9-7c4b-482e-aab1-d37b9cccec02" timestamp="2026-11-11T21:43:06.712Z" tests="2" failures="0" errors="0" time="0.055">
+    <testcase name="Code 400" time="0.055" classname="05EIdentifiantDeTrajetNonNumerique400"/>
+    <testcase name="Message « Identifiant de trajet invalide »" time="0.055" classname="05EIdentifiantDeTrajetNonNumerique400"/>
+  </testsuite>
+  <testsuite name="05f — Identifiant de trajet absent : 400" id="f5292b85-af34-4149-bdad-54b041b5f908" timestamp="2026-11-11T21:43:06.712Z" tests="2" failures="0" errors="0" time="0.041">
+    <testcase name="Code 400" time="0.041" classname="05FIdentifiantDeTrajetAbsent400"/>
+    <testcase name="Message « Trajet non spécifié »" time="0.041" classname="05FIdentifiantDeTrajetAbsent400"/>
+  </testsuite>
+  <testsuite name="06 — Rejeter une quantité nulle" id="40bff589-192f-4572-b110-91536b31bbab" timestamp="2026-11-11T21:43:06.712Z" tests="1" failures="0" errors="0" time="0.044">
+    <testcase name="Une quantité nulle est rejetée en 400" time="0.044" classname="06RejeterUneQuantiteNulle"/>
+  </testsuite>
+  <testsuite name="07 — Rejeter un trajet inexistant" id="7ff4ca4d-8927-448f-83b4-aa7ee8f7f0bd" timestamp="2026-11-11T21:43:06.712Z" tests="1" failures="0" errors="0" time="0.041">
+    <testcase name="Un trajet inconnu retourne 404" time="0.041" classname="07RejeterUnTrajetInexistant"/>
+  </testsuite>
+  <testsuite name="08 — Rejeter une quantité supérieure à la capacité" id="129c9ce7-960b-4050-9b18-20de2e9b0af5" timestamp="2026-11-11T21:43:06.712Z" tests="1" failures="0" errors="0" time="0.095">
+    <testcase name="Une quantité indisponible retourne 400" time="0.095" classname="08RejeterUneQuantiteSuperieureALaCapacite"/>
+  </testsuite>
+  <testsuite name="09 — Rejeter une réservation en doublon" id="1e7aabaa-ab74-41b7-906e-ffc76df4f911" timestamp="2026-11-11T21:43:06.712Z" tests="1" failures="0" errors="0" time="0.053">
+    <testcase name="Le doublon retourne 400 avec un message JSON" time="0.053" classname="09RejeterUneReservationEnDoublon"/>
+  </testsuite>
+  <testsuite name="10 — Rejeter une méthode HTTP non autorisée" id="420d3f63-31ec-4fab-9208-ce48bdc9c322" timestamp="2026-11-11T21:43:06.712Z" tests="1" failures="0" errors="0" time="0.031">
+    <testcase name="GET est refusé pour la création de réservation" time="0.031" classname="10RejeterUneMethodeHttpNonAutorisee"/>
+  </testsuite>
+</testsuites>

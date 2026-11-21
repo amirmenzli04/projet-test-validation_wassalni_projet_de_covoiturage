@@ -1,0 +1,381 @@
+# 2026-11-11 21:42:03 +0100 | branche test/campagne-finale | commit 183b7ff + copie de travail | PHP 8.4.27 | base wassalni_test
+# vendor/bin/phpunit --testdox --group anomalie-ouverte (tests démontrant les anomalies confirmées)
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: C:\Users\Dogui\wassalni-tests\phpunit.dist.xml
+
+DDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                                34 / 34 (100%)
+
+Time: 00:04.696, Memory: 50.00 MB
+
+Avis Reclamation (App\Tests\Functional\Catalogue\AvisReclamation)
+ ⚠ TC-33 (CA-18, EX-21) — notes 0, 1, 5, 6 sur un trajet terminé : 0 et 6 refusées, 1 et 5 acceptées
+ ⚠ CA-18 (EX-22) — second avis sur le même trajet : refusé, un seul avis
+ ✘ CA-18 (EX-21) — avis sur T-NOMINAL avant la fin du trajet (départ J+7) : refusé
+   │
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │ -    'formulaire_propose' => false,
+   │ -    'avis_enregistres' => 0,
+   │ +    'formulaire_propose' => true,
+   │ +    'avis_enregistres' => 1,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:70
+   │
+
+Connexion Acces (App\Tests\Functional\Catalogue\ConnexionAcces)
+ ✘ TC-03 (CA-11, EX-03) — compte non vérifié avec le bon mot de passe : aucune session authentifiée
+   │
+   │ Le compte non vérifié accède à /reservation/mes-reservations
+   │ Failed asserting that true is false.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:30
+   │
+ ✘ TC-04 (CA-11, EX-04) — U-PASS2 bloqué par l'admin ne peut plus se connecter ; réactivé, il le peut
+   │
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │      '1_connexion_initiale' => true,
+   │      '2_statut_en_base' => 'BLOQUE',
+   │ -    '3_connexion_compte_bloque' => false,
+   │ +    '3_connexion_compte_bloque' => true,
+   │      '5_connexion_apres_reactivation' => true,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:73
+   │
+ ✘ TC-45 (CA-14, EX-33) — /get-last-user-email sans connexion : accès refusé, aucune adresse e-mail renvoyée
+   │
+   │ Réponse HTTP 200 : {"email":"cat-913f253e-pass-nv@example.test"}
+   │ Failed asserting that '{"email":"cat-913f253e-pass-nv@example.test"}' does not match PCRE pattern "/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}/".
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:117
+   │
+ ✘ CA-14 (EX-33) — /check-verification-status sans connexion : accès refusé
+   │
+   │ HTTP 200 : {"verified":false}
+   │ Failed asserting that an array contains 200.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:127
+   │
+ ✘ TC-38 (CA-15, EX-34) — admin ouvre par GET /admin/trajet/valider/{T-PEND} : refus, T-PEND reste EN_ATTENTE
+   │
+   │ HTTP 302
+   │ Failed asserting that two strings are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │ -'EN_ATTENTE'
+   │ +'VALIDE'
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:137
+   │
+ ✘ CA-15 (EX-34) — admin bloque U-PASS2 par simple GET sans jeton : refus, statut ACTIF conservé
+   │
+   │ Failed asserting that two strings are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │ -'ACTIF'
+   │ +'BLOQUE'
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:147
+   │
+ ✘ CA-15 (EX-34) — admin supprime T-P1 par simple GET sans jeton : refus, trajet conservé
+   │
+   │ HTTP 302
+   │ Failed asserting that 0 is identical to 1.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:157
+   │
+ ✘ CA-15 (EX-34) — traitement d'une réclamation par POST sans jeton CSRF : refus, statut EN_ATTENTE conservé
+   │
+   │ Failed asserting that two strings are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │ -'EN_ATTENTE'
+   │ +'TRAITEE'
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:171
+   │
+ ✘ CA-20 (EX-27, EX-35) — admin supprime U-PASS1 qui a des réservations : refus propre ou propagation, sans erreur 500
+   │
+   │ Suppression d'un utilisateur ayant des réservations : erreur serveur HTTP 500
+   │ Failed asserting that 500 is less than 500.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:45
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:190
+   │
+ ✘ CA-16 (EX-26) — tableau de bord admin : le compteur « Réclamations » égale le nombre en attente en base
+   │
+   │ Failed asserting that 0 is identical to 6.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:207
+   │
+ ✘ Disponibilité (OBS-H) — /avis/conducteur/{id} et /inscription répondent sans erreur serveur
+   │
+   │ {"\/avis\/conducteur\/{id}":500,"\/inscription":500}
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │ -    '/avis/conducteur/{id}' => false,
+   │ -    '/inscription' => false,
+   │ +    '/avis/conducteur/{id}' => true,
+   │ +    '/inscription' => true,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:220
+   │
+
+Publication Recherche (App\Tests\Functional\Catalogue\PublicationRecherche)
+ ✘ TC-11 (CA-02, A-04) — départ le jour même sans heure (début de journée passé) : refus attendu
+   │
+   │ Trajet du jour accepté à 00:00
+   │ Failed asserting that 1873 is null.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:80
+   │
+ ✘ TC-12 (CA-02) — arrivée égale au départ (J+1) : refus attendu
+   │
+   │ Arrivée = départ acceptée
+   │ Failed asserting that 1882 is null.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:88
+   │
+ ✘ TC-14 (CA-03) — prix « abc » (non numérique) : refus attendu, aucun trajet
+   │
+   │ prix=abc : trajet créé, prix enregistré 0
+   │ Failed asserting that 1891 is null.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:121
+   │
+ ✘ TC-15 (EX-11, CA-01) — trajet publié : statut EN_ATTENTE en base
+   │
+   │ Failed asserting that two strings are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │ -'EN_ATTENTE'
+   │ +'VALIDE'
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:131
+   │
+ ✘ TC-16 (EX-12, CA-01) — trajet tout juste publié : absent de la recherche passager avant validation
+   │
+   │ Failed asserting that true is false.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:142
+   │
+ ✘ CA-13 (EX-32) — U-COND2 publie avec le véhicule V1 d'un autre conducteur : refus attendu
+   │
+   │ Trajet publié avec le véhicule d'un autre conducteur
+   │ Failed asserting that 1918 is null.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:164
+   │
+ ✘ TC-18 (CA-04) — Tunis→Sfax sans date : T-FUT-EARLY et T-P4 affichés, T-PAST (passé) absent
+   │
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │      'T-FUT-EARLY' => true,
+   │      'T-P4' => true,
+   │ -    'T-PAST' => false,
+   │ +    'T-PAST' => true,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:175
+   │
+ ✘ TC-20 a (EX-13) — filtre prix maximum 20 DT sur Tunis→Sfax : T-FUT-EARLY (18) seul, T-P4 (22) exclu
+   │
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │      'T-FUT-EARLY' => true,
+   │ -    'T-P4' => false,
+   │ +    'T-P4' => true,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:196
+   │
+ ✘ Robustesse (OBS-G) — date de recherche invalide « abc » : pas d'erreur serveur
+   │
+   │ Recherche dateDepart=abc : erreur serveur HTTP 500
+   │ Failed asserting that 500 is less than 500.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:45
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:230
+   │
+
+Reservation Annulation (App\Tests\Functional\Catalogue\ReservationAnnulation)
+ ✘ TC-24 (CA-06, EX-35) — nombre de places invalide « 0 » par la voie HTML : refus, stock inchangé
+   │
+   │ nbPlaces=0
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │ -    'reservation_creee' => null,
+   │ +    'reservation_creee' => Array &1 [
+   │ +        'nb_places' => 0,
+   │ +        'prix_total' => 0.0,
+   │ +    ],
+   │      'places_restantes' => 4,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:75
+   │
+ ✘ TC-24 (CA-06, EX-35) — nombre de places invalide « -1 » par la voie HTML : refus, stock inchangé
+   │
+   │ nbPlaces=-1
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │ -    'reservation_creee' => null,
+   │ -    'places_restantes' => 4,
+   │ +    'reservation_creee' => Array &1 [
+   │ +        'nb_places' => -1,
+   │ +        'prix_total' => -22.0,
+   │ +    ],
+   │ +    'places_restantes' => 5,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:75
+   │
+ ✘ TC-24 (CA-06, EX-35) — nombre de places invalide « 3.5 » par la voie HTML : refus, stock inchangé
+   │
+   │ nbPlaces=3.5
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │ -    'reservation_creee' => null,
+   │ -    'places_restantes' => 4,
+   │ +    'reservation_creee' => Array &1 [
+   │ +        'nb_places' => 3,
+   │ +        'prix_total' => 66.0,
+   │ +    ],
+   │ +    'places_restantes' => 1,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:75
+   │
+ ✘ TC-24 (CA-06, EX-35) — nombre de places invalide « abc » par la voie HTML : refus, stock inchangé
+   │
+   │ nbPlaces=abc
+   │ Failed asserting that two arrays are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │  Array &0 [
+   │ -    'reservation_creee' => null,
+   │ +    'reservation_creee' => Array &1 [
+   │ +        'nb_places' => 0,
+   │ +        'prix_total' => 0.0,
+   │ +    ],
+   │      'places_restantes' => 4,
+   │  ]
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:75
+   │
+ ✘ TC-28 (CA-09) — seconde réservation de U-PASS1 sur T-NOMINAL par la voie HTML : refus, une seule réservation
+   │
+   │ Failed asserting that 2 is identical to 1.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:108
+   │
+ ✘ TC-30 (CA-10) — annuler RES-PAST (trajet passé) : refus, statut CONFIRMEE, places inchangées
+   │
+   │ Failed asserting that two strings are identical.
+   │ --- Expected
+   │ +++ Actual
+   │ @@ @@
+   │ -'CONFIRMEE'
+   │ +'ANNULEE'
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:144
+   │
+ ✘ TC-49 (CA-04) — réserver T-PAST (validé mais passé) par la voie HTML : refus, aucune réservation
+   │
+   │ Failed asserting that 1 is identical to 0.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:156
+   │
+ ✘ TC-49 bis (CA-04, CA-09) — réserver T-PAST par la voie JSON : refus, aucune réservation
+   │
+   │ Failed asserting that 1 is identical to 0.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:168
+   │
+ ✘ TC-50 (CA-01) — réserver T-PEND (EN_ATTENTE) par la voie HTML : refus, aucune réservation
+   │
+   │ Failed asserting that 1 is identical to 0.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:179
+   │
+ ✘ CA-15 (EX-34) — annulation par simple GET sans jeton CSRF : refusée (405/403), réservation inchangée
+   │
+   │ L'annulation a été acceptée par GET (HTTP 302)
+   │ Failed asserting that an array contains 302.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:222
+   │
+ ✘ CA-15 (EX-34) — réservation HTML sans jeton CSRF : refusée, aucune réservation
+   │
+   │ Réservation créée par un POST sans jeton CSRF
+   │ Failed asserting that 1 is identical to 0.
+   │
+   │ C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:234
+   │
+
+3 tests triggered 2 deprecations:
+
+1) C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Constraints\NotBlank.php:46
+Since symfony/validator 7.3: Passing an array of options to configure the "Symfony\Component\Validator\Constraints\NotBlank" constraint is deprecated, use named arguments instead.
+
+Triggered by:
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testCA18AvisAvantLaFinDuTrajet (3 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:62
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testCA18SecondAvis (2 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:50
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testTC33BornesDeLaNote (8 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:35
+
+2) C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Constraints\Length.php:87
+Since symfony/validator 7.3: Passing an array of options to configure the "Symfony\Component\Validator\Constraints\Length" constraint is deprecated, use named arguments instead.
+
+Triggered by:
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testCA18AvisAvantLaFinDuTrajet (3 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:62
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testCA18SecondAvis (2 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:50
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testTC33BornesDeLaNote (8 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:35
+
+FAILURES!
+Tests: 34, Assertions: 86, Failures: 32, Deprecations: 2.

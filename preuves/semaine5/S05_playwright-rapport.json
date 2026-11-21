@@ -1,0 +1,420 @@
+{
+  "config": {
+    "configFile": "c:\\Users\\Dogui\\wassalni-tests\\playwright.config.js",
+    "rootDir": "c:/Users/Dogui/wassalni-tests/tests/Playwright",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\global-setup.js",
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "c:/Users/Dogui/wassalni-tests/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "c:/Users/Dogui/wassalni-tests/tests/Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.js"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": {
+      "command": "php -S 127.0.0.1:8000 -t public scripts/serveur-test-router.php",
+      "url": "http://127.0.0.1:8000/health",
+      "reuseExistingServer": false,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "semaine5-etats-droits.spec.js",
+      "file": "semaine5-etats-droits.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "ST-01 — passager A crée une réclamation valide : EN_ATTENTE, rattachée à A, visible dans sa liste",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6632,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T20:58:11.945Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d647bb5eb2e51fa2e9b6-33b69f9b8d53d1dce69f",
+          "file": "semaine5-etats-droits.spec.js",
+          "line": 30,
+          "column": 1
+        },
+        {
+          "title": "ST-02 — message vide puis de 9 caractères : formulaire refusé, aucun enregistrement",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6092,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T20:58:18.823Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d647bb5eb2e51fa2e9b6-405bc1dcfb1b9b6af4bc",
+          "file": "semaine5-etats-droits.spec.js",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "ST-03 — message d'exactement 10 caractères avec un sujet de la liste : accepté",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4329,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T20:58:24.937Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d647bb5eb2e51fa2e9b6-dd3f5d01101439851c74",
+          "file": "semaine5-etats-droits.spec.js",
+          "line": 63,
+          "column": 1
+        },
+        {
+          "title": "ST-04 — passager B ouvre la réclamation de A par URL directe : 403, aucune donnée de A révélée",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2373,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T20:58:29.283Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d647bb5eb2e51fa2e9b6-135cf10d94a363400afa",
+          "file": "semaine5-etats-droits.spec.js",
+          "line": 77,
+          "column": 1
+        },
+        {
+          "title": "ST-05 — l'administrateur consulte le détail de la réclamation de A puis la liste d'administration",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2909,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T20:58:31.680Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d647bb5eb2e51fa2e9b6-4afdbf1416005c22cfd0",
+          "file": "semaine5-etats-droits.spec.js",
+          "line": 87,
+          "column": 1
+        },
+        {
+          "title": "ST-06 — l'administrateur répond : TRAITEE, réponse et date de traitement persistées ; A voit la réponse",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5882,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T20:58:34.608Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d647bb5eb2e51fa2e9b6-b74ff6a03f915d92ae0a",
+          "file": "semaine5-etats-droits.spec.js",
+          "line": 101,
+          "column": 1
+        },
+        {
+          "title": "ST-07 — réponse administrateur vide : statut et date inchangés",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3768,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T20:58:40.514Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d647bb5eb2e51fa2e9b6-e7c15dcc4b783190596a",
+          "file": "semaine5-etats-droits.spec.js",
+          "line": 125,
+          "column": 1
+        },
+        {
+          "title": "ST-08 — passager A appelle directement la route de traitement administrateur : 403, aucune mutation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2903,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T20:58:44.317Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d647bb5eb2e51fa2e9b6-b28f54f305abade24c2c",
+          "file": "semaine5-etats-droits.spec.js",
+          "line": 143,
+          "column": 1
+        },
+        {
+          "title": "ST-09 — transition vers EN_COURS : aucune action proposée à l'administrateur (constat, règle à arbitrer)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2725,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T20:58:47.250Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d647bb5eb2e51fa2e9b6-751adbfe33c056d04b64",
+          "file": "semaine5-etats-droits.spec.js",
+          "line": 154,
+          "column": 1
+        },
+        {
+          "title": "ST-10 — deux sessions : réservation, rafraîchissement, annulation puis annulation répétée ; stock cohérent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13822,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T20:58:50.002Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d647bb5eb2e51fa2e9b6-954adae072d9c4f7f4e9",
+          "file": "semaine5-etats-droits.spec.js",
+          "line": 165,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-11T20:58:03.063Z",
+    "duration": 61702.894,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

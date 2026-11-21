@@ -1,0 +1,83 @@
+# 2026-11-11 22:07:11 +0100 | c22a0be + copie de travail | PHP 8.4.27 + PCOV 1.0.12 (chargé par -d, sans modification de php.ini) | PHPUnit 12.5.23
+# Suite « unitaire » seule (tests/Entity, tests/Service, tests/Controller), groupe anomalie-ouverte exclu
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27 with PCOV 1.0.12
+Configuration: C:\Users\Dogui\wassalni-tests\phpunit.dist.xml
+
+.................................                                 33 / 33 (100%)
+
+Time: 00:00.204, Memory: 26.00 MB
+
+Health Controller (App\Tests\Controller\HealthController)
+ ✔ Health check returns ok when database is available
+
+Reclamation Validation (App\Tests\Entity\ReclamationValidation)
+ ✔ Message de neuf caracteres est refuse
+ ✔ Message de dix caracteres est accepte
+ ✔ Sujet de quatre caracteres est refuse et cinq caracteres est accepte
+ ✔ Reservation refuse une quantite nulle et accepte la quantite disponible
+ ✔ Reservation refuse une quantite superieure au stock
+
+Regle Metier Entites (App\Tests\Entity\RegleMetierEntites)
+ ✔ UT-01 (EX-09, VL) — arrivée égale au départ refusée ; arrivée une minute après acceptée
+ ✔ UT-02 (EX-10, CA-03) — prix -1 (EP négatif) : 1 violation(s)
+ ✔ UT-02 (EX-10, CA-03) — prix 0 (VL) : 1 violation(s)
+ ✔ UT-02 (EX-10, CA-03) — prix 0,01 (VL) : 0 violation(s)
+ ✔ UT-02 (EX-10, CA-03) — prix 15 (EP nominal) : 0 violation(s)
+ ✔ UT-03 (EX-09, VL) — départ hier refusé, départ demain accepté
+ ✔ UT-07 (EX-21, CA-18) — avis : note 0 (VL) → 1 violation(s)
+ ✔ UT-07 (EX-21, CA-18) — avis : note 1 (VL) → 0 violation(s)
+ ✔ UT-07 (EX-21, CA-18) — avis : note 5 (VL) → 0 violation(s)
+ ✔ UT-07 (EX-21, CA-18) — avis : note 6 (VL) → 1 violation(s)
+ ✔ UT-08 (EX-31) — getRoles() ajoute toujours ROLE_USER, sans doublon ; un nouvel utilisateur est passager
+ ✔ UT-09 (EX-23) — note moyenne du conducteur : (4 + 5 + 5) / 3 arrondie à 4,7 ; aucun avis → 0
+
+Reservation (App\Tests\Entity\Reservation)
+ ✔ PeutEtreAnnulee refuseUnDepartPasse
+ ✔ PeutEtreAnnulee refuseUnDepartDansMoinsDeDeuxHeures
+ ✔ PeutEtreAnnulee autoriseUnDepartDansPlusDeDeuxHeures
+ ✔ PeutEtreAnnulee refuseUnTrajetAbsent
+ ✔ SetStatut enregistreEtEffaceLaDateAnnulationSelonLeStatut
+ ✔ Le prix total est recalcule quand le trajet est retire
+
+Reservation Service (App\Tests\Service\ReservationService)
+ ✔ Reserver placesSuffisantes creeReservationConfirmee
+ ✔ Reserver placesSuffisantes diminueLesPlacesDuTrajet
+ ✔ Reserver pasAssezDePlaces leveException
+ ✔ Reserver dejaReserveSurCeTrajet leveException
+ ✔ Annuler reservationConfirmee passeAAnnulee
+ ✔ Annuler reservationConfirmee rendLesPlacesAuTrajet
+ ✔ Annuler reservationDejaAnnulee leveException
+
+Reservation Service Interaction (App\Tests\Service\ReservationServiceInteraction)
+ ✔ UT-10 (CA-09) — reserver() recherche une réservation CONFIRMEE du même passager sur le même trajet
+ ✔ UT-11 (CA-06) — stock insuffisant : exception levée sans interroger le dépôt, stock intact
+
+OK (33 tests, 52 assertions)
+
+Generating code coverage report in Clover XML format ... done [00:00.052]
+
+
+Code Coverage Report:
+  2026-11-11 21:07:16
+
+ Summary:
+  Classes:  2.70% (1/37)
+  Methods: 16.67% (38/228)
+  Lines:    7.00% (106/1515)
+
+App\Controller\HealthController
+  Methods:   0.00% ( 0/ 1)   Lines:  25.00% (  2/  8)
+App\Entity\Avis
+  Methods:  21.43% ( 3/14)   Lines:  20.00% (  4/ 20)
+App\Entity\Reclamation
+  Methods:  15.00% ( 3/20)   Lines:  16.13% (  5/ 31)
+App\Entity\Reservation
+  Methods:  72.22% (13/18)   Lines:  84.62% ( 33/ 39)
+App\Entity\Trajet
+  Methods:  33.33% (10/30)   Lines:  32.69% ( 17/ 52)
+App\Entity\User
+  Methods:  13.64% ( 6/44)   Lines:  22.34% ( 21/ 94)
+App\Service\ReservationService
+  Methods: 100.00% ( 3/ 3)   Lines: 100.00% ( 24/ 24)

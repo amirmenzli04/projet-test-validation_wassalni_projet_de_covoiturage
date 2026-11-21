@@ -21,18 +21,9 @@ class ReclamationType extends AbstractType
         $builder
             ->add('sujet', ChoiceType::class, [
                 'label' => 'Sujet de la réclamation',
-                'choices' => [
-                    'Problème avec un conducteur' => 'Problème avec un conducteur',
-                    'Problème avec un passager' => 'Problème avec un passager',
-                    'Problème de paiement' => 'Problème de paiement',
-                    'Annulation de dernière minute' => 'Annulation de dernière minute',
-                    'Véhicule non conforme' => 'Véhicule non conforme',
-                    'Retard important' => 'Retard important',
-                    'Problème avec une réservation' => 'Problème avec une réservation',
-                    'Autre problème' => 'Autre problème',
-                ],
+                'choices' => array_combine(Reclamation::SUJETS, Reclamation::SUJETS),
                 'attr' => ['class' => 'form-control'],
-                'constraints' => [new NotBlank(['message' => 'Veuillez sélectionner un sujet'])],
+                'constraints' => [new NotBlank(message: 'Veuillez sélectionner un sujet')],
             ])
             ->add('message', TextareaType::class, [
                 'label' => 'Description détaillée',
@@ -42,8 +33,8 @@ class ReclamationType extends AbstractType
                     'placeholder' => 'Décrivez votre problème en détail...'
                 ],
                 'constraints' => [
-                    new NotBlank(['message' => 'Le message est obligatoire']),
-                    new Length(['min' => 10, 'minMessage' => 'Le message doit contenir au moins 10 caractères'])
+                    new NotBlank(message: 'Le message est obligatoire'),
+                    new Length(min: 10, minMessage: 'Le message doit contenir au moins 10 caractères')
                 ],
             ])
             ->add('trajetConcerne', EntityType::class, [

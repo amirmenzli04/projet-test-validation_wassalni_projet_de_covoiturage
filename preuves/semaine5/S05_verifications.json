@@ -1,0 +1,123 @@
+{
+  "execution": "2026-11-11T21:40:47.161Z",
+  "entrees": [
+    {
+      "horodatage": "2026-11-11T21:41:08.921Z",
+      "scenario": "ST-01",
+      "capture": "preuves\\semaine5\\S05_ST01_creation_reclamation.png",
+      "relecture_sql": {
+        "id": "317",
+        "statut": "EN_ATTENTE",
+        "date_creation": "2026-11-11 21:41:07",
+        "date_traitement": "NULL",
+        "reponse": "NULL",
+        "email": "semaine7-9.passager@example.test"
+      },
+      "resultat": "Réussi"
+    },
+    {
+      "horodatage": "2026-11-11T21:41:14.744Z",
+      "scenario": "ST-02",
+      "capture": "preuves\\semaine5\\S05_ST02_message_9_caracteres_refuse.png",
+      "reclamations_avant": "1",
+      "reclamations_apres": "1",
+      "message_vide_bloque": true,
+      "resultat": "Réussi"
+    },
+    {
+      "horodatage": "2026-11-11T21:41:18.471Z",
+      "scenario": "ST-03",
+      "capture": "preuves\\semaine5\\S05_ST03_message_10_caracteres_accepte.png",
+      "relecture_sql": {
+        "id": "318",
+        "statut": "EN_ATTENTE",
+        "date_creation": "2026-11-11 21:41:17",
+        "date_traitement": "NULL",
+        "reponse": "NULL",
+        "email": "semaine7-9.passager@example.test"
+      },
+      "resultat": "Réussi"
+    },
+    {
+      "horodatage": "2026-11-11T21:41:21.098Z",
+      "scenario": "ST-04",
+      "capture": "preuves\\semaine5\\S05_ST04_acces_interdit.png",
+      "url": "/reclamation/voir/317",
+      "http": 403,
+      "resultat": "Réussi"
+    },
+    {
+      "horodatage": "2026-11-11T21:41:24.067Z",
+      "scenario": "ST-05",
+      "captures": [
+        "preuves\\semaine5\\S05_ST05_admin_detail_reclamation.png",
+        "preuves\\semaine5\\S05_ST05_admin_liste_carte.png"
+      ],
+      "http_detail": 200,
+      "resultat": "Réussi"
+    },
+    {
+      "horodatage": "2026-11-11T21:41:30.335Z",
+      "scenario": "ST-06",
+      "captures": [
+        "preuves\\semaine5\\S05_ST06_traitement_admin.png",
+        "preuves\\semaine5\\S05_ST06_vue_passager_reponse.png"
+      ],
+      "relecture_sql": {
+        "statut": "TRAITEE",
+        "reponse": "Nous avons contacté le conducteur. Réponse ST-06.",
+        "date_traitement": "2026-11-11 21:41:26"
+      },
+      "resultat": "Réussi"
+    },
+    {
+      "horodatage": "2026-11-11T21:41:33.203Z",
+      "scenario": "ST-07",
+      "capture": "preuves\\semaine5\\S05_ST07_reponse_vide_refusee.png",
+      "message_flash_affiche": false,
+      "relecture_sql": {
+        "statut": "EN_ATTENTE",
+        "date_traitement": "NULL"
+      },
+      "resultat": "Réussi"
+    },
+    {
+      "horodatage": "2026-11-11T21:41:35.585Z",
+      "scenario": "ST-08",
+      "capture": "preuves\\semaine5\\S05_ST08_traitement_par_non_admin_403.png",
+      "http": 403,
+      "relecture_sql": {
+        "statut": "EN_ATTENTE",
+        "date_traitement": "NULL"
+      },
+      "resultat": "Réussi"
+    },
+    {
+      "horodatage": "2026-11-11T21:41:37.268Z",
+      "scenario": "ST-09",
+      "capture": "preuves\\semaine5\\S05_ST09_absence_action_en_cours.png",
+      "actions_disponibles": [
+        " Répondre et traiter"
+      ],
+      "resultat": "Bloqué (règle produit absente) : seule la réponse, qui passe directement à TRAITEE, est proposée"
+    },
+    {
+      "horodatage": "2026-11-11T21:41:47.413Z",
+      "scenario": "ST-10",
+      "captures": [
+        "preuves\\semaine5\\S05_ST10_1_reservation_session_A.png",
+        "preuves\\semaine5\\S05_ST10_2_session_B_voit_stock_mis_a_jour.png",
+        "preuves\\semaine5\\S05_ST10_3_annulation_session_A.png",
+        "preuves\\semaine5\\S05_ST10_4_annulation_repetee.png"
+      ],
+      "stock": {
+        "initial": 4,
+        "apres_reservation_A": 3,
+        "apres_annulation": 4,
+        "apres_double_annulation": 4
+      },
+      "url_annulation": "/reservation/annuler/2947",
+      "resultat": "Réussi"
+    }
+  ]
+}

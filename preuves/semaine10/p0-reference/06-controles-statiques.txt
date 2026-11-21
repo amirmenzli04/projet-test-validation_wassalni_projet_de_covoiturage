@@ -1,0 +1,11 @@
+# Controles statiques - 2026-11-11 21:22:16 +0100
+php -l : 48 fichiers, 0 erreur(s)
+--- bin/console lint:container --env=test
+ [OK] The container was linted successfully: all services are injected with values that are compatible with their type 
+--- bin/console doctrine:schema:validate --env=test
+ [OK] The mapping files are correct.                                                                                   
+ [OK] The database schema is in sync with the mapping files.                                                           
+--- bin/console lint:twig templates --env=test
+ [OK] All 34 Twig files contain valid syntax.                                                                          
+--- bin/console lint:yaml config --env=test
+ [OK] All 24 YAML files contain valid syntax.                                                                          

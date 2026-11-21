@@ -689,7 +689,7 @@
         <form method="get" action="{{ path('trajet_search') }}" id="searchForm">
             <div class="search-grid">
                 <div class="form-group">
-                    <label>Départ</label>
+                    <label for="villeDepart">Départ</label>
                     <div class="input-wrapper">
                         <i class="fas fa-map-marker-alt"></i>
                         <select name="villeDepart" id="villeDepart">
@@ -705,7 +705,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label>Arrivée</label>
+                    <label for="destination">Arrivée</label>
                     <div class="input-wrapper">
                         <i class="fas fa-flag-checkered"></i>
                         <select name="destination" id="destination">
@@ -721,7 +721,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label>Date</label>
+                    <label for="dateDepart">Date</label>
                     <div class="input-wrapper">
                         <i class="fas fa-calendar"></i>
                         <input type="date" name="dateDepart" id="dateDepart" value="{{ app.request.query.get('dateDepart') }}" min="{{ 'now'|date('Y-m-d') }}">
@@ -729,7 +729,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label>Passagers</label>
+                    <label for="passagers">Passagers</label>
                     <div class="input-wrapper">
                         <i class="fas fa-users"></i>
                         <select name="passagers" id="passagers">

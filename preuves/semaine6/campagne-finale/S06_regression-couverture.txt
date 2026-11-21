@@ -1,0 +1,71 @@
+# 2026-11-11 22:07:11 +0100 | c22a0be + copie de travail | PHP 8.4.27 + PCOV 1.0.12 (chargé par -d, sans modification de php.ini) | PHPUnit 12.5.23
+# Régression complète (unitaire + integration + fonctionnel), groupe anomalie-ouverte exclu
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27 with PCOV 1.0.12
+Configuration: C:\Users\Dogui\wassalni-tests\phpunit.dist.xml
+
+................................................................. 65 / 81 ( 80%)
+................                                                  81 / 81 (100%)
+
+Time: 00:10.695, Memory: 84.00 MB
+
+OK (81 tests, 225 assertions)
+
+Generating code coverage report in Clover XML format ... done [00:00.030]
+
+Generating code coverage report in HTML format ... done [00:01.121]
+
+
+Code Coverage Report:
+  2026-11-11 21:07:28
+
+ Summary:
+  Classes: 18.92% (7/37)
+  Methods: 49.56% (113/228)
+  Lines:   34.65% (525/1515)
+
+App\Controller\AdminController
+  Methods:  20.00% ( 2/10)   Lines:  15.12% ( 13/ 86)
+App\Controller\AvisController
+  Methods:   0.00% ( 0/ 2)   Lines:  16.67% (  7/ 42)
+App\Controller\HealthController
+  Methods:   0.00% ( 0/ 1)   Lines:  25.00% (  2/  8)
+App\Controller\ReclamationController
+  Methods: 100.00% ( 3/ 3)   Lines: 100.00% ( 45/ 45)
+App\Controller\ReservationController
+  Methods:  50.00% ( 2/ 4)   Lines:  84.47% ( 87/103)
+App\Controller\SecurityController
+  Methods:   0.00% ( 0/ 7)   Lines:  11.48% (  7/ 61)
+App\Controller\TrajetController
+  Methods:  33.33% ( 1/ 3)   Lines:  85.71% ( 90/105)
+App\Controller\VehiculeController
+  Methods:   0.00% ( 0/ 4)   Lines:   5.26% (  2/ 38)
+App\Entity\Avis
+  Methods:  21.43% ( 3/14)   Lines:  20.00% (  4/ 20)
+App\Entity\Reclamation
+  Methods:  90.00% (18/20)   Lines:  87.10% ( 27/ 31)
+App\Entity\Reservation
+  Methods:  88.89% (16/18)   Lines:  94.87% ( 37/ 39)
+App\Entity\Trajet
+  Methods:  73.33% (22/30)   Lines:  65.38% ( 34/ 52)
+App\Entity\User
+  Methods:  45.45% (20/44)   Lines:  43.62% ( 41/ 94)
+App\Entity\Vehicule
+  Methods:  60.00% (12/20)   Lines:  52.94% ( 18/ 34)
+App\Form\ReclamationType
+  Methods: 100.00% ( 2/ 2)   Lines: 100.00% ( 67/ 67)
+App\Repository\ReclamationRepository
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)
+App\Repository\ReservationRepository
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)
+App\Repository\TrajetRepository
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)
+App\Repository\UserRepository
+  Methods:  50.00% ( 1/ 2)   Lines:  16.67% (  1/  6)
+App\Repository\VehiculeRepository
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)
+App\Security\LoginFormAuthenticator
+  Methods:  66.67% ( 4/ 6)   Lines:  53.57% ( 15/ 28)
+App\Service\ReservationService
+  Methods: 100.00% ( 3/ 3)   Lines: 100.00% ( 24/ 24)

@@ -1,0 +1,495 @@
+{
+  "config": {
+    "configFile": "c:\\Users\\Dogui\\wassalni-tests\\playwright.config.js",
+    "rootDir": "c:/Users/Dogui/wassalni-tests/tests/Playwright",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\global-setup.js",
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "c:/Users/Dogui/wassalni-tests/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "c:/Users/Dogui/wassalni-tests/tests/Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.js"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": {
+      "command": "php -S 127.0.0.1:8000 -t public scripts/serveur-test-router.php",
+      "url": "http://127.0.0.1:8000/health",
+      "reuseExistingServer": false,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "reservation-flow.spec.js",
+      "file": "reservation-flow.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "CT-29 — un passager se connecte, recherche, réserve 2 places et retrouve sa réservation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7380,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T21:21:10.691Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f725002697251ee8a95f-224815c437c1a186276c",
+          "file": "reservation-flow.spec.js",
+          "line": 15,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "semaine9-accessibilite-securite.spec.js",
+      "file": "semaine9-accessibilite-securite.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Accessibilité (axe, WCAG A/AA) — page connexion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1485,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T21:21:18.393Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "81e67d7c484e4f0b929a-23db3e3047eda94fb2b7",
+          "file": "semaine9-accessibilite-securite.spec.js",
+          "line": 30,
+          "column": 5
+        },
+        {
+          "title": "Accessibilité (axe, WCAG A/AA) — page recherche",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3256,
+                  "error": {
+                    "message": "Error: Violations critiques sur recherche\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m2\u001b[39m",
+                    "stack": "Error: Violations critiques sur recherche\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m2\u001b[39m\n    at c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js:44:83",
+                    "location": {
+                      "file": "c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js",
+                      "column": 83,
+                      "line": 44
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 42 |\u001b[39m         a11y\u001b[33m.\u001b[39madd({ page\u001b[33m:\u001b[39m target\u001b[33m.\u001b[39mname\u001b[33m,\u001b[39m url\u001b[33m:\u001b[39m target\u001b[33m.\u001b[39murl\u001b[33m.\u001b[39msplit(\u001b[32m'?'\u001b[39m)[\u001b[35m0\u001b[39m]\u001b[33m,\u001b[39m regles_verifiees\u001b[33m:\u001b[39m results\u001b[33m.\u001b[39mpasses\u001b[33m.\u001b[39mlength \u001b[33m+\u001b[39m results\u001b[33m.\u001b[39mviolations\u001b[33m.\u001b[39mlength\u001b[33m,\u001b[39m conformes\u001b[33m:\u001b[39m results\u001b[33m.\u001b[39mpasses\u001b[33m.\u001b[39mlength\u001b[33m,\u001b[39m violations_par_impact\u001b[33m:\u001b[39m byImpact\u001b[33m,\u001b[39m violations\u001b[33m,\u001b[39m capture\u001b[33m:\u001b[39m file })\u001b[33m;\u001b[39m\n \u001b[90m 43 |\u001b[39m         \u001b[90m// Constat consigné ; les violations critiques sont signalées comme échec (soft) sans arrêter la campagne.\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 44 |\u001b[39m         expect\u001b[33m.\u001b[39msoft(byImpact\u001b[33m.\u001b[39mcritical\u001b[33m,\u001b[39m \u001b[32m`Violations critiques sur ${target.name}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 45 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 46 |\u001b[39m }\n \u001b[90m 47 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js",
+                        "column": 83,
+                        "line": 44
+                      },
+                      "message": "Error: Violations critiques sur recherche\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m2\u001b[39m\n\n  42 |         a11y.add({ page: target.name, url: target.url.split('?')[0], regles_verifiees: results.passes.length + results.violations.length, conformes: results.passes.length, violations_par_impact: byImpact, violations, capture: file });\n  43 |         // Constat consigné ; les violations critiques sont signalées comme échec (soft) sans arrêter la campagne.\n> 44 |         expect.soft(byImpact.critical, `Violations critiques sur ${target.name}`).toBe(0);\n     |                                                                                   ^\n  45 |     });\n  46 | }\n  47 |\n    at c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js:44:83"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T21:21:19.890Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "c:\\Users\\Dogui\\wassalni-tests\\test-results\\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\Dogui\\wassalni-tests\\test-results\\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\Dogui\\wassalni-tests\\test-results\\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "c:\\Users\\Dogui\\wassalni-tests\\test-results\\semaine9-accessibilite-sec-42eb0--WCAG-A-AA-—-page-recherche\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js",
+                    "column": 83,
+                    "line": 44
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "81e67d7c484e4f0b929a-cfa26ebd49501a3cdead",
+          "file": "semaine9-accessibilite-securite.spec.js",
+          "line": 30,
+          "column": 5
+        },
+        {
+          "title": "Accessibilité (axe, WCAG A/AA) — page nouvelle-reclamation",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3071,
+                  "error": {
+                    "message": "Error: Violations critiques sur nouvelle-reclamation\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                    "stack": "Error: Violations critiques sur nouvelle-reclamation\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js:44:83",
+                    "location": {
+                      "file": "c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js",
+                      "column": 83,
+                      "line": 44
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 42 |\u001b[39m         a11y\u001b[33m.\u001b[39madd({ page\u001b[33m:\u001b[39m target\u001b[33m.\u001b[39mname\u001b[33m,\u001b[39m url\u001b[33m:\u001b[39m target\u001b[33m.\u001b[39murl\u001b[33m.\u001b[39msplit(\u001b[32m'?'\u001b[39m)[\u001b[35m0\u001b[39m]\u001b[33m,\u001b[39m regles_verifiees\u001b[33m:\u001b[39m results\u001b[33m.\u001b[39mpasses\u001b[33m.\u001b[39mlength \u001b[33m+\u001b[39m results\u001b[33m.\u001b[39mviolations\u001b[33m.\u001b[39mlength\u001b[33m,\u001b[39m conformes\u001b[33m:\u001b[39m results\u001b[33m.\u001b[39mpasses\u001b[33m.\u001b[39mlength\u001b[33m,\u001b[39m violations_par_impact\u001b[33m:\u001b[39m byImpact\u001b[33m,\u001b[39m violations\u001b[33m,\u001b[39m capture\u001b[33m:\u001b[39m file })\u001b[33m;\u001b[39m\n \u001b[90m 43 |\u001b[39m         \u001b[90m// Constat consigné ; les violations critiques sont signalées comme échec (soft) sans arrêter la campagne.\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 44 |\u001b[39m         expect\u001b[33m.\u001b[39msoft(byImpact\u001b[33m.\u001b[39mcritical\u001b[33m,\u001b[39m \u001b[32m`Violations critiques sur ${target.name}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 45 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 46 |\u001b[39m }\n \u001b[90m 47 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js",
+                        "column": 83,
+                        "line": 44
+                      },
+                      "message": "Error: Violations critiques sur nouvelle-reclamation\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  42 |         a11y.add({ page: target.name, url: target.url.split('?')[0], regles_verifiees: results.passes.length + results.violations.length, conformes: results.passes.length, violations_par_impact: byImpact, violations, capture: file });\n  43 |         // Constat consigné ; les violations critiques sont signalées comme échec (soft) sans arrêter la campagne.\n> 44 |         expect.soft(byImpact.critical, `Violations critiques sur ${target.name}`).toBe(0);\n     |                                                                                   ^\n  45 |     });\n  46 | }\n  47 |\n    at c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js:44:83"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T21:21:24.907Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "c:\\Users\\Dogui\\wassalni-tests\\test-results\\semaine9-accessibilite-sec-9f84d-—-page-nouvelle-reclamation\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\Dogui\\wassalni-tests\\test-results\\semaine9-accessibilite-sec-9f84d-—-page-nouvelle-reclamation\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\Dogui\\wassalni-tests\\test-results\\semaine9-accessibilite-sec-9f84d-—-page-nouvelle-reclamation\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "c:\\Users\\Dogui\\wassalni-tests\\test-results\\semaine9-accessibilite-sec-9f84d-—-page-nouvelle-reclamation\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js",
+                    "column": 83,
+                    "line": 44
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "81e67d7c484e4f0b929a-707ec2650e95a41f80c3",
+          "file": "semaine9-accessibilite-securite.spec.js",
+          "line": 30,
+          "column": 5
+        },
+        {
+          "title": "Accessibilité (axe, WCAG A/AA) — page mes-reservations",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 2954,
+                  "error": {
+                    "message": "Error: Violations critiques sur mes-reservations\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                    "stack": "Error: Violations critiques sur mes-reservations\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js:44:83",
+                    "location": {
+                      "file": "c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js",
+                      "column": 83,
+                      "line": 44
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 42 |\u001b[39m         a11y\u001b[33m.\u001b[39madd({ page\u001b[33m:\u001b[39m target\u001b[33m.\u001b[39mname\u001b[33m,\u001b[39m url\u001b[33m:\u001b[39m target\u001b[33m.\u001b[39murl\u001b[33m.\u001b[39msplit(\u001b[32m'?'\u001b[39m)[\u001b[35m0\u001b[39m]\u001b[33m,\u001b[39m regles_verifiees\u001b[33m:\u001b[39m results\u001b[33m.\u001b[39mpasses\u001b[33m.\u001b[39mlength \u001b[33m+\u001b[39m results\u001b[33m.\u001b[39mviolations\u001b[33m.\u001b[39mlength\u001b[33m,\u001b[39m conformes\u001b[33m:\u001b[39m results\u001b[33m.\u001b[39mpasses\u001b[33m.\u001b[39mlength\u001b[33m,\u001b[39m violations_par_impact\u001b[33m:\u001b[39m byImpact\u001b[33m,\u001b[39m violations\u001b[33m,\u001b[39m capture\u001b[33m:\u001b[39m file })\u001b[33m;\u001b[39m\n \u001b[90m 43 |\u001b[39m         \u001b[90m// Constat consigné ; les violations critiques sont signalées comme échec (soft) sans arrêter la campagne.\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 44 |\u001b[39m         expect\u001b[33m.\u001b[39msoft(byImpact\u001b[33m.\u001b[39mcritical\u001b[33m,\u001b[39m \u001b[32m`Violations critiques sur ${target.name}`\u001b[39m)\u001b[33m.\u001b[39mtoBe(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 45 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 46 |\u001b[39m }\n \u001b[90m 47 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js",
+                        "column": 83,
+                        "line": 44
+                      },
+                      "message": "Error: Violations critiques sur mes-reservations\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  42 |         a11y.add({ page: target.name, url: target.url.split('?')[0], regles_verifiees: results.passes.length + results.violations.length, conformes: results.passes.length, violations_par_impact: byImpact, violations, capture: file });\n  43 |         // Constat consigné ; les violations critiques sont signalées comme échec (soft) sans arrêter la campagne.\n> 44 |         expect.soft(byImpact.critical, `Violations critiques sur ${target.name}`).toBe(0);\n     |                                                                                   ^\n  45 |     });\n  46 | }\n  47 |\n    at c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js:44:83"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T21:21:29.828Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "c:\\Users\\Dogui\\wassalni-tests\\test-results\\semaine9-accessibilite-sec-8f58e--AA-—-page-mes-reservations\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\Dogui\\wassalni-tests\\test-results\\semaine9-accessibilite-sec-8f58e--AA-—-page-mes-reservations\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "c:\\Users\\Dogui\\wassalni-tests\\test-results\\semaine9-accessibilite-sec-8f58e--AA-—-page-mes-reservations\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "c:\\Users\\Dogui\\wassalni-tests\\test-results\\semaine9-accessibilite-sec-8f58e--AA-—-page-mes-reservations\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "c:\\Users\\Dogui\\wassalni-tests\\tests\\Playwright\\semaine9-accessibilite-securite.spec.js",
+                    "column": 83,
+                    "line": 44
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "81e67d7c484e4f0b929a-105297b80dae311e02bf",
+          "file": "semaine9-accessibilite-securite.spec.js",
+          "line": 30,
+          "column": 5
+        },
+        {
+          "title": "Accessibilité — connexion entièrement au clavier (Tab, saisie, Entrée)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1922,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T21:21:34.590Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "81e67d7c484e4f0b929a-ab5f3f94f29607eb012f",
+          "file": "semaine9-accessibilite-securite.spec.js",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "Sécurité élémentaire — en-têtes de protection et cookie de session",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1806,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T21:21:36.746Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "81e67d7c484e4f0b929a-46578261f6d00f9f653d",
+          "file": "semaine9-accessibilite-securite.spec.js",
+          "line": 71,
+          "column": 1
+        },
+        {
+          "title": "Sécurité élémentaire — une erreur serveur ne divulgue ni trace ni chemin de fichier",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1634,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-11T21:21:38.574Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "81e67d7c484e4f0b929a-afe4d637f5194d128dda",
+          "file": "semaine9-accessibilite-securite.spec.js",
+          "line": 93,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-11T21:21:03.966Z",
+    "duration": 36752.249,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

@@ -18,10 +18,29 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
+        <!-- Semaine 6 : règles métier isolées (sans HTTP), base sollicitée uniquement par HealthController -->
+        <testsuite name="unitaire">
+            <directory>tests/Entity</directory>
+            <directory>tests/Service</directory>
+            <directory>tests/Controller</directory>
+        </testsuite>
+        <!-- Semaine 7 : persistance Doctrine et contraintes de la base wassalni_test -->
+        <testsuite name="integration">
+            <directory>tests/Integration</directory>
+        </testsuite>
+        <!-- Semaines 5, 7 et 8 : requêtes HTTP (BrowserKit) et vérifications en base -->
+        <testsuite name="fonctionnel">
+            <directory>tests/Functional</directory>
         </testsuite>
     </testsuites>
+
+    <!-- Les tests qui démontrent une anomalie confirmée et non corrigée sont rejouables par
+         « vendor/bin/phpunit, option group anomalie-ouverte » ; ils sont exclus de la régression par défaut. -->
+    <groups>
+        <exclude>
+            <group>anomalie-ouverte</group>
+        </exclude>
+    </groups>
 
     <source ignoreSuppressionOfDeprecations="true"
             ignoreIndirectDeprecations="true"

@@ -6,6 +6,7 @@ use App\Entity\Reservation;
 use App\Entity\Trajet;
 use App\Repository\ReservationRepository;
 use App\Repository\TrajetRepository;
+use App\Service\StockPlaces;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,12 +18,25 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/reservation')]
 class ReservationController extends AbstractController
 {
+    use CsrfGuardTrait;
+
+    public function __construct(private StockPlaces $stock)
+    {
+    }
+
     #[Route('/new/{id}', name: 'reservation_new', methods: ['POST'])]
     #[IsGranted('ROLE_PASSAGER')]
     public function new(Trajet $trajet, Request $request, EntityManagerInterface $em): Response
     {
-        $nbPlaces = (int) $request->request->get('nbPlaces', 1);
-        
+        $this->denyUnlessValidCsrf($request, 'reserver' . $trajet->getId());
+
+        // ANO-07 : même contrôle que la voie JSON (entier strictement positif)
+        $nbPlaces = filter_var($request->request->get('nbPlaces', 1), FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+        if ($nbPlaces === false) {
+            $this->addFlash('error', 'Le nombre de places doit être un entier positif.');
+            return $this->redirectToRoute('trajet_search');
+        }
+
         if ($trajet->getPlacesDisponibles() < $nbPlaces) {
             $this->addFlash('error', 'Pas assez de places disponibles !');
             return $this->redirectToRoute('trajet_search');
@@ -39,11 +53,11 @@ class ReservationController extends AbstractController
         $prixTotal = $trajet->getPrix() * $nbPlaces;
         $reservation->setPrixTotal($prixTotal);
         
-        // Mettre à jour les places disponibles
-        $trajet->setPlacesDisponibles($trajet->getPlacesDisponibles() - $nbPlaces);
-        
-        $em->persist($reservation);
-        $em->flush();
+        // ANO-38 : décrément atomique du stock et enregistrement dans une même transaction
+        if (!$this->enregistrerAtomiquement($em, $trajet, $reservation, $nbPlaces)) {
+            $this->addFlash('error', 'Pas assez de places disponibles !');
+            return $this->redirectToRoute('trajet_search');
+        }
         
         $this->addFlash('success', 'Réservation confirmée !');
         return $this->redirectToRoute('trajet_search');
@@ -51,8 +65,10 @@ class ReservationController extends AbstractController
     
     #[Route('/annuler/{id}', name: 'reservation_cancel')]
     #[IsGranted('ROLE_PASSAGER')]
-    public function cancel(Reservation $reservation, EntityManagerInterface $em): Response
+    public function cancel(Reservation $reservation, Request $request, EntityManagerInterface $em): Response
     {
+        $this->denyUnlessValidCsrf($request, 'annuler' . $reservation->getId());
+
         if ($reservation->getPassager() !== $this->getUser()) {
             throw $this->createAccessDeniedException('Vous ne pouvez pas annuler cette réservation.');
         }
@@ -62,14 +78,15 @@ class ReservationController extends AbstractController
             return $this->redirectToRoute('mes_reservations');
         }
         
-        // Rendre les places au trajet
+        // ANO-38 : les places sont rendues par un incrément atomique (pas de mise à jour perdue)
         $trajet = $reservation->getTrajet();
-        $trajet->setPlacesDisponibles($trajet->getPlacesDisponibles() + $reservation->getNbPlaces());
-        
-        $reservation->setStatut('ANNULEE');
-        $reservation->setDateAnnulation(new \DateTime());
-        
-        $em->flush();
+        $em->wrapInTransaction(function () use ($em, $reservation, $trajet): void {
+            $reservation->setStatut('ANNULEE');
+            $reservation->setDateAnnulation(new \DateTime());
+            $em->flush();
+            $this->stock->rendre($em->getConnection(), $trajet->getId(), $reservation->getNbPlaces());
+        });
+        $em->refresh($trajet);
         
         $this->addFlash('success', 'Réservation annulée avec succès.');
         return $this->redirectToRoute('mes_reservations');
@@ -97,16 +114,38 @@ class ReservationController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
         
+        if (!is_array($data)) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => 'Corps JSON invalide'
+            ], 400);
+        }
+
         $trajetId = $data['trajetId'] ?? null;
-        $nbPlaces = (int) ($data['nbPlaces'] ?? 1);
         
-        if (!$trajetId) {
+        if ($trajetId === null || $trajetId === '') {
             return new JsonResponse([
                 'success' => false,
                 'message' => 'Trajet non spécifié'
             ], 400);
         }
         
+        $trajetId = filter_var($trajetId, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+        if ($trajetId === false) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => 'Identifiant de trajet invalide'
+            ], 400);
+        }
+
+        $nbPlaces = filter_var($data['nbPlaces'] ?? 1, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+        if ($nbPlaces === false) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => 'Le nombre de places doit être un entier positif'
+            ], 400);
+        }
+
         // Récupérer le trajet
         $trajet = $trajetRepo->find($trajetId);
         
@@ -157,12 +196,13 @@ class ReservationController extends AbstractController
         $reservation->setStatut('CONFIRMEE');
         $reservation->setPrixTotal($trajet->getPrix() * $nbPlaces);
         
-        // Mettre à jour les places disponibles du trajet
-        $trajet->setPlacesDisponibles($trajet->getPlacesDisponibles() - $nbPlaces);
-        
-        // Sauvegarder en base de données
-        $em->persist($reservation);
-        $em->flush();
+        // ANO-38 : décrément atomique du stock et enregistrement dans une même transaction
+        if (!$this->enregistrerAtomiquement($em, $trajet, $reservation, $nbPlaces)) {
+            return new JsonResponse([
+                'success' => false,
+                'message' => 'Pas assez de places disponibles.'
+            ], 409);
+        }
         
         return new JsonResponse([
             'success' => true,
@@ -170,5 +210,25 @@ class ReservationController extends AbstractController
             'reservationId' => $reservation->getId(),
             'prixTotal' => $reservation->getPrixTotal()
         ]);
+    }
+
+    /**
+     * ANO-38 : retire les places par une seule requête SQL conditionnelle, puis enregistre la réservation,
+     * dans la même transaction. Renvoie false si le stock ne suffit plus au moment de l'écriture.
+     */
+    private function enregistrerAtomiquement(EntityManagerInterface $em, Trajet $trajet, Reservation $reservation, int $nbPlaces): bool
+    {
+        $ok = $em->wrapInTransaction(function () use ($em, $trajet, $reservation, $nbPlaces): bool {
+            if (!$this->stock->prendre($em->getConnection(), $trajet->getId(), $nbPlaces)) {
+                return false;
+            }
+            $em->persist($reservation);
+            $em->flush();
+
+            return true;
+        });
+        $em->refresh($trajet); // l'entité reflète le stock réellement enregistré
+
+        return $ok;
     }
 }

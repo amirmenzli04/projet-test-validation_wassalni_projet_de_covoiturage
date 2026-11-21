@@ -1,0 +1,8 @@
+# AVANT 2026-11-11 21:57:59 +0100
+  users   reservations   trajets   reclamations  
+ ------- -------------- --------- -------------- 
+  20      27             36        13            
+# APRES 2026-11-11 21:59:04 +0100 (les réclamations et la réservation annulée des comptes fictifs restent en base jusqu'à la prochaine préparation)
+  users   reservations   trajets   reclamations  
+ ------- -------------- --------- -------------- 
+  20      27             36        13            

@@ -1,0 +1,7 @@
+# 2026-11-11 21:20:29 +0100 - SchemaValidator::validateMapping() sur le code de HEAD
+Reservation chargee depuis: <scratchpad>\head-wt\src\Entity\Reservation.php
+{
+    "App\\Entity\\Vehicule": [
+        "The field App\\Entity\\Vehicule#trajets is on the inverse side of a bi-directional relationship, but the specified mappedBy association on the target-entity App\\Entity\\Trajet#vehicule does not contain the required 'inversedBy: \"trajets\"' attribute."
+    ]
+}

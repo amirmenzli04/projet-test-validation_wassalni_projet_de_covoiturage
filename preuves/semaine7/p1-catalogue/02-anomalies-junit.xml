@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="C:\Users\Dogui\wassalni-tests\phpunit.dist.xml" tests="34" assertions="86" errors="0" failures="32" skipped="0" time="4.681788">
+    <testsuite name="fonctionnel" tests="34" assertions="86" errors="0" failures="32" skipped="0" time="4.681788">
+      <testsuite name="App\Tests\Functional\Catalogue\AvisReclamationTest" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php" tests="3" assertions="14" errors="0" failures="1" skipped="0" time="1.130630">
+        <testcase name="testTC33BornesDeLaNote" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php" line="35" class="App\Tests\Functional\Catalogue\AvisReclamationTest" classname="App.Tests.Functional.Catalogue.AvisReclamationTest" assertions="6" time="0.983124"/>
+        <testcase name="testCA18SecondAvis" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php" line="50" class="App\Tests\Functional\Catalogue\AvisReclamationTest" classname="App.Tests.Functional.Catalogue.AvisReclamationTest" assertions="5" time="0.074265"/>
+        <testcase name="testCA18AvisAvantLaFinDuTrajet" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php" line="62" class="App\Tests\Functional\Catalogue\AvisReclamationTest" classname="App.Tests.Functional.Catalogue.AvisReclamationTest" assertions="3" time="0.073241">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\AvisReclamationTest::testCA18AvisAvantLaFinDuTrajet&#13;
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &amp;0 [
+-    'formulaire_propose' =&gt; false,
+-    'avis_enregistres' =&gt; 0,
++    'formulaire_propose' =&gt; true,
++    'avis_enregistres' =&gt; 1,
+ ]
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:70</failure>
+        </testcase>
+      </testsuite>
+      <testsuite name="App\Tests\Functional\Catalogue\ConnexionAccesTest" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" tests="11" assertions="22" errors="0" failures="11" skipped="0" time="2.796308">
+        <testcase name="testTC03CompteNonVerifie" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="27" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="1" time="0.557268">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testTC03CompteNonVerifie&#13;
+Le compte non vérifié accède à /reservation/mes-reservations
+Failed asserting that true is false.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:30</failure>
+        </testcase>
+        <testcase name="testTC04BlocagePuisReactivation" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="51" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="3" time="1.795453">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testTC04BlocagePuisReactivation&#13;
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &amp;0 [
+     '1_connexion_initiale' =&gt; true,
+     '2_statut_en_base' =&gt; 'BLOQUE',
+-    '3_connexion_compte_bloque' =&gt; false,
++    '3_connexion_compte_bloque' =&gt; true,
+     '5_connexion_apres_reactivation' =&gt; true,
+ ]
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:73</failure>
+        </testcase>
+        <testcase name="testTC45FuiteEmailDernierInscrit" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="113" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="1" time="0.058518">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testTC45FuiteEmailDernierInscrit&#13;
+Réponse HTTP 200 : {"email":"cat-913f253e-pass-nv@example.test"}
+Failed asserting that '{"email":"cat-913f253e-pass-nv@example.test"}' does not match PCRE pattern "/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}/".
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:117</failure>
+        </testcase>
+        <testcase name="testCA14StatutVerificationAnonyme" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="124" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="1" time="0.021945">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testCA14StatutVerificationAnonyme&#13;
+HTTP 200 : {"verified":false}
+Failed asserting that an array contains 200.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:127</failure>
+        </testcase>
+        <testcase name="testTC38ValidationParGet" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="133" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="2" time="0.037179">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testTC38ValidationParGet&#13;
+HTTP 302
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'EN_ATTENTE'
++'VALIDE'
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:137</failure>
+        </testcase>
+        <testcase name="testCA15BlocageParGet" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="143" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="2" time="0.040358">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testCA15BlocageParGet&#13;
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'ACTIF'
++'BLOQUE'
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:147</failure>
+        </testcase>
+        <testcase name="testCA15SuppressionTrajetParGet" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="153" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="2" time="0.030919">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testCA15SuppressionTrajetParGet&#13;
+HTTP 302
+Failed asserting that 0 is identical to 1.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:157</failure>
+        </testcase>
+        <testcase name="testCA15TraitementReclamationSansJeton" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="163" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="3" time="0.035463">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testCA15TraitementReclamationSansJeton&#13;
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'EN_ATTENTE'
++'TRAITEE'
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:171</failure>
+        </testcase>
+        <testcase name="testCA20SuppressionUtilisateurAvecReservations" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="186" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="2" time="0.062527">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testCA20SuppressionUtilisateurAvecReservations&#13;
+Suppression d'un utilisateur ayant des réservations : erreur serveur HTTP 500
+Failed asserting that 500 is less than 500.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:45
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:190</failure>
+        </testcase>
+        <testcase name="testCA16CompteurReclamationsAdmin" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="196" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="4" time="0.107422">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testCA16CompteurReclamationsAdmin&#13;
+Failed asserting that 0 is identical to 6.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:207</failure>
+        </testcase>
+        <testcase name="testPagesSansErreurServeur" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php" line="213" class="App\Tests\Functional\Catalogue\ConnexionAccesTest" classname="App.Tests.Functional.Catalogue.ConnexionAccesTest" assertions="1" time="0.049254">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ConnexionAccesTest::testPagesSansErreurServeur&#13;
+{"\/avis\/conducteur\/{id}":500,"\/inscription":500}
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &amp;0 [
+-    '/avis/conducteur/{id}' =&gt; false,
+-    '/inscription' =&gt; false,
++    '/avis/conducteur/{id}' =&gt; true,
++    '/inscription' =&gt; true,
+ ]
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:220</failure>
+        </testcase>
+      </testsuite>
+      <testsuite name="App\Tests\Functional\Catalogue\PublicationRechercheTest" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" tests="9" assertions="22" errors="0" failures="9" skipped="0" time="0.350443">
+        <testcase name="testTC11DepartLeJourMeme" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="78" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="2" time="0.033248">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testTC11DepartLeJourMeme&#13;
+Trajet du jour accepté à 00:00
+Failed asserting that 1873 is null.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:80</failure>
+        </testcase>
+        <testcase name="testTC12ArriveeEgaleAuDepart" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="86" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="2" time="0.027454">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testTC12ArriveeEgaleAuDepart&#13;
+Arrivée = départ acceptée
+Failed asserting that 1882 is null.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:88</failure>
+        </testcase>
+        <testcase name="testTC14PrixNonNumerique" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="117" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="2" time="0.031127">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testTC14PrixNonNumerique&#13;
+prix=abc : trajet créé, prix enregistré 0
+Failed asserting that 1891 is null.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:121</failure>
+        </testcase>
+        <testcase name="testTC15StatutInitialEnAttente" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="127" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="3" time="0.031492">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testTC15StatutInitialEnAttente&#13;
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'EN_ATTENTE'
++'VALIDE'
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:131</failure>
+        </testcase>
+        <testcase name="testTC16TrajetNonValideInvisible" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="137" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="4" time="0.081063">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testTC16TrajetNonValideInvisible&#13;
+Failed asserting that true is false.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:142</failure>
+        </testcase>
+        <testcase name="testCA13VehiculeDUnAutreConducteur" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="156" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="3" time="0.044352">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testCA13VehiculeDUnAutreConducteur&#13;
+Trajet publié avec le véhicule d'un autre conducteur
+Failed asserting that 1918 is null.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:164</failure>
+        </testcase>
+        <testcase name="testTC18TrajetPasseAbsent" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="172" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="2" time="0.045934">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testTC18TrajetPasseAbsent&#13;
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &amp;0 [
+     'T-FUT-EARLY' =&gt; true,
+     'T-P4' =&gt; true,
+-    'T-PAST' =&gt; false,
++    'T-PAST' =&gt; true,
+ ]
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:175</failure>
+        </testcase>
+        <testcase name="testTC20FiltrePrix" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="193" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="2" time="0.031954">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testTC20FiltrePrix&#13;
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &amp;0 [
+     'T-FUT-EARLY' =&gt; true,
+-    'T-P4' =&gt; false,
++    'T-P4' =&gt; true,
+ ]
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:196</failure>
+        </testcase>
+        <testcase name="testRechercheDateInvalide" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php" line="227" class="App\Tests\Functional\Catalogue\PublicationRechercheTest" classname="App.Tests.Functional.Catalogue.PublicationRechercheTest" assertions="2" time="0.023819">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\PublicationRechercheTest::testRechercheDateInvalide&#13;
+Recherche dateDepart=abc : erreur serveur HTTP 500
+Failed asserting that 500 is less than 500.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:45
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:230</failure>
+        </testcase>
+      </testsuite>
+      <testsuite name="App\Tests\Functional\Catalogue\ReservationAnnulationTest" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" tests="11" assertions="28" errors="0" failures="11" skipped="0" time="0.404407">
+        <testsuite name="App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC24NombreDePlacesInvalideVoieHtml" tests="4" assertions="12" errors="0" failures="4" skipped="0" time="0.140322">
+          <testcase name="testTC24NombreDePlacesInvalideVoieHtml with data set &quot;zéro&quot;" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="66" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="3" time="0.028119">
+            <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC24NombreDePlacesInvalideVoieHtml with data set "zéro"&#13;
+nbPlaces=0
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &amp;0 [
+-    'reservation_creee' =&gt; null,
++    'reservation_creee' =&gt; Array &amp;1 [
++        'nb_places' =&gt; 0,
++        'prix_total' =&gt; 0.0,
++    ],
+     'places_restantes' =&gt; 4,
+ ]
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:75</failure>
+          </testcase>
+          <testcase name="testTC24NombreDePlacesInvalideVoieHtml with data set &quot;négatif&quot;" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="66" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="3" time="0.030465">
+            <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC24NombreDePlacesInvalideVoieHtml with data set "négatif"&#13;
+nbPlaces=-1
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &amp;0 [
+-    'reservation_creee' =&gt; null,
+-    'places_restantes' =&gt; 4,
++    'reservation_creee' =&gt; Array &amp;1 [
++        'nb_places' =&gt; -1,
++        'prix_total' =&gt; -22.0,
++    ],
++    'places_restantes' =&gt; 5,
+ ]
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:75</failure>
+          </testcase>
+          <testcase name="testTC24NombreDePlacesInvalideVoieHtml with data set &quot;décimal&quot;" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="66" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="3" time="0.034380">
+            <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC24NombreDePlacesInvalideVoieHtml with data set "décimal"&#13;
+nbPlaces=3.5
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &amp;0 [
+-    'reservation_creee' =&gt; null,
+-    'places_restantes' =&gt; 4,
++    'reservation_creee' =&gt; Array &amp;1 [
++        'nb_places' =&gt; 3,
++        'prix_total' =&gt; 66.0,
++    ],
++    'places_restantes' =&gt; 1,
+ ]
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:75</failure>
+          </testcase>
+          <testcase name="testTC24NombreDePlacesInvalideVoieHtml with data set &quot;texte&quot;" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="66" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="3" time="0.047358">
+            <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC24NombreDePlacesInvalideVoieHtml with data set "texte"&#13;
+nbPlaces=abc
+Failed asserting that two arrays are identical.
+--- Expected
++++ Actual
+@@ @@
+ Array &amp;0 [
+-    'reservation_creee' =&gt; null,
++    'reservation_creee' =&gt; Array &amp;1 [
++        'nb_places' =&gt; 0,
++        'prix_total' =&gt; 0.0,
++    ],
+     'places_restantes' =&gt; 4,
+ ]
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:75</failure>
+          </testcase>
+        </testsuite>
+        <testcase name="testTC28DoublonVoieHtml" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="102" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="3" time="0.036120">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC28DoublonVoieHtml&#13;
+Failed asserting that 2 is identical to 1.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:108</failure>
+        </testcase>
+        <testcase name="testTC30AnnulationReservationPassee" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="138" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="3" time="0.031831">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC30AnnulationReservationPassee&#13;
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'CONFIRMEE'
++'ANNULEE'
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:144</failure>
+        </testcase>
+        <testcase name="testTC49TrajetPasseVoieHtml" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="151" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="2" time="0.030880">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC49TrajetPasseVoieHtml&#13;
+Failed asserting that 1 is identical to 0.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:156</failure>
+        </testcase>
+        <testcase name="testTC49TrajetPasseVoieJson" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="163" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="2" time="0.031768">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC49TrajetPasseVoieJson&#13;
+Failed asserting that 1 is identical to 0.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:168</failure>
+        </testcase>
+        <testcase name="testTC50TrajetNonValideVoieHtml" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="174" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="2" time="0.029152">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testTC50TrajetNonValideVoieHtml&#13;
+Failed asserting that 1 is identical to 0.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:179</failure>
+        </testcase>
+        <testcase name="testCA15AnnulationParGetSansJeton" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="217" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="2" time="0.052583">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testCA15AnnulationParGetSansJeton&#13;
+L'annulation a été acceptée par GET (HTTP 302)
+Failed asserting that an array contains 302.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:222</failure>
+        </testcase>
+        <testcase name="testCA15ReservationHtmlSansJeton" file="C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php" line="229" class="App\Tests\Functional\Catalogue\ReservationAnnulationTest" classname="App.Tests.Functional.Catalogue.ReservationAnnulationTest" assertions="2" time="0.051751">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">App\Tests\Functional\Catalogue\ReservationAnnulationTest::testCA15ReservationHtmlSansJeton&#13;
+Réservation créée par un POST sans jeton CSRF
+Failed asserting that 1 is identical to 0.
+&#13;
+C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:234</failure>
+        </testcase>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
