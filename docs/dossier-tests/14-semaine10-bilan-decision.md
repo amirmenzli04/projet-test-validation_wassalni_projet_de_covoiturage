@@ -53,7 +53,7 @@ Six anomalies (ANO-01 à 06) avaient été corrigées par des modifications ant�
 3. **Parcours conducteur bloqué** : impossible d'ajouter un véhicule (ANO-35).
 4. **Non testé** : inscription en plusieurs étapes et envoi d'e-mails (EX-01, 02, 30) ; performance avec un volume réaliste et un serveur de production ; audit d'accessibilité manuel.
 
-## 14.6 Critères de sortie (plan de test, §2.6) et décision
+## 14.6 Critères de sortie (plan de test, §2.7.1) et décision
 
 | Critère de sortie | Atteint ? |
 |---|---|

@@ -51,17 +51,23 @@ Une copie PDF complète de l'entité de réservation est disponible ici : [Reser
 - [Semaine 4 — Conception des cas de test (PDF)](Semaine-4-Conception-des-cas-de-test.pdf) — 31 cas, partitions d'équivalence, valeurs limites, données et table de décision.
 - [Semaine 5 — Transitions, droits et tests exploratoires (PDF)](Semaine-5-Transitions-droits-exploration.pdf) — diagramme d'états, matrice des rôles, scénarios, chartes et observations préliminaires.
 
-Les PDF incluent les résultats actualisés de la suite. Les versions sources sont [le catalogue semaine 4](04-cas-de-test-donnees.md) et [le dossier semaine 5](05-etats-exploration-anomalies.md). Les scénarios exploratoires navigateur, les mesures non fonctionnelles et les ambiguïtés produit restent à traiter.
+Les versions sources sont [le catalogue semaine 4](04-cas-de-test-donnees.md) et [le dossier semaine 5](05-etats-exploration-anomalies.md).
 
-## Résumé exécutif
+## Résumé exécutif (campagne du 11/11/2026, révision `cc50095`)
 
-WASSALNI permet à des passagers et conducteurs de gérer des trajets et réservations, et aux utilisateurs de soumettre des réclamations. Le code examiné contient aussi des rôles administrateur, conducteur et passager, ainsi qu'un traitement administratif des réclamations.
+WASSALNI est une application Symfony 7.4 de covoiturage avec trois rôles (passager, conducteur, administrateur) et un traitement des réclamations. La campagne a couvert la connexion et les droits, la publication et la recherche de trajets, la réservation et l'annulation, les avis, les réclamations et l'administration. Le volet API porte sur les 4 routes JSON existantes (pas d'API REST générale).
 
-Le dossier couvre les parcours d'inscription/connexion, publication et recherche de trajet, réservation/annulation, réclamation et administration. Une route JSON de réservation existe (`POST /reservation/new-ajax`); aucun contrat d'API REST général n'a été identifié dans le périmètre examiné. Le volet API est donc limité à cette route tant qu'une API REST distincte n'est pas confirmée.
+| Niveau | Résultat |
+|---|---|
+| Régression PHPUnit (unitaire, intégration, HTTP/BDD) | 87 tests, 245 assertions, tous réussis |
+| Anomalies ouvertes démontrées | 48 tests en échec attendu, 32 anomalies (8 S2, 16 S3, 8 S4) |
+| Interface (Playwright) | 23 tests, 20 réussis (3 échecs = ANO-36, accessibilité) |
+| API (Newman) | 19 requêtes, 32 / 35 assertions (3 échecs = ANO-22) |
+| Performance (k6) | Seuils respectés, p95 217 ms |
+| Couverture des lignes | 34,65 % |
+| Exigences EX-01 à EX-35 | 9 réussies, 9 partielles, 14 échouées, 3 non exécutées |
 
-La suite PHPUnit complète a été exécutée avec PHP 8.4.27 et PHPUnit 12.5.23 : **27 tests et 74 assertions réussis, sans échec ni dépréciation**. Elle inclut sept tests HTTP/DB du flux de réclamation avec utilisateurs de test persistés. Le nettoyage a été vérifié : aucune fixture `phpunit-*@example.test` ne reste dans la base dédiée. Les tests exploratoires dans un vrai navigateur, l'accessibilité et la performance restent à exécuter; la couverture de code n'a pas été mesurée.
-
-**Décision à ce stade : livraison non validée (NO-GO probatoire).** La suite automatisée et une partie des parcours d'intégration passent, mais la campagne d'acceptation, d'exploration et non fonctionnelle reste incomplète. Cette décision porte sur les preuves disponibles et ne signifie pas que l'application est défaillante. Le détail figure dans [le bilan](06-automatisation-bilan.md).
+**Décision : refus de livraison (NO-GO)**, car 8 anomalies majeures (S2) restent ouvertes. Justification et conditions d'un GO : [14](14-semaine10-bilan-decision.md). Critères et seuils de sortie : [plan de test, §2.7](02-strategie-calendrier.md).
 
 ## Utilisation
 

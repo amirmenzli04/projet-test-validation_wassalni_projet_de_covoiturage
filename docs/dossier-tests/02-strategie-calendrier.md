@@ -1,145 +1,156 @@
-# 2. Stratégie, calendrier et critères de campagne
+# 2. Stratégie, plan de test et critères de campagne
 
 ## Contrôle du document
 
 | Champ | Valeur |
 |---|---|
 | Document | Plan de test WASSALNI |
-| Version | 1.1 |
-| Date | 5 novembre 2026 |
-| Statut | Version préparée pour revue; critères et périmètre API à faire approuver |
-| Propriétaire | Responsable de campagne / étudiant |
-| Approbateur | Responsable produit ou enseignant, à renseigner |
-| Historique | 1.0 — première version du dossier; 1.1 — détail des outils, du dépôt Git et des règles de campagne |
+| Version | 2.0 |
+| Date | 21 novembre 2026 |
+| Statut | En vigueur pour la campagne de rejeu après corrections |
+| Propriétaire | Responsable de campagne (étudiant) |
+| Approbateur | Enseignant encadrant, à viser |
+| Révisions | 1.0 (05/11) — première version ; 1.1 (05/11) — outils, dépôt Git, règles de campagne ; **2.0 (21/11)** — plan aligné sur les outils réellement utilisés, intégration continue, **seuils quantitatifs de sortie (§2.7)** formalisés après la campagne du 11/11 et applicables à toute campagne ultérieure |
 
-Le numéro de version du document permet d'identifier son contenu. Il ne remplace pas un commit Git : pour figer une version, ajouter les fichiers au dépôt, créer un commit et consigner son SHA dans le rapport d'exécution. Aucun commit n'est créé automatiquement dans le cadre de ce travail.
+> **Note de traçabilité.** La campagne du 11/11/2026 (révision `cc50095`) a été jugée avec les critères qualitatifs du §2.7.1, seuls définis à cette date. Les seuils chiffrés du §2.7.2 ont été ajoutés le 21/11/2026, **avant** la campagne de rejeu après corrections : c'est à elle qu'ils s'appliquent en premier.
 
-## 2.0 Objectifs et périmètre de la campagne
+## 2.0 Objectifs et périmètre
 
-L'objectif est de fournir des preuves reproductibles sur les parcours à risque de WASSALNI : droits des utilisateurs, recherche/publication de trajets, réservation et restitution des places, et traitement des réclamations. La campagne vérifie les exigences de [la matrice de traçabilité](03-exigences-tracabilite.md) et exécute les cas de [la suite fonctionnelle](04-cas-de-test-donnees.md).
+L'objectif est de fournir des preuves reproductibles sur les parcours à risque de WASSALNI : droits des utilisateurs, publication et recherche de trajets, réservation et restitution des places, traitement des réclamations, administration. La campagne vérifie les exigences EX-01 à EX-35 (PDF semaine 3) au travers des cas TC (PDF semaine 4) et des critères CA ; la [matrice de traçabilité](09-matrice-tracabilite.md) fait le lien exigence → risque → test → résultat → preuve.
 
-La campagne porte sur la révision identifiée par un SHA Git. Elle ne modifie pas les règles métier. Toute règle encore ambiguë est bloquée jusqu'à arbitrage. L'API est limitée à l'endpoint JSON observé; l'acceptation doit confirmer si ce périmètre suffit.
+Chaque exécution porte sur une révision identifiée par son SHA Git. Les règles métier ambiguës sont arbitrées par le responsable produit avant exécution, ou marquées **Bloqué**.
 
-## 2.1 Niveaux et techniques
+**API.** L'application n'expose pas d'API REST générale : le volet API porte sur les 4 routes JSON existantes, dont `POST /reservation/new-ajax`. Ce périmètre est une limite assumée de la campagne.
 
-| Niveau | Objet | Technique / outil | Statut de l'outil dans le dépôt | Preuve attendue |
+**Hors périmètre de la campagne du 11/11 :** assistant d'inscription et envoi d'e-mails (EX-01, EX-02, EX-30 — transport `null://null`), charge réaliste sur serveur de production, audit d'accessibilité manuel.
+
+## 2.1 Niveaux, techniques et outils
+
+| Niveau | Objet | Technique / outil | Emplacement | Résultat de référence (11/11, `cc50095`) |
 |---|---|---|---|---|
-| Unitaire | Règles isolées de réservation/annulation et validations | PHPUnit; Arrange–Act–Assert; assertions; stub/mock selon l'interaction testée | Tests de service, d'entité et de validation exécutés | Sortie PHPUnit complète : 27 tests, 74 assertions; aucun rapport de couverture |
-| Intégration | Services/repositories, Doctrine et base de test | PHPUnit + kernel Symfony + base dédiée; fixtures déterministes | Sept tests du flux de réclamation exécutés contre la base de test; fixtures supprimées après le test | Persistance, assertions en base et vérification du nettoyage |
-| Système | Parcours HTTP et règles de rôles | Symfony WebTestCase/BrowserKit; client HTTP | Redirections anonymes et droits/propriété sur le flux de réclamation testés; navigateur réel non couvert | Requête, statut, contenu utile, utilisateur de test |
-| API | Échange JSON actuellement identifié | Collection Bruno/Postman ou PHPUnit HTTP client; session authentifiée | Aucun outil de collection confirmé; choisir un format versionnable avant semaine 8 | Méthode, en-têtes, corps, statut et JSON |
-| Acceptation | Scénarios métier de passager, conducteur et administrateur | Recette manuelle guidée par les cas du catalogue | À exécuter avec le responsable métier | Visa métier par scénario |
-| Interface | Parcours critique du navigateur | Playwright (option proposée, à approuver et configurer) | Non confirmé dans les dépendances actuelles | Trace/capture anonymisée et résultat d'assertions |
-| Non fonctionnel | Performance et accessibilité de base | Outil choisi selon le périmètre accepté; environnement contrôlé | À choisir; aucun résultat disponible | Configuration, mesures, seuils et limites |
-
-Les outils optionnels ne doivent être ajoutés au projet qu'après approbation du périmètre et des dépendances nécessaires. Ne pas présenter un outil proposé comme déjà installé ou exécuté.
-
-### Stratégie API
-
-Le code examiné expose une route JSON de réservation AJAX, mais pas de surface REST complète identifiée. Tester cette route est pertinent pour la semaine 8; ne pas présenter cette couverture comme une campagne REST complète. Si le besoin impose une API REST, le responsable produit doit fournir le contrat, la version, les routes et les règles d'authentification avant d'élargir la matrice.
+| Unitaire | Règles des entités, validations, service de réservation | PHPUnit 12, Arrange – Act – Assert, valeurs limites, stub et mock | `tests/Entity`, `tests/Service`, `tests/Controller` (suite `unitaire`) | 33 tests, 52 assertions, OK |
+| Intégration | Doctrine et MariaDB : CRUD, contraintes, transactions, cascades | PHPUnit + noyau Symfony, base `wassalni_test` | `tests/Integration` (suite `integration`) | 9 tests, 29 assertions, OK |
+| Système (HTTP) | Parcours HTTP, droits par rôle, relecture en base | WebTestCase / BrowserKit, fixtures isolées | `tests/Functional` (suite `fonctionnel`) | 45 tests de régression, OK |
+| Anomalies ouvertes | Démonstration rejouable de chaque défaut non corrigé | PHPUnit, groupe `anomalie-ouverte` (exclu de la régression) | répartis dans les suites | 48 tests en échec attendu |
+| API | Routes JSON : statuts HTTP, corps JSON, authentification, cas négatifs | Postman + Newman | `postman/`, `scripts/run-newman.js` | 19 requêtes, 32/35 assertions |
+| Interface | Parcours critique et scénarios d'états dans un navigateur | Playwright (Chrome) | `tests/Playwright/` | 23 tests, 20 réussis |
+| Non fonctionnel | Performance, accessibilité, sécurité élémentaire, concurrence | k6, axe-core, contrôles d'en-têtes, `composer audit` | `tests/k6/`, `tests/Playwright/semaine9-*` | Voir [12](12-semaine9-interface-non-fonctionnel.md) |
+| Acceptation | Scénarios métier par rôle | Scénarios ST-01 à ST-10, visa du responsable produit | [05](05-etats-exploration-anomalies.md) | 10 scénarios exécutés |
+| Couverture | Lignes et méthodes de `src/` | PCOV + rapport PHPUnit (HTML, Clover) | `preuves/semaine6/campagne-finale/` | 34,65 % des lignes |
 
 ## 2.2 Environnements et données
 
-- Environnement de test isolé, `APP_ENV=test`; aucune donnée réelle.
-- Base dédiée **`wassalni_test` sur MariaDB 10.4.32** (le suffixe `_test` est imposé par `doctrine.yaml` en environnement `test`). Le Compose déclare PostgreSQL 16, mais cette pile n'est pas utilisée. Ne jamais exécuter de scénario destructif sur la base `wassalni`.
-- L'URL `DATABASE_URL` doit pointer vers la base de test confirmée par l'équipe. Vérifier la connexion et les migrations avant la campagne; ne jamais supposer que le service Compose est démarré.
-- Mailpit ou transport de mail factice si les flux d'inscription/notification sont inclus.
-- Fixtures stables: utilisateur passager A et B, conducteur, administrateur, véhicule, trajets valide/à venir/complet et réservations aux différents statuts.
-- Horloge, fuseau, montants et dates de départ documentés par exécution. Utiliser une date future suffisamment éloignée pour les tests qui dépendent du temps.
-- Nettoyer les données créées après chaque test d'intégration; conserver uniquement les preuves anonymisées.
+| Paramètre | Poste local (campagne) | Intégration continue |
+|---|---|---|
+| Système | Windows 11 | Ubuntu (GitHub Actions) |
+| PHP | 8.4.27 | 8.4 (PCOV) |
+| Base | MariaDB 10.4.32, base `wassalni_test` | Service MariaDB 10.4 éphémère, base `wassalni_test` |
+| Schéma | 4 migrations Doctrine | Mêmes migrations + `doctrine:schema:validate` |
+| Outils navigateur et API | Chrome, Playwright, Newman, k6 | PHPUnit uniquement (régression + anomalies) |
+| Secret de test | `WASSALNI_TEST_PASSWORD` dans `.env.test.local` (non versionné) | Variable d'environnement propre à la CI |
 
-### Configuration minimale attendue
+Règles :
 
-| Paramètre | Valeur / règle |
-|---|---|
-| Application | Symfony, `APP_ENV=test` |
-| Runtime | PHP `>= 8.2`, conforme à `composer.json` |
-| Dépendances | Installer depuis `composer.lock`; ne pas modifier le verrouillage pour une simple exécution |
-| Base | MariaDB 10.4.32, base `wassalni_test` (InnoDB) ; schéma créé par les 4 migrations Doctrine |
-| Comptes | Fixtures fictives propres à l'environnement de test |
-| Sorties | Résultats PHPUnit, cas manuels et captures anonymisées; ne pas versionner secrets, `.env.local`, données personnelles ou résultats volumineux |
+- `APP_ENV=test` ; le suffixe `_test` est imposé par `doctrine.yaml`. Aucun scénario n'est exécuté sur la base `wassalni`. Chaque outil vérifie le nom de la base avant d'agir.
+- Données fictives uniquement : passagers A et B, conducteur, administrateur, véhicule, trajets valide, à venir, passé et complet, réservations dans chaque statut.
+- Les tests d'intégration et HTTP nettoient leurs données ; l'isolation est contrôlée (état identique avant et après).
+- Les captures sont anonymisées ; aucun secret ni `.env.local` n'est versionné.
 
 ## 2.3 Rôles et responsabilités
 
 | Rôle | Responsabilité |
 |---|---|
-| Testeur/étudiant | Préparer les données, exécuter les cas, joindre les preuves et enregistrer les anomalies |
-| Développeur | Corriger les défauts, identifier la révision corrigée et fournir les changements |
-| Responsable produit/enseignant | Confirmer les ambiguïtés et les critères d'acceptation, arbitrer le risque résiduel, signer la recette |
-| Responsable de campagne | Geler la version testée, suivre les résultats, décider de la recommandation de sortie |
+| Testeur | Préparer les données, exécuter les cas, joindre les preuves, enregistrer les anomalies |
+| Développeur | Corriger les défauts sur une branche `fix/*` et identifier la révision corrigée |
+| Responsable produit / enseignant | Arbitrer les ambiguïtés, valider les critères d'acceptation, viser la décision |
+| Responsable de campagne | Geler la révision testée, suivre les résultats, proposer la décision de sortie |
 
-Une même personne peut tenir plusieurs rôles dans un projet d'étude, mais la validation métier doit être explicitement consignée.
+Dans ce projet individuel, l'étudiant tient les rôles de testeur, de développeur et de responsable de campagne ; la validation métier est consignée séparément (visa de l'enseignant).
 
-## 2.3.1 Organisation du dépôt Git
-
-Le plan et les livrables sont regroupés sous `docs/dossier-tests/`. Les tests automatisés restent à côté du projet dans `tests/`, conformément au `phpunit.dist.xml`, qui découvre cette arborescence.
+## 2.4 Organisation du dépôt Git
 
 ```text
 tests/
-  Service/              # tests unitaires des services métier
-  Integration/          # à créer lors de la semaine 7 si nécessaire
-  Functional/           # tests HTTP Symfony; réutiliser si cette suite existe
-  e2e/                  # à créer uniquement si un outil navigateur est approuvé
-docs/
-  dossier-tests/
-    README.md
-    01-cadrage-risques.md
-    02-strategie-calendrier.md
-    03-exigences-tracabilite.md
-    04-cas-de-test-donnees.md
-    05-etats-exploration-anomalies.md
-    06-automatisation-bilan.md
+  Entity/ Service/ Controller/   # suite « unitaire »
+  Integration/                   # suite « integration »
+  Functional/                    # suite « fonctionnel » (Catalogue/ = cas TC officiels)
+  Support/                       # fixtures et classes de base
+  Playwright/                    # parcours navigateur, états, accessibilité
+  k6/                            # test de charge
+postman/                         # collection et environnement Newman
+scripts/                         # run-regression.ps1, run-newman.js, run-k6.js
+preuves/semaineN/                # sorties brutes, rapports JUnit, captures
+docs/dossier-tests/              # dossier de test (ce document)
+.github/workflows/ci.yml         # intégration continue
 ```
 
-Les répertoires `Integration/` et `e2e/` sont des emplacements proposés, pas des suites déjà présentes. Ne pas créer de fichiers de test vides pour simuler un livrable.
+Flux Git :
 
-### Flux Git proposé
+1. `main` est la branche de référence ; le tag `baseline-v0` marque l'état initial et `v1.0.0` la campagne du 11/11.
+2. La campagne est conduite sur `test/campagne-finale` ; les corrections sont faites sur des branches `fix/*`, puis fusionnées après rejeu.
+3. Messages de commit explicites (`test(s7): …`, `fix(reservation): …`, `docs: …`).
+4. Le SHA de la révision testée est consigné dans chaque rapport d'exécution ; un tag publié n'est jamais déplacé.
+5. Chaque push sur `main`, `test/**` ou `fix/**` déclenche la CI (régression PHPUnit, rejeu des anomalies, couverture, rapports en artefacts).
 
-1. Partir de la branche de référence validée par l'équipe; la branche de référence est `main` ; la campagne finale est conduite sur `test/campagne-finale`, publiée séparément sans fusion. (Mention initiale : la politique de branche devait être confirmée.
-2. Créer une branche de travail courte, par exemple `test/semaine-02-plan` ou `test/semaine-06-reservation`.
-3. Garder les modifications de plan, tests et configuration limitées au sujet; ne pas mélanger secrets ou données locales.
-4. Relire le diff (`git diff --check`, puis `git diff`) et vérifier les nouveaux fichiers avant de committer.
-5. Utiliser des messages de commit explicites, par exemple `docs(test): define campaign strategy`.
-6. Après revue, fusionner selon la politique du cours/projet; taguer une version de campagne uniquement si l'équipe le demande.
-7. Consigner le SHA de la version sous test dans les rapports; ne pas déplacer un tag de campagne déjà publié.
+## 2.5 Calendrier de 10 semaines
 
-Les commandes `git add`, `git commit` et `git tag` ne sont pas exécutées ici : le plan reste en attente de revue et le dépôt contient d'autres changements de travail.
+| Semaine | Thème | Livrable | État |
+|---|---|---|---|
+| 1 | Compréhension, risques, périmètre | `docs/semaine1-fiche-risques.pdf`, [01](01-cadrage-risques.md) | Réalisé |
+| 2 | Stratégie et plan de test | Ce document, `docs/semaine2-plan-de-test.pdf` | Réalisé (v2.0 le 21/11) |
+| 3 | Exigences, critères d'acceptation, traçabilité | PDF semaine 3, [09](09-matrice-tracabilite.md) | Réalisé |
+| 4 | Conception des cas de test | PDF semaine 4 (28 cas TC), [04](04-cas-de-test-donnees.md) | Réalisé |
+| 5 | Transitions d'état, droits, exploration | [05](05-etats-exploration-anomalies.md) | Réalisé |
+| 6 | Tests unitaires et couverture | [06](06-automatisation-bilan.md) | Réalisé |
+| 7 | Intégration et base de données | [10](10-semaine7-integration.md) | Réalisé |
+| 8 | API | [11](11-semaine8-api.md) | Réalisé |
+| 9 | Interface et non fonctionnel | [12](12-semaine9-interface-non-fonctionnel.md) | Réalisé |
+| 10 | Campagne finale et décision | [14](14-semaine10-bilan-decision.md), [07](07-registre-anomalies.md) | Réalisé (NO-GO) ; rejeu après corrections à venir |
 
-## 2.4 Calendrier de 10 semaines
+## 2.6 Critères d'entrée
 
-| Semaine | Thème et activités | Livrables / critère de fin |
+1. Révision Git (SHA ou tag) et configuration de test consignées.
+2. Règles ambiguës arbitrées ou marquées bloquantes.
+3. Base `wassalni_test` disponible, migrée, schéma valide.
+4. Comptes fictifs disponibles pour chaque rôle.
+5. CI verte sur la révision candidate (régression PHPUnit sans échec).
+
+## 2.7 Critères de sortie
+
+### 2.7.1 Critères qualitatifs (en vigueur depuis la version 1.1)
+
+- tous les cas de priorité P1 exécutés et réussis ;
+- aucun défaut S1 ou S2 ouvert, sauf acceptation documentée par le responsable habilité ;
+- aucune incohérence de stock ou de prix après réservation, annulation et relecture en base ;
+- tests unitaires, d'intégration, API et d'interface exécutés sur la même révision ;
+- aucune exigence critique sans test ;
+- régression réussie après la dernière correction ;
+- limites, anomalies acceptées et risques résiduels documentés.
+
+### 2.7.2 Seuils quantitatifs (ajoutés en version 2.0)
+
+| Indicateur | Seuil | Mesure |
 |---|---|---|
-| 1 | Découvrir les parcours; distinguer erreur/défaut/défaillance et vérification/validation; cadrer les risques | Fiche projet, périmètre et risques : [cadrage](01-cadrage-risques.md) |
-| 2 | Choisir niveaux, environnements, outils, responsabilités, critères; organiser le dépôt | Cette stratégie versionnée, calendrier et conventions de preuve |
-| 3 | Examiner les règles, lever les ambiguïtés et définir des critères vérifiables | [Exigences et traçabilité](03-exigences-tracabilite.md), visa des règles ouvertes |
-| 4 | Partitions d'équivalence, limites, scénarios positifs/négatifs et jeux de données | [Catalogue de plus de 15 cas](04-cas-de-test-donnees.md), données fictives |
-| 5 | Modéliser les transitions; vérifier droits et conduire l'exploration | [Cycle de vie et explorations](05-etats-exploration-anomalies.md), anomalies reproductibles |
-| 6 | Automatiser les règles métier en AAA; analyser assertions et couverture | 27 tests automatisés exécutés; couverture non mesurée, tests à compléter selon les risques |
-| 7 | Tester CRUD, intégrité et échecs de persistance | Au moins 3 tests d'intégration exécutés et preuves; base isolée |
-| 8 | Tester méthodes, en-têtes, JSON, statuts et autorisations | Collection/API report pour l'endpoint AJAX identifié; couverture REST complète uniquement si contrat fourni |
-| 9 | Parcours navigateur puis évaluation non fonctionnelle et régression | Scénario automatisé, rapport non fonctionnel et liste de régression exécutée |
-| 10 | Consolider les anomalies, réexécuter la régression, évaluer risques résiduels | [Bilan et décision argumentée](06-automatisation-bilan.md), visa final |
+| Régression PHPUnit | 100 % de réussite, 0 dépréciation | `vendor/bin/phpunit` (CI et local) |
+| Couverture globale des lignes de `src/` | **≥ 30 %** | PCOV, régression complète |
+| Couverture des classes critiques (`ReservationController`, `TrajetController`, `ReclamationController`, `Reservation`, `Reclamation`, `ReservationService`) | **≥ 80 %** chacune | Rapport Clover |
+| Exigences exécutées | ≥ 90 % (et 100 % des exigences liées aux risques de niveau ≥ 6) | [Matrice 09](09-matrice-tracabilite.md) |
+| Défauts ouverts | 0 S1, 0 S2 | [Registre 07](07-registre-anomalies.md) |
+| API (Newman) | 100 % des assertions réussies | `scripts/run-newman.js` |
+| Parcours critique Playwright | Réussi | `reservation-flow.spec.js` |
+| Performance (k6, 5 VU, 30 s) | Échecs HTTP < 1 % ; p95 < 1 500 ms ; contrôles > 99 % | `tests/k6/recherche-charge.js` |
+| Accessibilité (axe-core) | 0 violation critique sur les pages du parcours critique | `semaine9-accessibilite-securite.spec.js` |
 
-Ce calendrier décrit le travail à réaliser. Il ne constitue pas un historique d'exécution : les semaines 6 à 10 ne sont pas déclarées achevées sur la seule base de ce dossier.
+La couverture est un indicateur, pas une preuve d'absence de défaut : une classe très couverte peut contenir des anomalies (cas de `ReservationController`, 84,5 % et 5 anomalies).
 
-## 2.5 Critères d'entrée
+### 2.7.3 Règle de décision
 
-1. Révision Git (SHA/tag) et configuration test consignés.
-2. Besoins fonctionnels et règles ambiguës arbitrés ou explicitement marqués bloquants.
-3. Base de test disponible, migrée et réinitialisable sans toucher à des données utiles.
-4. Comptes fictifs disponibles pour chaque rôle; procédure d'authentification de test fonctionnelle.
-5. Cas et résultats attendus relus par le responsable métier.
+| Décision | Condition |
+|---|---|
+| **Validation** | Tous les critères du §2.7.1 et tous les seuils du §2.7.2 atteints |
+| **Validation conditionnelle** | 0 S1 et 0 S2 ; seuils de régression et de couverture atteints ; écarts restants (S3/S4, accessibilité, performance) acceptés, datés et assortis de conditions de livraison |
+| **Refus de livraison** | Au moins un défaut S1 ou S2 ouvert, une incohérence de stock ou de prix, ou une régression en échec |
 
-## 2.6 Critères de sortie et arrêt
+## 2.8 Arrêt de la campagne
 
-La recommandation **GO** nécessite, au minimum :
-
-- tous les cas de priorité P1 exécutés et réussis;
-- aucun défaut ouvert de sévérité S1/S2, sauf acceptation documentée par le responsable habilité;
-- aucune incohérence de stock/prix après réservation, annulation et relecture depuis la base;
-- tests unitaires, intégration, HTTP/API et parcours d'interface convenus exécutés sur la même révision;
-- couverture exigences–tests sans exigence critique orpheline;
-- régression réussie après la dernière correction;
-- limites, anomalies acceptées et risques résiduels signés.
-
-Arrêter la campagne si elle cible la mauvaise base, si les fixtures touchent des données réelles ou si une dépendance métier empêche d'établir le résultat attendu. Le résultat est alors **Bloqué**, jamais « réussi » par défaut.
+La campagne est arrêtée si elle cible la mauvaise base, si des fixtures touchent des données réelles ou si une dépendance métier empêche d'établir le résultat attendu. Le résultat est alors **Bloqué**, jamais « réussi » par défaut.
