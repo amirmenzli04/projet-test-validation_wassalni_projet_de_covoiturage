@@ -1,0 +1,8 @@
+﻿# k6 (performance) | 2026-11-21 18:31:32 +01:00 | revision 1ed214b | base wassalni_test
+# 2026-11-21T17:31:36.455Z | base wassalni_test | trajet 56 | k6.exe v2.3.0 (commit/e088784614, go1.26.8, windows/amd64)
+Sc├®nario : 5 utilisateurs virtuels pendant 30 s (pause 1 s par it├®ration), 4 requ├¬tes par it├®ration
+Requ├¬tes : 412 ; d├®bit 13.13 req/s ; it├®rations 103
+├ëchecs HTTP : 0.00 % ; v├®rifications r├®ussies : 100.00 %
+Dur├®e (toutes pages) : moy 123.9 ms ; m├®diane 114.4 ms ; p95 250.8 ms ; max 310.6 ms
+Dur├®e recherche : p95 219.6 ms
+Seuils : checks RESPECT├ë ; http_req_duration RESPECT├ë ; http_req_duration{page:recherche} RESPECT├ë ; http_req_failed RESPECT├ë

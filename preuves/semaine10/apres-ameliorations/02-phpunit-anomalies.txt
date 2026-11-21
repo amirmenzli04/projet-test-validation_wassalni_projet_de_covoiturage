@@ -1,0 +1,4177 @@
+﻿# PHPUnit anomalies ouvertes | 2026-11-21 18:28:52 +01:00 | revision 1ed214b | base wassalni_test
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: C:\Users\Dogui\wassalni-tests\phpunit.dist.xml
+
+FDDFFFFFFFFFFFFFFFFFFFFFFFF                                       27 / 27 (100%)
+
+Time: 00:03.176, Memory: 52.00 MB
+
+Avis Reclamation (App\Tests\Functional\Catalogue\AvisReclamation)
+ ÔÜá TC-33 (CA-18, EX-21) ÔÇö notes 0, 1, 5, 6 sur un trajet termin├® : 0 et 6 refus├®es, 1 et 5 accept├®es
+ ÔÜá CA-18 (EX-22) ÔÇö second avis sur le m├¬me trajet : refus├®, un seul avis
+ Ô£ÿ CA-18 (EX-21) ÔÇö avis sur T-NOMINAL avant la fin du trajet (d├®part J+7) : refus├®
+   Ôöé
+   Ôöé Failed asserting that two arrays are identical.
+   Ôöé --- Expected
+   Ôöé +++ Actual
+   Ôöé @@ @@
+   Ôöé  Array &0 [
+   Ôöé -    'formulaire_propose' => false,
+   Ôöé -    'avis_enregistres' => 0,
+   Ôöé +    'formulaire_propose' => true,
+   Ôöé +    'avis_enregistres' => 1,
+   Ôöé  ]
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:70
+   Ôöé
+
+Connexion Acces (App\Tests\Functional\Catalogue\ConnexionAcces)
+ Ô£ÿ A-09 ÔÇö le message d'├®chec de connexion est r├®dig├® en fran├ºais
+   Ôöé
+   Ôöé Message affich├® : ┬½ Invalid credentials. ┬╗
+   Ôöé Failed asserting that 'Invalid credentials.' [ASCII](length: 20) does not contain "Invalid credentials" [ASCII](length: 19).
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:55
+   Ôöé
+ Ô£ÿ CA-20 (EX-27, EX-35) ÔÇö admin supprime U-PASS1 qui a des r├®servations : refus propre ou propagation, sans erreur 500
+   Ôöé
+   Ôöé Suppression d'un utilisateur ayant des r├®servations : erreur serveur HTTP 500
+   Ôöé Failed asserting that 500 is less than 500.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:51
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:193
+   Ôöé
+ Ô£ÿ CA-20 (EX-28) ÔÇö admin supprime T-P4 vis├® par une r├®clamation : refus explicite ou propagation, sans erreur 500
+   Ôöé
+   Ôöé Suppression d'un trajet vis├® par une r├®clamation : erreur serveur HTTP 500
+   Ôöé Failed asserting that 500 is less than 500.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:51
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:209
+   Ôöé
+ Ô£ÿ CA-16 (EX-26) ÔÇö tableau de bord admin : le compteur ┬½ R├®clamations ┬╗ ├®gale le nombre en attente en base
+   Ôöé
+   Ôöé Failed asserting that 0 is identical to 6.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:226
+   Ôöé
+ Ô£ÿ Disponibilit├® (OBS-H) ÔÇö /avis/conducteur/{id} et /inscription r├®pondent sans erreur serveur
+   Ôöé
+   Ôöé {"\/avis\/conducteur\/{id}":500,"\/inscription":500}
+   Ôöé Failed asserting that two arrays are identical.
+   Ôöé --- Expected
+   Ôöé +++ Actual
+   Ôöé @@ @@
+   Ôöé  Array &0 [
+   Ôöé -    '/avis/conducteur/{id}' => false,
+   Ôöé -    '/inscription' => false,
+   Ôöé +    '/avis/conducteur/{id}' => true,
+   Ôöé +    '/inscription' => true,
+   Ôöé  ]
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:239
+   Ôöé
+ Ô£ÿ EX-29 ÔÇö U-PASS1 ouvre son tableau de bord /passager/dashboard : page affich├®e (pas d'erreur serveur)
+   Ôöé
+   Ôöé /passager/dashboard : erreur serveur HTTP 500
+   Ôöé Failed asserting that 500 is less than 500.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:51
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:249
+   Ôöé
+ Ô£ÿ Retour utilisateur ÔÇö r├®ponse administrateur vide : le message ┬½ Veuillez saisir une r├®ponse ┬╗ est affich├® apr├¿s redirection
+   Ôöé
+   Ôöé Failed asserting that '<!DOCTYPE html>\n
+   Ôöé <html lang="fr">\n
+   Ôöé <head>\n
+   Ôöé     <meta charset="UTF-8">\n
+   Ôöé     <meta name="viewport" content="width=device-width, initial-scale=1.0">\n
+   Ôöé \n
+   Ôöé     <title>\n
+   Ôöé         Gestion des r├®clamations - Admin    </title>\n
+   Ôöé \n
+   Ôöé     <!-- Fonts -->\n
+   Ôöé     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">\n
+   Ôöé \n
+   Ôöé     <!-- Icons -->\n
+   Ôöé     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">\n
+   Ôöé \n
+   Ôöé     <style>\n
+   Ôöé \n
+   Ôöé         *{\n
+   Ôöé             margin:0;\n
+   Ôöé             padding:0;\n
+   Ôöé             box-sizing:border-box;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         :root{\n
+   Ôöé             --primary:#6d28d9;\n
+   Ôöé             --primary-dark:#4c1d95;\n
+   Ôöé             --secondary:#8b5cf6;\n
+   Ôöé             --dark:#0f172a;\n
+   Ôöé             --dark-2:#1e293b;\n
+   Ôöé             --light:#f8fafc;\n
+   Ôöé             --border:#e2e8f0;\n
+   Ôöé             --text:#334155;\n
+   Ôöé             --white:#ffffff;\n
+   Ôöé             --gold:#facc15;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         body{\n
+   Ôöé             font-family:'Inter',sans-serif;\n
+   Ôöé             background:var(--light);\n
+   Ôöé             color:var(--text);\n
+   Ôöé             overflow-x:hidden;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                            NAVBAR\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .navbar{\n
+   Ôöé             position:sticky;\n
+   Ôöé             top:0;\n
+   Ôöé             z-index:9999;\n
+   Ôöé \n
+   Ôöé             background:\n
+   Ôöé                 linear-gradient(\n
+   Ôöé                     135deg,\n
+   Ôöé                     #0f172a 0%,\n
+   Ôöé                     #1e1b4b 45%,\n
+   Ôöé                     #4c1d95 100%\n
+   Ôöé                 );\n
+   Ôöé \n
+   Ôöé             backdrop-filter:blur(20px);\n
+   Ôöé \n
+   Ôöé             border-bottom:1px solid rgba(255,255,255,0.08);\n
+   Ôöé \n
+   Ôöé             box-shadow:\n
+   Ôöé                 0 10px 30px rgba(0,0,0,0.08);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .nav-container{\n
+   Ôöé             max-width:1600px;\n
+   Ôöé             margin:auto;\n
+   Ôöé \n
+   Ôöé             min-height:82px;\n
+   Ôöé \n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             justify-content:space-between;\n
+   Ôöé \n
+   Ôöé             gap:25px;\n
+   Ôöé \n
+   Ôöé             padding:0 25px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                            LOGO\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .logo{\n
+   Ôöé             flex-shrink:0;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .logo a{\n
+   Ôöé             text-decoration:none;\n
+   Ôöé \n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             gap:12px;\n
+   Ôöé \n
+   Ôöé             font-size:30px;\n
+   Ôöé             font-weight:900;\n
+   Ôöé             letter-spacing:-1px;\n
+   Ôöé \n
+   Ôöé             color:white;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .logo-icon{\n
+   Ôöé             width:50px;\n
+   Ôöé             height:50px;\n
+   Ôöé \n
+   Ôöé             border-radius:16px;\n
+   Ôöé \n
+   Ôöé             background:\n
+   Ôöé                 linear-gradient(\n
+   Ôöé                     135deg,\n
+   Ôöé                     #facc15,\n
+   Ôöé                     #fde047\n
+   Ôöé                 );\n
+   Ôöé \n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             justify-content:center;\n
+   Ôöé \n
+   Ôöé             box-shadow:\n
+   Ôöé                 0 10px 20px rgba(250,204,21,0.3);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .logo-icon i{\n
+   Ôöé             color:#4c1d95;\n
+   Ôöé             font-size:24px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .logo-text{\n
+   Ôöé             display:flex;\n
+   Ôöé             flex-direction:column;\n
+   Ôöé             line-height:1;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .logo-text strong{\n
+   Ôöé             color:white;\n
+   Ôöé             font-size:28px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .logo-text span{\n
+   Ôöé             font-size:11px;\n
+   Ôöé             color:#c4b5fd;\n
+   Ôöé             letter-spacing:2px;\n
+   Ôöé             margin-top:4px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                         NAVIGATION LINKS\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .nav-links{\n
+   Ôöé             flex:1;\n
+   Ôöé \n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             justify-content:center;\n
+   Ôöé \n
+   Ôöé             gap:10px;\n
+   Ôöé \n
+   Ôöé             min-width:0;\n
+   Ôöé \n
+   Ôöé             overflow-x:auto;\n
+   Ôöé             overflow-y:hidden;\n
+   Ôöé \n
+   Ôöé             scrollbar-width:none;\n
+   Ôöé \n
+   Ôöé             padding:8px 5px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .nav-links::-webkit-scrollbar{\n
+   Ôöé             display:none;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* IMPORTANT :\n
+   Ôöé            TOUS LES TABS SERONT VISIBLES */\n
+   Ôöé         .nav-links a{\n
+   Ôöé             flex-shrink:0;\n
+   Ôöé \n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             gap:10px;\n
+   Ôöé \n
+   Ôöé             padding:12px 18px;\n
+   Ôöé \n
+   Ôöé             border-radius:18px;\n
+   Ôöé \n
+   Ôöé             text-decoration:none;\n
+   Ôöé \n
+   Ôöé             color:#e2e8f0;\n
+   Ôöé \n
+   Ôöé             font-size:14px;\n
+   Ôöé             font-weight:600;\n
+   Ôöé \n
+   Ôöé             transition:0.3s ease;\n
+   Ôöé \n
+   Ôöé             white-space:nowrap;\n
+   Ôöé \n
+   Ôöé             position:relative;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .nav-links a i{\n
+   Ôöé             font-size:15px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .nav-links a:hover{\n
+   Ôöé             background:rgba(255,255,255,0.12);\n
+   Ôöé \n
+   Ôöé             color:white;\n
+   Ôöé \n
+   Ôöé             transform:translateY(-2px);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .nav-links a.active{\n
+   Ôöé             background:\n
+   Ôöé                 linear-gradient(\n
+   Ôöé                     135deg,\n
+   Ôöé                     rgba(255,255,255,0.18),\n
+   Ôöé                     rgba(255,255,255,0.08)\n
+   Ôöé                 );\n
+   Ôöé \n
+   Ôöé             color:#fff;\n
+   Ôöé \n
+   Ôöé             box-shadow:\n
+   Ôöé                 0 10px 20px rgba(0,0,0,0.15);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                          USER MENU\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .user-menu{\n
+   Ôöé             flex-shrink:0;\n
+   Ôöé \n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             gap:15px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .btn-login{\n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             gap:10px;\n
+   Ôöé \n
+   Ôöé             text-decoration:none;\n
+   Ôöé \n
+   Ôöé             padding:12px 24px;\n
+   Ôöé \n
+   Ôöé             border-radius:50px;\n
+   Ôöé \n
+   Ôöé             color:white;\n
+   Ôöé             font-weight:700;\n
+   Ôöé \n
+   Ôöé             background:\n
+   Ôöé                 linear-gradient(\n
+   Ôöé                     135deg,\n
+   Ôöé                     #8b5cf6,\n
+   Ôöé                     #6d28d9\n
+   Ôöé                 );\n
+   Ôöé \n
+   Ôöé             transition:0.3s ease;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .btn-login:hover{\n
+   Ôöé             transform:translateY(-3px);\n
+   Ôöé \n
+   Ôöé             box-shadow:\n
+   Ôöé                 0 15px 25px rgba(109,40,217,0.35);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                       USER PROFILE\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .dropdown{\n
+   Ôöé             position:relative;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .user-info{\n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             gap:14px;\n
+   Ôöé \n
+   Ôöé             padding:10px 18px;\n
+   Ôöé \n
+   Ôöé             border-radius:60px;\n
+   Ôöé \n
+   Ôöé             background:rgba(255,255,255,0.1);\n
+   Ôöé \n
+   Ôöé             border:1px solid rgba(255,255,255,0.12);\n
+   Ôöé \n
+   Ôöé             cursor:pointer;\n
+   Ôöé \n
+   Ôöé             transition:0.3s ease;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .user-info:hover{\n
+   Ôöé             background:rgba(255,255,255,0.18);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .user-avatar{\n
+   Ôöé             width:42px;\n
+   Ôöé             height:42px;\n
+   Ôöé \n
+   Ôöé             border-radius:50%;\n
+   Ôöé \n
+   Ôöé             background:\n
+   Ôöé                 linear-gradient(\n
+   Ôöé                     135deg,\n
+   Ôöé                     #facc15,\n
+   Ôöé                     #fde047\n
+   Ôöé                 );\n
+   Ôöé \n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             justify-content:center;\n
+   Ôöé \n
+   Ôöé             flex-shrink:0;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .user-avatar i{\n
+   Ôöé             color:#4c1d95;\n
+   Ôöé             font-size:18px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .user-details{\n
+   Ôöé             display:flex;\n
+   Ôöé             flex-direction:column;\n
+   Ôöé             line-height:1.2;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .user-details strong{\n
+   Ôöé             color:white;\n
+   Ôöé             font-size:14px;\n
+   Ôöé             font-weight:700;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .user-details span{\n
+   Ôöé             color:#cbd5e1;\n
+   Ôöé             font-size:12px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                         DROPDOWN MENU\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .dropdown-menu{\n
+   Ôöé             position:absolute;\n
+   Ôöé \n
+   Ôöé             top:72px;\n
+   Ôöé             right:0;\n
+   Ôöé \n
+   Ôöé             width:280px;\n
+   Ôöé \n
+   Ôöé             background:white;\n
+   Ôöé \n
+   Ôöé             border-radius:24px;\n
+   Ôöé \n
+   Ôöé             overflow:hidden;\n
+   Ôöé \n
+   Ôöé             opacity:0;\n
+   Ôöé             visibility:hidden;\n
+   Ôöé             transform:translateY(15px);\n
+   Ôöé \n
+   Ôöé             transition:0.3s ease;\n
+   Ôöé \n
+   Ôöé             box-shadow:\n
+   Ôöé                 0 20px 40px rgba(0,0,0,0.12);\n
+   Ôöé \n
+   Ôöé             z-index:9999;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown:hover .dropdown-menu{\n
+   Ôöé             opacity:1;\n
+   Ôöé             visibility:visible;\n
+   Ôöé             transform:translateY(0);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-header{\n
+   Ôöé             padding:22px;\n
+   Ôöé \n
+   Ôöé             background:\n
+   Ôöé                 linear-gradient(\n
+   Ôöé                     135deg,\n
+   Ôöé                     #6d28d9,\n
+   Ôöé                     #4c1d95\n
+   Ôöé                 );\n
+   Ôöé \n
+   Ôöé             color:white;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-header h4{\n
+   Ôöé             font-size:16px;\n
+   Ôöé             margin-bottom:5px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-header p{\n
+   Ôöé             font-size:13px;\n
+   Ôöé             opacity:0.9;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-menu a{\n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             gap:14px;\n
+   Ôöé \n
+   Ôöé             padding:15px 22px;\n
+   Ôöé \n
+   Ôöé             text-decoration:none;\n
+   Ôöé \n
+   Ôöé             color:#1e293b;\n
+   Ôöé \n
+   Ôöé             font-weight:600;\n
+   Ôöé             font-size:14px;\n
+   Ôöé \n
+   Ôöé             border-bottom:1px solid #f1f5f9;\n
+   Ôöé \n
+   Ôöé             transition:0.25s ease;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-menu a:last-child{\n
+   Ôöé             border-bottom:none;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-menu a i{\n
+   Ôöé             width:18px;\n
+   Ôöé             color:#6d28d9;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-menu a:hover{\n
+   Ôöé             background:#f8fafc;\n
+   Ôöé             padding-left:30px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-menu .logout{\n
+   Ôöé             color:#dc2626;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-menu .logout i{\n
+   Ôöé             color:#dc2626;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-menu .logout:hover{\n
+   Ôöé             background:#fef2f2;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                          MOBILE BUTTON\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .mobile-menu-btn{\n
+   Ôöé             display:none;\n
+   Ôöé \n
+   Ôöé             width:46px;\n
+   Ôöé             height:46px;\n
+   Ôöé \n
+   Ôöé             border:none;\n
+   Ôöé \n
+   Ôöé             border-radius:14px;\n
+   Ôöé \n
+   Ôöé             background:rgba(255,255,255,0.12);\n
+   Ôöé \n
+   Ôöé             color:white;\n
+   Ôöé \n
+   Ôöé             cursor:pointer;\n
+   Ôöé \n
+   Ôöé             font-size:20px;\n
+   Ôöé \n
+   Ôöé             transition:0.3s ease;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .mobile-menu-btn:hover{\n
+   Ôöé             background:rgba(255,255,255,0.2);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                         MAIN CONTENT\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .main-content{\n
+   Ôöé             min-height:calc(100vh - 170px);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                            FOOTER\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .footer{\n
+   Ôöé             margin-top:80px;\n
+   Ôöé \n
+   Ôöé             background:\n
+   Ôöé                 linear-gradient(\n
+   Ôöé                     135deg,\n
+   Ôöé                     #0f172a,\n
+   Ôöé                     #1e1b4b\n
+   Ôöé                 );\n
+   Ôöé \n
+   Ôöé             color:white;\n
+   Ôöé \n
+   Ôöé             text-align:center;\n
+   Ôöé \n
+   Ôöé             padding:45px 20px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .footer p{\n
+   Ôöé             opacity:0.75;\n
+   Ôöé             font-size:14px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                         RESPONSIVE TABLET\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         @media(max-width:1200px){\n
+   Ôöé \n
+   Ôöé             .nav-links{\n
+   Ôöé                 justify-content:flex-start;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                         RESPONSIVE MOBILE\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         @media(max-width:900px){\n
+   Ôöé \n
+   Ôöé             .nav-container{\n
+   Ôöé                 min-height:75px;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .mobile-menu-btn{\n
+   Ôöé                 display:flex;\n
+   Ôöé                 align-items:center;\n
+   Ôöé                 justify-content:center;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .nav-links{\n
+   Ôöé                 position:absolute;\n
+   Ôöé \n
+   Ôöé                 top:75px;\n
+   Ôöé                 left:0;\n
+   Ôöé                 right:0;\n
+   Ôöé \n
+   Ôöé                 display:flex;\n
+   Ôöé                 flex-direction:column;\n
+   Ôöé                 align-items:stretch;\n
+   Ôöé                 justify-content:flex-start;\n
+   Ôöé \n
+   Ôöé                 gap:10px;\n
+   Ôöé \n
+   Ôöé                 padding:20px;\n
+   Ôöé \n
+   Ôöé                 background:\n
+   Ôöé                     linear-gradient(\n
+   Ôöé                         135deg,\n
+   Ôöé                         #0f172a,\n
+   Ôöé                         #1e1b4b\n
+   Ôöé                     );\n
+   Ôöé \n
+   Ôöé                 max-height:0;\n
+   Ôöé                 overflow:hidden;\n
+   Ôöé \n
+   Ôöé                 opacity:0;\n
+   Ôöé \n
+   Ôöé                 transition:0.4s ease;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .nav-links.mobile-open{\n
+   Ôöé                 max-height:1000px;\n
+   Ôöé                 opacity:1;\n
+   Ôöé                 overflow-y:auto;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .nav-links a{\n
+   Ôöé                 width:100%;\n
+   Ôöé                 justify-content:flex-start;\n
+   Ôöé \n
+   Ôöé                 padding:14px 18px;\n
+   Ôöé \n
+   Ôöé                 border-radius:16px;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .user-details{\n
+   Ôöé                 display:none;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .dropdown-menu{\n
+   Ôöé                 right:-20px;\n
+   Ôöé                 width:260px;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         @media(max-width:600px){\n
+   Ôöé \n
+   Ôöé             .logo-text strong{\n
+   Ôöé                 font-size:22px;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .logo-icon{\n
+   Ôöé                 width:42px;\n
+   Ôöé                 height:42px;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .logo-icon i{\n
+   Ôöé                 font-size:20px;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .btn-login span{\n
+   Ôöé                 display:none;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .btn-login{\n
+   Ôöé                 width:46px;\n
+   Ôöé                 height:46px;\n
+   Ôöé                 padding:0;\n
+   Ôöé \n
+   Ôöé                 justify-content:center;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé     </style>\n
+   Ôöé \n
+   Ôöé     \n
+   Ôöé <style>\n
+   Ôöé     .page-header {\n
+   Ôöé         background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #4c1d95 100%);\n
+   Ôöé         padding: 50px 0 70px 0;\n
+   Ôöé         text-align: center;\n
+   Ôöé         color: white;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .page-header h1 {\n
+   Ôöé         font-size: 36px;\n
+   Ôöé         font-weight: 800;\n
+   Ôöé         margin-bottom: 10px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .container-custom {\n
+   Ôöé         max-width: 1200px;\n
+   Ôöé         margin: -40px auto 0;\n
+   Ôöé         padding: 0 20px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .card {\n
+   Ôöé         background: white;\n
+   Ôöé         border-radius: 24px;\n
+   Ôöé         overflow: hidden;\n
+   Ôöé         box-shadow: 0 10px 30px rgba(0,0,0,0.08);\n
+   Ôöé         margin-bottom: 30px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .card-header {\n
+   Ôöé         background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%);\n
+   Ôöé         padding: 20px 25px;\n
+   Ôöé         color: white;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .card-header h3 {\n
+   Ôöé         font-size: 18px;\n
+   Ôöé         font-weight: 700;\n
+   Ôöé         margin: 0;\n
+   Ôöé         display: flex;\n
+   Ôöé         align-items: center;\n
+   Ôöé         gap: 10px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .reclamation-card {\n
+   Ôöé         padding: 25px;\n
+   Ôöé         border-bottom: 1px solid #f1f5f9;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .reclamation-card:last-child {\n
+   Ôöé         border-bottom: none;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .reclamation-header {\n
+   Ôöé         display: flex;\n
+   Ôöé         justify-content: space-between;\n
+   Ôöé         align-items: center;\n
+   Ôöé         margin-bottom: 15px;\n
+   Ôöé         flex-wrap: wrap;\n
+   Ôöé         gap: 10px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .reclamation-title {\n
+   Ôöé         font-size: 18px;\n
+   Ôöé         font-weight: 700;\n
+   Ôöé         color: #1e293b;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .badge {\n
+   Ôöé         padding: 4px 12px;\n
+   Ôöé         border-radius: 20px;\n
+   Ôöé         font-size: 11px;\n
+   Ôöé         font-weight: 600;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .badge-warning {\n
+   Ôöé         background: #fef3c7;\n
+   Ôöé         color: #b45309;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .badge-info {\n
+   Ôöé         background: #e0f2fe;\n
+   Ôöé         color: #0369a1;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .badge-success {\n
+   Ôöé         background: #dcfce7;\n
+   Ôöé         color: #15803d;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .reclamation-meta {\n
+   Ôöé         color: #64748b;\n
+   Ôöé         font-size: 13px;\n
+   Ôöé         margin-bottom: 15px;\n
+   Ôöé         display: flex;\n
+   Ôöé         gap: 20px;\n
+   Ôöé         flex-wrap: wrap;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .reclamation-message {\n
+   Ôöé         background: #f8fafc;\n
+   Ôöé         padding: 15px;\n
+   Ôöé         border-radius: 16px;\n
+   Ôöé         margin-bottom: 20px;\n
+   Ôöé         line-height: 1.6;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .response-form {\n
+   Ôöé         margin-top: 20px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .response-form textarea {\n
+   Ôöé         width: 100%;\n
+   Ôöé         padding: 12px;\n
+   Ôöé         border: 2px solid #e2e8f0;\n
+   Ôöé         border-radius: 16px;\n
+   Ôöé         font-family: inherit;\n
+   Ôöé         margin-bottom: 10px;\n
+   Ôöé         resize: vertical;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .response-form textarea:focus {\n
+   Ôöé         outline: none;\n
+   Ôöé         border-color: #4c1d95;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-submit {\n
+   Ôöé         background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%);\n
+   Ôöé         color: white;\n
+   Ôöé         padding: 10px 20px;\n
+   Ôöé         border-radius: 30px;\n
+   Ôöé         border: none;\n
+   Ôöé         cursor: pointer;\n
+   Ôöé         font-weight: 600;\n
+   Ôöé         transition: all 0.3s;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-submit:hover {\n
+   Ôöé         transform: translateY(-2px);\n
+   Ôöé         box-shadow: 0 5px 15px rgba(76, 29, 149, 0.3);\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .response-display {\n
+   Ôöé         background: #f1f5f9;\n
+   Ôöé         padding: 15px;\n
+   Ôöé         border-radius: 16px;\n
+   Ôöé         margin-top: 15px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .response-display strong {\n
+   Ôöé         color: #4c1d95;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     @media (max-width: 768px) {\n
+   Ôöé         .reclamation-header {\n
+   Ôöé             flex-direction: column;\n
+   Ôöé             align-items: flex-start;\n
+   Ôöé         }\n
+   Ôöé     }\n
+   Ôöé </style>\n
+   Ôöé </head>\n
+   Ôöé \n
+   Ôöé <body>\n
+   Ôöé \n
+   Ôöé <!-- ===================================================\n
+   Ôöé                         NAVBAR\n
+   Ôöé =================================================== -->\n
+   Ôöé \n
+   Ôöé <nav class="navbar">\n
+   Ôöé \n
+   Ôöé     <div class="nav-container">\n
+   Ôöé \n
+   Ôöé         <!-- LOGO -->\n
+   Ôöé         <div class="logo">\n
+   Ôöé \n
+   Ôöé             <a href="/">\n
+   Ôöé \n
+   Ôöé                 <div class="logo-icon">\n
+   Ôöé                     <i class="fas fa-car-side"></i>\n
+   Ôöé                 </div>\n
+   Ôöé \n
+   Ôöé                 <div class="logo-text">\n
+   Ôöé                     <strong>Wassalni</strong>\n
+   Ôöé                     <span>TUNISIA</span>\n
+   Ôöé                 </div>\n
+   Ôöé \n
+   Ôöé             </a>\n
+   Ôöé \n
+   Ôöé         </div>\n
+   Ôöé \n
+   Ôöé         <!-- NAVIGATION -->\n
+   Ôöé         <div class="nav-links" id="navLinks">\n
+   Ôöé \n
+   Ôöé             \n
+   Ôöé                 \n
+   Ôöé                     <a href="/admin/dashboard">\n
+   Ôöé                         <i class="fas fa-gauge-high"></i>\n
+   Ôöé                         Dashboard\n
+   Ôöé                     </a>\n
+   Ôöé \n
+   Ôöé                     <a href="/admin/utilisateurs">\n
+   Ôöé                         <i class="fas fa-users"></i>\n
+   Ôöé                         Utilisateurs\n
+   Ôöé                     </a>\n
+   Ôöé \n
+   Ôöé                     <a href="/admin/trajets">\n
+   Ôöé                         <i class="fas fa-route"></i>\n
+   Ôöé                         Trajets\n
+   Ôöé                     </a>\n
+   Ôöé \n
+   Ôöé                     <a href="/admin/reclamations">\n
+   Ôöé                         <i class="fas fa-file-alt"></i>\n
+   Ôöé                         R├®clamations\n
+   Ôöé                     </a>\n
+   Ôöé \n
+   Ôöé                 \n
+   Ôöé             \n
+   Ôöé         </div>\n
+   Ôöé \n
+   Ôöé         <!-- USER MENU -->\n
+   Ôöé         <div class="user-menu">\n
+   Ôöé \n
+   Ôöé             \n
+   Ôöé                 <div class="dropdown">\n
+   Ôöé \n
+   Ôöé                     <div class="user-info">\n
+   Ôöé \n
+   Ôöé                         <div class="user-avatar">\n
+   Ôöé                             <i class="fas fa-user"></i>\n
+   Ôöé                         </div>\n
+   Ôöé \n
+   Ôöé                         <div class="user-details">\n
+   Ôöé \n
+   Ôöé                             <strong>\n
+   Ôöé                                 U-ADMIN\n
+   Ôöé                                 C.\n
+   Ôöé                             </strong>\n
+   Ôöé \n
+   Ôöé                             <span>\n
+   Ôöé                                                                     Administrateur\n
+   Ôöé                                                             </span>\n
+   Ôöé \n
+   Ôöé                         </div>\n
+   Ôöé \n
+   Ôöé                         <i class="fas fa-chevron-down" style="color:white;font-size:12px;"></i>\n
+   Ôöé \n
+   Ôöé                     </div>\n
+   Ôöé \n
+   Ôöé                     <!-- DROPDOWN -->\n
+   Ôöé                     <div class="dropdown-menu">\n
+   Ôöé \n
+   Ôöé                         <div class="dropdown-header">\n
+   Ôöé \n
+   Ôöé                             <h4>\n
+   Ôöé                                 U-ADMIN\n
+   Ôöé                                 Catalogue\n
+   Ôöé                             </h4>\n
+   Ôöé \n
+   Ôöé                             <p>\n
+   Ôöé                                                                     Administrateur\n
+   Ôöé                                                             </p>\n
+   Ôöé \n
+   Ôöé                         </div>\n
+   Ôöé \n
+   Ôöé                         <a href="/reclamation/mes-reclamations">\n
+   Ôöé                             <i class="fas fa-file-alt"></i>\n
+   Ôöé                             Mes r├®clamations\n
+   Ôöé                         </a>\n
+   Ôöé \n
+   Ôöé                         <a href="/reclamation/nouvelle">\n
+   Ôöé                             <i class="fas fa-plus-circle"></i>\n
+   Ôöé                             Nouvelle r├®clamation\n
+   Ôöé                         </a>\n
+   Ôöé \n
+   Ôöé                         <a href="/deconnexion"\n
+   Ôöé                            class="logout"\n
+   Ôöé                            onclick="return confirm('D├®connexion ?')">\n
+   Ôöé \n
+   Ôöé                             <i class="fas fa-right-from-bracket"></i>\n
+   Ôöé                             D├®connexion\n
+   Ôöé \n
+   Ôöé                         </a>\n
+   Ôöé \n
+   Ôöé                     </div>\n
+   Ôöé \n
+   Ôöé                 </div>\n
+   Ôöé \n
+   Ôöé             \n
+   Ôöé         </div>\n
+   Ôöé \n
+   Ôöé         <!-- MOBILE BUTTON -->\n
+   Ôöé         <button class="mobile-menu-btn" id="mobileMenuBtn">\n
+   Ôöé \n
+   Ôöé             <i class="fas fa-bars"></i>\n
+   Ôöé \n
+   Ôöé         </button>\n
+   Ôöé \n
+   Ôöé     </div>\n
+   Ôöé \n
+   Ôöé </nav>\n
+   Ôöé \n
+   Ôöé <!-- ===================================================\n
+   Ôöé                       MAIN CONTENT\n
+   Ôöé =================================================== -->\n
+   Ôöé \n
+   Ôöé <main class="main-content">\n
+   Ôöé \n
+   Ôöé     <div class="page-header">\n
+   Ôöé     <div class="container">\n
+   Ôöé         <h1><i class="fas fa-file-alt"></i> Gestion des r├®clamations</h1>\n
+   Ôöé         <p>Consultez et traitez les r├®clamations des utilisateurs</p>\n
+   Ôöé     </div>\n
+   Ôöé </div>\n
+   Ôöé \n
+   Ôöé <div class="container-custom">\n
+   Ôöé     <div class="card">\n
+   Ôöé         <div class="card-header">\n
+   Ôöé             <h3><i class="fas fa-list"></i> Liste des r├®clamations</h3>\n
+   Ôöé         </div>\n
+   Ôöé         \n
+   Ôöé                                     <div class="reclamation-card">\n
+   Ôöé                     <div class="reclamation-header">\n
+   Ôöé                         <div class="reclamation-title">\n
+   Ôöé                             Retard important du conducteur\n
+   Ôöé                         </div>\n
+   Ôöé                         <div>\n
+   Ôöé                                                             <span class="badge badge-success">Trait├®e</span>\n
+   Ôöé                                                     </div>\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-meta">\n
+   Ôöé                         <span><i class="fas fa-user"></i> Mohamed Lajili</span>\n
+   Ôöé                         <span><i class="fas fa-envelope"></i> mohamed.lajili@wassalni.tn</span>\n
+   Ôöé                         <span><i class="fas fa-calendar"></i> 27/04/2026 20:08</span>\n
+   Ôöé                                                     <span><i class="fas fa-route"></i> Trajet #1</span>\n
+   Ôöé                                             </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-message">\n
+   Ôöé                         <strong>Message :</strong><br>\n
+   Ôöé                         Le conducteur avait plus de 45 minutes de retard sans aucun appel ni message. J&#039;ai d├╗ prendre un taxi et j&#039;ai pay├® 60 DT suppl├®mentaire.\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                                             <div class="response-display">\n
+   Ôöé                             <strong><i class="fas fa-reply"></i> R├®ponse :</strong><br>\n
+   Ôöé                             Nous avons contact├® le conducteur et lui avons fait un rappel des r├¿gles. Veuillez nous fournir la facture du taxi pour un ├®ventuel remboursement.\n
+   Ôöé                             <br><br>\n
+   Ôöé                             <small>Date traitement: 29/04/2026 20:08</small>\n
+   Ôöé                         </div>\n
+   Ôöé                                     </div>\n
+   Ôöé                             <div class="reclamation-card">\n
+   Ôöé                     <div class="reclamation-header">\n
+   Ôöé                         <div class="reclamation-title">\n
+   Ôöé                             Annulation 1 heure avant le d├®part\n
+   Ôöé                         </div>\n
+   Ôöé                         <div>\n
+   Ôöé                                                             <span class="badge badge-info">En cours</span>\n
+   Ôöé                                                     </div>\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-meta">\n
+   Ôöé                         <span><i class="fas fa-user"></i> Nour Chedli</span>\n
+   Ôöé                         <span><i class="fas fa-envelope"></i> nour.chedli@wassalni.tn</span>\n
+   Ôöé                         <span><i class="fas fa-calendar"></i> 02/05/2026 20:08</span>\n
+   Ôöé                                                     <span><i class="fas fa-route"></i> Trajet #3</span>\n
+   Ôöé                                             </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-message">\n
+   Ôöé                         <strong>Message :</strong><br>\n
+   Ôöé                         Le conducteur a annul├® le trajet 1 heure avant le d├®part alors que j&#039;avais d├®j├á pris mes dispositions. Je me suis retrouv├® bloqu├® sans solution de transport.\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                                             <form action="/admin/reclamation/traiter/7" method="post" class="response-form">\n
+   Ôöé                             <input type="hidden" name="_token" value="db493557f31412f75233062b.N8subp-eGY2BktCsjR_7mJYSH5bqzaEboXAK91-gOvM.Y6BUN9XJeLvz-4Hpu3LI1_NHcdKmpZht0URjuwD3dJ4FhVQ68_J_tOv6tw">\n
+   Ôöé                             <textarea name="reponse" rows="3" placeholder="Votre r├®ponse..."></textarea>\n
+   Ôöé                             <button type="submit" class="btn-submit">\n
+   Ôöé                                 <i class="fas fa-paper-plane"></i> R├®pondre et traiter\n
+   Ôöé                             </button>\n
+   Ôöé                         </form>\n
+   Ôöé                                     </div>\n
+   Ôöé                             <div class="reclamation-card">\n
+   Ôöé                     <div class="reclamation-header">\n
+   Ôöé                         <div class="reclamation-title">\n
+   Ôöé                             V├®hicule diff├®rent de l&#039;annonce\n
+   Ôöé                         </div>\n
+   Ôöé                         <div>\n
+   Ôöé                                                             <span class="badge badge-warning">En attente</span>\n
+   Ôöé                                                     </div>\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-meta">\n
+   Ôöé                         <span><i class="fas fa-user"></i> Mohamed Lajili</span>\n
+   Ôöé                         <span><i class="fas fa-envelope"></i> mohamed.lajili@wassalni.tn</span>\n
+   Ôöé                         <span><i class="fas fa-calendar"></i> 04/05/2026 20:08</span>\n
+   Ôöé                                                     <span><i class="fas fa-route"></i> Trajet #5</span>\n
+   Ôöé                                             </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-message">\n
+   Ôöé                         <strong>Message :</strong><br>\n
+   Ôöé                         Le v├®hicule annonc├® ├®tait une BMW S├®rie 3 r├®cente, mais le conducteur est venu avec une vieille Clio en mauvais ├®tat, sans climatisation et avec une odeur de tabac.\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                                             <form action="/admin/reclamation/traiter/8" method="post" class="response-form">\n
+   Ôöé                             <input type="hidden" name="_token" value="f431a745a72971.bcnY0G7RXNbB2Eh8zyfrkzUvbKxhq6_sndo2e4dK1k8.JIy851q2BZCIs30IlleY-gV_D_0LxseN_rB9As8JhAQphrqyFIAsjPTgcA">\n
+   Ôöé                             <textarea name="reponse" rows="3" placeholder="Votre r├®ponse..."></textarea>\n
+   Ôöé                             <button type="submit" class="btn-submit">\n
+   Ôöé                                 <i class="fas fa-paper-plane"></i> R├®pondre et traiter\n
+   Ôöé                             </button>\n
+   Ôöé                         </form>\n
+   Ôöé                                     </div>\n
+   Ôöé                             <div class="reclamation-card">\n
+   Ôöé                     <div class="reclamation-header">\n
+   Ôöé                         <div class="reclamation-title">\n
+   Ôöé                             Conducteur impoli et dangereux\n
+   Ôöé                         </div>\n
+   Ôöé                         <div>\n
+   Ôöé                                                             <span class="badge badge-warning">En attente</span>\n
+   Ôöé                                                     </div>\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-meta">\n
+   Ôöé                         <span><i class="fas fa-user"></i> Nour Chedli</span>\n
+   Ôöé                         <span><i class="fas fa-envelope"></i> nour.chedli@wassalni.tn</span>\n
+   Ôöé                         <span><i class="fas fa-calendar"></i> 05/05/2026 20:08</span>\n
+   Ôöé                                                     <span><i class="fas fa-route"></i> Trajet #11</span>\n
+   Ôöé                                             </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-message">\n
+   Ôöé                         <strong>Message :</strong><br>\n
+   Ôöé                         Le conducteur a conduit de mani├¿re dangereuse (exc├¿s de vitesse, t├®l├®phone au volant). De plus, il ├®tait impoli avec tous les passagers.\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                                             <form action="/admin/reclamation/traiter/9" method="post" class="response-form">\n
+   Ôöé                             <input type="hidden" name="_token" value="07720e.Bb98N4p6YJjgih6HIqvcweHo1cfkHyF8i01JLkRveTc.de0vfskDB6y_yEG2dpyshte84LKMUFYz0Xg_cX1bNQJB3i9AuSoU04L5aQ">\n
+   Ôöé                             <textarea name="reponse" rows="3" placeholder="Votre r├®ponse..."></textarea>\n
+   Ôöé                             <button type="submit" class="btn-submit">\n
+   Ôöé                                 <i class="fas fa-paper-plane"></i> R├®pondre et traiter\n
+   Ôöé                             </button>\n
+   Ôöé                         </form>\n
+   Ôöé                                     </div>\n
+   Ôöé                             <div class="reclamation-card">\n
+   Ôöé                     <div class="reclamation-header">\n
+   Ôöé                         <div class="reclamation-title">\n
+   Ôöé                             Passager tr├¿s bruyant\n
+   Ôöé                         </div>\n
+   Ôöé                         <div>\n
+   Ôöé                                                             <span class="badge badge-warning">En attente</span>\n
+   Ôöé                                                     </div>\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-meta">\n
+   Ôöé                         <span><i class="fas fa-user"></i> Mohamed Lajili</span>\n
+   Ôöé                         <span><i class="fas fa-envelope"></i> mohamed.lajili@wassalni.tn</span>\n
+   Ôöé                         <span><i class="fas fa-calendar"></i> 30/04/2026 20:08</span>\n
+   Ôöé                                                     <span><i class="fas fa-route"></i> Trajet #9</span>\n
+   Ôöé                                             </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-message">\n
+   Ôöé                         <strong>Message :</strong><br>\n
+   Ôöé                         Un autre passager a ├®t├® tr├¿s bruyant pendant tout le trajet (musique forte, appels t├®l├®phoniques). Le conducteur n&#039;a rien fait pour calmer la situation.\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                                             <form action="/admin/reclamation/traiter/10" method="post" class="response-form">\n
+   Ôöé                             <input type="hidden" name="_token" value="882f0d5f9e2f15db746d4.FGvSgJnxxIZCXVWCOtIMqZLK6h-MB7OeUKVenvUhQ_Q.LFiF7sGllssEaWXVVoF1x92CknLOKtH8BfMWrIUVMrdaOYDvyoKG7HQvAA">\n
+   Ôöé                             <textarea name="reponse" rows="3" placeholder="Votre r├®ponse..."></textarea>\n
+   Ôöé                             <button type="submit" class="btn-submit">\n
+   Ôöé                                 <i class="fas fa-paper-plane"></i> R├®pondre et traiter\n
+   Ôöé                             </button>\n
+   Ôöé                         </form>\n
+   Ôöé                                     </div>\n
+   Ôöé                             <div class="reclamation-card">\n
+   Ôöé                     <div class="reclamation-header">\n
+   Ôöé                         <div class="reclamation-title">\n
+   Ôöé                             Passager non respectueux\n
+   Ôöé                         </div>\n
+   Ôöé                         <div>\n
+   Ôöé                                                             <span class="badge badge-success">Trait├®e</span>\n
+   Ôöé                                                     </div>\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-meta">\n
+   Ôöé                         <span><i class="fas fa-user"></i> Ahmed Ben Ali</span>\n
+   Ôöé                         <span><i class="fas fa-envelope"></i> ahmed.benali@wassalni.tn</span>\n
+   Ôöé                         <span><i class="fas fa-calendar"></i> 25/04/2026 20:08</span>\n
+   Ôöé                                                     <span><i class="fas fa-route"></i> Trajet #1</span>\n
+   Ôöé                                             </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-message">\n
+   Ôöé                         <strong>Message :</strong><br>\n
+   Ôöé                         Le passager a annul├® sa r├®servation ├á la derni├¿re minute sans raison valable. Cela m&#039;a fait perdre du temps et de l&#039;argent car j&#039;aurais pu prendre d&#039;autres passagers.\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                                             <div class="response-display">\n
+   Ôöé                             <strong><i class="fas fa-reply"></i> R├®ponse :</strong><br>\n
+   Ôöé                             Nous avons not├® ce comportement. Le passager a ├®t├® averti que des annulations r├®p├®t├®es pourraient entra├«ner la suspension de son compte.\n
+   Ôöé                             <br><br>\n
+   Ôöé                             <small>Date traitement: 27/04/2026 20:08</small>\n
+   Ôöé                         </div>\n
+   Ôöé                                     </div>\n
+   Ôöé                             <div class="reclamation-card">\n
+   Ôöé                     <div class="reclamation-header">\n
+   Ôöé                         <div class="reclamation-title">\n
+   Ôöé                             Probl├¿me de paiement double d├®bit\n
+   Ôöé                         </div>\n
+   Ôöé                         <div>\n
+   Ôöé                                                             <span class="badge badge-info">En cours</span>\n
+   Ôöé                                                     </div>\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-meta">\n
+   Ôöé                         <span><i class="fas fa-user"></i> Mohamed Lajili</span>\n
+   Ôöé                         <span><i class="fas fa-envelope"></i> mohamed.lajili@wassalni.tn</span>\n
+   Ôöé                         <span><i class="fas fa-calendar"></i> 03/05/2026 20:08</span>\n
+   Ôöé                                                     <span><i class="fas fa-route"></i> Trajet #3</span>\n
+   Ôöé                                             </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-message">\n
+   Ôöé                         <strong>Message :</strong><br>\n
+   Ôöé                         J&#039;ai ├®t├® d├®bit├® deux fois pour la m├¬me r├®servation. Une premi├¿re fois de 25 DT, puis une seconde fois de 25 DT. Je demande un remboursement de la somme en trop.\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                                             <form action="/admin/reclamation/traiter/12" method="post" class="response-form">\n
+   Ôöé                             <input type="hidden" name="_token" value="81d98f8a3f65.y342QR7IVOz0lz-toKcw8iILJcyVcQl_TMH6zpy0tNs.oTFwNnmvLbme4EXG9OMElVdlXJnmO3ALNZS1m9HggaiGDAQyT6EDmrPBBw">\n
+   Ôöé                             <textarea name="reponse" rows="3" placeholder="Votre r├®ponse..."></textarea>\n
+   Ôöé                             <button type="submit" class="btn-submit">\n
+   Ôöé                                 <i class="fas fa-paper-plane"></i> R├®pondre et traiter\n
+   Ôöé                             </button>\n
+   Ôöé                         </form>\n
+   Ôöé                                     </div>\n
+   Ôöé                             <div class="reclamation-card">\n
+   Ôöé                     <div class="reclamation-header">\n
+   Ôöé                         <div class="reclamation-title">\n
+   Ôöé                             Erreur lors de la r├®servation\n
+   Ôöé                         </div>\n
+   Ôöé                         <div>\n
+   Ôöé                                                             <span class="badge badge-warning">En attente</span>\n
+   Ôöé                                                     </div>\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-meta">\n
+   Ôöé                         <span><i class="fas fa-user"></i> Nour Chedli</span>\n
+   Ôöé                         <span><i class="fas fa-envelope"></i> nour.chedli@wassalni.tn</span>\n
+   Ôöé                         <span><i class="fas fa-calendar"></i> 06/05/2026 20:08</span>\n
+   Ôöé                                             </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-message">\n
+   Ôöé                         <strong>Message :</strong><br>\n
+   Ôöé                         L&#039;application affiche une erreur quand j&#039;essaie de r├®server un trajet. Le message d&#039;erreur: &quot;Erreur interne du serveur&quot;. Impossible de finaliser ma r├®servation.\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                                             <form action="/admin/reclamation/traiter/13" method="post" class="response-form">\n
+   Ôöé                             <input type="hidden" name="_token" value="d5d1dcbc2f1a1e0e2c52af2.dpEx7w3tImawfNFw86wzfx9tdLzzedQ3foj5jtLBVX8.IuF32zmdFl_fPZoeouQKGEYGG-WXVOQFFumPwL2uJQcs3wKISYdDPNE3mA">\n
+   Ôöé                             <textarea name="reponse" rows="3" placeholder="Votre r├®ponse..."></textarea>\n
+   Ôöé                             <button type="submit" class="btn-submit">\n
+   Ôöé                                 <i class="fas fa-paper-plane"></i> R├®pondre et traiter\n
+   Ôöé                             </button>\n
+   Ôöé                         </form>\n
+   Ôöé                                     </div>\n
+   Ôöé                             <div class="reclamation-card">\n
+   Ôöé                     <div class="reclamation-header">\n
+   Ôöé                         <div class="reclamation-title">\n
+   Ôöé                             Conducteur tr├¿s agr├®able (compliment)\n
+   Ôöé                         </div>\n
+   Ôöé                         <div>\n
+   Ôöé                                                             <span class="badge badge-success">Trait├®e</span>\n
+   Ôöé                                                     </div>\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-meta">\n
+   Ôöé                         <span><i class="fas fa-user"></i> Mohamed Lajili</span>\n
+   Ôöé                         <span><i class="fas fa-envelope"></i> mohamed.lajili@wassalni.tn</span>\n
+   Ôöé                         <span><i class="fas fa-calendar"></i> 22/04/2026 20:08</span>\n
+   Ôöé                                                     <span><i class="fas fa-route"></i> Trajet #5</span>\n
+   Ôöé                                             </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-message">\n
+   Ôöé                         <strong>Message :</strong><br>\n
+   Ôöé                         Je voulais signaler un conducteur exceptionnel. Le trajet ├®tait tr├¿s agr├®able, le conducteur ponctuel, courtois et la voiture impeccable. F├®licitations !\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                                             <div class="response-display">\n
+   Ôöé                             <strong><i class="fas fa-reply"></i> R├®ponse :</strong><br>\n
+   Ôöé                             Merci pour ce retour positif ! Nous avons transmis votre message au conducteur.\n
+   Ôöé                             <br><br>\n
+   Ôöé                             <small>Date traitement: 23/04/2026 20:08</small>\n
+   Ôöé                         </div>\n
+   Ôöé                                     </div>\n
+   Ôöé                             <div class="reclamation-card">\n
+   Ôöé                     <div class="reclamation-header">\n
+   Ôöé                         <div class="reclamation-title">\n
+   Ôöé                             Passager annulation sans pr├®venir\n
+   Ôöé                         </div>\n
+   Ôöé                         <div>\n
+   Ôöé                                                             <span class="badge badge-warning">En attente</span>\n
+   Ôöé                                                     </div>\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-meta">\n
+   Ôöé                         <span><i class="fas fa-user"></i> yassine Ben Ammar</span>\n
+   Ôöé                         <span><i class="fas fa-envelope"></i> yassine@gmail.com</span>\n
+   Ôöé                         <span><i class="fas fa-calendar"></i> 07/05/2026 20:08</span>\n
+   Ôöé                                                     <span><i class="fas fa-route"></i> Trajet #11</span>\n
+   Ôöé                                             </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-message">\n
+   Ôöé                         <strong>Message :</strong><br>\n
+   Ôöé                         Un passager a r├®serv├® et n&#039;est jamais venu, sans aucun message. Il a bloqu├® une place que j&#039;aurais pu proposer ├á quelqu&#039;un d&#039;autre.\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                                             <form action="/admin/reclamation/traiter/15" method="post" class="response-form">\n
+   Ôöé                             <input type="hidden" name="_token" value="83dd58c03dd44488422b0b.dS-i2VbPb0jK39-oQCe2lD7CAVgqYBPo1no0L2qvkSo.OXmXvjr2FSOAk7HBE1DZ5Em4chd9DleHlRJbGCjKxUAnHcicAJoHEviohg">\n
+   Ôöé                             <textarea name="reponse" rows="3" placeholder="Votre r├®ponse..."></textarea>\n
+   Ôöé                             <button type="submit" class="btn-submit">\n
+   Ôöé                                 <i class="fas fa-paper-plane"></i> R├®pondre et traiter\n
+   Ôöé                             </button>\n
+   Ôöé                         </form>\n
+   Ôöé                                     </div>\n
+   Ôöé                             <div class="reclamation-card">\n
+   Ôöé                     <div class="reclamation-header">\n
+   Ôöé                         <div class="reclamation-title">\n
+   Ôöé                             Annulation de derni├¿re minute\n
+   Ôöé                         </div>\n
+   Ôöé                         <div>\n
+   Ôöé                                                             <span class="badge badge-success">Trait├®e</span>\n
+   Ôöé                                                     </div>\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-meta">\n
+   Ôöé                         <span><i class="fas fa-user"></i> Mohamed Lajili</span>\n
+   Ôöé                         <span><i class="fas fa-envelope"></i> mohamed.lajili@wassalni.tn</span>\n
+   Ôöé                         <span><i class="fas fa-calendar"></i> 07/05/2026 19:13</span>\n
+   Ôöé                                                     <span><i class="fas fa-route"></i> Trajet #20</span>\n
+   Ôöé                                             </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-message">\n
+   Ôöé                         <strong>Message :</strong><br>\n
+   Ôöé                         mouche mregelll rahou djddhhdhd\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                                             <div class="response-display">\n
+   Ôöé                             <strong><i class="fas fa-reply"></i> R├®ponse :</strong><br>\n
+   Ôöé                             okkk tawa ywalli mregelll\n
+   Ôöé                             <br><br>\n
+   Ôöé                             <small>Date traitement: 07/05/2026 19:14</small>\n
+   Ôöé                         </div>\n
+   Ôöé                                     </div>\n
+   Ôöé                             <div class="reclamation-card">\n
+   Ôöé                     <div class="reclamation-header">\n
+   Ôöé                         <div class="reclamation-title">\n
+   Ôöé                             Retard important\n
+   Ôöé                         </div>\n
+   Ôöé                         <div>\n
+   Ôöé                                                             <span class="badge badge-warning">En attente</span>\n
+   Ôöé                                                     </div>\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-meta">\n
+   Ôöé                         <span><i class="fas fa-user"></i> U-PASS1 Catalogue</span>\n
+   Ôöé                         <span><i class="fas fa-envelope"></i> cat-03f7f2ab-pass1@example.test</span>\n
+   Ôöé                         <span><i class="fas fa-calendar"></i> 21/11/2026 17:28</span>\n
+   Ôöé                                             </div>\n
+   Ôöé                     \n
+   Ôöé                     <div class="reclamation-message">\n
+   Ôöé                         <strong>Message :</strong><br>\n
+   Ôöé                         R├®clamation pour message flash\n
+   Ôöé                     </div>\n
+   Ôöé                     \n
+   Ôöé                                             <form action="/admin/reclamation/traiter/455" method="post" class="response-form">\n
+   Ôöé                             <input type="hidden" name="_token" value="38390ad747d90d3f2c.Ee1EgR4TzpYHqVmwkBPwGcLT8fHZ2dg5hD1frDdFzPo.eY4q5ywiifJq5Rfl1CWTaK2xtYLpibRp_W4Ow3UTh5Byjy_wKiH7znKcbQ">\n
+   Ôöé                             <textarea name="reponse" rows="3" placeholder="Votre r├®ponse..."></textarea>\n
+   Ôöé                             <button type="submit" class="btn-submit">\n
+   Ôöé                                 <i class="fas fa-paper-plane"></i> R├®pondre et traiter\n
+   Ôöé                             </button>\n
+   Ôöé                         </form>\n
+   Ôöé                                     </div>\n
+   Ôöé                         </div>\n
+   Ôöé </div>\n
+   Ôöé \n
+   Ôöé </main>\n
+   Ôöé \n
+   Ôöé <!-- ===================================================\n
+   Ôöé                          FOOTER\n
+   Ôöé =================================================== -->\n
+   Ôöé \n
+   Ôöé <footer class="footer">\n
+   Ôöé \n
+   Ôöé     <p>\n
+   Ôöé         ┬® 2025 Wassalni.TN ÔÇö Plateforme moderne de covoiturage en Tunisie\n
+   Ôöé     </p>\n
+   Ôöé \n
+   Ôöé </footer>\n
+   Ôöé \n
+   Ôöé <!-- ===================================================\n
+   Ôöé                        JAVASCRIPT\n
+   Ôöé =================================================== -->\n
+   Ôöé \n
+   Ôöé <script>\n
+   Ôöé \n
+   Ôöé     const mobileBtn = document.getElementById('mobileMenuBtn');\n
+   Ôöé     const navLinks  = document.getElementById('navLinks');\n
+   Ôöé \n
+   Ôöé     mobileBtn.addEventListener('click', () => {\n
+   Ôöé \n
+   Ôöé         navLinks.classList.toggle('mobile-open');\n
+   Ôöé \n
+   Ôöé         if(navLinks.classList.contains('mobile-open')){\n
+   Ôöé             mobileBtn.innerHTML =\n
+   Ôöé                 '<i class="fas fa-times"></i>';\n
+   Ôöé         }else{\n
+   Ôöé             mobileBtn.innerHTML =\n
+   Ôöé                 '<i class="fas fa-bars"></i>';\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé     });\n
+   Ôöé \n
+   Ôöé     // Fermer menu mobile au clic\n
+   Ôöé     document.querySelectorAll('.nav-links a')\n
+   Ôöé         .forEach(link => {\n
+   Ôöé \n
+   Ôöé             link.addEventListener('click', () => {\n
+   Ôöé \n
+   Ôöé                 navLinks.classList.remove('mobile-open');\n
+   Ôöé \n
+   Ôöé                 mobileBtn.innerHTML =\n
+   Ôöé                     '<i class="fas fa-bars"></i>';\n
+   Ôöé \n
+   Ôöé             });\n
+   Ôöé \n
+   Ôöé         });\n
+   Ôöé \n
+   Ôöé </script>\n
+   Ôöé \n
+   Ôöé \n
+   Ôöé </body>\n
+   Ôöé </html>' [UTF-8](length: 45362) contains "Veuillez saisir une r├®ponse" [UTF-8](length: 28).
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ConnexionAccesTest.php:265
+   Ôöé
+
+Publication Recherche (App\Tests\Functional\Catalogue\PublicationRecherche)
+ Ô£ÿ TC-11 (CA-02, A-04) ÔÇö d├®part le jour m├¬me sans heure (d├®but de journ├®e pass├®) : refus attendu
+   Ôöé
+   Ôöé Trajet du jour accept├® ├á 00:00
+   Ôöé Failed asserting that 10861 is null.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:80
+   Ôöé
+ Ô£ÿ TC-12 (CA-02) ÔÇö arriv├®e ├®gale au d├®part (J+1) : refus attendu
+   Ôöé
+   Ôöé Arriv├®e = d├®part accept├®e
+   Ôöé Failed asserting that 10870 is null.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:88
+   Ôöé
+ Ô£ÿ TC-14 (CA-03) ÔÇö prix ┬½ abc ┬╗ (non num├®rique) : refus attendu, aucun trajet
+   Ôöé
+   Ôöé prix=abc : trajet cr├®├®, prix enregistr├® 0
+   Ôöé Failed asserting that 10879 is null.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:121
+   Ôöé
+ Ô£ÿ TC-15 (EX-11, CA-01) ÔÇö trajet publi├® : statut EN_ATTENTE en base
+   Ôöé
+   Ôöé Failed asserting that two strings are identical.
+   Ôöé --- Expected
+   Ôöé +++ Actual
+   Ôöé @@ @@
+   Ôöé -'EN_ATTENTE'
+   Ôöé +'VALIDE'
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:131
+   Ôöé
+ Ô£ÿ TC-16 (EX-12, CA-01) ÔÇö trajet tout juste publi├® : absent de la recherche passager avant validation
+   Ôöé
+   Ôöé Failed asserting that true is false.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:142
+   Ôöé
+ Ô£ÿ CA-13 (EX-32) ÔÇö U-COND2 publie avec le v├®hicule V1 d'un autre conducteur : refus attendu
+   Ôöé
+   Ôöé Trajet publi├® avec le v├®hicule d'un autre conducteur
+   Ôöé Failed asserting that 10906 is null.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:164
+   Ôöé
+ Ô£ÿ TC-18 (CA-04) ÔÇö TunisÔåÆSfax sans date : T-FUT-EARLY et T-P4 affich├®s, T-PAST (pass├®) absent
+   Ôöé
+   Ôöé Failed asserting that two arrays are identical.
+   Ôöé --- Expected
+   Ôöé +++ Actual
+   Ôöé @@ @@
+   Ôöé  Array &0 [
+   Ôöé      'T-FUT-EARLY' => true,
+   Ôöé      'T-P4' => true,
+   Ôöé -    'T-PAST' => false,
+   Ôöé +    'T-PAST' => true,
+   Ôöé  ]
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:192
+   Ôöé
+ Ô£ÿ TC-20 a (EX-13) ÔÇö filtre prix maximum 20 DT sur TunisÔåÆSfax : T-FUT-EARLY (18) seul, T-P4 (22) exclu
+   Ôöé
+   Ôöé Failed asserting that two arrays are identical.
+   Ôöé --- Expected
+   Ôöé +++ Actual
+   Ôöé @@ @@
+   Ôöé  Array &0 [
+   Ôöé      'T-FUT-EARLY' => true,
+   Ôöé -    'T-P4' => false,
+   Ôöé +    'T-P4' => true,
+   Ôöé  ]
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:213
+   Ôöé
+ Ô£ÿ A-05 (EX-29) ÔÇö les statistiques de la page de recherche refl├¿tent la base (pas de valeurs cod├®es en dur)
+   Ôöé
+   Ôöé La page affiche ┬½ 50k+ ┬╗ alors que la base compte 26 utilisateurs
+   Ôöé Failed asserting that '<!DOCTYPE html>\n
+   Ôöé <html lang="fr">\n
+   Ôöé <head>\n
+   Ôöé     <meta charset="UTF-8">\n
+   Ôöé     <meta name="viewport" content="width=device-width, initial-scale=1.0">\n
+   Ôöé \n
+   Ôöé     <title>\n
+   Ôöé         Rechercher un trajet - Wassalni    </title>\n
+   Ôöé \n
+   Ôöé     <!-- Fonts -->\n
+   Ôöé     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">\n
+   Ôöé \n
+   Ôöé     <!-- Icons -->\n
+   Ôöé     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">\n
+   Ôöé \n
+   Ôöé     <style>\n
+   Ôöé \n
+   Ôöé         *{\n
+   Ôöé             margin:0;\n
+   Ôöé             padding:0;\n
+   Ôöé             box-sizing:border-box;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         :root{\n
+   Ôöé             --primary:#6d28d9;\n
+   Ôöé             --primary-dark:#4c1d95;\n
+   Ôöé             --secondary:#8b5cf6;\n
+   Ôöé             --dark:#0f172a;\n
+   Ôöé             --dark-2:#1e293b;\n
+   Ôöé             --light:#f8fafc;\n
+   Ôöé             --border:#e2e8f0;\n
+   Ôöé             --text:#334155;\n
+   Ôöé             --white:#ffffff;\n
+   Ôöé             --gold:#facc15;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         body{\n
+   Ôöé             font-family:'Inter',sans-serif;\n
+   Ôöé             background:var(--light);\n
+   Ôöé             color:var(--text);\n
+   Ôöé             overflow-x:hidden;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                            NAVBAR\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .navbar{\n
+   Ôöé             position:sticky;\n
+   Ôöé             top:0;\n
+   Ôöé             z-index:9999;\n
+   Ôöé \n
+   Ôöé             background:\n
+   Ôöé                 linear-gradient(\n
+   Ôöé                     135deg,\n
+   Ôöé                     #0f172a 0%,\n
+   Ôöé                     #1e1b4b 45%,\n
+   Ôöé                     #4c1d95 100%\n
+   Ôöé                 );\n
+   Ôöé \n
+   Ôöé             backdrop-filter:blur(20px);\n
+   Ôöé \n
+   Ôöé             border-bottom:1px solid rgba(255,255,255,0.08);\n
+   Ôöé \n
+   Ôöé             box-shadow:\n
+   Ôöé                 0 10px 30px rgba(0,0,0,0.08);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .nav-container{\n
+   Ôöé             max-width:1600px;\n
+   Ôöé             margin:auto;\n
+   Ôöé \n
+   Ôöé             min-height:82px;\n
+   Ôöé \n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             justify-content:space-between;\n
+   Ôöé \n
+   Ôöé             gap:25px;\n
+   Ôöé \n
+   Ôöé             padding:0 25px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                            LOGO\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .logo{\n
+   Ôöé             flex-shrink:0;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .logo a{\n
+   Ôöé             text-decoration:none;\n
+   Ôöé \n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             gap:12px;\n
+   Ôöé \n
+   Ôöé             font-size:30px;\n
+   Ôöé             font-weight:900;\n
+   Ôöé             letter-spacing:-1px;\n
+   Ôöé \n
+   Ôöé             color:white;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .logo-icon{\n
+   Ôöé             width:50px;\n
+   Ôöé             height:50px;\n
+   Ôöé \n
+   Ôöé             border-radius:16px;\n
+   Ôöé \n
+   Ôöé             background:\n
+   Ôöé                 linear-gradient(\n
+   Ôöé                     135deg,\n
+   Ôöé                     #facc15,\n
+   Ôöé                     #fde047\n
+   Ôöé                 );\n
+   Ôöé \n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             justify-content:center;\n
+   Ôöé \n
+   Ôöé             box-shadow:\n
+   Ôöé                 0 10px 20px rgba(250,204,21,0.3);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .logo-icon i{\n
+   Ôöé             color:#4c1d95;\n
+   Ôöé             font-size:24px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .logo-text{\n
+   Ôöé             display:flex;\n
+   Ôöé             flex-direction:column;\n
+   Ôöé             line-height:1;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .logo-text strong{\n
+   Ôöé             color:white;\n
+   Ôöé             font-size:28px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .logo-text span{\n
+   Ôöé             font-size:11px;\n
+   Ôöé             color:#c4b5fd;\n
+   Ôöé             letter-spacing:2px;\n
+   Ôöé             margin-top:4px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                         NAVIGATION LINKS\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .nav-links{\n
+   Ôöé             flex:1;\n
+   Ôöé \n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             justify-content:center;\n
+   Ôöé \n
+   Ôöé             gap:10px;\n
+   Ôöé \n
+   Ôöé             min-width:0;\n
+   Ôöé \n
+   Ôöé             overflow-x:auto;\n
+   Ôöé             overflow-y:hidden;\n
+   Ôöé \n
+   Ôöé             scrollbar-width:none;\n
+   Ôöé \n
+   Ôöé             padding:8px 5px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .nav-links::-webkit-scrollbar{\n
+   Ôöé             display:none;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* IMPORTANT :\n
+   Ôöé            TOUS LES TABS SERONT VISIBLES */\n
+   Ôöé         .nav-links a{\n
+   Ôöé             flex-shrink:0;\n
+   Ôöé \n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             gap:10px;\n
+   Ôöé \n
+   Ôöé             padding:12px 18px;\n
+   Ôöé \n
+   Ôöé             border-radius:18px;\n
+   Ôöé \n
+   Ôöé             text-decoration:none;\n
+   Ôöé \n
+   Ôöé             color:#e2e8f0;\n
+   Ôöé \n
+   Ôöé             font-size:14px;\n
+   Ôöé             font-weight:600;\n
+   Ôöé \n
+   Ôöé             transition:0.3s ease;\n
+   Ôöé \n
+   Ôöé             white-space:nowrap;\n
+   Ôöé \n
+   Ôöé             position:relative;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .nav-links a i{\n
+   Ôöé             font-size:15px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .nav-links a:hover{\n
+   Ôöé             background:rgba(255,255,255,0.12);\n
+   Ôöé \n
+   Ôöé             color:white;\n
+   Ôöé \n
+   Ôöé             transform:translateY(-2px);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .nav-links a.active{\n
+   Ôöé             background:\n
+   Ôöé                 linear-gradient(\n
+   Ôöé                     135deg,\n
+   Ôöé                     rgba(255,255,255,0.18),\n
+   Ôöé                     rgba(255,255,255,0.08)\n
+   Ôöé                 );\n
+   Ôöé \n
+   Ôöé             color:#fff;\n
+   Ôöé \n
+   Ôöé             box-shadow:\n
+   Ôöé                 0 10px 20px rgba(0,0,0,0.15);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                          USER MENU\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .user-menu{\n
+   Ôöé             flex-shrink:0;\n
+   Ôöé \n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             gap:15px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .btn-login{\n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             gap:10px;\n
+   Ôöé \n
+   Ôöé             text-decoration:none;\n
+   Ôöé \n
+   Ôöé             padding:12px 24px;\n
+   Ôöé \n
+   Ôöé             border-radius:50px;\n
+   Ôöé \n
+   Ôöé             color:white;\n
+   Ôöé             font-weight:700;\n
+   Ôöé \n
+   Ôöé             background:\n
+   Ôöé                 linear-gradient(\n
+   Ôöé                     135deg,\n
+   Ôöé                     #8b5cf6,\n
+   Ôöé                     #6d28d9\n
+   Ôöé                 );\n
+   Ôöé \n
+   Ôöé             transition:0.3s ease;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .btn-login:hover{\n
+   Ôöé             transform:translateY(-3px);\n
+   Ôöé \n
+   Ôöé             box-shadow:\n
+   Ôöé                 0 15px 25px rgba(109,40,217,0.35);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                       USER PROFILE\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .dropdown{\n
+   Ôöé             position:relative;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .user-info{\n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             gap:14px;\n
+   Ôöé \n
+   Ôöé             padding:10px 18px;\n
+   Ôöé \n
+   Ôöé             border-radius:60px;\n
+   Ôöé \n
+   Ôöé             background:rgba(255,255,255,0.1);\n
+   Ôöé \n
+   Ôöé             border:1px solid rgba(255,255,255,0.12);\n
+   Ôöé \n
+   Ôöé             cursor:pointer;\n
+   Ôöé \n
+   Ôöé             transition:0.3s ease;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .user-info:hover{\n
+   Ôöé             background:rgba(255,255,255,0.18);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .user-avatar{\n
+   Ôöé             width:42px;\n
+   Ôöé             height:42px;\n
+   Ôöé \n
+   Ôöé             border-radius:50%;\n
+   Ôöé \n
+   Ôöé             background:\n
+   Ôöé                 linear-gradient(\n
+   Ôöé                     135deg,\n
+   Ôöé                     #facc15,\n
+   Ôöé                     #fde047\n
+   Ôöé                 );\n
+   Ôöé \n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             justify-content:center;\n
+   Ôöé \n
+   Ôöé             flex-shrink:0;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .user-avatar i{\n
+   Ôöé             color:#4c1d95;\n
+   Ôöé             font-size:18px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .user-details{\n
+   Ôöé             display:flex;\n
+   Ôöé             flex-direction:column;\n
+   Ôöé             line-height:1.2;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .user-details strong{\n
+   Ôöé             color:white;\n
+   Ôöé             font-size:14px;\n
+   Ôöé             font-weight:700;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .user-details span{\n
+   Ôöé             color:#cbd5e1;\n
+   Ôöé             font-size:12px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                         DROPDOWN MENU\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .dropdown-menu{\n
+   Ôöé             position:absolute;\n
+   Ôöé \n
+   Ôöé             top:72px;\n
+   Ôöé             right:0;\n
+   Ôöé \n
+   Ôöé             width:280px;\n
+   Ôöé \n
+   Ôöé             background:white;\n
+   Ôöé \n
+   Ôöé             border-radius:24px;\n
+   Ôöé \n
+   Ôöé             overflow:hidden;\n
+   Ôöé \n
+   Ôöé             opacity:0;\n
+   Ôöé             visibility:hidden;\n
+   Ôöé             transform:translateY(15px);\n
+   Ôöé \n
+   Ôöé             transition:0.3s ease;\n
+   Ôöé \n
+   Ôöé             box-shadow:\n
+   Ôöé                 0 20px 40px rgba(0,0,0,0.12);\n
+   Ôöé \n
+   Ôöé             z-index:9999;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown:hover .dropdown-menu{\n
+   Ôöé             opacity:1;\n
+   Ôöé             visibility:visible;\n
+   Ôöé             transform:translateY(0);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-header{\n
+   Ôöé             padding:22px;\n
+   Ôöé \n
+   Ôöé             background:\n
+   Ôöé                 linear-gradient(\n
+   Ôöé                     135deg,\n
+   Ôöé                     #6d28d9,\n
+   Ôöé                     #4c1d95\n
+   Ôöé                 );\n
+   Ôöé \n
+   Ôöé             color:white;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-header h4{\n
+   Ôöé             font-size:16px;\n
+   Ôöé             margin-bottom:5px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-header p{\n
+   Ôöé             font-size:13px;\n
+   Ôöé             opacity:0.9;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-menu a{\n
+   Ôöé             display:flex;\n
+   Ôöé             align-items:center;\n
+   Ôöé             gap:14px;\n
+   Ôöé \n
+   Ôöé             padding:15px 22px;\n
+   Ôöé \n
+   Ôöé             text-decoration:none;\n
+   Ôöé \n
+   Ôöé             color:#1e293b;\n
+   Ôöé \n
+   Ôöé             font-weight:600;\n
+   Ôöé             font-size:14px;\n
+   Ôöé \n
+   Ôöé             border-bottom:1px solid #f1f5f9;\n
+   Ôöé \n
+   Ôöé             transition:0.25s ease;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-menu a:last-child{\n
+   Ôöé             border-bottom:none;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-menu a i{\n
+   Ôöé             width:18px;\n
+   Ôöé             color:#6d28d9;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-menu a:hover{\n
+   Ôöé             background:#f8fafc;\n
+   Ôöé             padding-left:30px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-menu .logout{\n
+   Ôöé             color:#dc2626;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-menu .logout i{\n
+   Ôöé             color:#dc2626;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .dropdown-menu .logout:hover{\n
+   Ôöé             background:#fef2f2;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                          MOBILE BUTTON\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .mobile-menu-btn{\n
+   Ôöé             display:none;\n
+   Ôöé \n
+   Ôöé             width:46px;\n
+   Ôöé             height:46px;\n
+   Ôöé \n
+   Ôöé             border:none;\n
+   Ôöé \n
+   Ôöé             border-radius:14px;\n
+   Ôöé \n
+   Ôöé             background:rgba(255,255,255,0.12);\n
+   Ôöé \n
+   Ôöé             color:white;\n
+   Ôöé \n
+   Ôöé             cursor:pointer;\n
+   Ôöé \n
+   Ôöé             font-size:20px;\n
+   Ôöé \n
+   Ôöé             transition:0.3s ease;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .mobile-menu-btn:hover{\n
+   Ôöé             background:rgba(255,255,255,0.2);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                         MAIN CONTENT\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .main-content{\n
+   Ôöé             min-height:calc(100vh - 170px);\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                            FOOTER\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         .footer{\n
+   Ôöé             margin-top:80px;\n
+   Ôöé \n
+   Ôöé             background:\n
+   Ôöé                 linear-gradient(\n
+   Ôöé                     135deg,\n
+   Ôöé                     #0f172a,\n
+   Ôöé                     #1e1b4b\n
+   Ôöé                 );\n
+   Ôöé \n
+   Ôöé             color:white;\n
+   Ôöé \n
+   Ôöé             text-align:center;\n
+   Ôöé \n
+   Ôöé             padding:45px 20px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         .footer p{\n
+   Ôöé             opacity:0.75;\n
+   Ôöé             font-size:14px;\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                         RESPONSIVE TABLET\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         @media(max-width:1200px){\n
+   Ôöé \n
+   Ôöé             .nav-links{\n
+   Ôöé                 justify-content:flex-start;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         /* ===================================================\n
+   Ôöé                         RESPONSIVE MOBILE\n
+   Ôöé         =================================================== */\n
+   Ôöé \n
+   Ôöé         @media(max-width:900px){\n
+   Ôöé \n
+   Ôöé             .nav-container{\n
+   Ôöé                 min-height:75px;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .mobile-menu-btn{\n
+   Ôöé                 display:flex;\n
+   Ôöé                 align-items:center;\n
+   Ôöé                 justify-content:center;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .nav-links{\n
+   Ôöé                 position:absolute;\n
+   Ôöé \n
+   Ôöé                 top:75px;\n
+   Ôöé                 left:0;\n
+   Ôöé                 right:0;\n
+   Ôöé \n
+   Ôöé                 display:flex;\n
+   Ôöé                 flex-direction:column;\n
+   Ôöé                 align-items:stretch;\n
+   Ôöé                 justify-content:flex-start;\n
+   Ôöé \n
+   Ôöé                 gap:10px;\n
+   Ôöé \n
+   Ôöé                 padding:20px;\n
+   Ôöé \n
+   Ôöé                 background:\n
+   Ôöé                     linear-gradient(\n
+   Ôöé                         135deg,\n
+   Ôöé                         #0f172a,\n
+   Ôöé                         #1e1b4b\n
+   Ôöé                     );\n
+   Ôöé \n
+   Ôöé                 max-height:0;\n
+   Ôöé                 overflow:hidden;\n
+   Ôöé \n
+   Ôöé                 opacity:0;\n
+   Ôöé \n
+   Ôöé                 transition:0.4s ease;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .nav-links.mobile-open{\n
+   Ôöé                 max-height:1000px;\n
+   Ôöé                 opacity:1;\n
+   Ôöé                 overflow-y:auto;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .nav-links a{\n
+   Ôöé                 width:100%;\n
+   Ôöé                 justify-content:flex-start;\n
+   Ôöé \n
+   Ôöé                 padding:14px 18px;\n
+   Ôöé \n
+   Ôöé                 border-radius:16px;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .user-details{\n
+   Ôöé                 display:none;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .dropdown-menu{\n
+   Ôöé                 right:-20px;\n
+   Ôöé                 width:260px;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé         @media(max-width:600px){\n
+   Ôöé \n
+   Ôöé             .logo-text strong{\n
+   Ôöé                 font-size:22px;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .logo-icon{\n
+   Ôöé                 width:42px;\n
+   Ôöé                 height:42px;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .logo-icon i{\n
+   Ôöé                 font-size:20px;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .btn-login span{\n
+   Ôöé                 display:none;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé             .btn-login{\n
+   Ôöé                 width:46px;\n
+   Ôöé                 height:46px;\n
+   Ôöé                 padding:0;\n
+   Ôöé \n
+   Ôöé                 justify-content:center;\n
+   Ôöé             }\n
+   Ôöé \n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé     </style>\n
+   Ôöé \n
+   Ôöé     \n
+   Ôöé <style>\n
+   Ôöé     * {\n
+   Ôöé         margin: 0;\n
+   Ôöé         padding: 0;\n
+   Ôöé         box-sizing: border-box;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     body {\n
+   Ôöé         font-family: 'Inter', sans-serif;\n
+   Ôöé         background: #f8fafc;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     /* Hero Section avec effet de vague */\n
+   Ôöé     .hero-section {\n
+   Ôöé         position: relative;\n
+   Ôöé         background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #4c1d95 100%);\n
+   Ôöé         padding: 120px 0 140px 0;\n
+   Ôöé         text-align: center;\n
+   Ôöé         color: white;\n
+   Ôöé         overflow: hidden;\n
+   Ôöé         isolation: isolate;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .hero-section::before {\n
+   Ôöé         content: '';\n
+   Ôöé         position: absolute;\n
+   Ôöé         top: 0;\n
+   Ôöé         left: 0;\n
+   Ôöé         right: 0;\n
+   Ôöé         bottom: 0;\n
+   Ôöé         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='rgba(255,255,255,0.05)' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E") repeat-x bottom;\n
+   Ôöé         background-size: cover;\n
+   Ôöé         opacity: 0.3;\n
+   Ôöé         pointer-events: none;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .hero-section h1 {\n
+   Ôöé         font-size: 56px;\n
+   Ôöé         font-weight: 800;\n
+   Ôöé         margin-bottom: 20px;\n
+   Ôöé         background: linear-gradient(135deg, #fff, #c4b5fd);\n
+   Ôöé         -webkit-background-clip: text;\n
+   Ôöé         -webkit-text-fill-color: transparent;\n
+   Ôöé         background-clip: text;\n
+   Ôöé         letter-spacing: -1px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .hero-section p {\n
+   Ôöé         font-size: 18px;\n
+   Ôöé         opacity: 0.9;\n
+   Ôöé         max-width: 600px;\n
+   Ôöé         margin: 0 auto;\n
+   Ôöé         line-height: 1.6;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     /* Carte de recherche - Glassmorphisme */\n
+   Ôöé     .search-card {\n
+   Ôöé         background: rgba(255, 255, 255, 0.95);\n
+   Ôöé         backdrop-filter: blur(10px);\n
+   Ôöé         border-radius: 32px;\n
+   Ôöé         padding: 48px;\n
+   Ôöé         margin: -80px auto 0 auto;\n
+   Ôöé         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);\n
+   Ôöé         max-width: 1100px;\n
+   Ôöé         border: 1px solid rgba(255,255,255,0.2);\n
+   Ôöé         transition: transform 0.3s ease, box-shadow 0.3s ease;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .search-card:hover {\n
+   Ôöé         transform: translateY(-5px);\n
+   Ôöé         box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .search-title {\n
+   Ôöé         font-size: 28px;\n
+   Ôöé         font-weight: 800;\n
+   Ôöé         background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);\n
+   Ôöé         -webkit-background-clip: text;\n
+   Ôöé         -webkit-text-fill-color: transparent;\n
+   Ôöé         background-clip: text;\n
+   Ôöé         margin-bottom: 40px;\n
+   Ôöé         text-align: center;\n
+   Ôöé         letter-spacing: -0.5px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     /* Grille des champs */\n
+   Ôöé     .search-grid {\n
+   Ôöé         display: grid;\n
+   Ôöé         grid-template-columns: repeat(4, 1fr);\n
+   Ôöé         gap: 24px;\n
+   Ôöé         margin-bottom: 40px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .form-group {\n
+   Ôöé         display: flex;\n
+   Ôöé         flex-direction: column;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .form-group label {\n
+   Ôöé         font-size: 13px;\n
+   Ôöé         font-weight: 600;\n
+   Ôöé         text-transform: uppercase;\n
+   Ôöé         letter-spacing: 0.5px;\n
+   Ôöé         color: #64748b;\n
+   Ôöé         margin-bottom: 10px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .input-wrapper {\n
+   Ôöé         position: relative;\n
+   Ôöé         transition: all 0.3s ease;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .input-wrapper i {\n
+   Ôöé         position: absolute;\n
+   Ôöé         left: 16px;\n
+   Ôöé         top: 50%;\n
+   Ôöé         transform: translateY(-50%);\n
+   Ôöé         color: #94a3b8;\n
+   Ôöé         font-size: 18px;\n
+   Ôöé         transition: all 0.3s ease;\n
+   Ôöé         z-index: 1;\n
+   Ôöé         pointer-events: none;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .input-wrapper select {\n
+   Ôöé         width: 100%;\n
+   Ôöé         padding: 16px 16px 16px 48px;\n
+   Ôöé         border: 2px solid #e2e8f0;\n
+   Ôöé         border-radius: 20px;\n
+   Ôöé         font-size: 15px;\n
+   Ôöé         font-weight: 500;\n
+   Ôöé         font-family: 'Inter', sans-serif;\n
+   Ôöé         background: white;\n
+   Ôöé         transition: all 0.3s ease;\n
+   Ôöé         color: #1e293b;\n
+   Ôöé         appearance: none;\n
+   Ôöé         cursor: pointer;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .input-wrapper input {\n
+   Ôöé         width: 100%;\n
+   Ôöé         padding: 16px 16px 16px 48px;\n
+   Ôöé         border: 2px solid #e2e8f0;\n
+   Ôöé         border-radius: 20px;\n
+   Ôöé         font-size: 15px;\n
+   Ôöé         font-weight: 500;\n
+   Ôöé         font-family: 'Inter', sans-serif;\n
+   Ôöé         background: white;\n
+   Ôöé         transition: all 0.3s ease;\n
+   Ôöé         color: #1e293b;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .input-wrapper select:focus,\n
+   Ôöé     .input-wrapper input:focus {\n
+   Ôöé         outline: none;\n
+   Ôöé         border-color: #4c1d95;\n
+   Ôöé         box-shadow: 0 0 0 4px rgba(76, 29, 149, 0.1);\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .input-wrapper select:focus + i,\n
+   Ôöé     .input-wrapper input:focus + i {\n
+   Ôöé         color: #4c1d95;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .input-wrapper select:hover,\n
+   Ôöé     .input-wrapper input:hover {\n
+   Ôöé         border-color: #c4b5fd;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     /* Fl├¿che personnalis├®e pour le select */\n
+   Ôöé     .input-wrapper .arrow-down {\n
+   Ôöé         position: absolute;\n
+   Ôöé         right: 16px;\n
+   Ôöé         top: 50%;\n
+   Ôöé         transform: translateY(-50%);\n
+   Ôöé         color: #94a3b8;\n
+   Ôöé         pointer-events: none;\n
+   Ôöé         font-size: 14px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     /* Bouton de recherche */\n
+   Ôöé     .btn-search {\n
+   Ôöé         width: 100%;\n
+   Ôöé         padding: 18px;\n
+   Ôöé         background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #7c3aed 100%);\n
+   Ôöé         color: white;\n
+   Ôöé         border: none;\n
+   Ôöé         border-radius: 28px;\n
+   Ôöé         font-size: 16px;\n
+   Ôöé         font-weight: 700;\n
+   Ôöé         cursor: pointer;\n
+   Ôöé         transition: all 0.3s ease;\n
+   Ôöé         display: flex;\n
+   Ôöé         align-items: center;\n
+   Ôöé         justify-content: center;\n
+   Ôöé         gap: 12px;\n
+   Ôöé         letter-spacing: 0.5px;\n
+   Ôöé         position: relative;\n
+   Ôöé         overflow: hidden;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-search::before {\n
+   Ôöé         content: '';\n
+   Ôöé         position: absolute;\n
+   Ôöé         top: 0;\n
+   Ôöé         left: -100%;\n
+   Ôöé         width: 100%;\n
+   Ôöé         height: 100%;\n
+   Ôöé         background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);\n
+   Ôöé         transition: left 0.5s ease;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-search:hover::before {\n
+   Ôöé         left: 100%;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-search:hover {\n
+   Ôöé         transform: translateY(-3px);\n
+   Ôöé         box-shadow: 0 20px 40px -8px rgba(76, 29, 149, 0.4);\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-search:active {\n
+   Ôöé         transform: translateY(0);\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-search i {\n
+   Ôöé         font-size: 18px;\n
+   Ôöé         transition: transform 0.3s ease;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-search:hover i {\n
+   Ôöé         transform: scale(1.1);\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     /* Animation d'entr├®e */\n
+   Ôöé     @keyframes fadeInUp {\n
+   Ôöé         from {\n
+   Ôöé             opacity: 0;\n
+   Ôöé             transform: translateY(30px);\n
+   Ôöé         }\n
+   Ôöé         to {\n
+   Ôöé             opacity: 1;\n
+   Ôöé             transform: translateY(0);\n
+   Ôöé         }\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .search-card {\n
+   Ôöé         animation: fadeInUp 0.6s ease-out;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     /* Stats section */\n
+   Ôöé     .stats-section {\n
+   Ôöé         max-width: 1100px;\n
+   Ôöé         margin: 80px auto 0;\n
+   Ôöé         display: flex;\n
+   Ôöé         justify-content: space-between;\n
+   Ôöé         gap: 30px;\n
+   Ôöé         flex-wrap: wrap;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .stat-card {\n
+   Ôöé         flex: 1;\n
+   Ôöé         background: white;\n
+   Ôöé         border-radius: 24px;\n
+   Ôöé         padding: 30px;\n
+   Ôöé         text-align: center;\n
+   Ôöé         box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);\n
+   Ôöé         transition: all 0.3s ease;\n
+   Ôöé         border: 1px solid #f1f5f9;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .stat-card:hover {\n
+   Ôöé         transform: translateY(-5px);\n
+   Ôöé         box-shadow: 0 20px 40px -12px rgba(0,0,0,0.1);\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .stat-card i {\n
+   Ôöé         font-size: 40px;\n
+   Ôöé         background: linear-gradient(135deg, #1e1b4b 0%, #7c3aed 100%);\n
+   Ôöé         -webkit-background-clip: text;\n
+   Ôöé         -webkit-text-fill-color: transparent;\n
+   Ôöé         margin-bottom: 15px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .stat-card .number {\n
+   Ôöé         font-size: 32px;\n
+   Ôöé         font-weight: 800;\n
+   Ôöé         color: #1e293b;\n
+   Ôöé         margin-bottom: 5px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .stat-card .label {\n
+   Ôöé         color: #64748b;\n
+   Ôöé         font-size: 14px;\n
+   Ôöé         font-weight: 500;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     /* Result Card */\n
+   Ôöé     .results-section {\n
+   Ôöé         max-width: 1100px;\n
+   Ôöé         margin: 40px auto;\n
+   Ôöé         padding: 0 20px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .results-header {\n
+   Ôöé         display: flex;\n
+   Ôöé         justify-content: space-between;\n
+   Ôöé         align-items: center;\n
+   Ôöé         margin-bottom: 25px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .result-card {\n
+   Ôöé         background: white;\n
+   Ôöé         border-radius: 20px;\n
+   Ôöé         padding: 24px;\n
+   Ôöé         margin-bottom: 20px;\n
+   Ôöé         box-shadow: 0 5px 20px rgba(0,0,0,0.05);\n
+   Ôöé         transition: all 0.3s;\n
+   Ôöé         border: 1px solid #eef2ff;\n
+   Ôöé         animation: fadeInUp 0.5s ease-out;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .result-card:hover {\n
+   Ôöé         transform: translateY(-4px);\n
+   Ôöé         box-shadow: 0 15px 35px -12px rgba(0,0,0,0.15);\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .journey-route {\n
+   Ôöé         display: flex;\n
+   Ôöé         align-items: center;\n
+   Ôöé         gap: 20px;\n
+   Ôöé         margin-bottom: 20px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .journey-point {\n
+   Ôöé         flex: 1;\n
+   Ôöé         text-align: center;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .journey-point .city {\n
+   Ôöé         font-size: 20px;\n
+   Ôöé         font-weight: 800;\n
+   Ôöé         color: #1e293b;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .journey-point .time {\n
+   Ôöé         font-size: 13px;\n
+   Ôöé         color: #64748b;\n
+   Ôöé         margin-top: 5px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .journey-line {\n
+   Ôöé         color: #4c1d95;\n
+   Ôöé         font-size: 24px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .driver-info {\n
+   Ôöé         display: flex;\n
+   Ôöé         align-items: center;\n
+   Ôöé         gap: 15px;\n
+   Ôöé         margin: 15px 0;\n
+   Ôöé         padding: 15px 0;\n
+   Ôöé         border-top: 1px solid #eef2ff;\n
+   Ôöé         border-bottom: 1px solid #eef2ff;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .driver-avatar {\n
+   Ôöé         width: 50px;\n
+   Ôöé         height: 50px;\n
+   Ôöé         background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);\n
+   Ôöé         border-radius: 50%;\n
+   Ôöé         display: flex;\n
+   Ôöé         align-items: center;\n
+   Ôöé         justify-content: center;\n
+   Ôöé         color: white;\n
+   Ôöé         font-size: 20px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .driver-details h4 {\n
+   Ôöé         font-size: 16px;\n
+   Ôöé         font-weight: 700;\n
+   Ôöé         margin: 0;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .driver-details p {\n
+   Ôöé         font-size: 13px;\n
+   Ôöé         color: #64748b;\n
+   Ôöé         margin-top: 5px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .journey-footer {\n
+   Ôöé         display: flex;\n
+   Ôöé         justify-content: space-between;\n
+   Ôöé         align-items: center;\n
+   Ôöé         margin-top: 15px;\n
+   Ôöé         flex-wrap: wrap;\n
+   Ôöé         gap: 15px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .price {\n
+   Ôöé         font-size: 28px;\n
+   Ôöé         font-weight: 800;\n
+   Ôöé         color: #28a745;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .price small {\n
+   Ôöé         font-size: 12px;\n
+   Ôöé         font-weight: normal;\n
+   Ôöé         color: #64748b;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-reserve {\n
+   Ôöé         background: linear-gradient(135deg, #28a745 0%, #20c997 100%);\n
+   Ôöé         color: white;\n
+   Ôöé         border: none;\n
+   Ôöé         padding: 10px 24px;\n
+   Ôöé         border-radius: 30px;\n
+   Ôöé         font-weight: 700;\n
+   Ôöé         cursor: pointer;\n
+   Ôöé         transition: all 0.3s;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-reserve:hover {\n
+   Ôöé         transform: scale(1.05);\n
+   Ôöé         box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-reserve:disabled {\n
+   Ôöé         opacity: 0.5;\n
+   Ôöé         cursor: not-allowed;\n
+   Ôöé         transform: none;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .no-results {\n
+   Ôöé         text-align: center;\n
+   Ôöé         padding: 60px;\n
+   Ôöé         background: white;\n
+   Ôöé         border-radius: 24px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     /* Modal de R├®servation */\n
+   Ôöé     .modal-reserve {\n
+   Ôöé         display: none;\n
+   Ôöé         position: fixed;\n
+   Ôöé         top: 0;\n
+   Ôöé         left: 0;\n
+   Ôöé         right: 0;\n
+   Ôöé         bottom: 0;\n
+   Ôöé         background: rgba(0, 0, 0, 0.7);\n
+   Ôöé         backdrop-filter: blur(8px);\n
+   Ôöé         z-index: 2000;\n
+   Ôöé         align-items: center;\n
+   Ôöé         justify-content: center;\n
+   Ôöé         animation: fadeIn 0.3s ease-out;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .modal-reserve.active {\n
+   Ôöé         display: flex;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     @keyframes fadeIn {\n
+   Ôöé         from { opacity: 0; }\n
+   Ôöé         to { opacity: 1; }\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .modal-content {\n
+   Ôöé         background: white;\n
+   Ôöé         border-radius: 28px;\n
+   Ôöé         padding: 40px;\n
+   Ôöé         max-width: 500px;\n
+   Ôöé         width: 90%;\n
+   Ôöé         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);\n
+   Ôöé         animation: slideUp 0.4s ease-out;\n
+   Ôöé         position: relative;\n
+   Ôöé         border: 1px solid rgba(0,0,0,0.05);\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     @keyframes slideUp {\n
+   Ôöé         from {\n
+   Ôöé             opacity: 0;\n
+   Ôöé             transform: translateY(40px);\n
+   Ôöé         }\n
+   Ôöé         to {\n
+   Ôöé             opacity: 1;\n
+   Ôöé             transform: translateY(0);\n
+   Ôöé         }\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .modal-header {\n
+   Ôöé         margin-bottom: 30px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .modal-header h2 {\n
+   Ôöé         font-size: 28px;\n
+   Ôöé         font-weight: 800;\n
+   Ôöé         color: #1e293b;\n
+   Ôöé         margin-bottom: 8px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .modal-header p {\n
+   Ôöé         color: #64748b;\n
+   Ôöé         font-size: 14px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .modal-close {\n
+   Ôöé         position: absolute;\n
+   Ôöé         top: 20px;\n
+   Ôöé         right: 20px;\n
+   Ôöé         background: none;\n
+   Ôöé         border: none;\n
+   Ôöé         font-size: 24px;\n
+   Ôöé         color: #94a3b8;\n
+   Ôöé         cursor: pointer;\n
+   Ôöé         transition: all 0.3s ease;\n
+   Ôöé         width: 40px;\n
+   Ôöé         height: 40px;\n
+   Ôöé         display: flex;\n
+   Ôöé         align-items: center;\n
+   Ôöé         justify-content: center;\n
+   Ôöé         border-radius: 12px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .modal-close:hover {\n
+   Ôöé         background: #f1f5f9;\n
+   Ôöé         color: #1e293b;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .places-selector {\n
+   Ôöé         background: #f8fafc;\n
+   Ôöé         border-radius: 16px;\n
+   Ôöé         padding: 20px;\n
+   Ôöé         margin-bottom: 30px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .places-selector label {\n
+   Ôöé         display: block;\n
+   Ôöé         font-size: 14px;\n
+   Ôöé         font-weight: 600;\n
+   Ôöé         color: #475569;\n
+   Ôöé         margin-bottom: 12px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .places-input-group {\n
+   Ôöé         display: flex;\n
+   Ôöé         align-items: center;\n
+   Ôöé         gap: 16px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .places-btn {\n
+   Ôöé         width: 45px;\n
+   Ôöé         height: 45px;\n
+   Ôöé         border: 2px solid #e2e8f0;\n
+   Ôöé         background: white;\n
+   Ôöé         border-radius: 12px;\n
+   Ôöé         font-size: 18px;\n
+   Ôöé         cursor: pointer;\n
+   Ôöé         transition: all 0.3s ease;\n
+   Ôöé         display: flex;\n
+   Ôöé         align-items: center;\n
+   Ôöé         justify-content: center;\n
+   Ôöé         font-weight: 600;\n
+   Ôöé         color: #4c1d95;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .places-btn:hover:not(:disabled) {\n
+   Ôöé         border-color: #4c1d95;\n
+   Ôöé         background: #f3e8ff;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .places-btn:disabled {\n
+   Ôöé         opacity: 0.4;\n
+   Ôöé         cursor: not-allowed;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .places-display {\n
+   Ôöé         flex: 1;\n
+   Ôöé         background: white;\n
+   Ôöé         border: 2px solid #e2e8f0;\n
+   Ôöé         border-radius: 12px;\n
+   Ôöé         padding: 12px;\n
+   Ôöé         text-align: center;\n
+   Ôöé         font-weight: 700;\n
+   Ôöé         font-size: 20px;\n
+   Ôöé         color: #4c1d95;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .price-summary {\n
+   Ôöé         background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);\n
+   Ôöé         border-radius: 16px;\n
+   Ôöé         padding: 20px;\n
+   Ôöé         margin-bottom: 30px;\n
+   Ôöé         border: 1px solid #d8b4fe;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .price-row {\n
+   Ôöé         display: flex;\n
+   Ôöé         justify-content: space-between;\n
+   Ôöé         align-items: center;\n
+   Ôöé         margin-bottom: 12px;\n
+   Ôöé         font-size: 14px;\n
+   Ôöé         color: #4c1d95;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .price-row:last-child {\n
+   Ôöé         margin-bottom: 0;\n
+   Ôöé         border-top: 2px solid rgba(76, 29, 149, 0.2);\n
+   Ôöé         padding-top: 12px;\n
+   Ôöé         font-weight: 700;\n
+   Ôöé         font-size: 16px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .modal-actions {\n
+   Ôöé         display: flex;\n
+   Ôöé         gap: 12px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-cancel-modal,\n
+   Ôöé     .btn-confirm-modal {\n
+   Ôöé         flex: 1;\n
+   Ôöé         padding: 14px;\n
+   Ôöé         border-radius: 14px;\n
+   Ôöé         font-weight: 600;\n
+   Ôöé         font-size: 15px;\n
+   Ôöé         cursor: pointer;\n
+   Ôöé         transition: all 0.3s ease;\n
+   Ôöé         border: none;\n
+   Ôöé         display: flex;\n
+   Ôöé         align-items: center;\n
+   Ôöé         justify-content: center;\n
+   Ôöé         gap: 8px;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-cancel-modal {\n
+   Ôöé         background: #f1f5f9;\n
+   Ôöé         color: #475569;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-cancel-modal:hover {\n
+   Ôöé         background: #e2e8f0;\n
+   Ôöé         transform: translateY(-2px);\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-confirm-modal {\n
+   Ôöé         background: linear-gradient(135deg, #28a745 0%, #20c997 100%);\n
+   Ôöé         color: white;\n
+   Ôöé         box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-confirm-modal:hover:not(:disabled) {\n
+   Ôöé         transform: translateY(-2px);\n
+   Ôöé         box-shadow: 0 8px 24px rgba(40, 167, 69, 0.3);\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     .btn-confirm-modal:disabled {\n
+   Ôöé         opacity: 0.6;\n
+   Ôöé         cursor: wait;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     @media (max-width: 768px) {\n
+   Ôöé         .hero-section h1 { font-size: 36px; }\n
+   Ôöé         .search-grid { grid-template-columns: 1fr; }\n
+   Ôöé         .journey-route { flex-direction: column; text-align: center; }\n
+   Ôöé         .journey-footer { flex-direction: column; }\n
+   Ôöé         .btn-reserve { width: 100%; }\n
+   Ôöé         .modal-content { padding: 30px 25px; }\n
+   Ôöé     }\n
+   Ôöé </style>\n
+   Ôöé </head>\n
+   Ôöé \n
+   Ôöé <body>\n
+   Ôöé \n
+   Ôöé <!-- ===================================================\n
+   Ôöé                         NAVBAR\n
+   Ôöé =================================================== -->\n
+   Ôöé \n
+   Ôöé <nav class="navbar">\n
+   Ôöé \n
+   Ôöé     <div class="nav-container">\n
+   Ôöé \n
+   Ôöé         <!-- LOGO -->\n
+   Ôöé         <div class="logo">\n
+   Ôöé \n
+   Ôöé             <a href="/">\n
+   Ôöé \n
+   Ôöé                 <div class="logo-icon">\n
+   Ôöé                     <i class="fas fa-car-side"></i>\n
+   Ôöé                 </div>\n
+   Ôöé \n
+   Ôöé                 <div class="logo-text">\n
+   Ôöé                     <strong>Wassalni</strong>\n
+   Ôöé                     <span>TUNISIA</span>\n
+   Ôöé                 </div>\n
+   Ôöé \n
+   Ôöé             </a>\n
+   Ôöé \n
+   Ôöé         </div>\n
+   Ôöé \n
+   Ôöé         <!-- NAVIGATION -->\n
+   Ôöé         <div class="nav-links" id="navLinks">\n
+   Ôöé \n
+   Ôöé             \n
+   Ôöé                 \n
+   Ôöé                     <a href="/trajet/recherche">\n
+   Ôöé                         <i class="fas fa-search"></i>\n
+   Ôöé                         Chercher un trajet\n
+   Ôöé                     </a>\n
+   Ôöé \n
+   Ôöé                     <a href="/reservation/mes-reservations">\n
+   Ôöé                         <i class="fas fa-calendar-check"></i>\n
+   Ôöé                         Mes r├®servations\n
+   Ôöé                     </a>\n
+   Ôöé \n
+   Ôöé                     <a href="/reclamation/nouvelle">\n
+   Ôöé                         <i class="fas fa-file-circle-plus"></i>\n
+   Ôöé                         Nouvelle r├®clamation\n
+   Ôöé                     </a>\n
+   Ôöé \n
+   Ôöé                     <a href="/reclamation/mes-reclamations">\n
+   Ôöé                         <i class="fas fa-list"></i>\n
+   Ôöé                         Mes r├®clamations\n
+   Ôöé                     </a>\n
+   Ôöé \n
+   Ôöé                 \n
+   Ôöé             \n
+   Ôöé         </div>\n
+   Ôöé \n
+   Ôöé         <!-- USER MENU -->\n
+   Ôöé         <div class="user-menu">\n
+   Ôöé \n
+   Ôöé             \n
+   Ôöé                 <div class="dropdown">\n
+   Ôöé \n
+   Ôöé                     <div class="user-info">\n
+   Ôöé \n
+   Ôöé                         <div class="user-avatar">\n
+   Ôöé                             <i class="fas fa-user"></i>\n
+   Ôöé                         </div>\n
+   Ôöé \n
+   Ôöé                         <div class="user-details">\n
+   Ôöé \n
+   Ôöé                             <strong>\n
+   Ôöé                                 U-PASS1\n
+   Ôöé                                 C.\n
+   Ôöé                             </strong>\n
+   Ôöé \n
+   Ôöé                             <span>\n
+   Ôöé                                                                     Passager\n
+   Ôöé                                                             </span>\n
+   Ôöé \n
+   Ôöé                         </div>\n
+   Ôöé \n
+   Ôöé                         <i class="fas fa-chevron-down" style="color:white;font-size:12px;"></i>\n
+   Ôöé \n
+   Ôöé                     </div>\n
+   Ôöé \n
+   Ôöé                     <!-- DROPDOWN -->\n
+   Ôöé                     <div class="dropdown-menu">\n
+   Ôöé \n
+   Ôöé                         <div class="dropdown-header">\n
+   Ôöé \n
+   Ôöé                             <h4>\n
+   Ôöé                                 U-PASS1\n
+   Ôöé                                 Catalogue\n
+   Ôöé                             </h4>\n
+   Ôöé \n
+   Ôöé                             <p>\n
+   Ôöé                                                                     Passager\n
+   Ôöé                                                             </p>\n
+   Ôöé \n
+   Ôöé                         </div>\n
+   Ôöé \n
+   Ôöé                         <a href="/reclamation/mes-reclamations">\n
+   Ôöé                             <i class="fas fa-file-alt"></i>\n
+   Ôöé                             Mes r├®clamations\n
+   Ôöé                         </a>\n
+   Ôöé \n
+   Ôöé                         <a href="/reclamation/nouvelle">\n
+   Ôöé                             <i class="fas fa-plus-circle"></i>\n
+   Ôöé                             Nouvelle r├®clamation\n
+   Ôöé                         </a>\n
+   Ôöé \n
+   Ôöé                         <a href="/deconnexion"\n
+   Ôöé                            class="logout"\n
+   Ôöé                            onclick="return confirm('D├®connexion ?')">\n
+   Ôöé \n
+   Ôöé                             <i class="fas fa-right-from-bracket"></i>\n
+   Ôöé                             D├®connexion\n
+   Ôöé \n
+   Ôöé                         </a>\n
+   Ôöé \n
+   Ôöé                     </div>\n
+   Ôöé \n
+   Ôöé                 </div>\n
+   Ôöé \n
+   Ôöé             \n
+   Ôöé         </div>\n
+   Ôöé \n
+   Ôöé         <!-- MOBILE BUTTON -->\n
+   Ôöé         <button class="mobile-menu-btn" id="mobileMenuBtn">\n
+   Ôöé \n
+   Ôöé             <i class="fas fa-bars"></i>\n
+   Ôöé \n
+   Ôöé         </button>\n
+   Ôöé \n
+   Ôöé     </div>\n
+   Ôöé \n
+   Ôöé </nav>\n
+   Ôöé \n
+   Ôöé <!-- ===================================================\n
+   Ôöé                       MAIN CONTENT\n
+   Ôöé =================================================== -->\n
+   Ôöé \n
+   Ôöé <main class="main-content">\n
+   Ôöé \n
+   Ôöé     <div class="hero-section">\n
+   Ôöé     <canvas id="particleCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>\n
+   Ôöé     <div class="container" style="position: relative; z-index: 2;">\n
+   Ôöé         <h1>Voyagez malin, ├®conomisez ensemble</h1>\n
+   Ôöé         <p>Rejoignez notre communaut├® de covoiturage et d├®couvrez une nouvelle fa├ºon de voyager.</p>\n
+   Ôöé     </div>\n
+   Ôöé </div>\n
+   Ôöé \n
+   Ôöé <div class="container" style="max-width: 1100px; margin: 0 auto;">\n
+   Ôöé     <div class="search-card">\n
+   Ôöé         <div class="search-title">Rechercher un trajet</div>\n
+   Ôöé         \n
+   Ôöé         <form method="get" action="/trajet/recherche" id="searchForm">\n
+   Ôöé             <div class="search-grid">\n
+   Ôöé                 <div class="form-group">\n
+   Ôöé                     <label for="villeDepart">D├®part</label>\n
+   Ôöé                     <div class="input-wrapper">\n
+   Ôöé                         <i class="fas fa-map-marker-alt"></i>\n
+   Ôöé                         <select name="villeDepart" id="villeDepart">\n
+   Ôöé                             <option value="">S├®lectionnez une ville</option>\n
+   Ôöé                             <option value="Tunis" selected>Tunis</option>\n
+   Ôöé                             <option value="Sfax" >Sfax</option>\n
+   Ôöé                             <option value="Sousse" >Sousse</option>\n
+   Ôöé                             <option value="Nabeul" >Nabeul</option>\n
+   Ôöé                             <option value="Bizerte" >Bizerte</option>\n
+   Ôöé                             <option value="Monastir" >Monastir</option>\n
+   Ôöé                         </select>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="form-group">\n
+   Ôöé                     <label for="destination">Arriv├®e</label>\n
+   Ôöé                     <div class="input-wrapper">\n
+   Ôöé                         <i class="fas fa-flag-checkered"></i>\n
+   Ôöé                         <select name="destination" id="destination">\n
+   Ôöé                             <option value="">S├®lectionnez une ville</option>\n
+   Ôöé                             <option value="Tunis" >Tunis</option>\n
+   Ôöé                             <option value="Sfax" >Sfax</option>\n
+   Ôöé                             <option value="Sousse" >Sousse</option>\n
+   Ôöé                             <option value="Nabeul" >Nabeul</option>\n
+   Ôöé                             <option value="Bizerte" >Bizerte</option>\n
+   Ôöé                             <option value="Monastir" >Monastir</option>\n
+   Ôöé                         </select>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="form-group">\n
+   Ôöé                     <label for="dateDepart">Date</label>\n
+   Ôöé                     <div class="input-wrapper">\n
+   Ôöé                         <i class="fas fa-calendar"></i>\n
+   Ôöé                         <input type="date" name="dateDepart" id="dateDepart" value="" min="2026-11-21">\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="form-group">\n
+   Ôöé                     <label for="passagers">Passagers</label>\n
+   Ôöé                     <div class="input-wrapper">\n
+   Ôöé                         <i class="fas fa-users"></i>\n
+   Ôöé                         <select name="passagers" id="passagers">\n
+   Ôöé                             <option value="1" >1 passager</option>\n
+   Ôöé                             <option value="2" >2 passagers</option>\n
+   Ôöé                             <option value="3" >3 passagers</option>\n
+   Ôöé                             <option value="4" >4 passagers</option>\n
+   Ôöé                         </select>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé             </div>\n
+   Ôöé             \n
+   Ôöé             <button type="submit" class="btn-search" id="searchBtn">\n
+   Ôöé                 <i class="fas fa-search"></i>\n
+   Ôöé                 <span>Rechercher des trajets</span>\n
+   Ôöé             </button>\n
+   Ôöé         </form>\n
+   Ôöé     </div>\n
+   Ôöé     \n
+   Ôöé     <div class="stats-section">\n
+   Ôöé         <div class="stat-card">\n
+   Ôöé             <i class="fas fa-users"></i>\n
+   Ôöé             <div class="number">50k+</div>\n
+   Ôöé             <div class="label">Utilisateurs actifs</div>\n
+   Ôöé         </div>\n
+   Ôöé         <div class="stat-card">\n
+   Ôöé             <i class="fas fa-car"></i>\n
+   Ôöé             <div class="number">10k+</div>\n
+   Ôöé             <div class="label">Trajets partag├®s</div>\n
+   Ôöé         </div>\n
+   Ôöé         <div class="stat-card">\n
+   Ôöé             <i class="fas fa-star"></i>\n
+   Ôöé             <div class="number">4.9</div>\n
+   Ôöé             <div class="label">Note moyenne</div>\n
+   Ôöé         </div>\n
+   Ôöé     </div>\n
+   Ôöé </div>\n
+   Ôöé \n
+   Ôöé <!-- SECTION R├ëSULTATS DES TRAJETS -->\n
+   Ôöé <div class="results-section">\n
+   Ôöé             <div class="results-header">\n
+   Ôöé             <h3><i class="fas fa-route"></i> 22 trajet(s) trouv├®(s)</h3>\n
+   Ôöé             <span>Prix par personne</span>\n
+   Ôöé         </div>\n
+   Ôöé         \n
+   Ôöé                     <div class="result-card" data-trajet-id="32" data-places-max="2" data-prix="15">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">01/05/2025 08:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Sousse</div>\n
+   Ôöé                         <div class="time">01/05/2025 10:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>yassine Ben Ammar</h4>\n
+   Ôöé                         <p>Volkswagen Tiguan ÔÇó 123 TUN 1</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">15 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 2 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(32, 2, 15)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="34" data-places-max="4" data-prix="10">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">01/05/2025 14:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Nabeul</div>\n
+   Ôöé                         <div class="time">01/05/2025 15:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>yassine Ben Ammar</h4>\n
+   Ôöé                         <p>Renault Clio ÔÇó 456 TUN 2</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">10 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(34, 4, 10)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="33" data-places-max="1" data-prix="25">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">02/05/2025 07:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Sfax</div>\n
+   Ôöé                         <div class="time">02/05/2025 10:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>yassine Ben Ammar</h4>\n
+   Ôöé                         <p>Volkswagen Tiguan ÔÇó 123 TUN 1</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">25 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 1 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(33, 1, 25)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="5" data-places-max="3" data-prix="10">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">01/05/2026 10:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Nabeul</div>\n
+   Ôöé                         <div class="time">01/05/2026 11:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>Ahmed Ben Ali</h4>\n
+   Ôöé                         <p>Volkswagen Tiguan ÔÇó 123 TUN 1</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">10 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 3 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(5, 3, 10)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="22" data-places-max="3" data-prix="10">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">01/05/2026 10:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Nabeul</div>\n
+   Ôöé                         <div class="time">01/05/2026 11:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>Ahmed Ben Ali</h4>\n
+   Ôöé                         <p>Volkswagen Tiguan ÔÇó 123 TUN 1</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">10 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 3 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(22, 3, 10)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="7" data-places-max="3" data-prix="12">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">01/05/2026 15:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Bizerte</div>\n
+   Ôöé                         <div class="time">01/05/2026 16:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>Karim Souissi</h4>\n
+   Ôöé                         <p>Hyundai i20 ÔÇó 987 TUN 6</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">12 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 3 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(7, 3, 12)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="23" data-places-max="2" data-prix="12">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">01/05/2026 15:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Bizerte</div>\n
+   Ôöé                         <div class="time">01/05/2026 16:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>Sarah Mansouri</h4>\n
+   Ôöé                         <p>BMW Serie 3 ÔÇó 321 TUN 4</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">12 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 2 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(23, 2, 12)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="6" data-places-max="4" data-prix="8">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">02/05/2026 08:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Nabeul</div>\n
+   Ôöé                         <div class="time">02/05/2026 09:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>Sarah Mansouri</h4>\n
+   Ôöé                         <p>BMW Serie 3 ÔÇó 321 TUN 4</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">8 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(6, 4, 8)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="2" data-places-max="4" data-prix="12">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">02/05/2026 09:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Sousse</div>\n
+   Ôöé                         <div class="time">02/05/2026 11:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>Sarah Mansouri</h4>\n
+   Ôöé                         <p>Peugeot 208 ÔÇó 789 TUN 3</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">12 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(2, 4, 12)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="20" data-places-max="4" data-prix="12">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">02/05/2026 09:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Sousse</div>\n
+   Ôöé                         <div class="time">02/05/2026 11:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>Sarah Mansouri</h4>\n
+   Ôöé                         <p>Peugeot 208 ÔÇó 789 TUN 3</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">12 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(20, 4, 12)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="18" data-places-max="2" data-prix="18">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">02/05/2026 10:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Monastir</div>\n
+   Ôöé                         <div class="time">02/05/2026 12:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>Sarah Mansouri</h4>\n
+   Ôöé                         <p>BMW Serie 3 ÔÇó 321 TUN 4</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">18 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 2 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(18, 2, 18)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="26" data-places-max="2" data-prix="18">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">02/05/2026 10:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Monastir</div>\n
+   Ôöé                         <div class="time">02/05/2026 12:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>Sarah Mansouri</h4>\n
+   Ôöé                         <p>BMW Serie 3 ÔÇó 321 TUN 4</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">18 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 2 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(26, 2, 18)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="4" data-places-max="4" data-prix="22">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">03/05/2026 07:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Sfax</div>\n
+   Ôöé                         <div class="time">03/05/2026 10:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>Karim Souissi</h4>\n
+   Ôöé                         <p>Mercedes Classe C ÔÇó 654 TUN 5</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">22 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(4, 4, 22)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="21" data-places-max="4" data-prix="22">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">03/05/2026 07:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Sfax</div>\n
+   Ôöé                         <div class="time">03/05/2026 10:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>Karim Souissi</h4>\n
+   Ôöé                         <p>Mercedes Classe C ÔÇó 654 TUN 5</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">22 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(21, 4, 22)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="8" data-places-max="5" data-prix="10">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">03/05/2026 10:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Bizerte</div>\n
+   Ôöé                         <div class="time">03/05/2026 11:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>Ahmed Ben Ali</h4>\n
+   Ôöé                         <p>Volkswagen Tiguan ÔÇó 123 TUN 1</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">10 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 5 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(8, 5, 10)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="10929" data-places-max="3" data-prix="22">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">11/11/2026 07:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Sfax</div>\n
+   Ôöé                         <div class="time">11/11/2026 10:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>U-COND1 Catalogue</h4>\n
+   Ôöé                         <p>Peugeot 308 ÔÇó CATC4D7AA</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">22 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 3 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(10929, 3, 22)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="10925" data-places-max="3" data-prix="18">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">23/11/2026 09:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Sfax</div>\n
+   Ôöé                         <div class="time">23/11/2026 12:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>U-COND1 Catalogue</h4>\n
+   Ôöé                         <p>Peugeot 308 ÔÇó CATC4D7AA</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">18 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 3 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(10925, 3, 18)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="10923" data-places-max="2" data-prix="15">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">28/11/2026 08:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Sousse</div>\n
+   Ôöé                         <div class="time">28/11/2026 10:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>U-COND1 Catalogue</h4>\n
+   Ôöé                         <p>Peugeot 308 ÔÇó CATC4D7AA</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">15 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 2 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(10923, 2, 15)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="10924" data-places-max="4" data-prix="22">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">29/11/2026 07:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Sfax</div>\n
+   Ôöé                         <div class="time">29/11/2026 10:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>U-COND1 Catalogue</h4>\n
+   Ôöé                         <p>Peugeot 308 ÔÇó CATC4D7AA</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">22 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(10924, 4, 22)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="10926" data-places-max="1" data-prix="10">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">30/11/2026 10:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Nabeul</div>\n
+   Ôöé                         <div class="time">30/11/2026 11:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>U-COND1 Catalogue</h4>\n
+   Ôöé                         <p>Peugeot 308 ÔÇó CATC4D7AA</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">10 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 1 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(10926, 1, 10)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="39" data-places-max="4" data-prix="14">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">tunis</div>\n
+   Ôöé                         <div class="time">04/12/2026 00:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">kairouan</div>\n
+   Ôöé                         <div class="time">04/12/2026 00:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>Ahmed Ben Ali</h4>\n
+   Ôöé                         <p>Renault Clio ÔÇó 456 TUN 2</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">14 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(39, 4, 14)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé                     <div class="result-card" data-trajet-id="56" data-places-max="4" data-prix="25">\n
+   Ôöé                 <div class="journey-route">\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Tunis</div>\n
+   Ôöé                         <div class="time">01/12/2099 10:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div class="journey-line"><i class="fas fa-arrow-right"></i></div>\n
+   Ôöé                     <div class="journey-point">\n
+   Ôöé                         <div class="city">Sfax</div>\n
+   Ôöé                         <div class="time">01/12/2099 12:00</div>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="driver-info">\n
+   Ôöé                     <div class="driver-avatar"><i class="fas fa-user"></i></div>\n
+   Ôöé                     <div class="driver-details">\n
+   Ôöé                         <h4>Conducteur W7-9 Tests W7-9</h4>\n
+   Ôöé                         <p>Toyota Corolla ÔÇó WASSALNI79</p>\n
+   Ôöé                     </div>\n
+   Ôöé                 </div>\n
+   Ôöé                 \n
+   Ôöé                 <div class="journey-footer">\n
+   Ôöé                     <div>\n
+   Ôöé                         <span class="price">25 DT</span>\n
+   Ôöé                         <small>/personne</small>\n
+   Ôöé                     </div>\n
+   Ôöé                     <div><i class="fas fa-chair"></i> 4 places</div>\n
+   Ôöé                                             <button class="btn-reserve" onclick="openReservationModal(56, 4, 25)">\n
+   Ôöé                             <i class="fas fa-check-circle"></i> R├®server\n
+   Ôöé                         </button>\n
+   Ôöé                                     </div>\n
+   Ôöé             </div>\n
+   Ôöé             </div>\n
+   Ôöé \n
+   Ôöé <!-- MODAL DE R├ëSERVATION -->\n
+   Ôöé <div id="reservationModal" class="modal-reserve">\n
+   Ôöé     <div class="modal-content">\n
+   Ôöé         <button class="modal-close" onclick="closeReservationModal()">\n
+   Ôöé             <i class="fas fa-times"></i>\n
+   Ôöé         </button>\n
+   Ôöé         \n
+   Ôöé         <div class="modal-header">\n
+   Ôöé             <h2><i class="fas fa-check-circle"></i> Confirmer la r├®servation</h2>\n
+   Ôöé             <p>Veuillez s├®lectionner le nombre de places souhait├®es</p>\n
+   Ôöé         </div>\n
+   Ôöé         \n
+   Ôöé         <div class="places-selector">\n
+   Ôöé             <label>Nombre de places</label>\n
+   Ôöé             <div class="places-input-group">\n
+   Ôöé                 <button class="places-btn" id="decrementBtn" onclick="decrementPlaces()">ÔêÆ</button>\n
+   Ôöé                 <div class="places-display">\n
+   Ôöé                     <span id="selectedPlaces">1</span> place(s)\n
+   Ôöé                 </div>\n
+   Ôöé                 <button class="places-btn" id="incrementBtn" onclick="incrementPlaces()">+</button>\n
+   Ôöé             </div>\n
+   Ôöé         </div>\n
+   Ôöé         \n
+   Ôöé         <div class="price-summary">\n
+   Ôöé             <div class="price-row">\n
+   Ôöé                 <span>Prix par personne</span>\n
+   Ôöé                 <span><span id="pricePerPerson">0</span> DT</span>\n
+   Ôöé             </div>\n
+   Ôöé             <div class="price-row">\n
+   Ôöé                 <span>Nombre de places</span>\n
+   Ôöé                 <span id="placesCount">0</span>\n
+   Ôöé             </div>\n
+   Ôöé             <div class="price-row">\n
+   Ôöé                 <span>Total</span>\n
+   Ôöé                 <span><strong><span id="totalPrice">0</span> DT</strong></span>\n
+   Ôöé             </div>\n
+   Ôöé         </div>\n
+   Ôöé         \n
+   Ôöé         <div class="modal-actions">\n
+   Ôöé             <button class="btn-cancel-modal" onclick="closeReservationModal()">\n
+   Ôöé                 <i class="fas fa-times"></i> Annuler\n
+   Ôöé             </button>\n
+   Ôöé             <button class="btn-confirm-modal" id="confirmReservationBtn" onclick="confirmReservation()">\n
+   Ôöé                 <i class="fas fa-check-circle"></i> Confirmer\n
+   Ôöé             </button>\n
+   Ôöé         </div>\n
+   Ôöé     </div>\n
+   Ôöé </div>\n
+   Ôöé \n
+   Ôöé <script>\n
+   Ôöé     // Animation des particules\n
+   Ôöé     const canvas = document.getElementById('particleCanvas');\n
+   Ôöé     if (canvas) {\n
+   Ôöé         canvas.width = canvas.offsetWidth;\n
+   Ôöé         canvas.height = canvas.offsetHeight;\n
+   Ôöé         const ctx = canvas.getContext('2d');\n
+   Ôöé         let particles = [];\n
+   Ôöé         for (let i = 0; i < 50; i++) {\n
+   Ôöé             particles.push({\n
+   Ôöé                 x: Math.random() * canvas.width,\n
+   Ôöé                 y: Math.random() * canvas.height,\n
+   Ôöé                 radius: Math.random() * 3 + 1,\n
+   Ôöé                 alpha: Math.random() * 0.5 + 0.2,\n
+   Ôöé                 speedX: (Math.random() - 0.5) * 0.5,\n
+   Ôöé                 speedY: (Math.random() - 0.5) * 0.5\n
+   Ôöé             });\n
+   Ôöé         }\n
+   Ôöé         function animate() {\n
+   Ôöé             ctx.clearRect(0, 0, canvas.width, canvas.height);\n
+   Ôöé             particles.forEach(p => {\n
+   Ôöé                 p.x += p.speedX;\n
+   Ôöé                 p.y += p.speedY;\n
+   Ôöé                 if (p.x < 0) p.x = canvas.width;\n
+   Ôöé                 if (p.x > canvas.width) p.x = 0;\n
+   Ôöé                 if (p.y < 0) p.y = canvas.height;\n
+   Ôöé                 if (p.y > canvas.height) p.y = 0;\n
+   Ôöé                 ctx.beginPath();\n
+   Ôöé                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);\n
+   Ôöé                 ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;\n
+   Ôöé                 ctx.fill();\n
+   Ôöé             });\n
+   Ôöé             requestAnimationFrame(animate);\n
+   Ôöé         }\n
+   Ôöé         animate();\n
+   Ôöé         window.addEventListener('resize', () => {\n
+   Ôöé             canvas.width = canvas.offsetWidth;\n
+   Ôöé             canvas.height = canvas.offsetHeight;\n
+   Ôöé         });\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     // Recherche automatique\n
+   Ôöé     const villeDepart = document.getElementById('villeDepart');\n
+   Ôöé     const destination = document.getElementById('destination');\n
+   Ôöé     const searchForm = document.getElementById('searchForm');\n
+   Ôöé     \n
+   Ôöé     function performSearch() {\n
+   Ôöé         if (villeDepart.value && destination.value) {\n
+   Ôöé             searchForm.submit();\n
+   Ôöé         }\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     villeDepart.addEventListener('change', performSearch);\n
+   Ôöé     destination.addEventListener('change', performSearch);\n
+   Ôöé     \n
+   Ôöé     // Variables du modal\n
+   Ôöé     let currentTrajetId = null;\n
+   Ôöé     let currentMaxPlaces = 1;\n
+   Ôöé     let currentPricePerPerson = 0;\n
+   Ôöé     let currentSelectedPlaces = 1;\n
+   Ôöé     \n
+   Ôöé     function openReservationModal(trajetId, maxPlaces, pricePerPerson) {\n
+   Ôöé         currentTrajetId = trajetId;\n
+   Ôöé         currentMaxPlaces = maxPlaces;\n
+   Ôöé         currentPricePerPerson = pricePerPerson;\n
+   Ôöé         currentSelectedPlaces = 1;\n
+   Ôöé         \n
+   Ôöé         document.getElementById('selectedPlaces').textContent = '1';\n
+   Ôöé         document.getElementById('placesCount').textContent = '1';\n
+   Ôöé         document.getElementById('pricePerPerson').textContent = pricePerPerson;\n
+   Ôöé         document.getElementById('totalPrice').textContent = pricePerPerson;\n
+   Ôöé         \n
+   Ôöé         updateButtonsState();\n
+   Ôöé         document.getElementById('reservationModal').classList.add('active');\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     function closeReservationModal() {\n
+   Ôöé         document.getElementById('reservationModal').classList.remove('active');\n
+   Ôöé         currentTrajetId = null;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     function incrementPlaces() {\n
+   Ôöé         if (currentSelectedPlaces < currentMaxPlaces) {\n
+   Ôöé             currentSelectedPlaces++;\n
+   Ôöé             updateModalDisplay();\n
+   Ôöé         }\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     function decrementPlaces() {\n
+   Ôöé         if (currentSelectedPlaces > 1) {\n
+   Ôöé             currentSelectedPlaces--;\n
+   Ôöé             updateModalDisplay();\n
+   Ôöé         }\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     function updateModalDisplay() {\n
+   Ôöé         document.getElementById('selectedPlaces').textContent = currentSelectedPlaces;\n
+   Ôöé         document.getElementById('placesCount').textContent = currentSelectedPlaces;\n
+   Ôöé         const total = currentSelectedPlaces * currentPricePerPerson;\n
+   Ôöé         document.getElementById('totalPrice').textContent = total;\n
+   Ôöé         updateButtonsState();\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     function updateButtonsState() {\n
+   Ôöé         const incrementBtn = document.getElementById('incrementBtn');\n
+   Ôöé         const decrementBtn = document.getElementById('decrementBtn');\n
+   Ôöé         \n
+   Ôöé         incrementBtn.disabled = currentSelectedPlaces >= currentMaxPlaces;\n
+   Ôöé         decrementBtn.disabled = currentSelectedPlaces <= 1;\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     function confirmReservation() {\n
+   Ôöé         const confirmBtn = document.getElementById('confirmReservationBtn');\n
+   Ôöé         confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Chargement...';\n
+   Ôöé         confirmBtn.disabled = true;\n
+   Ôöé         \n
+   Ôöé         fetch('/reservation/new-ajax', {\n
+   Ôöé             method: 'POST',\n
+   Ôöé             headers: {\n
+   Ôöé                 'Content-Type': 'application/json',\n
+   Ôöé                 'X-Requested-With': 'XMLHttpRequest'\n
+   Ôöé             },\n
+   Ôöé             body: JSON.stringify({\n
+   Ôöé                 trajetId: currentTrajetId,\n
+   Ôöé                 nbPlaces: currentSelectedPlaces\n
+   Ôöé             })\n
+   Ôöé         })\n
+   Ôöé         .then(response => response.json())\n
+   Ôöé         .then(data => {\n
+   Ôöé             if (data.success) {\n
+   Ôöé                 closeReservationModal();\n
+   Ôöé                 showToast('R├®servation confirm├®e avec succ├¿s !', 'success');\n
+   Ôöé                 setTimeout(() => location.reload(), 1500);\n
+   Ôöé             } else {\n
+   Ôöé                 closeReservationModal();\n
+   Ôöé                 showToast(data.message || 'Erreur lors de la r├®servation', 'error');\n
+   Ôöé             }\n
+   Ôöé         })\n
+   Ôöé         .catch(error => {\n
+   Ôöé             closeReservationModal();\n
+   Ôöé             showToast('Erreur r├®seau. Veuillez r├®essayer.', 'error');\n
+   Ôöé         })\n
+   Ôöé         .finally(() => {\n
+   Ôöé             confirmBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirmer';\n
+   Ôöé             confirmBtn.disabled = false;\n
+   Ôöé         });\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     function showToast(message, type) {\n
+   Ôöé         let toastContainer = document.getElementById('toast-container');\n
+   Ôöé         if (!toastContainer) {\n
+   Ôöé             toastContainer = document.createElement('div');\n
+   Ôöé             toastContainer.id = 'toast-container';\n
+   Ôöé             toastContainer.style.cssText = 'position: fixed; bottom: 30px; right: 30px; z-index: 3000; display: flex; flex-direction: column; gap: 12px;';\n
+   Ôöé             document.body.appendChild(toastContainer);\n
+   Ôöé         }\n
+   Ôöé         \n
+   Ôöé         const toast = document.createElement('div');\n
+   Ôöé         toast.style.cssText = `\n
+   Ôöé             background: ${type === 'success' ? '#10b981' : '#ef4444'};\n
+   Ôöé             color: white;\n
+   Ôöé             padding: 14px 24px;\n
+   Ôöé             border-radius: 16px;\n
+   Ôöé             font-weight: 600;\n
+   Ôöé             font-size: 14px;\n
+   Ôöé             box-shadow: 0 10px 30px rgba(0,0,0,0.2);\n
+   Ôöé             animation: slideInRight 0.3s ease;\n
+   Ôöé             display: flex;\n
+   Ôöé             align-items: center;\n
+   Ôöé             gap: 12px;\n
+   Ôöé         `;\n
+   Ôöé         toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" style="font-size: 20px;"></i> ${message}`;\n
+   Ôöé         toastContainer.appendChild(toast);\n
+   Ôöé         \n
+   Ôöé         setTimeout(() => {\n
+   Ôöé             toast.style.animation = 'slideOutRight 0.3s ease';\n
+   Ôöé             setTimeout(() => toast.remove(), 300);\n
+   Ôöé         }, 3000);\n
+   Ôöé     }\n
+   Ôöé     \n
+   Ôöé     // Styles des animations de toast\n
+   Ôöé     const style = document.createElement('style');\n
+   Ôöé     style.textContent = `\n
+   Ôöé         @keyframes slideInRight {\n
+   Ôöé             from { transform: translateX(100%); opacity: 0; }\n
+   Ôöé             to { transform: translateX(0); opacity: 1; }\n
+   Ôöé         }\n
+   Ôöé         @keyframes slideOutRight {\n
+   Ôöé             from { transform: translateX(0); opacity: 1; }\n
+   Ôöé             to { transform: translateX(100%); opacity: 0; }\n
+   Ôöé         }\n
+   Ôöé     `;\n
+   Ôöé     document.head.appendChild(style);\n
+   Ôöé </script>\n
+   Ôöé \n
+   Ôöé </main>\n
+   Ôöé \n
+   Ôöé <!-- ===================================================\n
+   Ôöé                          FOOTER\n
+   Ôöé =================================================== -->\n
+   Ôöé \n
+   Ôöé <footer class="footer">\n
+   Ôöé \n
+   Ôöé     <p>\n
+   Ôöé         ┬® 2025 Wassalni.TN ÔÇö Plateforme moderne de covoiturage en Tunisie\n
+   Ôöé     </p>\n
+   Ôöé \n
+   Ôöé </footer>\n
+   Ôöé \n
+   Ôöé <!-- ===================================================\n
+   Ôöé                        JAVASCRIPT\n
+   Ôöé =================================================== -->\n
+   Ôöé \n
+   Ôöé <script>\n
+   Ôöé \n
+   Ôöé     const mobileBtn = document.getElementById('mobileMenuBtn');\n
+   Ôöé     const navLinks  = document.getElementById('navLinks');\n
+   Ôöé \n
+   Ôöé     mobileBtn.addEventListener('click', () => {\n
+   Ôöé \n
+   Ôöé         navLinks.classList.toggle('mobile-open');\n
+   Ôöé \n
+   Ôöé         if(navLinks.classList.contains('mobile-open')){\n
+   Ôöé             mobileBtn.innerHTML =\n
+   Ôöé                 '<i class="fas fa-times"></i>';\n
+   Ôöé         }else{\n
+   Ôöé             mobileBtn.innerHTML =\n
+   Ôöé                 '<i class="fas fa-bars"></i>';\n
+   Ôöé         }\n
+   Ôöé \n
+   Ôöé     });\n
+   Ôöé \n
+   Ôöé     // Fermer menu mobile au clic\n
+   Ôöé     document.querySelectorAll('.nav-links a')\n
+   Ôöé         .forEach(link => {\n
+   Ôöé \n
+   Ôöé             link.addEventListener('click', () => {\n
+   Ôöé \n
+   Ôöé                 navLinks.classList.remove('mobile-open');\n
+   Ôöé \n
+   Ôöé                 mobileBtn.innerHTML =\n
+   Ôöé                     '<i class="fas fa-bars"></i>';\n
+   Ôöé \n
+   Ôöé             });\n
+   Ôöé \n
+   Ôöé         });\n
+   Ôöé \n
+   Ôöé </script>\n
+   Ôöé \n
+   Ôöé \n
+   Ôöé </body>\n
+   Ôöé </html>' [UTF-8](length: 82555) does not contain "50k+" [ASCII](length: 4).
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:248
+   Ôöé
+ Ô£ÿ Robustesse (OBS-G) ÔÇö date de recherche invalide ┬½ abc ┬╗ : pas d'erreur serveur
+   Ôöé
+   Ôöé Recherche dateDepart=abc : erreur serveur HTTP 500
+   Ôöé Failed asserting that 500 is less than 500.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Support\CatalogueWebTestCase.php:51
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\PublicationRechercheTest.php:257
+   Ôöé
+
+Reclamation Transitions (App\Tests\Functional\Catalogue\ReclamationTransitions)
+ Ô£ÿ T-05 / OBS-05-04 (EX-29) ÔÇö liste ┬½ mes r├®clamations ┬╗ avec une r├®clamation EN_COURS : total = en attente + trait├®es
+   Ôöé
+   Ôöé Total 1, en attente 0, trait├®es 0
+   Ôöé Failed asserting that 0 is identical to 1.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReclamationTransitionsTest.php:97
+   Ôöé
+
+Regle Metier Entites (App\Tests\Entity\RegleMetierEntites)
+ Ô£ÿ UT-04 (CA-02, VL) ÔÇö d├®part aujourd'hui ├á 00:00:01 (d├®j├á pass├®) : refus attendu
+   Ôöé
+   Ôöé Un d├®part d├®j├á pass├® de la journ├®e est accept├® par la contrainte de l'entit├®
+   Ôöé Failed asserting that 0 is identical to 1.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Entity\RegleMetierEntitesTest.php:108
+   Ôöé
+
+Reservation Annulation (App\Tests\Functional\Catalogue\ReservationAnnulation)
+ Ô£ÿ TC-28 (CA-09) ÔÇö seconde r├®servation de U-PASS1 sur T-NOMINAL par la voie HTML : refus, une seule r├®servation
+   Ôöé
+   Ôöé Failed asserting that 2 is identical to 1.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:118
+   Ôöé
+ Ô£ÿ TC-30 (CA-10) ÔÇö annuler RES-PAST (trajet pass├®) : refus, statut CONFIRMEE, places inchang├®es
+   Ôöé
+   Ôöé Failed asserting that two strings are identical.
+   Ôöé --- Expected
+   Ôöé +++ Actual
+   Ôöé @@ @@
+   Ôöé -'CONFIRMEE'
+   Ôöé +'ANNULEE'
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:154
+   Ôöé
+ Ô£ÿ TC-49 (CA-04) ÔÇö r├®server T-PAST (valid├® mais pass├®) par la voie HTML : refus, aucune r├®servation
+   Ôöé
+   Ôöé Failed asserting that 1 is identical to 0.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:166
+   Ôöé
+ Ô£ÿ TC-49 bis (CA-04, CA-09) ÔÇö r├®server T-PAST par la voie JSON : refus, aucune r├®servation
+   Ôöé
+   Ôöé Failed asserting that 1 is identical to 0.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:178
+   Ôöé
+ Ô£ÿ TC-50 (CA-01) ÔÇö r├®server T-PEND (EN_ATTENTE) par la voie HTML : refus, aucune r├®servation
+   Ôöé
+   Ôöé Failed asserting that 1 is identical to 0.
+   Ôöé
+   Ôöé C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\ReservationAnnulationTest.php:189
+   Ôöé
+
+3 tests triggered 2 deprecations:
+
+1) C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Constraints\NotBlank.php:46
+Since symfony/validator 7.3: Passing an array of options to configure the "Symfony\Component\Validator\Constraints\NotBlank" constraint is deprecated, use named arguments instead.
+
+Triggered by:
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testCA18AvisAvantLaFinDuTrajet (3 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:62
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testCA18SecondAvis (2 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:50
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testTC33BornesDeLaNote (8 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:35
+
+2) C:\Users\Dogui\wassalni-tests\vendor\symfony\validator\Constraints\Length.php:87
+Since symfony/validator 7.3: Passing an array of options to configure the "Symfony\Component\Validator\Constraints\Length" constraint is deprecated, use named arguments instead.
+
+Triggered by:
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testCA18AvisAvantLaFinDuTrajet (3 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:62
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testCA18SecondAvis (2 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:50
+
+* App\Tests\Functional\Catalogue\AvisReclamationTest::testTC33BornesDeLaNote (8 times)
+  C:\Users\Dogui\wassalni-tests\tests\Functional\Catalogue\AvisReclamationTest.php:35
+
+FAILURES!
+Tests: 27, Assertions: 73, Failures: 25, Deprecations: 2.

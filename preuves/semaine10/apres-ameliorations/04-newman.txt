@@ -1,0 +1,190 @@
+﻿# Newman (API) | 2026-11-21 18:31:15 +01:00 | revision 1ed214b | base wassalni_test
+# Base wassalni_test, trajet de fixture 56, date 2026-11-21T17:31:24.878Z
+newman
+
+Wassalni ÔÇö Semaine 8 ÔÇö Tests de l'API JSON
+
+ÔåÆ 01 ÔÇö Trouver le trajet reproductible
+  GET http://127.0.0.1:8000/trajet/recherche?villeDepart=Tunis&destination=Sfax&dateDepart=2099-12-01 [200 OK, 47.54kB, 202ms]
+  ÔêÜ  La recherche de fixture renvoie 200
+  ÔêÜ  Un seul trajet reproductible est trouv├®
+
+ÔåÆ 02 ÔÇö Refuser un visiteur anonyme
+  POST http://127.0.0.1:8000/reservation/new-ajax [302 Found, 566B, 70ms]
+  ÔêÜ  Une r├®servation anonyme est redirig├®e vers la connexion
+  ÔêÜ  La redirection m├¿ne au formulaire de connexion
+
+ÔåÆ 02b ÔÇö CA-14 : /get-last-user-email sans connexion ne divulgue aucune adresse (ANO-22)
+  GET http://127.0.0.1:8000/get-last-user-email [403 Forbidden, 288B, 119ms]
+  ÔêÜ  Acc├¿s refus├® sans connexion (302, 401 ou 403)
+  ÔêÜ  Aucune adresse e-mail dans la r├®ponse
+
+ÔåÆ 02c ÔÇö CA-14 : /check-verification-status sans connexion est refus├® (ANO-22)
+  GET http://127.0.0.1:8000/check-verification-status [403 Forbidden, 288B, 52ms]
+  ÔêÜ  Acc├¿s refus├® sans connexion (302, 401 ou 403)
+
+ÔåÆ 02d ÔÇö /health : 200, JSON {status: ok}, en-t├¬tes et temps de r├®ponse
+  GET http://127.0.0.1:8000/health [200 OK, 204B, 59ms]
+  ÔêÜ  Code 200
+  ÔêÜ  En-t├¬te Content-Type JSON
+  ÔêÜ  Corps {"status":"ok"}
+  ÔêÜ  Pas de cache public sur l'├®tat de sant├®
+  ÔêÜ  R├®ponse en moins de 1000 ms
+
+ÔåÆ 02e ÔÇö /health en POST : m├®thode non autoris├®e (405)
+  POST http://127.0.0.1:8000/health [405 Method Not Allowed, 1.25kB, 67ms]
+  ÔêÜ  POST refus├® en 405
+
+ÔåÆ 03 ÔÇö Charger le formulaire et le jeton CSRF
+  GET http://127.0.0.1:8000/connexion [200 OK, 6.55kB, 60ms]
+  ÔêÜ  Le formulaire de connexion est disponible
+  ÔêÜ  Le formulaire contient un jeton CSRF
+
+ÔåÆ 04 ÔÇö Authentifier le passager
+  POST http://127.0.0.1:8000/connexion [200 OK, 96.87kB, 1005ms]
+  ÔêÜ  La connexion aboutit et la session est conserv├®e
+
+ÔåÆ 05 ÔÇö R├®server une place (succ├¿s JSON)
+  POST http://127.0.0.1:8000/reservation/new-ajax [200 OK, 361B, 70ms]
+  ÔêÜ  La r├®servation retourne 200 JSON
+  ÔêÜ  La r├®ponse confirme la r├®servation et son prix
+  ÔêÜ  En-t├¬te Content-Type JSON
+
+ÔåÆ 05b ÔÇö ├ëtat apr├¿s r├®servation : la recherche affiche 3 places pour le trajet (relecture HTTP)
+  GET http://127.0.0.1:8000/trajet/recherche?villeDepart=Tunis&destination=Sfax&dateDepart=2099-12-01 [200 OK, 49.94kB, 98ms]
+  ÔêÜ  Le trajet est toujours affich├®
+  ÔêÜ  Stock d├®cr├®ment├® de 4 ├á 3 (CA-08)
+
+ÔåÆ 05c ÔÇö Corps JSON malform├® : 400 et JSON d'erreur
+  POST http://127.0.0.1:8000/reservation/new-ajax [400 Bad Request, 305B, 83ms]
+  ÔêÜ  Code 400
+  ÔêÜ  R├®ponse JSON success=false
+  ÔêÜ  Message explicite
+
+ÔåÆ 05d ÔÇö Quantit├® n├®gative (-1) : 400, aucune r├®servation (r├®gression ANO-01)
+  POST http://127.0.0.1:8000/reservation/new-ajax [400 Bad Request, 338B, 163ms]
+  ÔêÜ  Code 400
+  ÔêÜ  Message sur l'entier positif
+
+ÔåÆ 05e ÔÇö Identifiant de trajet non num├®rique : 400
+  POST http://127.0.0.1:8000/reservation/new-ajax [400 Bad Request, 316B, 78ms]
+  ÔêÜ  Code 400
+  ÔêÜ  Message ┬½ Identifiant de trajet invalide ┬╗
+
+ÔåÆ 05f ÔÇö Identifiant de trajet absent : 400
+  POST http://127.0.0.1:8000/reservation/new-ajax [400 Bad Request, 315B, 101ms]
+  ÔêÜ  Code 400
+  ÔêÜ  Message ┬½ Trajet non sp├®cifi├® ┬╗
+
+ÔåÆ 06 ÔÇö Rejeter une quantit├® nulle
+  POST http://127.0.0.1:8000/reservation/new-ajax [400 Bad Request, 338B, 65ms]
+  ÔêÜ  Une quantit├® nulle est rejet├®e en 400
+
+ÔåÆ 07 ÔÇö Rejeter un trajet inexistant
+  POST http://127.0.0.1:8000/reservation/new-ajax [404 Not Found, 306B, 68ms]
+  ÔêÜ  Un trajet inconnu retourne 404
+
+ÔåÆ 08 ÔÇö Rejeter une quantit├® sup├®rieure ├á la capacit├®
+  POST http://127.0.0.1:8000/reservation/new-ajax [400 Bad Request, 339B, 93ms]
+  ÔêÜ  Une quantit├® indisponible retourne 400
+
+ÔåÆ 09 ÔÇö Rejeter une r├®servation en doublon
+  POST http://127.0.0.1:8000/reservation/new-ajax [400 Bad Request, 338B, 79ms]
+  ÔêÜ  Le doublon retourne 400 avec un message JSON
+
+ÔåÆ 10 ÔÇö Rejeter une m├®thode HTTP non autoris├®e
+  GET http://127.0.0.1:8000/reservation/new-ajax [405 Method Not Allowed, 1.25kB, 48ms]
+  ÔêÜ  GET est refus├® pour la cr├®ation de r├®servation
+
+ÔåÆ 11 ÔÇö API REST : cr├®er une r├®clamation (passager) ÔåÆ 201 + Location
+  POST http://127.0.0.1:8000/api/reclamations [201 Created, 522B, 121ms]
+  ÔêÜ  201 Created
+  ÔêÜ  En-t├¬te Location vers la ressource cr├®├®e
+  ÔêÜ  Statut initial EN_ATTENTE, trajet rattach├®
+
+ÔåÆ 12 ÔÇö API REST : message de 9 caract├¿res ÔåÆ 422 avec le champ en erreur
+  POST http://127.0.0.1:8000/api/reclamations [422 Unprocessable Content, 378B, 68ms]
+  ÔêÜ  422 Unprocessable Entity
+  ÔêÜ  L'erreur d├®signe le champ message
+
+ÔåÆ 13 ÔÇö API REST : corps de formulaire au lieu de JSON ÔåÆ 415
+  POST http://127.0.0.1:8000/api/reclamations [415 Unsupported Media Type, 320B, 68ms]
+  ÔêÜ  415 Unsupported Media Type
+
+ÔåÆ 14 ÔÇö API REST : lister mes r├®clamations ÔåÆ 200, sans adresse e-mail
+  GET http://127.0.0.1:8000/api/reclamations [200 OK, 513B, 80ms]
+  ÔêÜ  200 OK en JSON
+  ÔêÜ  La r├®clamation cr├®├®e est list├®e
+  ÔêÜ  Aucune adresse e-mail dans la r├®ponse (EX-33)
+
+ÔåÆ 15 ÔÇö API REST : un passager tente de traiter sa r├®clamation ÔåÆ 403
+  PATCH http://127.0.0.1:8000/api/reclamations/460 [403 Forbidden, 323B, 93ms]
+  ÔêÜ  403 Forbidden
+
+ÔåÆ 16 ÔÇö API REST : DELETE non pr├®vu ÔåÆ 405
+  DELETE http://127.0.0.1:8000/api/reclamations/460 [405 Method Not Allowed, 370B, 39ms]
+  ÔêÜ  405 Method Not Allowed
+
+ÔåÆ 17 ÔÇö D├®connexion du passager
+  GET http://127.0.0.1:8000/deconnexion [200 OK, 13.3kB, 126ms]
+  ÔêÜ  D├®connexion effectu├®e
+
+ÔåÆ 18 ÔÇö API REST : visiteur anonyme ÔåÆ 401 JSON
+  GET http://127.0.0.1:8000/api/reclamations [401 Unauthorized, 294B, 60ms]
+  ÔêÜ  401 Unauthorized en JSON
+
+ÔåÆ 19 ÔÇö Charger le jeton CSRF de connexion (administrateur)
+  GET http://127.0.0.1:8000/connexion [200 OK, 6.55kB, 56ms]
+  ÔêÜ  Formulaire disponible
+  ÔêÜ  Jeton CSRF pr├®sent
+
+ÔåÆ 20 ÔÇö Authentifier l'administrateur
+  POST http://127.0.0.1:8000/connexion [200 OK, 32.31kB, 928ms]
+  ÔêÜ  Connexion de l'administrateur
+
+ÔåÆ 21 ÔÇö API REST : administrateur EN_ATTENTE ÔåÆ EN_COURS ÔåÆ 200
+  PATCH http://127.0.0.1:8000/api/reclamations/460 [200 OK, 482B, 70ms]
+  ÔêÜ  200 OK
+  ÔêÜ  Statut EN_COURS, pas encore de date de traitement
+
+ÔåÆ 22 ÔÇö API REST : traitement sans r├®ponse ÔåÆ 422
+  PATCH http://127.0.0.1:8000/api/reclamations/460 [422 Unprocessable Content, 391B, 76ms]
+  ÔêÜ  422 : la r├®ponse est obligatoire
+
+ÔåÆ 23 ÔÇö API REST : administrateur EN_COURS ÔåÆ TRAITEE avec r├®ponse ÔåÆ 200
+  PATCH http://127.0.0.1:8000/api/reclamations/460 [200 OK, 539B, 51ms]
+  ÔêÜ  200 OK
+  ÔêÜ  Statut TRAITEE, r├®ponse et date de traitement enregistr├®es
+
+ÔåÆ 24 ÔÇö API REST : r├®clamation close, nouvelle r├®ponse ÔåÆ 409
+  PATCH http://127.0.0.1:8000/api/reclamations/460 [409 Conflict, 354B, 69ms]
+  ÔêÜ  409 Conflict : r├®clamation TRAITEE non modifiable
+
+ÔåÆ 25 ÔÇö API REST : filtre ?statut=TRAITEE (administrateur) ÔåÆ 200
+  GET http://127.0.0.1:8000/api/reclamations?statut=TRAITEE [200 OK, 2.43kB, 54ms]
+  ÔêÜ  200 OK et uniquement des r├®clamations TRAITEE
+
+ÔåÆ 26 ÔÇö API REST : filtre invalide ?statut=CLOTUREE ÔåÆ 400
+  GET http://127.0.0.1:8000/api/reclamations?statut=CLOTUREE [400 Bad Request, 334B, 44ms]
+  ÔêÜ  400 Bad Request
+
+ÔöîÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔö¼ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔö¼ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÉ
+Ôöé                         Ôöé            executed Ôöé             failed Ôöé
+Ôö£ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔö╝ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔö╝ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöñ
+Ôöé              iterations Ôöé                   1 Ôöé                  0 Ôöé
+Ôö£ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔö╝ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔö╝ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöñ
+Ôöé                requests Ôöé                  35 Ôöé                  0 Ôöé
+Ôö£ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔö╝ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔö╝ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöñ
+Ôöé            test-scripts Ôöé                  35 Ôöé                  0 Ôöé
+Ôö£ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔö╝ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔö╝ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöñ
+Ôöé      prerequest-scripts Ôöé                   0 Ôöé                  0 Ôöé
+Ôö£ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔö╝ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔö╝ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöñ
+Ôöé              assertions Ôöé                  59 Ôöé                  0 Ôöé
+Ôö£ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔö┤ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔö┤ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöñ
+Ôöé total run duration: 7.6s                                           Ôöé
+Ôö£ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöñ
+Ôöé total data received: 258.14kB (approx)                             Ôöé
+Ôö£ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöñ
+Ôöé average response time: 130ms [min: 39ms, max: 1005ms, s.d.: 208ms] Ôöé
+ÔööÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÿ
+# Requ├¬tes : 35 (├®checs 0) ; assertions : 59 (├®checs 0)

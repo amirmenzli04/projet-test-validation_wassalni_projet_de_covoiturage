@@ -1,0 +1,184 @@
+﻿# PHPUnit regression (anomalies exclues) | 2026-11-21 18:28:42 +01:00 | revision 1ed214b | base wassalni_test
+PHPUnit 12.5.23 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.27
+Configuration: C:\Users\Dogui\wassalni-tests\phpunit.dist.xml
+
+...............................................................  63 / 131 ( 48%)
+............................................................... 126 / 131 ( 96%)
+.....                                                           131 / 131 (100%)
+
+Time: 00:09.826, Memory: 58.00 MB
+
+Anonymous Access (App\Tests\Functional\AnonymousAccess)
+ Ô£ö Anonymous visitors are redirected from protected routes
+
+Avis Reclamation (App\Tests\Functional\Catalogue\AvisReclamation)
+ Ô£ö CA-18 ÔÇö avis sur un trajet jamais r├®serv├® (T-P4) : refus├®
+ Ô£ö TC-36 (CA-17, EX-24) ÔÇö r├®clamation : message vide et de 9 caract├¿res refus├®s, 10 accept├® ; sujet hors liste (101 car.) refus├®
+
+Concurrence Reservation (App\Tests\Integration\ConcurrenceReservation)
+ Ô£ö IT-07 (R1, EX-35, CA-06) ÔÇö deux r├®servations entrelac├®es sur la derni├¿re place : une seule doit ├¬tre confirm├®e
+
+Connexion Acces (App\Tests\Functional\Catalogue\ConnexionAcces)
+ Ô£ö TC-03 (CA-11, EX-03) ÔÇö compte non v├®rifi├® avec le bon mot de passe : aucune session authentifi├®e
+ Ô£ö TC-51 (CA-11) ÔÇö mauvais mot de passe puis e-mail inconnu : refus, message identique, aucune session
+ Ô£ö TC-04 (CA-11, EX-04) ÔÇö U-PASS2 bloqu├® par l'admin ne peut plus se connecter ; r├®activ├®, il le peut
+ Ô£ö TC-41 (CA-12, EX-31) ÔÇö U-PASS1 ouvre /admin/dashboard, /admin/utilisateurs et /admin/trajets : 403 pour chaque page
+ Ô£ö CA-12 (EX-31) ÔÇö passager sur l'espace conducteur : 403 ; visiteur anonyme : redirection vers /connexion
+ Ô£ö TC-45 (CA-14, EX-33) ÔÇö /get-last-user-email sans connexion : acc├¿s refus├®, aucune adresse e-mail renvoy├®e
+ Ô£ö CA-14 (EX-33) ÔÇö /check-verification-status sans connexion : acc├¿s refus├®
+ Ô£ö TC-38 (CA-15, EX-34) ÔÇö admin ouvre par GET /admin/trajet/valider/{T-PEND} : refus, T-PEND reste EN_ATTENTE
+ Ô£ö CA-15 (EX-34) ÔÇö admin bloque U-PASS2 par simple GET sans jeton : refus, statut ACTIF conserv├®
+ Ô£ö CA-15 (EX-34) ÔÇö admin supprime T-P1 par simple GET sans jeton : refus, trajet conserv├®
+ Ô£ö CA-15 (EX-34) ÔÇö traitement d'une r├®clamation par POST sans jeton CSRF : refus, statut EN_ATTENTE conserv├®
+ Ô£ö CA-20 (EX-28, EX-35) ÔÇö admin supprime T-NOMINAL qui a des r├®servations : refus propre ou propagation, sans erreur 500 ni orphelin
+ Ô£ö CA-13 (EX-32) ÔÇö U-COND2 ouvre la modification du v├®hicule V1 de U-COND1 : 403
+
+Contraintes Entites (App\Tests\Entity\ContraintesEntites)
+ Ô£ö UT-12 (ANO-35, ANO-39) ÔÇö App\Entity\User : les contraintes de validation se chargent sans erreur
+ Ô£ö UT-12 (ANO-35, ANO-39) ÔÇö App\Entity\Trajet : les contraintes de validation se chargent sans erreur
+ Ô£ö UT-12 (ANO-35, ANO-39) ÔÇö App\Entity\Vehicule : les contraintes de validation se chargent sans erreur
+ Ô£ö UT-12 (ANO-35, ANO-39) ÔÇö App\Entity\Reservation : les contraintes de validation se chargent sans erreur
+ Ô£ö UT-12 (ANO-35, ANO-39) ÔÇö App\Entity\Reclamation : les contraintes de validation se chargent sans erreur
+ Ô£ö UT-12 (ANO-35, ANO-39) ÔÇö App\Entity\Avis : les contraintes de validation se chargent sans erreur
+ Ô£ö UT-13 (ANO-39, valeurs limites) ÔÇö mot de passe de 5 caract├¿res refus├®, de 6 caract├¿res accept├®
+
+Health Controller (App\Tests\Controller\HealthController)
+ Ô£ö Health check returns ok when database is available
+
+Publication Recherche (App\Tests\Functional\Catalogue\PublicationRecherche)
+ Ô£ö TC-09 (EX-08) ÔÇö U-COND1 publie TunisÔåÆSousse J+1/J+2, 15 DT avec V1 : trajet enregistr├®, rattach├® au conducteur
+ Ô£ö TC-10 (CA-02) ÔÇö d├®part J-1 par requ├¬te directe : refus, aucun trajet cr├®├®
+ Ô£ö TC-13 (CA-02) ÔÇö arriv├®e J+1 avant d├®part J+2 : refus, aucun trajet
+ Ô£ö TC-14 (CA-03) ÔÇö prix 0 refus├®
+ Ô£ö TC-14 (CA-03) ÔÇö prix -1 refus├®
+ Ô£ö TC-14 (CA-03) ÔÇö prix 0,01 accept├®
+ Ô£ö TC-14 (CA-03) ÔÇö prix 15 accept├®
+ Ô£ö CA-21 (EX-07) ÔÇö U-COND2 sans v├®hicule : redirig├® vers l'ajout de v├®hicule, aucun trajet publi├®
+ Ô£ö CA-21 (EX-06) ÔÇö U-COND2 ajoute un v├®hicule par le formulaire (5 champs) : v├®hicule enregistr├®
+ Ô£ö TC-19 (CA-04) ÔÇö T-NOMINAL trouv├® ; T-FULL (0 place) et T-PEND (en attente) absents
+ Ô£ö TC-20 b (EX-13) ÔÇö villes saisies en minuscules : m├¬mes r├®sultats
+ Ô£ö CA-05 (EX-15) ÔÇö r├®sultats tri├®s par date de d├®part croissante : T-FUT-EARLY (J+2) avant T-P4 (J+8)
+ Ô£ö CA-04 (EX-13) ÔÇö filtre date J+8 : T-P4 seul, T-FUT-EARLY (J+2) exclu
+
+Reclamation Api Rest (App\Tests\Functional\Api\ReclamationApiRest)
+ Ô£ö API-01 (EX-33) ÔÇö visiteur anonyme : 401 JSON sur la liste, le d├®tail, la cr├®ation et la modification
+ Ô£ö API-02 (EX-32) ÔÇö un passager ne liste que ses propres r├®clamations ; aucune adresse e-mail expos├®e
+ Ô£ö API-03 (EX-25) ÔÇö l'administrateur liste toutes les r├®clamations et filtre par statut
+ Ô£ö API-04 ÔÇö filtres invalides (statut inconnu, date mal form├®e) : 400 JSON
+ Ô£ö API-05 ÔÇö filtre par date de cr├®ation : aujourd'hui inclus, demain exclu
+ Ô£ö API-06 (EX-32) ÔÇö d├®tail : 200 pour l'auteur, 403 pour un autre passager, 404 si inexistante
+ Ô£ö API-07 (EX-24) ÔÇö cr├®ation valide : 201, en-t├¬te Location, statut EN_ATTENTE, enregistr├®e en base
+ Ô£ö API-08 (EX-24, valeurs limites) ÔÇö message de 9 caract├¿res refus├® (422), de 10 caract├¿res accept├® (201)
+ Ô£ö API-09 ÔÇö cr├®ation invalide : sujet hors liste ou trajet inconnu (422), JSON malform├® (400), mauvais Content-Type (415) ; rien en base
+ Ô£ö API-10 (EX-31) ÔÇö un passager ne peut pas modifier le statut d'une r├®clamation, m├¬me la sienne : 403, rien ne change
+ Ô£ö API-11 (EX-25, transitions) ÔÇö administrateur : EN_ATTENTE ÔåÆ EN_COURS ÔåÆ TRAITEE, r├®ponse et date de traitement enregistr├®es
+ Ô£ö API-12 (transitions interdites) ÔÇö retour EN_COURS ÔåÆ EN_ATTENTE (409) ; r├®clamation TRAITEE close (409) ; r├®ponse ├®cras├®e impossible
+ Ô£ö API-13 ÔÇö traitement sans r├®ponse (422) ; statut inconnu (422) ; r├®clamation inexistante (404)
+ Ô£ö API-14 ÔÇö m├®thode non pr├®vue (DELETE, PUT) : 405 Method Not Allowed
+
+Reclamation Transitions (App\Tests\Functional\Catalogue\ReclamationTransitions)
+ Ô£ö T-01 (EX-25) ÔÇö cr├®ation par le formulaire : ├®tat initial EN_ATTENTE, date de traitement vide
+ Ô£ö T-02 / OBS-05-01 ÔÇö EN_ATTENTE ÔåÆ TRAITEE directement par la r├®ponse administrateur (aucun passage par EN_COURS)
+ Ô£ö T-03 ÔÇö TRAITEE ÔåÆ TRAITEE : une seconde r├®ponse par requ├¬te directe ├®crase la premi├¿re (transition non gard├®e)
+ Ô£ö T-04 / OBS-05-02 ÔÇö Reclamation::setStatut() accepte un statut hors liste (aucune garde dans l'entit├®)
+ Ô£ö T-06 (CA-12) ÔÇö un passager ne peut pas traiter une r├®clamation : 403, statut inchang├®
+
+Reclamation Validation (App\Tests\Entity\ReclamationValidation)
+ Ô£ö Message de neuf caracteres est refuse
+ Ô£ö Message de dix caracteres est accepte
+ Ô£ö Sujet de quatre caracteres est refuse et cinq caracteres est accepte
+ Ô£ö Reservation refuse une quantite nulle et accepte la quantite disponible
+ Ô£ö Reservation refuse une quantite superieure au stock
+
+Reclamation Workflow (App\Tests\Functional\ReclamationWorkflow)
+ Ô£ö Authenticated user can create a complaint
+ Ô£ö Complaint form rejects nine character message
+ Ô£ö Only the complaint owner can read its details
+ Ô£ö Administrator can process and persist a complaint
+ Ô£ö Empty administrator response leaves complaint pending
+ Ô£ö Non administrator cannot open administration
+ Ô£ö Complaint list only contains the current users complaints
+
+Regle Metier Entites (App\Tests\Entity\RegleMetierEntites)
+ Ô£ö UT-01 (EX-09, VL) ÔÇö arriv├®e ├®gale au d├®part refus├®e ; arriv├®e une minute apr├¿s accept├®e
+ Ô£ö UT-02 (EX-10, CA-03) ÔÇö prix -1 (EP n├®gatif) : 1 violation(s)
+ Ô£ö UT-02 (EX-10, CA-03) ÔÇö prix 0 (VL) : 1 violation(s)
+ Ô£ö UT-02 (EX-10, CA-03) ÔÇö prix 0,01 (VL) : 0 violation(s)
+ Ô£ö UT-02 (EX-10, CA-03) ÔÇö prix 15 (EP nominal) : 0 violation(s)
+ Ô£ö UT-03 (EX-09, VL) ÔÇö d├®part hier refus├®, d├®part demain accept├®
+ Ô£ö UT-05 (EX-06) ÔÇö v├®hicule : 0 place (VL) ÔåÆ 1 violation(s)
+ Ô£ö UT-05 (EX-06) ÔÇö v├®hicule : 1 place (VL) ÔåÆ 0 violation(s)
+ Ô£ö UT-05 (EX-06) ÔÇö v├®hicule : 9 places (VL) ÔåÆ 0 violation(s)
+ Ô£ö UT-05 (EX-06) ÔÇö v├®hicule : 10 places (VL) ÔåÆ 1 violation(s)
+ Ô£ö UT-06 (EX-06) ÔÇö immatriculation : ┬½ TUN1234 ┬╗ accept├®e, ┬½ 123 TUN 4567 ┬╗ (format avec espaces) refus├®e
+ Ô£ö UT-07 (EX-21, CA-18) ÔÇö avis : note 0 (VL) ÔåÆ 1 violation(s)
+ Ô£ö UT-07 (EX-21, CA-18) ÔÇö avis : note 1 (VL) ÔåÆ 0 violation(s)
+ Ô£ö UT-07 (EX-21, CA-18) ÔÇö avis : note 5 (VL) ÔåÆ 0 violation(s)
+ Ô£ö UT-07 (EX-21, CA-18) ÔÇö avis : note 6 (VL) ÔåÆ 1 violation(s)
+ Ô£ö UT-08 (EX-31) ÔÇö getRoles() ajoute toujours ROLE_USER, sans doublon ; un nouvel utilisateur est passager
+ Ô£ö UT-09 (EX-23) ÔÇö note moyenne du conducteur : (4 + 5 + 5) / 3 arrondie ├á 4,7 ; aucun avis ÔåÆ 0
+
+Reservation (App\Tests\Entity\Reservation)
+ Ô£ö PeutEtreAnnulee refuseUnDepartPasse
+ Ô£ö PeutEtreAnnulee refuseUnDepartDansMoinsDeDeuxHeures
+ Ô£ö PeutEtreAnnulee autoriseUnDepartDansPlusDeDeuxHeures
+ Ô£ö PeutEtreAnnulee refuseUnTrajetAbsent
+ Ô£ö SetStatut enregistreEtEffaceLaDateAnnulationSelonLeStatut
+ Ô£ö Le prix total est recalcule quand le trajet est retire
+
+Reservation Annulation (App\Tests\Functional\Catalogue\ReservationAnnulation)
+ Ô£ö TC-22 (CA-07, CA-08) ÔÇö r├®server les 4 places de T-P4 : CONFIRMEE, 0 place restante, total 88 DT
+ Ô£ö TC-23 (CA-06) ÔÇö demander 5 places sur 4 par requ├¬te directe : refus, aucune r├®servation, 4 places
+ Ô£ö TC-24 (CA-06, EX-35) ÔÇö nombre de places invalide ┬½ 0 ┬╗ par la voie HTML : refus, stock inchang├®
+ Ô£ö TC-24 (CA-06, EX-35) ÔÇö nombre de places invalide ┬½ -1 ┬╗ par la voie HTML : refus, stock inchang├®
+ Ô£ö TC-24 (CA-06, EX-35) ÔÇö nombre de places invalide ┬½ 3.5 ┬╗ par la voie HTML : refus, stock inchang├®
+ Ô£ö TC-24 (CA-06, EX-35) ÔÇö nombre de places invalide ┬½ abc ┬╗ par la voie HTML : refus, stock inchang├®
+ Ô£ö TC-25 (CA-07) ÔÇö totaux de 1, 2 et 4 places ├á 22 DT : 22, 44 et 88 DT
+ Ô£ö TC-28 bis (CA-09) ÔÇö m├¬me doublon par la voie JSON : HTTP 400, une seule r├®servation
+ Ô£ö TC-29 (CA-10) ÔÇö annuler RES-F1 puis r├®server de nouveau T-NOMINAL : ANNULEE, places rendues, nouvelle r├®servation accept├®e
+ Ô£ö TC-50 bis (CA-01) ÔÇö r├®server T-PEND par la voie JSON : HTTP 400, aucune r├®servation
+ Ô£ö CA-13 ÔÇö U-PASS2 tente d'annuler RES-F1 de U-PASS1 par URL directe : 403, ├®tat et stock inchang├®s
+ Ô£ö CA-10 ÔÇö double annulation de RES-F1 : places rendues une seule fois
+ Ô£ö CA-15 (EX-34) ÔÇö annulation par simple GET sans jeton CSRF : refus├®e (405/403), r├®servation inchang├®e
+ Ô£ö CA-15 (EX-34) ÔÇö r├®servation HTML sans jeton CSRF : refus├®e, aucune r├®servation
+ Ô£ö CA-12 (EX-31) ÔÇö un conducteur ne peut pas r├®server (route r├®serv├®e ├á ROLE_PASSAGER) : 403
+
+Reservation Api (App\Tests\Functional\ReservationApi)
+ Ô£ö Anonymous user cannot create reservation
+ Ô£ö Passenger creates reservation and persists availability
+ Ô£ö Api rejects malformed json and non positive seat counts
+ Ô£ö Api rejects unknown unavailable and duplicate reservations
+
+Reservation Persistence (App\Tests\Integration\ReservationPersistence)
+ Ô£ö Reservation can be created read updated and deleted
+ Ô£ö Database rejects reservation with unknown passenger
+ Ô£ö Database rejects duplicate user email
+
+Reservation Service (App\Tests\Service\ReservationService)
+ Ô£ö Reserver placesSuffisantes creeReservationConfirmee
+ Ô£ö Reserver placesSuffisantes diminueLesPlacesDuTrajet
+ Ô£ö Reserver pasAssezDePlaces leveException
+ Ô£ö Reserver dejaReserveSurCeTrajet leveException
+ Ô£ö Annuler reservationConfirmee passeAAnnulee
+ Ô£ö Annuler reservationConfirmee rendLesPlacesAuTrajet
+ Ô£ö Annuler reservationDejaAnnulee leveException
+
+Reservation Service Interaction (App\Tests\Service\ReservationServiceInteraction)
+ Ô£ö UT-10 (CA-09) ÔÇö reserver() recherche une r├®servation CONFIRMEE du m├¬me passager sur le m├¬me trajet
+ Ô£ö UT-11 (CA-06) ÔÇö stock insuffisant : exception lev├®e sans interroger le d├®p├┤t, stock intact
+
+Stock Places Architecture (App\Tests\Controller\StockPlacesArchitecture)
+ Ô£ö ANO-38 ÔÇö le contr├┤leur de r├®servation ne modifie plus le stock de places en PHP (setPlacesDisponibles)
+ Ô£ö ANO-38 ÔÇö les voies de r├®servation et d'annulation passent par StockPlaces
+
+Transaction Integrite (App\Tests\Integration\TransactionIntegrite)
+ Ô£ö IT-01 (CT-25, EX-35) ÔÇö rollback explicite : r├®servation et d├®cr├®ment de stock annul├®s ensemble
+ Ô£ö IT-02 (CT-25) ÔÇö ├®chec au milieu d'un flush (e-mail en double) : rien n'est persist├®, stock intact
+ Ô£ö IT-03 (CT-25) ÔÇö wrapInTransaction : une exception m├®tier apr├¿s le flush annule toutes les ├®critures
+ Ô£ö IT-04 (EX-18) ÔÇö relations relues depuis la base : TrajetÔåöReservation, VehiculeÔåÆTrajet (ANO-05), UserÔåÆReservation
+ Ô£ö IT-05 (CA-20) ÔÇö suppression d'un trajet : ses r├®servations sont supprim├®es en cascade, aucun orphelin
+ Ô£ö IT-06 (CA-20, EX-35) ÔÇö trajet vis├® par une r├®clamation : la base refuse la suppression (RESTRICT), trajet et r├®clamation intacts
+
+OK (131 tests, 365 assertions)
