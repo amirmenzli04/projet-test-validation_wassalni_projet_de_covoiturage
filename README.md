@@ -45,6 +45,32 @@ Application testée : **WASSALNI**, application web de covoiturage (Symfony 7.4,
 | Performance | k6 | `tests/k6` |
 | Intégration continue | GitHub Actions | `.github/workflows/ci.yml` |
 
+## Types de tests réalisés et outils
+
+| Type de test | Ce qui est testé | Outil | Volume |
+|---|---|---|---|
+| **Unitaire** | Règles métier isolées : entités (`Reservation`, `Reclamation`, `Vehicule`, `User`), service de réservation, contraintes de validation | **PHPUnit** (stubs et mocks) | 33 tests en semaine 6, puis UT-12 et UT-13 |
+| **Intégration** | Application et base de données ensemble : CRUD, clés étrangères, transactions, rollback, cascades | **PHPUnit** + **Doctrine** + **MariaDB** (base `wassalni_test`) | 9 tests (IT-01 à IT-07…) |
+| **Système / fonctionnel** | Application complète par requêtes HTTP, avec relecture en base : les 28 cas TC du catalogue | **PHPUnit** (`WebTestCase` de Symfony) | La majorité des 131 tests de régression |
+| **Acceptation** | Scénarios métier vus par l'utilisateur (réclamations, droits, deux sessions simultanées) | **Playwright** (Chrome) | 10 scénarios (ST-01 à ST-10) |
+| **API** | Routes JSON et API REST des réclamations : méthodes, codes HTTP, JSON, droits, erreurs | **Postman** + **Newman**, et **PHPUnit** | 35 requêtes, 59 assertions ; 14 tests PHPUnit (API-01 à API-14) |
+| **Interface (de bout en bout)** | Parcours critique : connexion → recherche → réservation → vérification en base | **Playwright** | 23 tests navigateur |
+| **Exploratoire** | Double clic, session expirée, accès direct par URL pour chaque rôle | **Playwright** (sessions outillées) | 4 sessions (EXPL-01 à EXPL-04) |
+| **Performance (charge)** | Temps de réponse sous 5 utilisateurs pendant 30 s | **k6** | Seuils : p95 < 1 500 ms, moins de 1 % d'échecs |
+| **Accessibilité** | Respect des règles WCAG A/AA sur 4 pages, navigation au clavier | **axe-core** (dans Playwright) | 4 pages auditées |
+| **Sécurité élémentaire** | CSRF, accès aux ressources d'autrui, fuite de données, cookie de session, dépendances vulnérables | **PHPUnit**, **Playwright**, **composer audit** | Tests CA-14, CA-15, TC-45… |
+| **Concurrence** | Deux réservations simultanées sur la dernière place | **PHPUnit** (deux connexions à la base) | IT-07 |
+| **Statique** (sans exécuter l'application) | Syntaxe PHP, conteneur Symfony, schéma de base de données, test d'architecture | `php -l`, `lint:container`, `doctrine:schema:validate`, **PHPUnit** | À chaque exécution de la CI |
+| **Régression** | Rejouer tous les tests après chaque modification | **PHPUnit** + **GitHub Actions** (CI) et script `run-regression.ps1` | 131 tests |
+| **Couverture de code** (boîte blanche) | Part du code exécutée par les tests | **PCOV** + PHPUnit | 44,69 % des lignes |
+
+**Des tests pour vérifier les tests :**
+
+- **Tests d'anomalies ouvertes** (groupe `anomalie-ouverte` dans PHPUnit) : chacun prouve un défaut non corrigé. Quand le défaut est corrigé, son test passe dans la régression.
+- **Vérification par mutation** : des défauts ont été introduits volontairement dans l'API pour vérifier que les tests échouent bien.
+
+**Techniques de conception :** partitions d'équivalence, valeurs limites, tables de décision et transitions d'état.
+
 ## Reproduire la campagne
 
 Prérequis : PHP 8.4, Composer, Node.js, MariaDB avec une base `wassalni_test`, Chrome ; k6 pour la performance.
