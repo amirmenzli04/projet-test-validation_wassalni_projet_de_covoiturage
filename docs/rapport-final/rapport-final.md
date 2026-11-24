@@ -1,7 +1,7 @@
 # Rapport final — Test et validation de l'application WASSALNI
 
 **Mini-projet Licence 3 TI, DSI — Atelier Test et validation des logiciels**
-Étudiant : Mohamed Lajili · Dépôt : `projet-test-validation_wassalni_projet_de_covoiturage`, branches `test/campagne-finale`, `fix/anomalies-s2` et `amelioration/a11y-api` · Version du dossier 2.1 · 21 novembre 2026 (version 1.0.0 du 11 novembre 2026)
+Étudiant : Mohamed Lajili Amir menzli  · Dépôt : `projet-test-validation_wassalni_projet_de_covoiturage`, branches `test/campagne-finale`, `fix/anomalies-s2` et `amelioration/a11y-api` · Version du dossier 2.1 · 21 novembre 2026 (version 1.0.0 du 11 novembre 2026)
 
 ---
 
